@@ -5,6 +5,9 @@ filetype plugin indent on
 set showmatch 
 set autoindent 
 set smartindent 
+set hlsearch
+set ai
+set ruler
 
 set tabstop=4 
 set number 
