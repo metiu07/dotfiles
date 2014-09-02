@@ -13,5 +13,7 @@ set tabstop=4
 set number 
 set smarttab
 set shiftwidth=4
+set ai
+set expandtab
 
 syntax on

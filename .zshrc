@@ -78,4 +78,11 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+<<<<<<< HEAD
 setopt menu_complete
+=======
+# Lines configured by zsh-newuser-install
+unsetopt autocd
+bindkey -e
+# End of lines configured by zsh-newuser-install
+>>>>>>> fb45171101e834e5d3fc8b571f00a345e05a9d7e
