@@ -17,4 +17,3 @@ unclutter &
 if this is not working for you, on Arch Wiki is fix for it.
 
 Sorry for my terrible english :P
-README.md
