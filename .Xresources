@@ -18,7 +18,7 @@ URxvt.foreground: rgb:c2/c2/c2
 *color14: rgb:50/fc/f8
 *color15: rgb:f8/fc/f8
 
-URxvt.letterSpace:-1
+!URxvt.letterSpace:-1
 !URxvt*font: xft:sourcecodepro-medium:pixelsize=15:antialias=true:hinting=true
 URxvt*font: xft: Droid Sans Mono:pixelsize=15:antialias=true:hinting=true
 URxvt.cursorUnderline:1
