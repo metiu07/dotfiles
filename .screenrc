@@ -3,6 +3,7 @@ bindkey -k F1 prev
 bindkey -k F2 next
 
 startup_message off
+vbell off
 
 # Window list at the bottom.
 hardstatus alwayslastline
