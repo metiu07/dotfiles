@@ -1,0 +1,105 @@
+Xft.antialias:            true
+Xft.autohint:             0
+Xft.hinting:              1
+Xft.hintstyle:            hintfull
+Xft.lcdfilter:            lcddefault
+Xft.rgba:                 rgb
+
+! Dzen2
+
+dzen2.font:               -*-InconsolataForPowerline-medium-r-*-*-13-*-*-*-*-*-*-*
+dzen2.background:         #111111
+dzen2.foreground:         #aaaaaa
+
+! URxvt
+
+! URxvt.termName:           rxvt-256color
+! *customization:           -color
+URxvt.title:              Terminal
+Urxvt.loginShell:         true
+
+URxvt*geometry:           150x40
+URxvt*visualBell:         false
+URxvt*urgentOnBell:       true
+URxvt*scrollBar:          false
+URxvt*internalBorder:     0
+
+URxvt.depth:              32
+
+! Fonts
+URxvt*font:               xft:InconsolataForPowerline:medium:pixelsize=14
+URxvt*boldFont:           xft:InconsolataForPowerline:medium:pixelsize=14
+URxvt*colorBD:            #ffffff
+URxvt.xftAntialias:       true
+
+! urxvt will force a screen refresh on each new line it received
+URxvt*jumpScroll:         false
+
+! Remove ! if lines disappear
+! URxvt*skipScroll:         false
+
+URxvt*saveLines:          10000
+
+! Match URLs
+! urlLauncher (ubuntu) url-launcher (archlinux)
+URxvt*perl-ext-common:    default,matcher
+urxvt*url-launcher:       /usr/bin/google-chrome-stable
+URxvt*underlinedURLs:     true
+URxvt*matcher.button:     1
+URxvt*matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+! Dont select special chars
+URxvt.cutchars:           "`()'*[]{|}"
+
+! Disable Keycap Picture Insert and ISO-14755 Mode. Trigger by Ctrl-Shift
+! https://bitbucket.org/sme/dotfiles/src/0b4387472283/.Xdefaults
+URxvt.iso14755_52:        false
+URxvt.iso14755:           false
+
+! Support alt-keys in irssi
+! http://irssi.org/beginner/
+URxvt*eightBitInput:      false
+URxvt*metaSendsEscape:    true
+
+! Use super instead of alt
+URxvt*modifier:           super
+
+! Colorscheme ---
+
+! base16-default
+
+#define darkestgray   #151515
+#define darkergray    #202020
+#define darkgray      #303030
+#define gray          #505050
+#define lightgray     #b0b0b0
+#define lightergray   #d0d0d0
+#define lightestgray  #e0e0e0
+#define white         #f5f5f5
+#define red           #ac4142
+#define orange        #d28445
+#define yellow        #f4bf75
+#define green         #90a959
+#define cyan          #75b5aa
+#define blue          #6a9fb5
+#define magenta       #aa759f
+#define brown         #8f5536
+
+*.foreground:   lightergray
+*.background:   darkestgray
+*.cursorColor:  lightergray
+*.color0:       darkestgray
+*.color1:       red
+*.color2:       green
+*.color3:       yellow
+*.color4:       blue
+*.color5:       magenta
+*.color6:       cyan
+*.color7:       lightergray
+*.color8:       gray
+*.color9:       orange
+*.color10:      darkergray
+*.color11:      darkgray
+*.color12:      lightgray
+*.color13:      lightestgray
+*.color14:      brown
+*.color15:      white
