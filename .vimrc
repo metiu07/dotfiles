@@ -1,26 +1,15 @@
 " Vundle setup
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
-" Plugins to be installed with :PluginInstall
+" Plugins to be installed with :PluginsInstall
 
 Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-powerline'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/syntastic'
-
-" Syntastic setup
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+Plugin 'flazz/vim-colorschemes'
 
 " NerdTree setup
 
@@ -47,5 +36,4 @@ syntax enable
 
 " Colors 
 
-set background=dark
 colorscheme solarized
