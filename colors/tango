@@ -17,13 +17,3 @@ URxvt.color12:    #729FCF
 URxvt.color13:    #AD7FA8
 URxvt.color14:    #34E2E2
 URxvt.color15:    #EEEEEC
-
-URxvt.transparent: true
-URxvt.shading:     10
-URxvt.fading:      40
-URxvt.font:        xft:Mono:pixelsize=12.5
-
-URxvt.scrollBar:         false
-URxvt.scrollTtyOutput:   false
-URxvt.scrollWithBuffer:  true
-URxvt.scrollTtyKeypress: true
