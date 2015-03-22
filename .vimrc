@@ -2,14 +2,21 @@
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
 
-" Plugins to be installed with :PluginsInstall
+" Plugins are installed with :PluginInstall
 
 Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'ervandew/supertab'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'tpope/vim-fugitive'
+
+
+call vundle#end()
 
 " NerdTree setup
 
@@ -33,7 +40,8 @@ set smarttab
 set shiftwidth=4
 set expandtab
 syntax enable
+set nowrap
 
 " Colors 
 
-colorscheme solarized
+colorscheme molokai
