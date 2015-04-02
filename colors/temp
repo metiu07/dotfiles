@@ -1,3 +1,4 @@
 URxvt*font:xft:Inconsolata:medium:pixelsize=15:antialias=true:hinting=true
+URxvt.termName: xterm-256color
 URxvt.cursorUnderline:1
 URxvt.scrollBar: false
