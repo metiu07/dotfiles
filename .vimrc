@@ -20,8 +20,8 @@ call vundle#end()
 
 " NerdTree setup
 
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
 
 " Vim setup
 
@@ -42,6 +42,3 @@ set expandtab
 syntax enable
 set nowrap
 
-" Colors 
-
-colorscheme molokai
