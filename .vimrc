@@ -43,6 +43,3 @@ set expandtab
 syntax enable
 set nowrap
 
-" Colors 
-
-colorscheme molokai
