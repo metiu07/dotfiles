@@ -37,12 +37,21 @@
 #   ------------------------------------------------------------
     export BLOCKSIZE=1k
 
+#   Export wechall settings
+
+    export WECHALLUSER="metiu07"
+    export WECHALLTOKEN="21960-2CD93-38DA5-76304-F232E-CCE04"
+
 #   Add color to terminal
 #   (this is all commented out as I use Mac Terminal Profiles)
 #   from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
 #   ------------------------------------------------------------
 #   export CLICOLOR=1
 #   export LSCOLORS=ExFxBxDxCxegedabagacad
+
+bind TAB:menu-complete
+complete -cf sudo
+complete -cf man
 
 
 #   -----------------------------
@@ -53,6 +62,7 @@ alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
+alias ls='ls -G'                            # Preferred directory listing
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
@@ -294,3 +304,12 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 #   e.g.: hdiutil create -size 10m 10MB.dmg
 #   the above create files that are almost all zeros - if random bytes are desired
 #   then use: ~/Dev/Perl/randBytes 1048576 > 10MB.dat
+
+##
+# Your previous /Users/mato/.bash_profile file was backed up as /Users/mato/.bash_profile.macports-saved_2015-08-17_at_18:50:41
+##
+
+# MacPorts Installer addition on 2015-08-17_at_18:50:41: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
