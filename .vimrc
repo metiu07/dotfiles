@@ -14,6 +14,7 @@ Plugin 'ervandew/supertab'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 
 
 call vundle#end()
