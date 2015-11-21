@@ -49,7 +49,7 @@
 #   export CLICOLOR=1
 #   export LSCOLORS=ExFxBxDxCxegedabagacad
 
-# bind TAB:menu-complete
+bind TAB:menu-complete
 complete -cf sudo
 complete -cf man
 
@@ -81,6 +81,8 @@ alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable 
 alias show_options='shopt'                  # Show_options: display bash options settings
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
 alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
+alias gdb='gdb -q'                          # gdb:          Make gdb start in quiet mode
+alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
@@ -310,6 +312,24 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 ##
 
 # MacPorts Installer addition on 2015-08-17_at_18:50:41: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+##
+# Your previous /Users/mato/.bash_profile file was backed up as /Users/mato/.bash_profile.macports-saved_2015-11-07_at_20:53:26
+##
+
+# MacPorts Installer addition on 2015-11-07_at_20:53:26: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+##
+# Your previous /Users/mato/.bash_profile file was backed up as /Users/mato/.bash_profile.macports-saved_2015-11-07_at_21:35:24
+##
+
+# MacPorts Installer addition on 2015-11-07_at_21:35:24: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
