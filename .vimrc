@@ -19,8 +19,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'mattn/emmet-vim'
 Plugin 'ahw/vim-hooks'
 Plugin 'tpope/vim-surround'
-
-
+Plugin 'rodjek/vim-puppet'
 
 call vundle#end()
 

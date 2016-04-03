@@ -83,6 +83,8 @@ alias fix_stty='stty sane'                  # fix_stty:     Restore terminal set
 alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
 alias gdb='gdb -q'                          # gdb:          Make gdb start in quiet mode
 alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
+alias youdown='youtube-dl --extract-audio --audio-format mp3 '
+alias panpdf='pandoc -V geometry:1in '
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
