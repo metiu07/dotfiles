@@ -20,6 +20,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'ahw/vim-hooks'
 Plugin 'tpope/vim-surround'
 Plugin 'rodjek/vim-puppet'
+Plugin 'scrooloose/nerdcommenter'
 
 call vundle#end()
 

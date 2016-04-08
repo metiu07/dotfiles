@@ -1,7 +1,11 @@
 # ~/.tmuxinator/rev.yml
 
 name: rev
+<<<<<<< HEAD
 root: ~/dev/owt/<%= @args[0] %>
+=======
+root: ~/dev/<%= @args[0] %>
+>>>>>>> bed2beec22bbb1820d8140e1294faec4bbf55def
 
 windows:
   - main:
