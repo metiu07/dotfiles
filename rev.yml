@@ -1,0 +1,15 @@
+# ~/.tmuxinator/rev.yml
+
+name: rev
+root: ~/dev/<%= @args[0] %>
+
+windows:
+  - main:
+      layout: 9482,150x46,0,0{75x46,0,0,2,74x46,76,0[74x23,76,0,6,74x22,76,24,7]}
+      panes:
+        - gdb
+        - vim solve.py
+        - ls
+  - radare:
+      panes:
+        - radare2
