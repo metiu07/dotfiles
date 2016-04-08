@@ -6,6 +6,7 @@ mv ~/.bash_profile ~/.bash_profile.bak
 mv ~/.tmux.conf ~/.tmux.conf.bak
 mv ~/.vimrc ~/.vimrc.bak
 
+cp ./rev.yml ~/.tmuxinator/
 cp ./.bash_profile ~
 cp ./.tmux.conf ~
 cp ./.vimrc ~
