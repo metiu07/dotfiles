@@ -14,10 +14,6 @@ Plugin 'ervandew/supertab'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'tpope/vim-fugitive'
-<<<<<<< HEAD
-Plugin 'tpope/vim-surround'
-
-=======
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'mattn/emmet-vim'
@@ -25,7 +21,6 @@ Plugin 'ahw/vim-hooks'
 Plugin 'tpope/vim-surround'
 Plugin 'rodjek/vim-puppet'
 Plugin 'scrooloose/nerdcommenter'
->>>>>>> 728af5366de3f36f2924025c5d184ff7955a309f
 
 call vundle#end()
 
