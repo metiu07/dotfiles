@@ -26,7 +26,7 @@
 #   Set Paths
 #   ------------------------------------------------------------
     export PATH="$PATH:/usr/local/bin/"
-    export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+    export PATH="$HOME/.gem/ruby/2.3.0/bin:/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
 
 #   Set Default Editor (change 'Nano' to the editor of your choice)
 #   ------------------------------------------------------------
@@ -85,6 +85,7 @@ alias gdb='gdb -q'                          # gdb:          Make gdb start in qu
 alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
 alias youdown='youtube-dl --extract-audio --audio-format mp3 '
 alias panpdf='pandoc -V geometry:1in '
+alias python=python2.7                      # python:       Default python
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
