@@ -21,6 +21,10 @@ Plugin 'ahw/vim-hooks'
 Plugin 'tpope/vim-surround'
 Plugin 'rodjek/vim-puppet'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'othree/html5.vim'
+Plugin 'hail2u/vim-css3-syntax'
 
 call vundle#end()
 
@@ -28,6 +32,27 @@ call vundle#end()
 
 " autocmd VimEnter * NERDTree
 " autocmd VimEnter * wincmd p
+
+" Syntastic setup
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Vim splits
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
 
 " Vim setup
 
