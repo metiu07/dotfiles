@@ -65,6 +65,7 @@
  '(custom-safe-themes
    (quote
     ("6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
+ '(ede-project-directories (quote ("/Users/mato/dev/osdev")))
  '(fci-rule-color "#eee8d5")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
@@ -138,16 +139,30 @@
 ;; remove whitespace before saving
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; autocomplete
+;; magit
+;; (require 'magit)
+
+;; CEDET
+;; Ede
+(global-ede-mode 1)
+
+(add-to-list 'semantic-default-submodes
+	     'global-semanticdb-minor-mode
+	     'global-semantic-highlight-func-mode)
+
+;; CC MODE semantic
+(add-hook 'c-mode-common-hook '(lambda ()
+	 (setq ac-sources (append '(ac-sources-semantic) ac-sources))))
+
+;; Autocomplete
 (require-package 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
 
-;; magit
-(require 'magit)
-
 ;; flycheck
 (require-package 'flycheck)
+
+;; evil plugins
 (require-package 'evil-surround)
 (require-package 'evil-tabs)
 (require-package 'evil-leader)
@@ -157,6 +172,7 @@
 
 (require 'evil)
 
+(global-ede-mode t)
 (global-evil-surround-mode t)
 (global-evil-leader-mode t)
 
@@ -214,4 +230,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
-(custom-set-faces)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
