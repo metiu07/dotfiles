@@ -26,10 +26,10 @@
 (setq-default save-place t)
 
 ;; relative line numbers
-(require-package 'relative-line-numbers)
-(add-hook 'prog-mode-hook 'relative-line-numbers-mode t)
-(add-hook 'prog-mode-hook 'line-number-mode t)
-(add-hook 'prog-mode-hook 'column-number-mode t)
+;; (require-package 'relative-line-numbers)
+;; (add-hook 'prog-mode-hook 'relative-line-numbers-mode t)
+;; (add-hook 'prog-mode-hook 'line-number-mode t)
+;; (add-hook 'prog-mode-hook 'column-number-mode t)
 
 ;; ediff: side-by-side diffs
 (setq ediff-split-window-function 'split-window-horizontally
@@ -152,12 +152,14 @@
 
 ;; CC MODE semantic
 (add-hook 'c-mode-common-hook '(lambda ()
-	 (setq ac-sources (append '(ac-sources-semantic) ac-sources))))
+	 (add-to-list 'ac-sources 'ac-source-semantic)))
 
 ;; Autocomplete
 (require-package 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
+
+(semantic-mode 1)
 
 ;; flycheck
 (require-package 'flycheck)
@@ -192,16 +194,19 @@
 (require 'helm-config)
 (helm-mode 1)
 
+;; Org Mode
+(require 'org)
+
 ;; GUI
 ;; disable menu bar {file, ...}
 (menu-bar-mode -1)
 
 ;; KEYBINDS
 ;; <CTRL>-hjkl to move between windows
-(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+;; (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+;; (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 
 ;; evil leader binds
 ;; (evil-leader/set-leader ",")
@@ -211,6 +216,12 @@
 (evil-leader/set-key "v" 'helm-bookmarks)
 (evil-leader/set-key "s" 'helm-swoop)
 (evil-leader/set-key "g" 'magit-status)
+(evil-leader/set-key "a" 'org-agenda)
+(evil-leader/set-key "l" 'org-store-link)
+(evil-leader/set-key "i" 'org-iswitchb)
+
+;; Make helm defaul M-x
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 ;;; esc quits
 (defun minibuffer-keyboard-quit ()
