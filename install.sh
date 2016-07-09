@@ -6,14 +6,16 @@ mv ~/.bash_profile ~/.bash_profile.bak
 mv ~/.tmux.conf ~/.tmux.conf.bak
 mv ~/.vimrc ~/.vimrc.bak
 mv ~/.tmuxinator/rev.yml ~/.tmuxinator/rev.yml.bak
+mv ~/.emacs.d/init.el ~/.emacs.d/init.el.bak
 
 cp ./rev.yml ~/.tmuxinator/
 cp ./.bash_profile ~
 cp ./.tmux.conf ~
 cp ./.vimrc ~
+cp ./init.el ~/.emacs.d/
 
 # Install Vundle for vim plugin management
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # use $ vim +PluginInstall +qall
 # to install all plugins from .vimrc
 
@@ -22,5 +24,5 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # use prefix{`} + I for installing plugins from .tmux.conf
 
 # Install PEDA for gdb
-git clone https://github.com/longld/peda.git ~/peda
-echo "source ~/peda/peda.py" >> ~/.gdbinit
+# git clone https://github.com/longld/peda.git ~/peda
+# echo "source ~/peda/peda.py" >> ~/.gdbinit
