@@ -82,6 +82,7 @@ alias show_options='shopt'                  # Show_options: display bash options
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
 alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
 alias gdb='gdb -q'                          # gdb:          Make gdb start in quiet mode
+alias em='emacsclient -t'                   # emacs:        Emacs shortcut
 alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
 alias youdown='youtube-dl --extract-audio --audio-format mp3 '
 alias panpdf='pandoc -V geometry:1in '
@@ -335,4 +336,3 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # MacPorts Installer addition on 2015-11-07_at_21:35:24: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
-
