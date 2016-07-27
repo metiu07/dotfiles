@@ -18,7 +18,10 @@
 (electric-pair-mode)
 
 ;; backup directory
-(setq backup-directory-alist '(("~/.emacs.d/backups")))
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; save cursor position
 (require-package 'saveplace)
@@ -61,10 +64,10 @@
  '(cua-normal-cursor-color "#657b83")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
- '(custom-enabled-themes nil)
+ '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
-    ("6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
+    ("70b51a849b665f50a97a028c44cec36b398398357d8f7c19d558fe832b91980f" "6df30cfb75df80e5808ac1557d5cc728746c8dbc9bc726de35b15180fa6e0ad9" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
  '(ede-project-directories (quote ("/Users/mato/dev/osdev")))
  '(fci-rule-color "#eee8d5")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
@@ -137,29 +140,12 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; remove whitespace before saving
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; magit
-;; (require 'magit)
-
-;; CEDET
-;; Ede
-(global-ede-mode 1)
-
-(add-to-list 'semantic-default-submodes
-	     'global-semanticdb-minor-mode
-	     'global-semantic-highlight-func-mode)
-
-;; CC MODE semantic
-(add-hook 'c-mode-common-hook '(lambda ()
-	 (add-to-list 'ac-sources 'ac-source-semantic)))
+;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Autocomplete
 (require-package 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
-
-(semantic-mode 1)
 
 ;; flycheck
 (require-package 'flycheck)
@@ -174,7 +160,6 @@
 
 (require 'evil)
 
-(global-ede-mode t)
 (global-evil-surround-mode t)
 (global-evil-leader-mode t)
 
@@ -188,14 +173,51 @@
 (setq evil-replace-state-cursor '("red" bar))
 (setq evil-operator-state-cursor '("red" hollow))
 
+;; GGtags
+;; (require 'ggtags)
+;; (add-hook 'c-mode-common-hook
+;; 	  (lambda()
+;; 	    (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+;; 	      (ggtags-mode 1))))
+
+;; Projectile
+(require 'projectile)
+(require 'helm-projectile)
+
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+;; Helm-gtags
+(setq
+ helm-gtags-ignore-case t
+ helm-gtags-auto-update t
+ helm-gtags-use-input-at-cursor t
+ helm-gtags-pulse-at-cursor t)
+
+(require-package 'helm-gtags)
+(add-hook 'dired-mode-hook 'helm-gtags-mode)
+(add-hook 'eshell-mode-hook 'helm-gtags-mode)
+(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
+
 ;; Helm
-(require-package 'helm)
+(require 'helm)
 (require-package 'helm-swoop)
 (require 'helm-config)
+
+;; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+;; (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+;; (define-key helm-map (kbd "C-z") 'helm-select-action)
+
 (helm-mode 1)
 
 ;; Org Mode
 (require 'org)
+(setq org-hide-leading-stars t)
+
+(org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
 
 ;; GUI
 ;; disable menu bar {file, ...}
@@ -219,20 +241,31 @@
 (evil-leader/set-key "a" 'org-agenda)
 (evil-leader/set-key "l" 'org-store-link)
 (evil-leader/set-key "i" 'org-iswitchb)
+(evil-leader/set-key "d" 'dired)
+;; Show all tags in current function
+(evil-leader/set-key "a" 'helm-gtags-tags-in-this-function)
+;; Show all possible tags
+(evil-leader/set-key "q" 'helm-gtags-select)
+;; Jump to a tag
+(evil-leader/set-key "t" 'helm-gtags-dwim)
+;; Jump back
+(evil-leader/set-key "o" 'helm-gtags-pop-stack)
+;; Projectile find file
+(evil-leader/set-key "f" 'helm-projectile-find-file)
 
 ;; Make helm defaul M-x
 (global-set-key (kbd "M-x") 'helm-M-x)
 
 ;;; esc quits
 (defun minibuffer-keyboard-quit ()
-    "Abort recursive edit.
+  "Abort recursive edit.
 In Delete Selection mode, if the mark is active, just deactivate it;
 then it takes a second \\[keyboard-quit] to abort the minibuffer."
-    (interactive)
-    (if (and delete-selection-mode transient-mark-mode mark-active)
-	(setq deactivate-mark  t)
-      (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-      (abort-recursive-edit)))
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
