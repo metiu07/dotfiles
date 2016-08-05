@@ -1,5 +1,4 @@
-# This script will copy all files to home directory
-# To install Vundle for vim you can use 
+# This script will copy all files to home directory and create backups
 
 # Backup old files
 mv ~/.bash_profile ~/.bash_profile.bak
