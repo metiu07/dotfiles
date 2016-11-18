@@ -53,7 +53,6 @@ bind TAB:menu-complete
 complete -cf sudo
 complete -cf man
 
-
 #   -----------------------------
 #   2.  MAKE TERMINAL BETTER
 #   -----------------------------
@@ -86,6 +85,7 @@ alias em='emacsclient -t'                   # emacs:        Emacs shortcut
 alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
 alias youdown='youtube-dl --extract-audio --audio-format mp3 '
 alias panpdf='pandoc -V geometry:1in '
+alias vagstart='vagrant up && vagrant ssh'  # vagarnat:     Start VM and connect to it via ssh
 alias python=python2.7                      # python:       Default python
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
