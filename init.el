@@ -10,12 +10,55 @@
 ;; Ensure that we have every package we need
 (setq use-package-always-ensure t)
 
+;; Incremental completitions - helm
+(use-package helm
+  :config
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (helm-mode 1))
+
+(use-package helm-swoop)
+(require 'helm-config)
+
+;; Project management - projectile
+(use-package projectile
+  :config
+  (projectile-global-mode))
+
+(use-package helm-projectile
+  :config
+  (helm-projectile-on))
+
 ;; VIM initialization
 (use-package evil
   :init
   (setq evil-want-C-u-scroll t)
   :config
   (evil-mode t))
+
+;; Vim surround addon
+(use-package evil-surround
+  :config
+  (global-evil-surround-mode t))
+
+;; Vim tabs
+(use-package evil-tabs)
+
+;; Emacs git interface
+(use-package magit)
+(use-package evil-magit)
+
+;; Leader bindings (/ + 'key')
+(use-package evil-leader
+  :config
+  (global-evil-leader-mode t)
+  ; Evil leader key set
+  (evil-leader/set-key "e" 'helm-find)
+  (evil-leader/set-key "f" 'helm-projectile-find-file)
+  (evil-leader/set-key "v" 'helm-bookmarks)
+  (evil-leader/set-key "b" 'helm-mini)
+  (evil-leader/set-key "s" 'helm-swoop)
+  (evil-leader/set-key "p" 'helm-projectile-switch-project)
+  (evil-leader/set-key "g" 'magit-status))
 
 ;;; BEHAVIOUR
 ;; Write both brackets
@@ -31,6 +74,10 @@
 (setq indent-tabs-mode t)
 (setq c-basic-offset 4)
 (setq tab-width 4)
+
+;; GDB environment
+(setq gdb-many-windows t)
+(setq gdb-show-main t)
 
 ;; Never show visual bell
 (setq visible-bell nil)
