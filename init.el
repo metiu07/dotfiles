@@ -1,14 +1,47 @@
 ;; Initialize package repositories
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("org" . "http://orgmode.org/elpa/")
-			 ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+						 ("org" . "http://orgmode.org/elpa/")
+						 ("marmalade" . "http://marmalade-repo.org/packages/")
+						 ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; Initializes packages, so we can use -> use-package
 (package-initialize)
 
 ;; Ensure that we have every package we need
 (setq use-package-always-ensure t)
+
+;; GNU Global emacs implementation
+(use-package ggtags
+  :config
+  (add-hook 'c-mode-common-hook
+			(lambda ()
+			  (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+				              (ggtags-mode 1)))))
+
+;; CEDET - Emacs development tools
+(use-package cedet
+  :config
+  ;; Project management for smart completion
+  (require 'ede)
+  (global-ede-mode t)
+
+  (require 'cc-mode)
+  (require 'semantic)
+  (global-semanticdb-minor-mode 1)
+  
+  (semantic-mode 1))
+
+;; Company mode - auto completion
+(use-package company
+  :config
+  (add-to-list 'company-backends 'company-c-headers)
+  (add-to-list 'company-backends 'company-gtags)
+  (define-key c-mode-map  [(tab)] 'company-complete)
+  (define-key c++-mode-map  [(tab)] 'company-complete)
+  (add-hook 'after-init-hook 'global-company-mode))
+
+;; Code browsing - sr-speedbar
+(use-package sr-speedbar)
 
 ;; Incremental completitions - helm
 (use-package helm
@@ -18,6 +51,20 @@
 
 (use-package helm-swoop)
 (require 'helm-config)
+
+;; GTAGS - Source code navigation 
+(use-package helm-gtags
+  :init
+  (setq
+   helm-gtags-ignore-case t
+   helm-gtags-auto-update t
+   helm-gtags-use-input-at-cursor t
+   helm-gtags-pulse-at-cursor t
+   helm-gtags-prefix-key "\C-cg"
+   helm-gtags-suggested-key-mapping t
+   )
+  :config
+  (helm-gtags-mode t))
 
 ;; Project management - projectile
 (use-package projectile
@@ -50,14 +97,20 @@
 ;; Leader bindings (/ + 'key')
 (use-package evil-leader
   :config
-  (global-evil-leader-mode t)
-  ; Evil leader key set
+  (global-evil-leader-mode t) ; Evil leader key set
+  ;; Files navigation
   (evil-leader/set-key "e" 'helm-find)
   (evil-leader/set-key "f" 'helm-projectile-find-file)
+  ;; Helm tweaks
   (evil-leader/set-key "v" 'helm-bookmarks)
   (evil-leader/set-key "b" 'helm-mini)
   (evil-leader/set-key "s" 'helm-swoop)
+  ;; Code navigation
+  
+  ;; Projectile bindings
   (evil-leader/set-key "p" 'helm-projectile-switch-project)
+  (evil-leader/set-key "o" 'helm-projectile-find-other-file)
+  ;; Open git window
   (evil-leader/set-key "g" 'magit-status))
 
 ;;; BEHAVIOUR
@@ -89,9 +142,9 @@ In Delete Selection mode, if the mark is active, just deactivate it;
 then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (interactive)
   (if (and delete-selection-mode transient-mark-mode mark-active)
-      (setq deactivate-mark  t)
-    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-    (abort-recursive-edit)))
+	  (setq deactivate-mark  t)
+	(when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+	(abort-recursive-edit)))
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
@@ -103,3 +156,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;; USER INTERFACE
 ;; Disable menu bar
 (menu-bar-mode -1)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ede-project-directories
+   (quote
+	("/home/vagrant/dev/osdev/src/shell" "/home/vagrant/dev/osdev/src/lib" "/home/vagrant/dev/osdev/src/keyboard" "/home/vagrant/dev/osdev/src/kernel" "/home/vagrant/dev/osdev/src/include" "/home/vagrant/dev/osdev/src" "/home/vagrant/dev/osdev"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
