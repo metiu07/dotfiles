@@ -10,6 +10,12 @@
 ;; Ensure that we have every package we need
 (setq use-package-always-ensure t)
 
+(use-package org
+  :config
+  (setq org-log-done 'time)
+  (setq org-startup-folded nil)
+  (setq org-hide-leading-stars t))
+
 ;; GNU Global emacs implementation
 (use-package ggtags
   :config
@@ -41,11 +47,18 @@
   (add-hook 'after-init-hook 'global-company-mode))
 
 ;; Code browsing - sr-speedbar
-(use-package sr-speedbar)
+(use-package sr-speedbar
+  :config
+  (add-hook 'buffer-quit-function 'sr-speedbar-close)
+  (setq sr-speedbar-right-side nil))
+
+(defun nolinum ()
+   (linum-mode 0))
 
 ;; Incremental completitions - helm
 (use-package helm
   :config
+  (add-hook 'helm-minibuffer-set-up-hook 'nolinum)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (helm-mode 1))
 
@@ -98,22 +111,32 @@
 (use-package evil-leader
   :config
   (global-evil-leader-mode t) ; Evil leader key set
+  ;; Emacs functions
+  (evil-leader/set-key "D" 'describe-function)
   ;; Files navigation
   (evil-leader/set-key "e" 'helm-find)
   (evil-leader/set-key "f" 'helm-projectile-find-file)
+  (evil-leader/set-key "d" 'helm-gtags-dwim)
+  ;; Org mode
+  (evil-leader/set-key "a" 'org-agenda)
+  (evil-leader/set-key "L" 'org-insert-link)
+  (evil-leader/set-key "l" 'org-store-link)
+  (evil-leader/set-key "c" 'org-capture)
+  (evil-leader/set-key "i" 'org-iswitchb)
   ;; Helm tweaks
   (evil-leader/set-key "v" 'helm-bookmarks)
   (evil-leader/set-key "b" 'helm-mini)
   (evil-leader/set-key "s" 'helm-swoop)
-  ;; Code navigation
-  
-  ;; Projectile bindings
+  ;; Projectile binding
   (evil-leader/set-key "p" 'helm-projectile-switch-project)
   (evil-leader/set-key "o" 'helm-projectile-find-other-file)
   ;; Open git window
   (evil-leader/set-key "g" 'magit-status))
 
 ;;; BEHAVIOUR
+;; Line numbering
+(global-linum-mode)
+(setq linum-format "%d | ")
 ;; Write both brackets
 (electric-pair-mode)
 
@@ -163,7 +186,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  ;; If there is more than one, they won't work right.
  '(ede-project-directories
    (quote
-	("/home/vagrant/dev/osdev/src/shell" "/home/vagrant/dev/osdev/src/lib" "/home/vagrant/dev/osdev/src/keyboard" "/home/vagrant/dev/osdev/src/kernel" "/home/vagrant/dev/osdev/src/include" "/home/vagrant/dev/osdev/src" "/home/vagrant/dev/osdev"))))
+    ("/home/vagrant/dev/osdev/src/shell" "/home/vagrant/dev/osdev/src/lib" "/home/vagrant/dev/osdev/src/keyboard" "/home/vagrant/dev/osdev/src/kernel" "/home/vagrant/dev/osdev/src/include" "/home/vagrant/dev/osdev/src" "/home/vagrant/dev/osdev")))
+ '(org-agenda-files (quote ("~/dev/notes/tmp.org" "~/dev/notes/org.org"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

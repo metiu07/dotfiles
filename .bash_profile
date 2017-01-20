@@ -136,6 +136,16 @@ EOT
         cd "$currFolderPath"
     }
 
+#   vag: Start and ssh into vagrant machine
+#   -------------------------------------------
+    vag () {
+	if [ -f ~/vagrant/$1/Vagrantfile ] ; then
+	    cd ~/vagrant/$1 && vagrant up && vagrant ssh
+	else
+	    echo "'$1' is not valid vagrant machine."
+	fi
+    }
+
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
     extract () {
