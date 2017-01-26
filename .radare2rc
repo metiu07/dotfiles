@@ -1,0 +1,16 @@
+# Contents of this file will be interpreted at the beginning of each session
+
+# Don't display comments in disassembly
+e asm.comments=false
+
+# Show invalid instruction as hex
+e asm.invhex=true
+
+# Align disassembly bytes to right
+e asm.lbytes=false
+
+# Show accesses of local variables
+e asm.varxs=true
+
+# Analyze binary when file is opened
+aaa
