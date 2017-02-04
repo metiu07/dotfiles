@@ -12,5 +12,6 @@ e asm.lbytes=false
 # Show accesses of local variables
 e asm.varxs=true
 
-# Analyze binary when file is opened
-aaa
+# Default path to rarun profile
+# This option is persistent after ood
+e dbg.profile=./run.rr2
