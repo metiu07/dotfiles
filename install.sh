@@ -1,3 +1,4 @@
+#!/bin/sh
 # Author: Matej Kastak
 # Start Date: 31.3.2017
 #
