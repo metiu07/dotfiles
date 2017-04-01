@@ -25,8 +25,8 @@
 
 #   Set Paths
 #   ------------------------------------------------------------
-    export PATH="$PATH:/usr/local/bin/"
-    export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+    export PATH="/opt/local/libexec/gnubin:$PATH:/usr/local/bin/"
+    export PATH="$HOME/.gem/ruby/2.3.0/bin:/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
 
 #   Set Default Editor (change 'Nano' to the editor of your choice)
 #   ------------------------------------------------------------
@@ -53,7 +53,6 @@ bind TAB:menu-complete
 complete -cf sudo
 complete -cf man
 
-
 #   -----------------------------
 #   2.  MAKE TERMINAL BETTER
 #   -----------------------------
@@ -61,8 +60,8 @@ complete -cf man
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
-alias ls='ls -G'                            # Preferred directory listing
+alias ll='ls -FGlAhp --group-directories-first --color=auto' # Preferred 'ls' implementation
+alias ls='ls -G --group-directories-first --color=auto' # Preferred directory listing
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
@@ -82,9 +81,12 @@ alias show_options='shopt'                  # Show_options: display bash options
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
 alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
 alias gdb='gdb -q'                          # gdb:          Make gdb start in quiet mode
+alias em='emacsclient -t'                   # emacs:        Emacs shortcut
 alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
 alias youdown='youtube-dl --extract-audio --audio-format mp3 '
-alias panpdf='pandoc -V geometry:margin=1in '
+alias panpdf='pandoc -V geometry:1in '
+alias vagstart='vagrant up && vagrant ssh'  # vagarnat:     Start VM and connect to it via ssh
+alias python=python2.7                      # python:       Default python
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
@@ -132,6 +134,16 @@ EOT
         )
         echo "cd to \"$currFolderPath\""
         cd "$currFolderPath"
+    }
+
+#   vag: Start and ssh into vagrant machine
+#   -------------------------------------------
+    vag () {
+	if [ -f ~/vagrant/$1/Vagrantfile ] ; then
+	    cd ~/vagrant/$1 && vagrant up && vagrant ssh
+	else
+	    echo "'$1' is not valid vagrant machine."
+	fi
     }
 
 #   extract:  Extract most know archives with one command
@@ -334,4 +346,3 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # MacPorts Installer addition on 2015-11-07_at_21:35:24: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
-

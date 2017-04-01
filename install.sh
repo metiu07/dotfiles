@@ -1,27 +1,190 @@
-# This script will copy all files to home directory and create backups
+# Author: Matej Kastak
+# Start Date: 31.3.2017
+#
+# Description:
+#      This script will copy(install) all files to home directory
+#      and create backups
+#
+# Files to install:
+# [AUTO] .bashrc             -> Allways have fresh shell(.bash_profile)
+# [AUTO] .tmux.conf          -> Tmux config file
+# [AUTO] .vimrc              -> Vim config file
+# [AUTO] .emacs.d/init.el    -> Emacs config file
+# [AUTO] .radare2rc          -> Radare2 config file
+#        .i3/config          -> I3 window manager config file
+#        .xinitrc            -> X11 config file
+#        .Xresources         -> Config file for urxvt(terminal)
+#        .screenrc           -> Screen config file
+#        .zshrc              -> Zsh config file
+#        .xmonad.hs          -> Xmonad config file
+#        .tmuxinator/rev.yml -> Tmuxinator reversing template
+#
+# [AUTO] My current preference for config files
+#
+# Plugins to isntall:
+#     peda              -> Enhancement for GDB
+#     Vundle            -> Plugin manager for vim
+#     tmp               -> Plugin manager for tmux
+
+# Set up file variables [AUTO]
+BASH_CONFIG_FILE=".bashrc"
+TMUX_CONFIG_FILE=".tmux.conf"
+VIM_CONFIG_FILE=".vimrc"
+EMACS_CONFIG_FILE=".emacs.d/init.el"
+RADARE2_CONFIG_FILE=".radare2rc"
+
+I3_CONFIG_FILE=".i3/config"
+XINIT_CONFIG_FILE=".xinitrc"
+XRESOURCES_FILE=".Xresources"
+SCREEN_CONFIG_FILE=".screenrc"
+TMUXINATOR_CONFIG_FILE=".tmuxinator/rev.yml"
+ZSH_CONFIG_FILE=".zshrc"
+XMONAD_CONFIG_FILE=".xmonad.hs"
+
+# Install variables
+INSTALL_PEDA=0
+INSTALL_PEDA_REPO="longld/peda"
+INSTALL_PEDA_PATH="/home/$USER/.peda"
+INSTALL_TMUX_PLUGINS=0
+INSTALL_TMUX_PLUGINS_REPO="tmux-plugins/tpm"
+INSTALL_TMUX_PLUGINS_PATH="/home/$USER/.tmux/plugins/tmp"
+INSTALL_VIM_PLUGINS=0
+INSTALL_VIM_PLUGINS_REPO="VundleVim/Vundle.vim"
+INSTALL_VIM_PLUGINS_PATH="home/$USER/.vim/bundle/Vundle.vim"
+
+DEBUG=0
+
+# Function to print usage of script
+print_usage() {
+    echo "usage: ./install [-p] [-t] [-v] [-u]"
+    echo "    -p: install gdb peda"
+    echo "    -t: install tmuxinator"
+    echo "    -v: install vim Vundle"
+    echo "    -u: print usage"
+}
+
+# Function to install config file
+#     checks for file if exists, and then copies it
+# 
+# Arg1: File to be installed
+install_config() {
+    if [ "$DEBUG" -gt 0 ]; then
+	echo "install_config: Installing $1"
+    fi
+
+    # We need one argument
+    if [ -z "$1" ]; then
+	echo "install_config: Wrong number of arguments!">&2
+	exit 1
+    fi
+
+    # Create home path
+    CONFIG_FILE="$1"
+    HOME_FILE=~/"$1"
+    
+    if [ -f "$HOME_FILE" ]; then
+	mv "$HOME_FILE" "$HOME_FILE".bak
+    else
+	if [ "$DEBUG" -gt 0 ]; then
+	    echo "Config file '$HOME_FILE' does not exist!" >&2
+	fi
+    fi
+    cp "$CONFIG_FILE" "$HOME_FILE"
+}
+
+# Function to install module(e.g., peda, tmuxinator,...)
+#
+# Arg1: git repo
+# Arg2: install path(home directory)
+install_module() {
+    if [ "$DEBUG" -gt 0 ]; then
+	echo "install_module: Installing $1 in $2"
+    fi
+    
+    if [ -z "$1" ]; then
+	echo "install_module: First arguments missing!" >&2
+	exit 1
+    fi
+    
+    if [ -z "$2" ]; then
+	echo "install_module: Second arguments missing!" >&2
+	exit 1
+    fi
+
+    # Check if peda is already installed
+    if [ ! -d "$2" ]; then
+	# Check if git is installed
+	# 'command' is more portable
+	if command -v git 2>/dev/null; then
+	    git clone "https://github.com/$1" "$2"
+	    if [ "$INSTALL_PEDA" -eq 1 ]; then
+		echo "source ~/.peda/peda.py" >> ~/.gdbinit
+	    elif [ "$INSTALL_TMUX_PLUGINS" -eq 1 ]; then
+		echo 'Use prefix{`} + I for installing plugins from .tmux.conf'
+	    elif [ "$INSTALL_VIM_PLUGINS" -eq 1 ]; then
+		vim +PluginInstall +qall
+		# use this command to install all plugins from .vimrc
+	    fi
+		
+	else
+	    echo "Git is not installed!">&2
+	fi
+    else
+	echo "$2 is already installed."
+	echo "Updating..."
+	cd "$2" && git pull
+    fi
+}
+
+# Handle arguments
+while getopts ":ptvud" opt; do
+    case "$opt" in
+	p)
+	    INSTALL_PEDA=1
+	    ;;
+	t)
+	    INSTALL_TMUX_PLUGINS=1
+	    ;;
+	v)
+	    INSTALL_VIM_PLUGINS=1
+	    ;;
+	u)
+	    print_usage
+	    ;;
+	d)
+	    DEBUG=1
+	    ;;
+	\?)
+	    echo "Wrong argument on command line!" >&2
+	    print_usage
+	    exit 1
+	    ;;
+    esac
+done
 
 # Backup old files
-mv ~/.bash_profile ~/.bash_profile.bak
-mv ~/.tmux.conf ~/.tmux.conf.bak
-mv ~/.vimrc ~/.vimrc.bak
-mv ~/.tmuxinator/rev.yml ~/.tmuxinator/rev.yml.bak
-mv ~/.emacs.d/init.el ~/.emacs.d/init.el.bak
+# First check if they exist, if they do then create backup
+# And after that install them
 
-cp ./rev.yml ~/.tmuxinator/
-cp ./.bash_profile ~
-cp ./.tmux.conf ~
-cp ./.vimrc ~
-cp ./init.el ~/.emacs.d/
+# .bashrc
+install_config "$BASH_CONFIG_FILE"
+# .tmux.conf
+install_config "$TMUX_CONFIG_FILE"
+# .vimrc
+install_config "$VIM_CONFIG_FILE"
+# .emacs.d/init.el
+install_config "$EMACS_CONFIG_FILE"
+# .radare2rc
+install_config "$RADARE2_CONFIG_FILE"
 
-# Install Vundle for vim plugin management
-# git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-# use $ vim +PluginInstall +qall
-# to install all plugins from .vimrc
+if [ "$INSTALL_PEDA" -eq 1 ]; then
+    install_module "$INSTALL_PEDA_REPO" "$INSTALL_PEDA_PATH"
+fi
 
-# Install Tmux plugin manager
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# use prefix{`} + I for installing plugins from .tmux.conf
+if [ "$INSTALL_TMUX_PLUGINS" -eq 1 ]; then
+    install_module "$INSTALL_TMUX_PLUGINS_REPO" "$INSTALL_TMUX_PLUGINS_PATH"
+fi
 
-# Install PEDA for gdb
-# git clone https://github.com/longld/peda.git ~/peda
-# echo "source ~/peda/peda.py" >> ~/.gdbinit
+if [ "$INSTALL_VIM_PLUGINS" -eq 1 ]; then
+    install_module "$INSTALL_VIM_PLUGINS_REPO" "$INSTALL_VIM_PLUGINS_PATH"
+fi
