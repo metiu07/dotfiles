@@ -28,7 +28,7 @@
 #     tmp               -> Plugin manager for tmux
 
 # Set up file variables [AUTO]
-BASH_CONFIG_FILE=".bashrc"
+BASH_CONFIG_FILE=".bash_profile"
 TMUX_CONFIG_FILE=".tmux.conf"
 VIM_CONFIG_FILE=".vimrc"
 EMACS_CONFIG_FILE=".emacs.d/init.el"
