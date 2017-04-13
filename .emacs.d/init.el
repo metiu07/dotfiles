@@ -151,6 +151,9 @@
 (setq c-basic-offset 4)
 (setq tab-width 4)
 
+;; Set c code style
+(setq c-default-style "bsd")
+
 ;; GDB environment
 (setq gdb-many-windows t)
 (setq gdb-show-main t)

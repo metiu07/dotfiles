@@ -25,4 +25,3 @@ Rxvt*cursorColor:                      Magenta
 URxvt*font: xft: Droid Sans Mono:pixelsize=15:antialias=true:hinting=true
 URxvt.cursorUnderline:1
 URxvt.scrollBar: false
-
