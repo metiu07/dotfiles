@@ -7,6 +7,9 @@
 ;; Initializes packages, so we can use -> use-package
 (package-initialize)
 
+(package-install 'use-package)
+(eval-when-compile (require 'use-package))
+
 ;; Ensure that we have every package we need
 (setq use-package-always-ensure t)
 
@@ -190,7 +193,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  '(ede-project-directories
    (quote
     ("/home/vagrant/dev/osdev/src/shell" "/home/vagrant/dev/osdev/src/lib" "/home/vagrant/dev/osdev/src/keyboard" "/home/vagrant/dev/osdev/src/kernel" "/home/vagrant/dev/osdev/src/include" "/home/vagrant/dev/osdev/src" "/home/vagrant/dev/osdev")))
- '(org-agenda-files (quote ("~/dev/notes/tmp.org" "~/dev/notes/org.org"))))
+ '(org-agenda-files (quote ("~/dev/notes/tmp.org" "~/dev/notes/org.org")))
+ '(package-selected-packages
+   (quote
+    (evil-leader evil-magit magit evil-tabs evil-surround evil helm-projectile projectile helm-gtags helm-config helm-swoop helm sr-speedbar company ggtags use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
