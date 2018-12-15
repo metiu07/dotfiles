@@ -96,6 +96,11 @@
   :init
   (setq evil-want-C-u-scroll t)
   :config
+  ;; Map visual movement, this is usefull when word wrap is on
+  (evil-define-key 'normal latex-mode-map (kbd "j") 'evil-next-visual-line)
+  (evil-define-key 'visual latex-mode-map (kbd "j") 'evil-next-visual-line)
+  (evil-define-key 'normal latex-mode-map (kbd "k") 'evil-previous-visual-line)
+  (evil-define-key 'visual latex-mode-map (kbd "k") 'evil-previous-visual-line)
   (evil-mode t))
 
 ;; Vim surround addon
@@ -196,7 +201,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  '(org-agenda-files (quote ("~/dev/notes/tmp.org" "~/dev/notes/org.org")))
  '(package-selected-packages
    (quote
-    (evil-leader evil-magit magit evil-tabs evil-surround evil helm-projectile projectile helm-gtags helm-config helm-swoop helm sr-speedbar company ggtags use-package))))
+    (markdown-mode evil-leader evil-magit magit evil-tabs evil-surround evil helm-projectile projectile helm-gtags helm-config helm-swoop helm sr-speedbar company ggtags use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
