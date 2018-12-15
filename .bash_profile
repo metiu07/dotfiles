@@ -7,7 +7,8 @@
 # Description:  This file holds all my BASH configurations and aliases
 #
 # Set the shell prompt
-export PS1="\[\e[01;31m\]\u\[\e[0m\]\[\e[00;37m\]@\h:\[\e[0m\]\[\e[00;36m\][\W]\[\e[0m\]\[\e[00;37m\]\\$ \[\e[0m\]"
+# export PS1="\[\e[01;31m\]\u\[\e[0m\]\[\e[00;37m\]@\h:\[\e[0m\]\[\e[00;36m\][\W]\[\e[0m\]\[\e[00;37m\]\\$ \[\e[0m\]"
+export PS1="\[\e[32m\]\u\[\e[m\]@\h:\[\e[31m\][\[\e[m\]\W\[\e[31m\]]\[\e[m\]\\$ "
 
 # Set Paths
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11R6/bin:/usr/local/bin"
