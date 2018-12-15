@@ -53,6 +53,10 @@ INSTALL_VIM_PLUGINS=0
 INSTALL_VIM_PLUGINS_REPO="VundleVim/Vundle.vim"
 INSTALL_VIM_PLUGINS_PATH="home/$USER/.vim/bundle/Vundle.vim"
 
+# INSTALL_COMMAND="mv"
+INSTALL_COMMAND="ln -sf"
+BACKUP_COMMAND="mv"
+
 DEBUG=0
 
 # Function to print usage of script
@@ -80,17 +84,30 @@ install_config() {
     fi
 
     # Create home path
-    CONFIG_FILE="$1"
+    CONFIG_FILE="\$(realpath $1)"
     HOME_FILE=~/"$1"
-    
-    if [ -f "$HOME_FILE" ]; then
-	mv "$HOME_FILE" "$HOME_FILE".bak
+
+    # Create backup if necessary, only in case the file is not symlink
+    if [ -f "$HOME_FILE" ] && [ ! -L "$HOME_FILE" ]; then
+	FINAL_BACKUP="$BACKUP_COMMAND $HOME_FILE $HOME_FILE.bak"
+	if [ "$DEBUG" -gt 0 ]; then
+	    echo $FINAL_BACKUP
+	fi
+
+	eval $FINAL_BACKUP
+
+	if [ "$DEBUG" -gt 0 ]; then
+	    echo "Config file '$HOME_FILE' created backup!" >&2
+	fi
     else
 	if [ "$DEBUG" -gt 0 ]; then
 	    echo "Config file '$HOME_FILE' does not exist!" >&2
 	fi
     fi
-    cp "$CONFIG_FILE" "$HOME_FILE"
+
+    # Finaly install the config file
+    FINAL_COMMAND="$INSTALL_COMMAND $CONFIG_FILE $HOME_FILE"
+    eval "$FINAL_COMMAND"
 }
 
 # Function to install module(e.g., peda, tmuxinator,...)
@@ -138,7 +155,9 @@ install_module() {
 }
 
 # Handle arguments
-while getopts ":ptvud" opt; do
+# TODO: Add install gef options
+#       Probably will need to reslove the conflicts between gef and peda
+while getopts ":ptvhd" opt; do
     case "$opt" in
 	p)
 	    INSTALL_PEDA=1
@@ -149,8 +168,9 @@ while getopts ":ptvud" opt; do
 	v)
 	    INSTALL_VIM_PLUGINS=1
 	    ;;
-	u)
+	h)
 	    print_usage
+	    exit 0
 	    ;;
 	d)
 	    DEBUG=1
