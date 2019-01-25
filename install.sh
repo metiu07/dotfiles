@@ -12,7 +12,7 @@
 # [AUTO] .vimrc              -> Vim config file
 # [AUTO] .emacs.d/init.el    -> Emacs config file
 # [AUTO] .radare2rc          -> Radare2 config file
-#        .i3/config          -> I3 window manager config file
+#        .config/i3/config   -> I3 window manager config file
 #        .xinitrc            -> X11 config file
 #        .Xresources         -> Config file for urxvt(terminal)
 #        .screenrc           -> Screen config file
@@ -34,7 +34,7 @@ VIM_CONFIG_FILE=".vimrc"
 EMACS_CONFIG_FILE=".emacs.d/init.el"
 RADARE2_CONFIG_FILE=".radare2rc"
 
-I3_CONFIG_FILE=".i3/config"
+I3_CONFIG_FILE=".config/i3/config"
 XINIT_CONFIG_FILE=".xinitrc"
 XRESOURCES_FILE=".Xresources"
 SCREEN_CONFIG_FILE=".screenrc"
@@ -197,6 +197,8 @@ install_config "$VIM_CONFIG_FILE"
 install_config "$EMACS_CONFIG_FILE"
 # .radare2rc
 install_config "$RADARE2_CONFIG_FILE"
+# .config/i3/config
+install_config "$I3_CONFIG_FILE"
 
 if [ "$INSTALL_PEDA" -eq 1 ]; then
     install_module "$INSTALL_PEDA_REPO" "$INSTALL_PEDA_PATH"
