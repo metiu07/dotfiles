@@ -3,22 +3,25 @@
 # Start Date: 31.3.2017
 #
 # Description:
-#      This script will copy(install) all files to home directory
+#      This script will copy(symlink) all files to home directory
 #      and create backups
 #
 # Files to install:
-# [AUTO] .bashrc             -> Allways have fresh shell(.bash_profile)
-# [AUTO] .tmux.conf          -> Tmux config file
-# [AUTO] .vimrc              -> Vim config file
-# [AUTO] .emacs.d/init.el    -> Emacs config file
-# [AUTO] .radare2rc          -> Radare2 config file
-#        .config/i3/config   -> I3 window manager config file
-#        .xinitrc            -> X11 config file
-#        .Xresources         -> Config file for urxvt(terminal)
-#        .screenrc           -> Screen config file
-#        .zshrc              -> Zsh config file
-#        .xmonad.hs          -> Xmonad config file
-#        .tmuxinator/rev.yml -> Tmuxinator reversing template
+# [AUTO] .bashrc                   -> Allways have fresh shell(.bash_profile)
+# [AUTO] .tmux.conf                -> Tmux config file
+# [AUTO] .vimrc                    -> Vim config file
+# [AUTO] .emacs.d/init.el          -> Emacs config file
+# [AUTO] .config/i3/config         -> i3 config file
+# [AUTO] .config/polybar/config    -> Polybar config file
+# [AUTO] .config/polybar/launch.sh -> Polybar launch file
+#        .radare2rc                -> Radare2 config file
+#        .config/i3/config         -> I3 window manager config file
+#        .xinitrc                  -> X11 config file
+#        .Xresources               -> Config file for urxvt(terminal)
+#        .screenrc                 -> Screen config file
+#        .zshrc                    -> Zsh config file
+#        .xmonad.hs                -> Xmonad config file
+#        .tmuxinator/rev.yml       -> Tmuxinator reversing template
 #
 # [AUTO] My current preference for config files
 #
@@ -35,6 +38,8 @@ EMACS_CONFIG_FILE=".emacs.d/init.el"
 RADARE2_CONFIG_FILE=".radare2rc"
 
 I3_CONFIG_FILE=".config/i3/config"
+POLYBAR_CONFIG_FILE=".config/polybar/config"
+POLYBAR_LAUNCH_FILE=".config/polybar/launch.sh"
 XINIT_CONFIG_FILE=".xinitrc"
 XRESOURCES_FILE=".Xresources"
 SCREEN_CONFIG_FILE=".screenrc"
@@ -195,10 +200,12 @@ install_config "$TMUX_CONFIG_FILE"
 install_config "$VIM_CONFIG_FILE"
 # .emacs.d/init.el
 install_config "$EMACS_CONFIG_FILE"
-# .radare2rc
-install_config "$RADARE2_CONFIG_FILE"
 # .config/i3/config
 install_config "$I3_CONFIG_FILE"
+# .config/polybar/config
+install_config "$POLYBAR_CONFIG_FILE"
+# .config/polybar/launch.sh
+install_config "$POLYBAR_LAUNCH_FILE"
 
 if [ "$INSTALL_PEDA" -eq 1 ]; then
     install_module "$INSTALL_PEDA_REPO" "$INSTALL_PEDA_PATH"
