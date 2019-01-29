@@ -136,7 +136,6 @@ bindsym $mod+Control+Down move workspace to output down
 bindsym $mod+Control+Up move workspace to output up
 bindsym $mod+Control+Right move workspace to output right
 
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
@@ -195,7 +194,14 @@ bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+# TODO: show moves both bars to one monitor
+# bindsym $mod+m polybar-msg cmd hide
+
+# Assign the programs to workspaces
+assign [class="Slack"] 3
+assign [class="discord"] 3
+assign [class="Steam"] 5
+assign [class="csgo_linux64"] 5
 
 # Autostart
 # 
@@ -205,9 +211,12 @@ exec --no-startup-id xrandr --output eDP1 --right-of DP2
 # Launch the polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Startup the sound server
-exec --no-startup-id pulseaudio -k
-exec --no-startup-id pulseaudio -D 
+exec --no-startup-id pulseaudio -k && pulseaudio -D
 exec --no-startup-id pa-applet
+# Startup the network manager
+exec --no-startup-id nm-applet
+# Startup the emacs daemon
+exec emacs --daemon
 # Set keyboards
 exec_always "setxkbmap -option 'grp:alt_shift_toggle' -layout us,sk -variant ,qwerty"
 

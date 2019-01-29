@@ -12,14 +12,14 @@ case $desktop in
     i3)
     if type "xrandr" > /dev/null; then
       for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-	if [ $m == 'eDP1' ] 
+	if [ $m == 'DP2' ]
 	then		
 		MONITOR=$m polybar --reload main -c ~/.config/polybar/config &	
-	elif [ $m == 'DP2' ]
+	elif [ $m == 'eDP1' ]
 	then
-		MONITOR=$m polybar --reload sidebar-1-i3 -c ~/.config/polybar/config &
+		MONITOR=$m polybar --reload secondary -c ~/.config/polybar/config &
 	else
-		MONITOR=$m polybar --reload sidebar-2-i3 -c ~/.config/polybar/config &
+		MONITOR=$m polybar --reload secondary -c ~/.config/polybar/config &
 	fi     
       done
     else
