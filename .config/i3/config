@@ -205,6 +205,8 @@ assign [class="csgo_linux64"] 5
 
 # Autostart
 # 
+# Disable bell sound
+exec --no-startup-id xset -b
 # Setup multiple monitors, home setup
 # TODO: Create script to determine monitors and use them.
 exec --no-startup-id xrandr --output eDP1 --right-of DP2
