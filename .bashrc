@@ -14,7 +14,12 @@ export PS1="\[\e[32m\]\u\[\e[m\]@\h:\[\e[31m\][\[\e[m\]\W\[\e[31m\]]\[\e[m\]\\$ 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11R6/bin:/usr/local/bin"
 
 # Set Default Editor
-export EDITOR=/usr/bin/vim
+# If emacs is installed use that option otherwise select vim as default editor
+if command -v emacsclient >/dev/null 2>&1; then
+    export EDITOR="emacsclient -t"
+else
+    export EDITOR=/usr/bin/vim
+fi
 
 # Set default blocksize for ls, df, du
 export BLOCKSIZE=1k
