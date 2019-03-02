@@ -455,3 +455,9 @@ set_up_"$CUR_OS"
 EXT=$(check_gnu_extesions)
 
 alias_"$EXT"
+
+# If file local configuration exists, load it
+if [ -f ~/.local_bashrc ]; then
+    source ~/.local_bashrc
+fi
+
