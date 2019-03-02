@@ -29,8 +29,10 @@ font pango:DejaVu Sans Mono 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# start a new terminal with clean tmux session
+bindsym $mod+Return exec urxvt -e tmux new
+bindsym $mod+Shift+Return exec urxvt -e tmux a
+# bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+q kill
