@@ -7,20 +7,20 @@
 #      and create backups
 #
 # Files to install:
-# [AUTO] .bashrc                   -> Allways have fresh shell(.bash_profile)
+# [AUTO] .bashrc                   -> Allways have fresh shell
+# [AUTO] .bash_profile             -> Allways have fresh shell
 # [AUTO] .tmux.conf                -> Tmux config file
 # [AUTO] .vimrc                    -> Vim config file
 # [AUTO] .emacs.d/init.el          -> Emacs config file
 # [AUTO] .config/i3/config         -> i3 config file
 # [AUTO] .config/polybar/config    -> Polybar config file
 # [AUTO] .config/polybar/launch.sh -> Polybar launch file
+# [AUTO] .Xresources               -> Config file for urxvt(terminal)
 #        .radare2rc                -> Radare2 config file
 #        .config/i3/config         -> I3 window manager config file
 #        .xinitrc                  -> X11 config file
-#        .Xresources               -> Config file for urxvt(terminal)
 #        .screenrc                 -> Screen config file
 #        .zshrc                    -> Zsh config file
-#        .xmonad.hs                -> Xmonad config file
 #        .tmuxinator/rev.yml       -> Tmuxinator reversing template
 #
 # [AUTO] My current preference for config files
@@ -31,7 +31,8 @@
 #     tmp               -> Plugin manager for tmux
 
 # Set up file variables [AUTO]
-BASH_CONFIG_FILE=".bash_profile"
+BASHRC_CONFIG_FILE=".bashrc"
+BASH_PROFILE_CONFIG_FILE=".bash_profile"
 TMUX_CONFIG_FILE=".tmux.conf"
 VIM_CONFIG_FILE=".vimrc"
 EMACS_CONFIG_FILE=".emacs.d/init.el"
@@ -41,11 +42,10 @@ I3_CONFIG_FILE=".config/i3/config"
 POLYBAR_CONFIG_FILE=".config/polybar/config"
 POLYBAR_LAUNCH_FILE=".config/polybar/launch.sh"
 XINIT_CONFIG_FILE=".xinitrc"
-XRESOURCES_FILE=".Xresources"
+XRESOURCES_CONFIG_FILE=".Xresources"
 SCREEN_CONFIG_FILE=".screenrc"
 TMUXINATOR_CONFIG_FILE=".tmuxinator/rev.yml"
 ZSH_CONFIG_FILE=".zshrc"
-XMONAD_CONFIG_FILE=".xmonad.hs"
 
 # Install variables
 INSTALL_PEDA=0
@@ -192,8 +192,12 @@ done
 # First check if they exist, if they do then create backup
 # And after that install them
 
+# .Xresources
+install_config "$XRESOURCES_CONFIG_FILE"
 # .bashrc
-install_config "$BASH_CONFIG_FILE"
+install_config "$BASHRC_CONFIG_FILE"
+# .bash_profile
+install_config "$BASH_PROFILE_CONFIG_FILE"
 # .tmux.conf
 install_config "$TMUX_CONFIG_FILE"
 # .vimrc

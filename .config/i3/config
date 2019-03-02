@@ -209,11 +209,12 @@ assign [class="csgo_linux64"] 5
 # 
 # Disable bell sound
 exec --no-startup-id xset -b
-# Setup multiple monitors, home setup
-# TODO: Create script to determine monitors and use them.
-exec --no-startup-id xrandr --output eDP1 --right-of DP2
-# Launch the polybar
+# Setup multiple monitors + Launch the polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# Display wallpapers
+exec_always --no-startup-id nitrogen --restore
+# Turn on transparenci
+exec_always --no-startup-id compton
 # Startup the sound server
 exec --no-startup-id pulseaudio -k && pulseaudio -D
 exec --no-startup-id pa-applet

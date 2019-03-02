@@ -1,4 +1,8 @@
-URxvt*background:                       Black
+URxvt.transparent:   true
+URxvt.shading:       20
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0000/c800
+!URxvt*background:                       Black
 URxvt*foreground:                       White
 
 URxvt*colorUL:                          yellow
@@ -22,6 +26,7 @@ Rxvt*cursorColor:                      Magenta
 *color14: #fcaf3e
 *color15: #EEEEEC
 
-URxvt*font: xft: Droid Sans Mono:pixelsize=15:antialias=true:hinting=true
+!URxvt*font: xft: Droid Sans Mono:pixelsize=15:antialias=true:hinting=true
+URxvt*font: xft: PxPlus IBM VGA8:style=Regular:pixelsize=16:antialias=true:hinting=true
 URxvt.cursorUnderline:1
 URxvt.scrollBar: false
