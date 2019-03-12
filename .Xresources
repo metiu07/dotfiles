@@ -1,7 +1,21 @@
+! Extensions:
+! matcher
+!	Enables user to click on links and open them in your browser
+! resize-font
+!	Enables user to resize font on fly
+!	Binds: Ctrl++(increase), Ctrl+-(decrease), Ctrl+=(reset), Ctrl+?(display)
+! selection-to-clipboard
+!	Everything selected is moved to CLIPBOARD buffer and can be pasted with Shift+Insert
+URxvt.perl-ext-common: default,matcher,resize-font,selection-to-clipboard
+URxvt.url-launcher:    /usr/bin/xdg-open
+URxvt.matcher.button:  1
+
+! Enables transparency with compton compositor
 URxvt.transparent:   true
 URxvt.shading:       20
 urxvt*depth: 32
-urxvt*background: rgba:0000/0000/0000/c800
+urxvt*background: rgba:0000/0000/0000/f800
+
 !URxvt*background:                       Black
 URxvt*foreground:                       White
 
@@ -27,6 +41,7 @@ Rxvt*cursorColor:                      Magenta
 *color15: #EEEEEC
 
 !URxvt*font: xft: Droid Sans Mono:pixelsize=15:antialias=true:hinting=true
-URxvt*font: xft: PxPlus IBM VGA8:style=Regular:pixelsize=16:antialias=true:hinting=true
+!URxvt*font: xft: PxPlus IBM VGA8:style=Regular:pixelsize=25:antialias=true:hinting=true
+URxvt*font: xft: Inconsolata-Regular.ttf:pixelsize=20:antialias=true:hinting=true
 URxvt.cursorUnderline:1
 URxvt.scrollBar: false
