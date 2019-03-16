@@ -190,9 +190,6 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-# Open specific applications in floating mode
-for_window [class="Pamac-manager"] floating enable
-
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
@@ -200,6 +197,13 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness 
 # hide/unhide i3status bar
 # TODO: show moves both bars to one monitor
 # bindsym $mod+m polybar-msg cmd hide
+
+# toggle split direction for each window
+default_orientation horizontal
+for_window [class="^"] split toggle
+
+# Open specific applications in floating mode
+for_window [class="Pamac-manager"] floating enable
 
 # Assign the programs to workspaces
 assign [class="Slack"] 3
