@@ -307,8 +307,10 @@ alias_gnu() {
     alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
     alias panpdf='pandoc -V geometry:1in '
     alias vagstart='vagrant up && vagrant ssh'  # vagrant:      Start VM and connect to it via ssh
-    alias make='make -j4'                       # make:         Compile with 4 threads
-    alias makei='make install -j4'              # makei:        Compile install target with 4 threads
+    alias make='make -j$(nproc)'                # make:         Compile with 4 threads
+    alias makei='make install -j$(nproc)'       # makei:        Compile install target with 4 threads
+    alias makec='make clean'                    # makec:        Run clean make target
+    alias make1='make -j$(nproc --ignore=1)'    # make1:        Compiler with all threads except one, let system keep some resources
     mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
     trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
     ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
