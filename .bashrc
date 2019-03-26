@@ -266,6 +266,9 @@ EOT
 # Function to set up a linux environment
 set_up_linux() {
 
+    # default flags for makepkg
+    export MAKEFLAGS="-j$(nproc)"
+
     #   Export wechall settings
     export WECHALLUSER="metiu07"
     export WECHALLTOKEN="21960-2CD93-38DA5-76304-F232E-CCE04"
@@ -390,6 +393,7 @@ alias_posix() {
     alias .6='cd ../../../../../../'            # Go back 6 directory levels
     alias ~="cd ~"                              # ~:            Go Home
     alias c='clear'                             # c:            Clear terminal display
+    alias sl='ls'                               # sl:           To promote my lazines
     alias which='type -all'                     # which:        Find executables
     alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
     alias show_options='shopt'                  # Show_options: display bash options settings
