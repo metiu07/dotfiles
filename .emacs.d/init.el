@@ -49,14 +49,19 @@
   (define-key c++-mode-map  [(tab)] 'company-complete)
   (add-hook 'after-init-hook 'global-company-mode))
 
+;; Highlight symbol under cursor
+(use-package highlight-symbol
+  :config
+  (add-hook 'prog-mode-hook 'highlight-symbol-mode))
+
+;; Ranger file exploler
+(use-package ranger)
+
 ;; Code browsing - sr-speedbar
 (use-package sr-speedbar
   :config
   (add-hook 'buffer-quit-function 'sr-speedbar-close)
   (setq sr-speedbar-right-side nil))
-
-(defun nolinum ()
-   (linum-mode 0))
 
 ;; Incremental completitions - helm
 (use-package helm
@@ -121,10 +126,13 @@
   (global-evil-leader-mode t) ; Evil leader key set
   ;; Emacs functions
   (evil-leader/set-key "D" 'describe-function)
+  ;; Ranger
+  (evil-leader/set-key "r" 'ranger)
   ;; Files navigation
   (evil-leader/set-key "e" 'helm-find)
   (evil-leader/set-key "f" 'helm-projectile-find-file)
   (evil-leader/set-key "d" 'helm-gtags-dwim)
+  (evil-leader/set-key "x" 'helm-gtags-pop-stack)
   ;; Org mode
   (evil-leader/set-key "a" 'org-agenda)
   (evil-leader/set-key "L" 'org-insert-link)
@@ -142,9 +150,13 @@
   (evil-leader/set-key "g" 'magit-status))
 
 ;;; BEHAVIOUR
+
 ;; Line numbering
 (global-linum-mode)
-(setq linum-format "%d | ")
+(setq linum-format "%4d | ")
+(defun nolinum ()
+   (linum-mode 0))
+
 ;; Write both brackets
 (electric-pair-mode)
 
@@ -188,23 +200,37 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
 ;;; USER INTERFACE
+
+;; Color scheme
+(use-package grandshell-theme
+  :config
+  (load-theme 'grandshell t))
+
 ;; Disable menu bar
 (menu-bar-mode -1)
+
+;; This part is generated automaticaly by emacs
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("3860a842e0bf585df9e5785e06d600a86e8b605e5cc0b74320dfe667bcbe816c" default)))
  '(ede-project-directories
    (quote
     ("/home/vagrant/dev/osdev/src/shell" "/home/vagrant/dev/osdev/src/lib" "/home/vagrant/dev/osdev/src/keyboard" "/home/vagrant/dev/osdev/src/kernel" "/home/vagrant/dev/osdev/src/include" "/home/vagrant/dev/osdev/src" "/home/vagrant/dev/osdev")))
  '(org-agenda-files (quote ("~/dev/notes/tmp.org" "~/dev/notes/org.org")))
  '(package-selected-packages
    (quote
-    (markdown-mode evil-leader evil-magit magit evil-tabs evil-surround evil helm-projectile projectile helm-gtags helm-config helm-swoop helm sr-speedbar company ggtags use-package))))
+    (grandshell-theme highlight-symbol ranger neotree rainbow-mode flycheck-pyflakes flycheck-pyflake markdown-mode evil-leader evil-magit magit evil-tabs evil-surround evil helm-projectile projectile helm-gtags helm-config helm-swoop helm sr-speedbar company ggtags use-package)))
+ '(safe-local-variable-values
+   (quote
+    ((cmake-ide-build-dir . "/home/mato/dev/retdec/build")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(highlight-symbol-face ((t (:background "yellow" :foreground "color-16" :weight bold)))))
