@@ -13,7 +13,7 @@ export PS1="\[\e[32m\]\u\[\e[m\]@\h:\[\e[31m\][\[\e[m\]\W\[\e[31m\]]\[\e[m\]\\$ 
 # Set Paths
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11R6/bin:/usr/local/bin"
 
-# Set Default Editor
+# Set default Editor
 # If emacs is installed use that option otherwise select vim as default editor
 if command -v emacsclient >/dev/null 2>&1; then
     export EDITOR="emacsclient -t"
@@ -308,10 +308,11 @@ alias_gnu() {
     alias gdb='gdb -q'                          # gdb:          Make gdb start in quiet mode
     alias em='emacsclient -t'                   # emacs:        Emacs shortcut
     alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
+    alias alert="echo -ne \"\\a\""              # alert:        Print bell character, this is used for tmux monitoring
     alias panpdf='pandoc -V geometry:1in '
     alias vagstart='vagrant up && vagrant ssh'  # vagrant:      Start VM and connect to it via ssh
-    alias make='make -j$(nproc)'                # make:         Compile with 4 threads
-    alias makei='make install -j$(nproc)'       # makei:        Compile install target with 4 threads
+    alias make='make -j$(nproc)'                # make:         Compile with available threads
+    alias makei="make install -j$(nproc); alert" # makei:        Compile install target with available threads
     alias makec='make clean'                    # makec:        Run clean make target
     alias make1='make -j$(nproc --ignore=1)'    # make1:        Compiler with all threads except one, let system keep some resources
     mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
