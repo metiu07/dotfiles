@@ -335,6 +335,10 @@ alias_gnu() {
     #   ------------------------------------------------------------
     showa () { /usr/bin/grep --color=always -i -a1 $@ ~/Library/init/bash/aliases.bash | grep -v '^\s*$' | less -FSRXc ; }
 
+    #   add_to_path: Add directory path to local config
+    #   ------------------------------------------------------------
+    add_to_path () { echo 'export PATH="$PATH:'$(realpath "$1")'" # auto generated' >> $HOME/.local_bashrc; }
+
     zipf () { zip -r "$1".zip "$1" ; }          # zipf:         To create a ZIP archive of a folder
     alias numFiles='echo $(ls -1 | wc -l)'      # numFiles:     Count of non-hidden files in current dir
     alias make1mb='mkfile 1m ./1MB.dat'         # make1mb:      Creates a file of 1mb size (all zeros)
