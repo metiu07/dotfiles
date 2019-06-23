@@ -11,17 +11,23 @@ URxvt.url-launcher:    /usr/bin/xdg-open
 URxvt.matcher.button:  1
 
 ! Enables transparency with compton compositor
-URxvt.transparent:   true
+URxvt.transparent:   false
 URxvt.shading:       20
 urxvt*depth: 32
-urxvt*background: rgba:0000/0000/0000/f800
+urxvt*background: rgba:0000/0000/0000/c000
+!urxvt*background: rgba:ffff/ffff/ffff/ffff
+
+!urxvt*transparent: true
+!urxvt*shading: 10
+!urxvt*tintColor: #000000
+!urxvt*blurRadius: 5
 
 !URxvt*background:                       Black
 URxvt*foreground:                       White
 
 URxvt*colorUL:                          yellow
 URxvt*underlineColor:                   yellow
-Rxvt*cursorColor:                      Magenta
+URxvt*cursorColor:                      Magenta
 
 *color0:  #2E3436
 *color1:  #a40000
@@ -42,6 +48,19 @@ Rxvt*cursorColor:                      Magenta
 
 !URxvt*font: xft: Droid Sans Mono:pixelsize=15:antialias=true:hinting=true
 !URxvt*font: xft: PxPlus IBM VGA8:style=Regular:pixelsize=25:antialias=true:hinting=true
-URxvt*font: xft: Inconsolata-Regular.ttf:pixelsize=20:antialias=true:hinting=true
+!URxvt*font: xft: Inconsolata-Regular.ttf:pixelsize=20:antialias=true:hinting=true, xft: Source Code Pro:style=Regular, xft: TerminessTTF Nerd Font Mono:style=Medium:pixelsize=20
+!URxvt*font: xft: Inconsolata-Regular.ttf:pixelsize=20:antialias=true:hinting=true, xft: DejaVu Sans Mono:style=Book, xft: TerminessTTF Nerd Font Mono:style=Medium:pixelsize=20
+!URxvt*font: xft:Ubuntu Mono:style=Regular
+!URxvt*font: xft:Unifont:style=Medium
+!URxvt*font: xft: TerminessTTF Nerd Font Mono:style=Medium
+URxvt*font: xft: Inconsolata-Regular.ttf:pixelsize=20:antialias=true:hinting=true, xft: Source Code Pro:style=Regular, xft: DejaVu Sans Mono:style=Book, xft: TerminessTTF Nerd Font Mono:style=Medium:pixelsize=20, xft: Unifont Upper:style=Medium
+! urxvt.letterSpace:-4
+! urxvt.lineSpace:-4
 URxvt.cursorUnderline:1
 URxvt.scrollBar: false
+
+! Disable Crtl+Shift binding
+urxvt.iso14755: false
+urxvt.iso14755_52: false
+
+urxvt*dynamicColors: on
