@@ -17,6 +17,7 @@
 # [AUTO] .config/polybar/launch.sh -> Polybar launch file
 # [AUTO] .Xresources               -> Config file for urxvt(terminal)
 # [AUTO] .config/ranger/rc.conf    -> Config file for ranger
+# [AUTO] .config/ranger/rifle.conf -> Config file for rifle(program launcher)
 #        .radare2rc                -> Radare2 config file
 #        .config/i3/config         -> I3 window manager config file
 #        .xinitrc                  -> X11 config file
@@ -38,6 +39,7 @@ TMUX_CONFIG_FILE=".tmux.conf"
 VIM_CONFIG_FILE=".vimrc"
 EMACS_CONFIG_FILE=".emacs.d/init.el"
 RANGER_CONFIG_FILE=".config/ranger/rc.conf"
+RANGER_RIFLE_CONFIG_FILE=".config/ranger/rifle.conf"
 
 RADARE2_CONFIG_FILE=".radare2rc"
 I3_CONFIG_FILE=".config/i3/config"
@@ -214,6 +216,8 @@ install_config "$POLYBAR_CONFIG_FILE"
 install_config "$POLYBAR_LAUNCH_FILE"
 # .config/ranger/rc.conf
 install_config "$RANGER_CONFIG_FILE"
+# .config/ranger/rifle.conf
+install_config "$RANGER_RIFLE_CONFIG_FILE"
 
 if [ "$INSTALL_PEDA" -eq 1 ]; then
     install_module "$INSTALL_PEDA_REPO" "$INSTALL_PEDA_PATH"
