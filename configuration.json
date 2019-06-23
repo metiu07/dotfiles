@@ -1,4 +1,45 @@
 {
+  "autorandr": {
+    "name": "Autorandr configuration",
+    "$deps": [
+      "autorandr_home_c",
+      "autorandr_home_s",
+      "autorandr_single_c",
+      "autorandr_single_s",
+      "autorandr_work_c",
+      "autorandr_work_s"
+    ]
+  },
+  "autorandr_home_c": {
+    "source": "./.config/autorandr/home/config",
+    "destination": "~/.config/autorandr/home/config",
+    "name": "Autorandr home configuration"
+  },
+  "autorandr_home_s": {
+    "source": "./.config/autorandr/home/setup",
+    "destination": "~/.config/autorandr/home/setup",
+    "name": "Autorandr home setup configuration"
+  },
+  "autorandr_single_c": {
+    "source": "./.config/autorandr/single/config",
+    "destination": "~/.config/autorandr/single/config",
+    "name": "Autorandr single configuration"
+  },
+  "autorandr_single_s": {
+    "source": "./.config/autorandr/single/setup",
+    "destination": "~/.config/autorandr/single/setup",
+    "name": "Autorandr single setup configuration"
+  },
+  "autorandr_work_c": {
+    "source": "./.config/autorandr/work/config",
+    "destination": "~/.config/autorandr/work/config",
+    "name": "Autorandr work configuration"
+  },
+  "autorandr_work_s": {
+    "source": "./.config/autorandr/work/setup",
+    "destination": "~/.config/autorandr/work/setup",
+    "name": "Autorandr work setup configuration"
+  },
   "bash": {
     "name": "Default bash configuration",
     "$deps": [
@@ -56,6 +97,7 @@
   "linux": {
     "name": "Linux configuration profile",
     "$deps": [
+      "autorandr",
       "bash",
       "vim_noaddons",
       "htop",
