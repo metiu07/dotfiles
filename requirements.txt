@@ -1,0 +1,31 @@
+# Monitor setup
+autorandr
+# i3
+i3-gaps
+i3-scrot
+rofi
+polybar
+# lightdm
+lightdm
+lightdm-webkit-theme-litarvan
+# emacs
+emacs
+emacs-nox
+# ranger
+ranger
+# bluetooth
+blueman
+# top
+htop
+gotop
+# pdf
+zathura
+evince
+# fonts
+ttf-material-icons
+ttf-dejavu
+ttf-droid
+ttf-font-awesome
+ttf-inconsolata
+ttf-ubuntu-font-family
+ttf-unifont
