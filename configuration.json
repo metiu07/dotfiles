@@ -1,0 +1,130 @@
+{
+  "bash": {
+    "name": "Default bash configuration",
+    "$deps": [
+      "bashrc_linux",
+      "bash_profile"
+    ]
+  },
+  "bashrc_linux": {
+    "source": "./.bashrc",
+    "destination": "~/.bashrc",
+    "name": "Linux bashrc configuration"
+  },
+  "bashrc_posix": {
+    "source": "./.bashrc_posix",
+    "destination": "~/.bashrc",
+    "name": "Posix bash configuration"
+  },
+  "bash_profile": {
+    "source": "./.bash_profile",
+    "destination": "~/.bash_profile",
+    "name": "Bash profile configuration"
+  },
+  "emacs_legacy": {
+    "source": "./.emacs.d/init.el",
+    "destination": "~/.emacs.d/init.el",
+    "name": "Emacs legacy(old) configuration"
+  },
+  "emacs_doom_init": {
+    "source": "./.config/doom/init.el",
+    "destination": "~/.config/doom/init.el",
+    "name": "Emacs doom init configuration (packages)"
+  },
+  "emacs_doom_config": {
+    "source": "./.config/doom/config.el",
+    "destination": "~/.config/doom/config.el",
+    "name": "Emacs doom configuration (user settings)"
+  },
+  "emacs": {
+    "name": "Emacs doom config configuration",
+    "$deps": [
+      "emacs_doom_init",
+      "emacs_doom_config"
+    ]
+  },
+  "i3": {
+    "source": "./.config/i3/config",
+    "destination": "~/.config/i3/config",
+    "name": "i3 window manager configuration"
+  },
+  "linux": {
+    "name": "Linux configuration profile",
+    "$deps": [
+      "bash",
+      "vim_noaddons",
+      "i3",
+      "polybar",
+      "emacs",
+      "urxvt",
+      "tmux"
+    ]
+  },
+  "polybar": {
+    "source": "./.config/polybar/config",
+    "destination": "~/.config/polybar/config",
+    "name": "Polybar configuration"
+  },
+  "polybar_launch": {
+    "source": "./.config/polybar/launch.sh",
+    "destination": "~/.config/polybar/launch.sh",
+    "name": "Polybar multimonitor launcher script"
+  },
+  "ranger": {
+    "source": "./.config/ranger/rc.conf",
+    "destination": "~/.config/ranger/rc.conf",
+    "name": "Ranger configuration",
+    "$deps": [
+      "ranger_rifle"
+    ]
+  },
+  "ranger_rifle": {
+    "source": "./.config/ranger/rifle.conf",
+    "destination": "~/.config/ranger/rifle.conf",
+    "name": "Ranger rifle configuration"
+  },
+  "requirements": {
+    "source": "./requirements.txt",
+    "destination": "~/.requirements.txt",
+    "name": "Requirements file (this is used with bash alias)"
+  },
+  "r2": {
+    "source": "./.radare2rc",
+    "destination": "~/.radare2rc",
+    "name": "Radare2 configuration"
+  },
+  "screen": {
+    "source": "./screenrc",
+    "destination": "~/.screenrc",
+    "name": "Screen (gnu) configuration"
+  },
+  "tmux": {
+    "source": "./.tmux.conf",
+    "destination": "~/.tmux.conf",
+    "name": "Tmux configuration"
+  },
+  "urxvt": {
+    "name": "Xresources (xorg) configuration",
+    "$deps": ["xresources"]
+  },
+  "vim_noaddons": {
+    "source": "./.vim_noaddons",
+    "destination": "~/.vimrc",
+    "name": "Vanila vim configuration without addons"
+  },
+  "xinit": {
+    "source": "./.xinitrc",
+    "destination": "~/.xinitrc",
+    "name": "Xinit configuration (legacy, only for xmonad)"
+  },
+  "xresources": {
+    "source": "./.Xresources",
+    "destination": "~/.Xresources",
+    "name": "Xresources (xorg) configuration"
+  },
+  "zsh": {
+    "source": "./.zshrc",
+    "destination": "~/.zshrc",
+    "name": "Linux zsh configuration"
+  }
+}
