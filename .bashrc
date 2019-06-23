@@ -21,11 +21,17 @@ else
     export EDITOR=/usr/bin/vim
 fi
 
+# Set default pager
+export PAGER="less -FSRXc"
+
 # Set default blocksize for ls, df, du
 export BLOCKSIZE=1k
 
 # export CLICOLOR=1
 # export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# Set the local bashrc configuration file
+LOCAL_BASHRC=~/.bashrc_local
 
 # bind TAB:menu-complete
 complete -cf sudo
@@ -339,6 +345,19 @@ alias_gnu() {
     #   ------------------------------------------------------------
     add_to_path () { echo 'export PATH="$PATH:'$(realpath "$1")'" # auto generated' >> $HOME/.local_bashrc; }
 
+    #   add_to_requirements: Add a word to requirements
+    #   ------------------------------------------------------------
+    add_to_requirements () { echo "$1" >> $HOME/.requirements; }
+
+    #   add_alias: Add directory path to local config
+    #   ------------------------------------------------------------
+    add_alias () { echo "alias $1=$2"; }
+
+    #   save_last_command: Add directory path to local config
+    #   ------------------------------------------------------------
+    # save_command () { echo "# $*"; } -- This approach does not work for $() commands
+    save_last_command () { printf "# %s\n" "$(fc -ln -1)" >> $LOCAL_BASHRC; }
+
     zipf () { zip -r "$1".zip "$1" ; }          # zipf:         To create a ZIP archive of a folder
     alias numFiles='echo $(ls -1 | wc -l)'      # numFiles:     Count of non-hidden files in current dir
     alias make1mb='mkfile 1m ./1MB.dat'         # make1mb:      Creates a file of 1mb size (all zeros)
@@ -472,8 +491,11 @@ EXT=$(check_gnu_extesions)
 
 alias_"$EXT"
 
+# If we are running inside ranger, display it in prompt
+if [ -n "$RANGER_LEVEL" ]; then export PS1="[R]$PS1"; fi
+
 # If file local configuration exists, load it
-if [ -f ~/.local_bashrc ]; then
-    source ~/.local_bashrc
+if [ -f $LOCAL_BASHRC ]; then
+    source $LOCAL_BASHRC
 fi
 
