@@ -92,7 +92,8 @@ class Installer:
     def backup(self, module):
         """If file is present and not symlink, create its backup."""
 
-        dest = os.path.abspath(module['destination'])
+        dest = os.path.expanduser(module['destination'])
+        dest = os.path.abspath(dest)
         if os.path.exists(dest) and not os.path.islink(dest):
             # Copy the file with backup extension
             self.exec_command('cp {} {}'.format(dest, dest + self.backup_ext))

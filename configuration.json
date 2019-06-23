@@ -43,6 +43,11 @@
       "emacs_doom_config"
     ]
   },
+  "htop": {
+    "source": "./.config/htop/htoprc",
+    "destination": "~/.config/htop/htoprc",
+    "name": "Htop configuration"
+  },
   "i3": {
     "source": "./.config/i3/config",
     "destination": "~/.config/i3/config",
@@ -53,6 +58,7 @@
     "$deps": [
       "bash",
       "vim_noaddons",
+      "htop",
       "i3",
       "polybar",
       "emacs",
