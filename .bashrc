@@ -17,12 +17,17 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11R6/bin:/usr/local/bin"
 # If emacs is installed use that option otherwise select vim as default editor
 if command -v emacsclient >/dev/null 2>&1; then
     export EDITOR="emacsclient -t"
+    export VISUAL="emacsclient -t"
 else
     export EDITOR=/usr/bin/vim
+    export VISUAL=/usr/bin/vim
 fi
 
 # Set default pager
 export PAGER="less -FSRXc"
+
+# Export prefered web browser
+export BROWSER=/usr/bin/firefox
 
 # Set default blocksize for ls, df, du
 export BLOCKSIZE=1k
