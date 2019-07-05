@@ -33,10 +33,10 @@ class Installer:
             # TODO: Better output
             for k, v in self.confs.items():
                 print(k, v)
+            return
 
         # Initialize dry run if wanted
-        # TODO: self.dry_run = args.dry
-        self.dry_run: bool = True
+        self.dry_run = args.dry
 
         # Install them
         self.processed_modules = []
@@ -68,7 +68,8 @@ class Installer:
             self.vprint('Processing module: ' + m)
 
             if m not in self.confs:
-                print('Aborting... can not find the configuration')
+                sys.exit('Aborting... can not find the configuration "' +
+                         m + '"')
 
             # "m" configuration from input file
             c = self.confs[m]
@@ -134,7 +135,7 @@ def parse_arguments():
 
     parser = argparse.ArgumentParser(
         description='Dotfiles installer program to symlink config files for user') # noqa
-    parser.add_argument('modules', nargs='*')
+    parser.add_argument('modules', nargs='*', default=['linux'])
     parser.add_argument('-r', '--remove', action='store_true',
                         help='uninstall selected modules')
     parser.add_argument('-d', '--dry', action='store_true',
