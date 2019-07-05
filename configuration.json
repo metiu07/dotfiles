@@ -62,6 +62,11 @@
     "destination": "~/.bash_profile",
     "name": "Bash profile configuration"
   },
+  "compton_blur": {
+    "source": "./.config/compton/compton_blur.conf",
+    "destination": "~/.config/compton/compton_blur.conf",
+    "name": "Compton with blur enabled configuration"
+  },
   "emacs_legacy": {
     "source": "./.emacs.d/init.el",
     "destination": "~/.emacs.d/init.el",
@@ -99,13 +104,14 @@
     "$deps": [
       "autorandr",
       "bash",
-      "vim_noaddons",
+      "compton_blur",
+      "emacs",
       "htop",
       "i3",
       "polybar",
-      "emacs",
+      "tmux",
       "urxvt",
-      "tmux"
+      "vim_noaddons"
     ]
   },
   "polybar": {
@@ -133,7 +139,7 @@
   },
   "requirements": {
     "source": "./requirements.txt",
-    "destination": "~/.requirements.txt",
+    "destination": "~/.requirements",
     "name": "Requirements file (this is used with bash alias)"
   },
   "r2": {

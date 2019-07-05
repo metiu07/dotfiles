@@ -2,11 +2,6 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# DEPS:
-# xorg-xbacklight
-# pa-applet
-# i3-scrot
-
 set $mod Mod4
 set $reset_scratchpad ~/.config/i3/restore_scratchpad.sh
 
@@ -241,8 +236,8 @@ exec $reset_scratchpad
 # Display wallpapers
 exec --no-startup-id variety
 
-# Turn on composition
-exec_always --no-startup-id compton
+# Turn on composition (default: blur)
+exec --no-startup-id compton --config ~/.config/compton/compton_blur.conf
 
 # Startup the sound server
 exec --no-startup-id pulseaudio -k && pulseaudio -D
