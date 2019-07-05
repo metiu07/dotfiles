@@ -33,6 +33,9 @@ export BLOCKSIZE=1k
 # Set the local bashrc configuration file
 LOCAL_BASHRC=~/.bashrc_local
 
+# XDG user specific configuration
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # bind TAB:menu-complete
 complete -cf sudo
 complete -cf man
@@ -40,22 +43,22 @@ complete -cf man
 # extract:  Extract most know archives with one command
 extract () {
     if [ -f $1 ] ; then
-	case $1 in
-	    *.tar.bz2)   tar xjf $1     ;;
-	    *.tar.gz)    tar xzf $1     ;;
-	    *.bz2)       bunzip2 $1     ;;
-	    *.rar)       unrar e $1     ;;
-	    *.gz)        gunzip $1      ;;
-	    *.tar)       tar xf $1      ;;
-	    *.tbz2)      tar xjf $1     ;;
-	    *.tgz)       tar xzf $1     ;;
-	    *.zip)       unzip $1       ;;
-	    *.Z)         uncompress $1  ;;
-	    *.7z)        7z x $1        ;;
-	    *)     echo "'$1' cannot be extracted via extract()" ;;
-	esac
+    case $1 in
+        *.tar.bz2)   tar xjf $1     ;;
+        *.tar.gz)    tar xzf $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xf $1      ;;
+        *.tbz2)      tar xjf $1     ;;
+        *.tgz)       tar xzf $1     ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+    esac
     else
-	echo "'$1' is not a valid file"
+    echo "'$1' is not a valid file"
     fi
 }
 
@@ -86,51 +89,50 @@ ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name end
 #     if any of them fails use the POSIX standards.
 check_gnu_extesions() {
     if ! ls --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! cp --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! touch --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! ln --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! mv --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! rm --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! cut --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! find --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! sort --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! head --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! tail --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! awk --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     elif ! sed --version 2>/dev/null 1>&2; then
-	echo "posix"
+    echo "posix"
     else
-	echo "gnu"
+    echo "gnu"
     fi
 }
 
 # Function to check current OS
 #     Determine OS on base on the output of uname
-#     TODO: Optimize the order
 check_os() {
     OSNAME=$(uname)
     if [ "$OSNAME" = "OpenBSD" ]; then
-	echo "bsd"
+    echo "bsd"
     elif [ "$OSNAME" = "FreeBSD" ]; then
-	echo "bsd"
+    echo "bsd"
     elif [ "$OSNAME" = "Linux" ]; then
-	echo "linux"
+    echo "linux"
     elif [ "$OSNAME" = "Darwin" ]; then
-	echo "mac"
+    echo "mac"
     else
-	echo "unknown"
+    echo "unknown"
     fi
 }
 
@@ -142,28 +144,28 @@ set_up_mac() {
 
     # cdf:  'Cd's to frontmost window of MacOS Finder
     cdf () {
-	currFolderPath=$( /usr/bin/osascript <<EOT
-	    tell application "Finder"
-		try
-	    set currFolder to (folder of the front window as alias)
-		on error
-	    set currFolder to (path to desktop folder as alias)
-		end try
-		POSIX path of currFolder
-	    end tell
+    currFolderPath=$( /usr/bin/osascript <<EOT
+        tell application "Finder"
+        try
+        set currFolder to (folder of the front window as alias)
+        on error
+        set currFolder to (path to desktop folder as alias)
+        end try
+        POSIX path of currFolder
+        end tell
 EOT
-		      )
-	echo "cd to \"$currFolderPath\""
-	cd "$currFolderPath"
+                  )
+    echo "cd to \"$currFolderPath\""
+    cd "$currFolderPath"
     }
 
     # vag: Start and ssh into vagrant machine
     vag () {
-	if [ -f ~/vagrant/$1/Vagrantfile ] ; then
-	    cd ~/vagrant/$1 && vagrant up && vagrant ssh
-	else
-	    echo "'$1' is not valid vagrant machine."
-	fi
+        if [ -f ~/vagrant/$1/Vagrantfile ] ; then
+            cd ~/vagrant/$1 && vagrant up && vagrant ssh
+        else
+            echo "'$1' is not valid vagrant machine."
+        fi
     }
 
     alias edit='subl'                           # edit:         Opens any file in sublime editor
@@ -275,16 +277,11 @@ set_up_linux() {
     # default flags for makepkg
     export MAKEFLAGS="-j$(nproc)"
 
-    #   Export wechall settings
-    export WECHALLUSER="metiu07"
-    export WECHALLTOKEN="21960-2CD93-38DA5-76304-F232E-CCE04"
 }
 
 # Function to set up a bsd environment
 set_up_bsd() {
-
     echo "test" >/dev/null
-    
 }
 
 # Set aliases for GNU coreutils
@@ -334,7 +331,7 @@ alias_gnu() {
     #           displays paginated result with colored search terms and two lines surrounding each hit.             Example: mans mplayer codec
     #   --------------------------------------------------------------------
     mans () {
-	man $1 | grep -iC2 --color=always $2 | less
+    man $1 | grep -iC2 --color=always $2 | less
     }
 
     #   showa: to remind yourself of an alias (given some part of it)
@@ -343,7 +340,13 @@ alias_gnu() {
 
     #   add_to_path: Add directory path to local config
     #   ------------------------------------------------------------
-    add_to_path () { echo 'export PATH="$PATH:'$(realpath "$1")'" # auto generated' >> $HOME/.local_bashrc; }
+    add_to_path () {
+        echo 'export PATH="$PATH:'$(realpath "$1")'" # auto generated' >> $HOME/.local_bashrc
+        # If file local configuration exists, load it
+        if [ -f $LOCAL_BASHRC ]; then
+            source $LOCAL_BASHRC
+        fi
+    }
 
     #   add_to_requirements: Add a word to requirements
     #   ------------------------------------------------------------
@@ -395,12 +398,12 @@ alias_gnu() {
     #   my_ps: List processes owned by my user:
     #   ------------------------------------------------------------
     my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
-    
+
 }
 
 # Use POSIX standard
 alias_posix() {
-    
+
     alias cp='cp -i'                            # Preferred 'cp' implementation
     alias mv='mv -i'                            # Preferred 'mv' implementation
     alias mkdir='mkdir -p'                      # Preferred 'mkdir' implementation
@@ -437,7 +440,7 @@ alias_posix() {
     #           displays paginated result with colored search terms and two lines surrounding each hit.             Example: mans mplayer codec
     #   --------------------------------------------------------------------
     mans () {
-	man $1 | grep -iC2 --color=always $2 | less
+    man $1 | grep -iC2 --color=always $2 | less
     }
 
     #   showa: to remind yourself of an alias (given some part of it)
@@ -498,4 +501,3 @@ if [ -n "$RANGER_LEVEL" ]; then export PS1="[R]$PS1"; fi
 if [ -f $LOCAL_BASHRC ]; then
     source $LOCAL_BASHRC
 fi
-
