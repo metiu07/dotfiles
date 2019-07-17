@@ -44,7 +44,16 @@
     "name": "Default bash configuration",
     "$deps": [
       "bashrc_linux",
-      "bash_profile"
+      "bash_profile",
+      "bash_aliases"
+    ]
+  },
+  "bash_posix": {
+    "name": "Posix bash configuration",
+    "$deps": [
+      "bashrc_posix",
+      "bash_profile",
+      "bash_aliases_posix"
     ]
   },
   "bashrc_linux": {
@@ -53,7 +62,7 @@
     "name": "Linux bashrc configuration"
   },
   "bashrc_posix": {
-    "source": "./.bashrc_posix",
+    "source": "./.bashrc",
     "destination": "~/.bashrc",
     "name": "Posix bash configuration"
   },
@@ -61,6 +70,21 @@
     "source": "./.bash_profile",
     "destination": "~/.bash_profile",
     "name": "Bash profile configuration"
+  },
+  "bash_aliases": {
+    "source": "./aliases",
+    "destination": "~/.config/bash/aliases",
+    "name": "Linux bash alias configuration"
+  },
+  "bash_aliases_posix": {
+    "source": "./aliases.posix",
+    "destination": "~/.config/bash/aliases",
+    "name": "Posix bash alias configuration"
+  },
+  "bash_aliases_mac": {
+    "source": "./aliases.mac",
+    "destination": "~/.config/bash/aliases",
+    "name": "Mac bash alias configuration"
   },
   "compton_blur": {
     "source": "./.config/compton/compton_blur.conf",

@@ -1,0 +1,24 @@
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias ll='ls -FGlAhp --group-directories-first --color=auto' # Preferred 'ls' implementation
+alias ls='ls -G --group-directories-first --color=auto' # Preferred directory listing
+alias less='less -FSRXc'                    # Preferred 'less' implementation
+alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias .3='cd ../../../'                     # Go back 3 directory levels
+alias .4='cd ../../../../'                  # Go back 4 directory levels
+alias .5='cd ../../../../../'               # Go back 5 directory levels
+alias .6='cd ../../../../../../'            # Go back 6 directory levels
+alias c='clear'                             # c:            Clear terminal display
+alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+alias gdb='gdb -q'                          # gdb:          Make gdb start in quiet mode
+alias em='emacsclient -t'                   # emacs:        Emacs shortcut
+alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
+alias alert="echo -ne \"\\a\""              # alert:        Print bell character, this is used for tmux monitoring
+alias make='make -j$(nproc)'                # make:         Compile with available threads
+alias makei="make install -j$(nproc); alert" # makei:        Compile install target with available threads
+alias makec='make clean'                    # makec:        Run clean make target
+alias make1='make -j$(nproc --ignore=1)'    # make1:        Compiler with all threads except one, let system keep some resources
+alias dd='dd bs=4M status=progress'         # dd:           Set blocksize and show progress in dd
