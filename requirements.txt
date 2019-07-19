@@ -31,5 +31,6 @@ ttf-ubuntu-font-family
 ttf-unifont
 # misc
 qrencode
-xorg-xbacklight
+# xorg-xbacklight for some reason this does not work anymore use light instead
+light
 pa-applet
