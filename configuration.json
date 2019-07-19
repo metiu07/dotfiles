@@ -113,6 +113,23 @@
       "emacs_doom_config"
     ]
   },
+  "fish": {
+    "name": "Default fish configuration",
+    "$deps": [
+      "fish_config",
+      "fish_aliases"
+    ]
+  },
+  "fish_aliases": {
+    "source": "./aliases",
+    "destination": "~/.config/fish/aliases",
+    "name": "Linux fish alias configuration"
+  },
+  "fish_config": {
+    "source": "./.config/fish/config.fish",
+    "destination": "~/.config/fish/config.fish",
+    "name": "Linux fish configuration"
+  },
   "htop": {
     "source": "./.config/htop/htoprc",
     "destination": "~/.config/htop/htoprc",
@@ -127,9 +144,9 @@
     "name": "Linux configuration profile",
     "$deps": [
       "autorandr",
-      "bash",
       "compton_blur",
       "emacs",
+      "fish",
       "htop",
       "i3",
       "polybar",

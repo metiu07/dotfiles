@@ -3,7 +3,7 @@ Current default configuration consists of:
 
 - arch/manjaro
 - i3 {polybar, compton, nitrogen, rofi, lightdm}
-- bash {urxvt, tmux}
+- bash/fish {urxvt, tmux}
 - emacs
 - ranger
 
