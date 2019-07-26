@@ -128,13 +128,19 @@
     "destination": "~/.config/ranger/rc.conf",
     "name": "Ranger configuration",
     "$deps": [
-      "ranger_rifle"
+      "ranger_rifle",
+      "ranger_scope"
     ]
   },
   "ranger_rifle": {
     "source": "./.config/ranger/rifle.conf",
     "destination": "~/.config/ranger/rifle.conf",
     "name": "Ranger rifle configuration"
+  },
+  "ranger_scope": {
+    "source": "./.config/ranger/scope.sh",
+    "destination": "~/.config/ranger/scope.sh",
+    "name": "Ranger scope preview script"
   },
   "requirements": {
     "source": "./requirements.txt",
