@@ -6,56 +6,16 @@ killall -q polybar
 while pgrep -u $UID -x polybar > /dev/null; do sleep 1; done
 
 if type "xrandr" > /dev/null; then
-	monitors_num=$(xrandr --query | grep " connected" | cut -d" " -f1 | wc -l)
-	if [ $monitors_num -eq 1 ]
-	then
-	echo "Only one monitor"
-	m=$(xrandr --query | grep " connected" | cut -d" " -f1)
-	xrandr --output $m
-	MONITOR=$m polybar --reload main -c ~/.config/polybar/config &
-	# feh --bg-scale ~/.config/wal.png
-	elif [ $monitors_num -eq 2 ]
-	then
-	echo "Two monitors"
-	# ~/.config/polybar/home.sh
-	for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-		if [ $m == "DP2" ]
-		then
-		echo "Main monitor"
-		MONITOR=$m polybar --reload main -c ~/.config/polybar/config &
-		else
-		MONITOR=$m polybar --reload secondary -c ~/.config/polybar/config &
-		fi
+
+	# Find the primary monitor and set the correct bar
+	PRIMARY_MONITOR=$(xrandr --query | grep " connected primary" | cut -d" " -f1)
+	MONITOR=$PRIMARY_MONITOR polybar --reload main -c ~/.config/polybar/config &
+
+	# Other monitors should have secondary config
+	for m in $(xrandr --query | grep " connected" | grep -v " primary" | cut -d" " -f1); do
+	 	MONITOR=$m polybar --reload secondary -c ~/.config/polybar/config &
 	done
-	elif [ $monitors_num -eq 3 ]
-	then
-	echo "Three monitors"
-	# ~/.config/polybar/work.sh
-	for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-		if [ $m == "DP1-1" ]
-		then
-		echo "Main monitor"
-		MONITOR=$m polybar --reload main -c ~/.config/polybar/config &
-		else
-		MONITOR=$m polybar --reload secondary -c ~/.config/polybar/config &
-		fi
-	done
-	else
-	echo "Multiple monitors"
-	xrandr --output eDP1 --right-of DP2
-	for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-		echo "Monitor: $m"
-		if [ $m == 'DP2' ] || [ $m == 'DP1-1']
-		then
-		MONITOR=$m polybar --reload main -c ~/.config/polybar/config &
-		elif [ $m == 'eDP1' ]
-		then
-		MONITOR=$m polybar --reload secondary -c ~/.config/polybar/config &
-		else
-		MONITOR=$m polybar --reload secondary -c ~/.config/polybar/config &
-		fi
-	done
-	fi
+
 else
 	polybar --reload main -c ~/.config/polybar/config &
 fi
