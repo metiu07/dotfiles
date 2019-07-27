@@ -102,6 +102,8 @@ class Installer:
     def install(self, module):
         """Install the file with specified command."""
 
+        # Create directories if they don't exists already
+        os.makedirs(os.path.dirname(os.path.expanduser(module['destination'])), exist_ok=True)
         self.exec_command('{} {} {}'.format(self.install_cmd,
                                             os.path.abspath(module['source']),
                                             module['destination']))
