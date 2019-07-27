@@ -14,6 +14,12 @@ More screenshots can be found in this [folder](screenshots).
 
 # Instalation
 
+First step is to clone this repository:
+
+```bash
+git clone https://www.github.com/metiu07/dotfiles
+```
+
 The repository contains installation scripts. Namely:
 
 - install.py
