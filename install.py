@@ -55,8 +55,8 @@ class Installer:
             with open(os.path.expanduser(input_file)) as f:
                 raw_json_data = f.read()
             return json.loads(raw_json_data)
-        except json.decoder.JSONDecodeError:
-            sys.exit('Input file "' + input_file + '" can not be parsed.')
+        except json.decoder.JSONDecodeError as err:
+            sys.exit('Input file "' + input_file + '" can not be parsed.\n' + str(err))
         except FileNotFoundError:
             sys.exit('Configuration file "' + input_file + '" not found.')
 
