@@ -53,9 +53,12 @@ URxvt*cursorColor:                      Magenta
 !URxvt*font: xft:Ubuntu Mono:style=Regular
 !URxvt*font: xft:Unifont:style=Medium
 !URxvt*font: xft: TerminessTTF Nerd Font Mono:style=Medium
-URxvt*font: xft: Inconsolata-Regular.ttf:pixelsize=20:antialias=true:hinting=true, xft: Source Code Pro:style=Regular, xft: DejaVu Sans Mono:style=Book, xft: TerminessTTF Nerd Font Mono:style=Medium:pixelsize=20, xft: Unifont Upper:style=Medium
-! urxvt.letterSpace:-4
-! urxvt.lineSpace:-4
+!URxvt*font: xft: Inconsolata-Regular.ttf:pixelsize=20:antialias=true:hinting=true, xft: Source Code Pro:style=Regular, xft: DejaVu Sans Mono:style=Book, xft: TerminessTTF Nerd Font Mono:style=Medium:pixelsize=20, xft: Unifont Upper:style=Medium
+!URxvt*font: xft: Inconsolata Nerd Font:pixelsize=20:antialias=true, xft: Source Code Pro:style=Regular, xft: DejaVu Sans Mono:style=Book, xft: TerminessTTF Nerd Font Mono:style=Medium:pixelsize=20, xft: Unifont Upper:style=Medium
+URxvt.font: xft:Inconsolata\ Nerd\ Font\ Mono:style=Medium:pixelsize=21,xft: Source Code Pro:style=Regular, xft: DejaVu Sans Mono:style=Book, xft: TerminessTTF Nerd Font Mono:style=Medium:pixelsize=20, xft: Unifont Upper:style=Medium
+!URxvt.font: xft:Hack\ Nerd\ Font\ Mono:pixelsize=20
+!urxvt.letterSpace:-3
+!urxvt.lineSpace:-4
 URxvt.cursorUnderline:1
 URxvt.scrollBar: false
 
