@@ -99,6 +99,11 @@
     "destination": "~/.config/i3/config",
     "name": "i3 window manager configuration"
   },
+  "i3.matus": {
+    "source": "./.config/i3/config.matus",
+    "destination": "~/.config/i3/config",
+    "name": "i3 window manager configuration (matus)"
+  },
   "linux": {
     "name": "Linux configuration profile",
     "$deps": [
