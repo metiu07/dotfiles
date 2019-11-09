@@ -46,13 +46,13 @@ border-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
 module-margin-left = 1
 module-margin-right = 2
 
 font-0 = NotoSans-Regular:size=10;0
-font-1 = "Wuncon Siji:style=Regular:pixelsize=10"
+font-1 = "Inconsolata Nerd Font Mono:style=Medium:pixelsize=12"
 font-2 = "TerminessTTF Nerd Font Mono:style=Medium:pixelsize=12"
 font-3 = "Noto Sans Mono:style=Regular:size=10"
 font-4 = FontAwesome:size=11;0
@@ -66,9 +66,9 @@ font-4 = FontAwesome:size=11;0
 ;font-5 = "Font Awesome 5 Brands:pixelsize=8;1"
 ;font-6 = unifont:fontformat=truetype:size=8:antialias=false;0
 
-modules-left = i3 bspwm
+modules-left = i3 pomodoro
 modules-center = date
-modules-right = xbacklight pulseaudio xkeyboard wlan eth battery powermenu
+modules-right = xbacklight pulseaudio xkeyboard wlan eth battery
 
 tray-position = right
 tray-padding = 2
@@ -120,9 +120,9 @@ font-2 = "TerminessTTF Nerd Font Mono:style=Medium:pixelsize=12"
 font-3 = "Noto Sans Mono:style=Regular:size=10"
 font-4 = FontAwesome:size=11;0
 
-modules-left = i3 bspwm
+modules-left = i3
 ; modules-center = mpd
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+modules-right = bandwidth filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 ;tray-position = right
 ;tray-padding = 2
@@ -143,10 +143,6 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 ;enable-ipc = true
-
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -446,34 +442,29 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
-[module/powermenu]
-type = custom/menu
+; Pymodoro
+; https://github.com/polybar/polybar/issues/431
+[module/pomodoro]
+type = custom/script
+; Use pomodoro glyphs in Nerd fonts
+exec = $HOME/tools/pymodoro/env/bin/pymodoro --break-prefix " " --pomodoro-prefix " " --pomodoro  --empty  --break  -l 1 -f ~/.pomodoro_session
+; Use default symbols
+label = %output%
+tail = true
+interval = 0
+; Start or reset the timer
+click-left = /bin/bash -c "if [ -e ~/.pomodoro_session  ]; then rm ~/.pomodoro_session; else echo \"25 5\" > ~/.pomodoro_session; fi"
+; Increase pomodoro time
+click-right = /bin/bash -c "echo \"$((`cut ~/.pomodoro_session -d ' ' -f 1`+5)) 5\" > ~/.pomodoro_session"
+; Reduce pomodoro time
+click-middle = /bin/bash -c "echo \"$((`cut ~/.pomodoro_session -d ' ' -f 1`-5)) 5\" > ~/.pomodoro_session"
 
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+[module/bandwidth]
+type = custom/script
+exec = $HOME/tools/scripts/bandwidth3 -p "printf \" %-5.1f%5.1f %s/s\n\", rx, wx, unit;"
+label = %output%
+tail = true
+interval = 0
 
 [settings]
 screenchange-reload = true
