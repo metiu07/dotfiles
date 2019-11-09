@@ -23,6 +23,8 @@ alias make='make -j(nproc)'                 # make:         Compile with availab
 alias makei='make install -j(nproc); alert' # makei:        Compile install target with available threads
 alias make1='make -j(nproc --ignore=1)'     # make1:        Compiler with all threads except one, let system keep some resources
 
+# pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S
+# yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -r sudo pacman -S
 # LSD doesn't recognize those flags
 # alias ll='ls -FGlAhp --group-directories-first --color=auto' # Preferred 'ls' implementation
 # alias ls='ls -G --group-directories-first --color=auto' # Preferred directory listing
