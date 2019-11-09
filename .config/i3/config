@@ -219,15 +219,13 @@ assign [class="discord"] 3
 assign [class="Steam"] 5
 assign [class="csgo_linux64"] 5
 
-# Autostart
-#
+# ==================== Autostart ====================
 
 # Disable bell sound
 exec --no-startup-id xset -b
 
-# Setup multiple monitors + Launch the polybar
-exec_always --no-startup-id autorandr --change
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# Setup multiple monitors
+exec_always --no-startup-id autorandr --change && $HOME/.fehbg
 
 # Startup urxvt daemon
 exec urxvtd -q -o -f
