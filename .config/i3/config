@@ -4,9 +4,11 @@
 
 set $mod Mod4
 set $reset_scratchpad ~/.config/i3/restore_scratchpad.sh
+set $SCRIPT_DIR $HOME/dev/install/bin
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 2
+# default_border pixel 2
+for_window [class=".*"] border pixel 0
 
 default_floating_border normal
 
@@ -234,25 +236,25 @@ exec urxvtd -q -o -f
 exec emacs --daemon
 
 # Initialize scratchpad
-exec $reset_scratchpad
+#exec $reset_scratchpad
 
-# Display wallpapers
-exec --no-startup-id variety
+# Launch the polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Turn on composition (default: blur)
-exec --no-startup-id compton --config ~/.config/compton/compton_blur.conf
+# exec_always --no-startup-id compton --config $HOME/.config/compton/compton_blur.conf
 
 # Startup the sound server
-exec --no-startup-id pulseaudio -k && pulseaudio -D
-exec --no-startup-id pa-applet
+# exec --no-startup-id pulseaudio -k && pulseaudio -D
+# exec --no-startup-id pa-applet
 
 # Startup the network manager
 exec --no-startup-id nm-applet
 
 # Startup the keyboard mouse navigation
-exec --no-startup-id keynav
+# exec --no-startup-id keynav
 
-# Set keyboards
+# Set keyboard layouts
 exec_always "setxkbmap -option 'grp:alt_shift_toggle' -layout us,sk -variant ,qwerty"
 
 set_from_resource $term_background background
@@ -302,6 +304,10 @@ smart_gaps on
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
+# Disable gaps with keypress
+# bindsym $mod+Shift+d gaps inner all set 0; gaps outer all set 0; exec "i3-msg [class=\".*\"] border pixel 2"
+bindsym $mod+Shift+d exec $SCRIPT_DIR/profile.py
+
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner, (r)eset, (q)uit
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global), (r)eset, (q)uit
@@ -346,3 +352,4 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
