@@ -121,7 +121,10 @@
   "polybar": {
     "source": "./.config/polybar/config",
     "destination": "~/.config/polybar/config",
-    "name": "Polybar configuration"
+    "name": "Polybar configuration",
+    "$deps": [
+      "polybar_launch"
+    ]
   },
   "polybar_launch": {
     "source": "./.config/polybar/launch.sh",
