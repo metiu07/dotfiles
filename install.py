@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python3
 # >= python3.5
 #
 # Author: Matej Kastak
