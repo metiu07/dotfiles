@@ -58,3 +58,20 @@ function fzf-complete -d 'fzf completion and print selection back to commandline
 
 	commandline -f repaint
 end
+
+# Automatically change the directory in fish after closing ranger
+#
+# This is a fish alias to automatically change the directory to the last visited
+# one after ranger quits.
+function ranger
+	set dir (mktemp -t ranger_cd.XXX)
+	set ranger_bin (which ranger)
+	$ranger_bin --choosedir=$dir $argv
+	cd (cat $dir)
+	rm $dir
+	commandline -f repaint
+end
+funcsave ranger
+
+# To bind Ctrl-O to ranger, save this in `~/.config/fish/config.fish`:
+bind \co ranger
