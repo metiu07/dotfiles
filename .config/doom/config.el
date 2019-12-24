@@ -20,3 +20,6 @@
         '(magit-todos-item-suffix magit-todos-item-filename))
         magit-repository-directories '(("~/dev/" . 0)
                                        ("~/tools/" . 0)))
+
+(after! yasnippet
+  (push (expand-file-name "snippets/" doom-private-dir) yas-snippet-dirs))
