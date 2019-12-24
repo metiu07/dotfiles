@@ -9,6 +9,11 @@ set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
 
 set -gx MAKEFLAGS '-j'(nproc)
 
+# Abbreviations
+#
+# Sourcing the environment
+abbr -a -g E '. env/bin/activate.fish'
+
 # Dynamicaly set the background color
 # TODO: Move to aliases?
 abbr -a -g white_bg 'printf "\033Ptmux;\033\033]11;white\007\033\\\\"'
