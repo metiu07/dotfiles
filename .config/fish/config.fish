@@ -1,6 +1,7 @@
 # Source alias file
 source ~/.config/fish/aliases
 
+set -g theme_nerd_fonts yes
 set -g theme_display_date no
 set -g theme_display_vi no
 
@@ -72,6 +73,15 @@ function ranger
 	commandline -f repaint
 end
 funcsave ranger
+
+function ranger-open
+	set dir (mktemp -t ranger_open.XXX)
+	set ranger_bin (which ranger)
+	$ranger_bin --choosefile=$dir $argv
+	echo (cat $dir)
+	nohup xdg-open (cat $dir) &
+	rm $dir
+end
 
 # To bind Ctrl-O to ranger, save this in `~/.config/fish/config.fish`:
 bind \co ranger
