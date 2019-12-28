@@ -5,8 +5,19 @@ set -g theme_nerd_fonts yes
 set -g theme_display_date no
 set -g theme_display_vi no
 
+# Set EDITOR and VISUAL, preffer emacs
+if command -v emacsclient >/dev/null 2>&1
+	set -gx EDITOR "emacsclient -t"
+	set -gx VISUAL "emacsclient -t"
+else
+	set -gx EDITOR /usr/bin/vim
+	set -gx VISUAL /usr/bin/vim
+end
+
+# Let theme prompt handle the virtualenv indicator
 set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
 
+# Makepkg should build packages with all available threads
 set -gx MAKEFLAGS '-j'(nproc)
 
 # Abbreviations
