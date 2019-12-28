@@ -259,6 +259,9 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Startup the network manager
 exec --no-startup-id nm-applet
 
+# Startup the bluetooth manager
+exec --no-startup-id blueman-applet
+
 # Startup the keyboard mouse navigation
 # exec --no-startup-id keynav
 
