@@ -47,6 +47,9 @@ bindsym $mod+d exec rofi -combi-modi drun#ssh#run -show combi
 bindsym $mod+c exec --no-startup-id rofi -show calc -modi "calc:qalc +u8 -nocurrencies"
 # bindsym $mod+c exec --no-startup-id rofi -show py -modi "py:ipython3"
 
+# Ranger as file manager
+bindsym $mod+o exec --no-startup-id urxvtc -e fish -c "ranger-open"
+
 # Programs
 bindsym $mod+F1 exec thunar
 # bindsym $mod+F1 exec spacefm
@@ -135,13 +138,13 @@ bindsym $mod+Shift+9 move container to workspace 9
 
 # Scratchpad
 # Maybe set max floating size
-for_window [title="^scratchpad.*$"] border 1pixel, floating enable, move scratchpad, resize set 800 600
-for_window [instance="^scratchpad.*$"] border 1pixel, floating enable, move scratchpad, resize set 800 600
-bindsym $mod+Shift+s exec $reset_scratchpad
-bindsym $mod+Shift+equal move scratchpad
-bindsym $mod+equal scratchpad show
-bindsym $mod+o [instance="scratchpad-files"] scratchpad show
-bindsym $mod+p [title="scratchpad-ipython"] scratchpad show
+# for_window [title="^scratchpad.*$"] border 1pixel, floating enable, move scratchpad, resize set 800 600
+# for_window [instance="^scratchpad.*$"] border 1pixel, floating enable, move scratchpad, resize set 800 600
+# bindsym $mod+Shift+s exec $reset_scratchpad
+# bindsym $mod+Shift+equal move scratchpad
+# bindsym $mod+equal scratchpad show
+# bindsym $mod+o [instance="scratchpad-files"] scratchpad show
+# bindsym $mod+p [title="scratchpad-ipython"] scratchpad show
 
 # move workspaces
 bindsym $mod+Control+h move workspace to output left
