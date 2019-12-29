@@ -4,7 +4,7 @@ Current default configuration consists of:
 - arch/manjaro
 - i3 {polybar, compton, nitrogen, rofi, lightdm}
 - bash/fish {urxvt, tmux}
-- emacs
+- emacs [Doom!](https://github.com/hlissner/doom-emacs)
 - ranger
 
 You can see preview in
@@ -23,7 +23,7 @@ git clone https://www.github.com/metiu07/dotfiles
 The repository contains installation scripts. Namely:
 
 - install.py
-- install.sh
+- install.sh # deprecated
 
 The [requirements.txt](requirements.txt) file contains arch package names of used packages. I am
 trying to keep the list updated, but if something is missing simple google query
@@ -65,3 +65,17 @@ installed to the location `./.config/ranger/rc.conf` and also depends on module
 
 This script is deprecated and should not be used anymore. It's included only
 because of nostalgy and for educational purposes.
+
+## Inspiration
+
+This wouldn't have been possible without other people who share their dotfiles. Take this as a list of my appreciation and inspiration.
+
+|Name/Link|Note|
+|-|-|
+|https://gitlab.com/JoelDimbernat/rofi-menus | |
+|https://github.com/LukeSmithxyz/voidrice | |
+|https://github.com/s3rvac/dotfiles | |
+|https://github.com/metthal/configs | |
+|https://github.com/geohot/configuration | |
+|https://github.com/okubax/dotfiles | |
+|https://github.com/089kili/dotfiles | | 
