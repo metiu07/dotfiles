@@ -22,8 +22,12 @@ set -gx MAKEFLAGS '-j'(nproc)
 
 # Abbreviations
 #
-# Sourcing the environment
-abbr -a -g E '. env/bin/activate.fish'
+# Default python enviroment direcotry
+set -l DEFAULT_ENV_DIR env
+# Sourcing the python environment
+abbr -a -g E ". $DEFAULT_ENV_DIR/bin/activate.fish"
+# Creating the python environment
+abbr -a -g EC "python3 -m venv $DEFAULT_ENV_DIR"
 
 # Dynamicaly set the background color
 # TODO: Move to aliases?
