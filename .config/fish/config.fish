@@ -103,5 +103,73 @@ function ranger-open -d 'Interactive ranger opener using xdg-open.'
 	rm $dir
 end
 
-# To bind Ctrl-O to ranger, save this in `~/.config/fish/config.fish`:
-bind \co ranger
+function _send_command -d 'Send command through tmux if its running.'
+	if [ -n "$TMUX" ];
+		printf "\ePtmux;\e%s\e\\" $argv[1]
+	else
+		echo $argv[1]
+	end
+end
+
+function _urxvt_command -d 'Issue urxvt command'
+	[ (count $argv) -ne 2 ] && return
+
+	set -l command (printf "\e]%s;%s\007" "$argv[2]" "$argv[1]")
+	_send_command $command
+end
+
+function color-switcher -d 'Change terminal color.'
+	# Let user select the color
+	set -l colors 'white\nblack\ngreen\nred'
+	set -l selected_color ( echo -e $colors | rofi -dmenu -i)
+	[ -z "$selected_color" ]; and return
+
+	# Set the color
+	_urxvt_command $selected_color $argv[1]
+end
+
+# TODO: Create new function with default fallbacks e.g
+# User will pick dejavu font but this function will also by default append other fonts
+# so everything in shell works just fine
+function font-switcher -d 'Change terminal font.'
+	# TODO: multi-select
+	# Let user select the font
+	set -l selected_font (fc-list | grep -i ttf | cut -d: -f2 | sort -ru | rofi -dmenu -i)
+	[ -z "$selected_font" ]; and return
+
+	# Format the font string
+	set -l formated_font (printf "xft: %s:pixelsize=21" $selected_font)
+
+	# Set the font
+	_urxvt_command $formated_font $argv[1]
+end
+
+function terminal-control -d 'Entry point for terminal control.'
+	set -l ESCAPE_NORMAL      710
+	set -l ESCAPE_BOLD        711
+	set -l ESCAPE_ITALICS     712
+	set -l ESCAPE_BOLDITALICS 713
+	set -l ESCAPE_FG          10
+	set -l ESCAPE_BG          11
+
+	if [ (count $argv) -ge 1 ]
+		switch "$argv[1]"
+			case font n normal
+				font-switcher $ESCAPE_NORMAL
+			case b bold
+				font-switcher $ESCAPE_BOLD
+			case i ita italics
+				font-switcher $ESCAPE_ITALICS
+			case bi bold-italics
+				font-switcher $ESCAPE_BOLDITALICS
+			case fg foreground
+				color-switcher $ESCAPE_FB
+			case bg background
+				color-switcher $ESCAPE_BG
+			case '*'
+				echo 'Invalid command! Aborting...'
+		end
+	else
+		font-switcher $ESCAPE_NORMAL
+	end
+end
