@@ -84,7 +84,7 @@ end
 #
 # This is a fish alias to automatically change the directory to the last visited
 # one after ranger quits.
-function ranger
+function ranger -d 'Ranger stay in directory after exit.'
 	set dir (mktemp -t ranger_cd.XXX)
 	set ranger_bin (which ranger)
 	$ranger_bin --choosedir=$dir $argv
@@ -94,7 +94,7 @@ function ranger
 end
 funcsave ranger
 
-function ranger-open
+function ranger-open -d 'Interactive ranger opener using xdg-open.'
 	set dir (mktemp -t ranger_open.XXX)
 	set ranger_bin (which ranger)
 	$ranger_bin --choosefile=$dir $argv
