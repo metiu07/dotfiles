@@ -145,6 +145,18 @@ function font-switcher -d 'Change terminal font.'
 	_urxvt_command $formated_font $argv[1]
 end
 
+function random-font -d 'Change terminal font to random one.'
+	set -l selected_font (fc-list | grep -i ttf | cut -d: -f2 | sort -u | shuf | head -n1)
+	[ -z "$selected_font" ]; and return
+
+	# Format the font string
+	set -l formated_font (printf "xft:%s:pixelsize=21, xft:Inconsolata Nerd Font Mono:style=Medium:pixelsize=21" $selected_font)
+
+	echo "$formated_font"
+	# Set the font
+	_urxvt_command $formated_font 710
+end
+
 function terminal-control -d 'Entry point for terminal control.'
 	set -l ESCAPE_NORMAL      710
 	set -l ESCAPE_BOLD        711
