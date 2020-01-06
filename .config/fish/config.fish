@@ -138,7 +138,8 @@ function font-switcher -d 'Change terminal font.'
 	[ -z "$selected_font" ]; and return
 
 	# Format the font string
-	set -l formated_font (printf "xft: %s:pixelsize=21" $selected_font)
+	# set -l formated_font (printf "xft:%s:pixelsize=21" $selected_font)
+	set -l formated_font (printf "xft:%s:pixelsize=21, xft:Inconsolata Nerd Font Mono:style=Medium:pixelsize=21" $selected_font)
 
 	# Set the font
 	_urxvt_command $formated_font $argv[1]
