@@ -30,4 +30,6 @@
 (map!
   (:after helm
     (:map helm-projectile-find-file-map
-      "TAB"    #'helm-ff-run-switch-other-window)))
+      "TAB"    #'helm-ff-run-switch-other-window)
+    (:map helm-buffer-map
+      "TAB"    #'helm-buffer-switch-other-window)))
