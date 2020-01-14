@@ -99,7 +99,7 @@ function ranger-open -d 'Interactive ranger opener using xdg-open.'
 	set ranger_bin (which ranger)
 	$ranger_bin --choosefile=$dir $argv
 	echo (cat $dir)
-	nohup xdg-open (cat $dir) &
+	nohup xdg-open (cat $dir) > /dev/null &
 	rm $dir
 end
 
