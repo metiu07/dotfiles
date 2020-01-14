@@ -54,9 +54,10 @@ bindsym $mod+o exec --no-startup-id urxvtc -e fish -c "ranger-open"
 bindsym $mod+F1 exec thunar
 # bindsym $mod+F1 exec spacefm
 bindsym $mod+F2 exec firefox
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+
+# Screenshots
+bindsym Print exec --no-startup-id maim ~/Pictures/screenshot_$(date -Iminutes).png
+bindsym $mod+Print --release exec --no-startup-id maim -s ~/Pictures/screenshot_$(date -Iminutes).png
 
 # focus urgent window
 bindsym $mod+x [urgent=latest] focus
