@@ -119,6 +119,12 @@ function _urxvt_command -d 'Issue urxvt command'
 end
 
 function color-switcher -d 'Change terminal color.'
+
+	# Privide default value, if called without paramters
+	if [ (count $argv) -eq 0 ]
+	   set argv $argv 11
+	end
+
 	# Let user select the color
 	set -l colors 'white\nblack\ngreen\nred'
 	set -l selected_color ( echo -e $colors | rofi -dmenu -i)
@@ -133,6 +139,12 @@ end
 # so everything in shell works just fine
 function font-switcher -d 'Change terminal font.'
 	# TODO: multi-select
+
+	# Privide default value, if called without paramters
+	if [ (count $argv) -eq 0 ]
+	   set argv $argv 710
+	end
+
 	# Let user select the font
 	set -l selected_font (fc-list | grep -i ttf | cut -d: -f2 | sort -ru | rofi -dmenu -i)
 	[ -z "$selected_font" ]; and return
