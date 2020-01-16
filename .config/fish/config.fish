@@ -205,7 +205,7 @@ end
 function ranger-wallpaper -d 'Interactive ranger wallpaper setter using feh.'
 	set dir (mktemp -t ranger_open.XXX)
 	set ranger_bin (which ranger)
-	$ranger_bin --choosefile=$dir $argv
+	$ranger_bin --choosefile=$dir $argv $HOME/Pictures
 	echo (cat $dir)
 	feh --bg-fill (cat $dir)
 	rm $dir
@@ -214,7 +214,7 @@ end
 function ranger-wal -d 'Interactive ranger wallpaper setter using feh and wal.'
 	set dir (mktemp -t ranger_open.XXX)
 	set ranger_bin (which ranger)
-	$ranger_bin --choosefile=$dir $argv
+	$ranger_bin --choosefile=$dir $argv $HOME/Pictures
 	echo (cat $dir)
 	feh --bg-fill (cat $dir)
 	wal -ni (cat $dir)
