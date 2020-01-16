@@ -112,7 +112,7 @@ function _send_command -d 'Send command through tmux if its running.'
 end
 
 function _urxvt_command -d 'Issue urxvt command'
-	[ (count $argv) -ne 2 ] && return
+	[ (count $argv) -ne 2 ]; and return
 
 	set -l command (printf "\e]%s;%s\007" "$argv[2]" "$argv[1]")
 	_send_command $command
@@ -162,7 +162,7 @@ function random-font -d 'Change terminal font to random one.'
 	[ -z "$selected_font" ]; and return
 
 	# Format the font string
-	set -l formated_font (printf "xft:%s:pixelsize=21, xft:Inconsolata Nerd Font Mono:style=Medium:pixelsize=21" $selected_font)
+	set -l formated_font (printf "xft:%s:pixelsize=21:antialias=true, xft:Inconsolata Nerd Font Mono:style=Medium:pixelsize=21" $selected_font)
 
 	echo "$formated_font"
 	# Set the font
@@ -170,6 +170,9 @@ function random-font -d 'Change terminal font to random one.'
 end
 
 function terminal-control -d 'Entry point for terminal control.'
+
+	# TODO: Those can be maybe global variables, that are destoried at the end
+	# of this script? Also other references can be updated accordingly.
 	set -l ESCAPE_NORMAL      710
 	set -l ESCAPE_BOLD        711
 	set -l ESCAPE_ITALICS     712
@@ -197,4 +200,31 @@ function terminal-control -d 'Entry point for terminal control.'
 	else
 		font-switcher $ESCAPE_NORMAL
 	end
+end
+
+function ranger-wallpaper -d 'Interactive ranger wallpaper setter using feh.'
+	set dir (mktemp -t ranger_open.XXX)
+	set ranger_bin (which ranger)
+	$ranger_bin --choosefile=$dir $argv
+	echo (cat $dir)
+	feh --bg-fill (cat $dir)
+	rm $dir
+end
+
+function ranger-wal -d 'Interactive ranger wallpaper setter using feh and wal.'
+	set dir (mktemp -t ranger_open.XXX)
+	set ranger_bin (which ranger)
+	$ranger_bin --choosefile=$dir $argv
+	echo (cat $dir)
+	feh --bg-fill (cat $dir)
+	wal -ni (cat $dir)
+	rm $dir
+end
+
+function wal-theme -d 'Interactive theme setter for wal.'
+	# Let user select the theme
+	set -l selected_theme (wal --theme | grep -vF : | cut -d ' ' -f 3 | sort -u | rofi -dmenu -i)
+	[ -z "$selected_theme" ]; and return
+
+	wal --theme "$selected_theme"
 end
