@@ -228,3 +228,15 @@ function wal-theme -d 'Interactive theme setter for wal.'
 
 	wal --theme "$selected_theme"
 end
+
+# https://github.com/SidOfc/dotfiles/blob/master/config.fish#L67
+function kp -d "Kill processes"
+	set -l pid (ps -ef | tail -n +1 | fzf --tac -m --header='[kill:process]' | awk '{print $2}')
+	[ -z "$pid" ]; and return
+
+	if [ (count $argv) -eq 0 ]
+		kill -9 "$pid"
+	else
+		kill $argv "$pid"
+	end
+end
