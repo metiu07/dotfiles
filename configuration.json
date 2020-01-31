@@ -185,6 +185,11 @@
     "destination": "~/.vimrc",
     "name": "Vanila vim configuration without addons"
   },
+  "waybar": {
+    "source": "./.config/waybar",
+    "destination": "~/.config/waybar",
+    "name": "Waybar configuration for Wayland"
+  },
   "xinit": {
     "source": "./.xinitrc",
     "destination": "~/.xinitrc",
