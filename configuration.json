@@ -166,6 +166,11 @@
     "destination": "~/.screenrc",
     "name": "Screen (gnu) configuration"
   },
+  "sway": {
+    "source": "./.config/sway/config",
+    "destination": "~/.config/sway/config",
+    "name": "Sway window manager configuration"
+  },
   "tmux": {
     "source": "./.tmux.conf",
     "destination": "~/.tmux.conf",
