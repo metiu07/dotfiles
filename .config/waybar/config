@@ -28,7 +28,7 @@
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "",
             "2": "",
             "3": "",
             "4": "",
@@ -60,8 +60,8 @@
         "bat": "BAT0",
         "states": {
             // "good": 95,
-            "warning": 30,
-            "critical": 15
+            "warning": 20,
+            "critical": 10
         },
         "format": "{capacity}% {icon}",
         // "format-good": "", // An empty format will hide the module
@@ -82,13 +82,14 @@
         "format-icons": {
             "headphones": "",
             "handsfree": "",
-            "headset": "",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
             "default": ["", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "amixer set Master toggle",
+        "on-click-right": "pavucontrol"
     },
     "custom/spotify": {
         "format": " {}",

@@ -4,10 +4,13 @@
     font-family: "Ubuntu Nerd Font";
     font-size: 13px;
     min-height: 0;
+    /* background: #00171f; */
+    background: #000f14;
 }
 
 window#waybar {
-    background: transparent;
+    /* background: transparent; */
+    /* color: white; */
     color: white;
 }
 
@@ -29,8 +32,8 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    color: #c9545d;
-    border-top: 2px solid #c9545d;
+    color: #007ea7;
+    border-top: 2px solid #007ea7;
 }
 
 #mode {
@@ -83,7 +86,7 @@ window#waybar {
 }
 
 #network.disconnected {
-    background: #f53c3c;
+    background: #003459;
 }
 
 #pulseaudio {
