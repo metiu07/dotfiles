@@ -1,9 +1,14 @@
 # Source alias file
 source ~/.config/fish/aliases
 
-set -g theme_nerd_fonts yes
-set -g theme_display_date no
-set -g theme_display_vi no
+# Pure theme configuration
+# set -g pure_symbol_prompt '❯'
+set -g pure_symbol_prompt 'ﬦ'
+
+# Bob the fish theme configuration
+# set -g theme_nerd_fonts yes
+# set -g theme_display_date no
+# set -g theme_display_vi no
 
 # Set EDITOR and VISUAL, preffer emacs
 if command -v emacsclient >/dev/null 2>&1
@@ -180,6 +185,7 @@ function terminal-control -d 'Entry point for terminal control.'
 	set -l ESCAPE_FG          10
 	set -l ESCAPE_BG          11
 
+	# TODO: Better handle italics, style prob cannot be medium for all fonts
 	if [ (count $argv) -ge 1 ]
 		switch "$argv[1]"
 			case font n normal
@@ -239,4 +245,10 @@ function kp -d "Kill processes"
 	else
 		kill $argv "$pid"
 	end
+end
+
+function ff -d "Interactive find file"
+	[ (count $argv) -eq 1 ] && pushd $argv[1]
+	realpath (fzf)
+	popd 2>/dev/null
 end
