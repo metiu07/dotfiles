@@ -20,6 +20,11 @@
        ;;ido               ; the other *other* search engine...
        ;;(ivy +fuzzy)       ; a search engine for love and life
 
+       :checkers
+       syntax              ; tasing you for every semicolon you forget
+       ;;spell             ; tasing you for misspelling mispelling
+       ;;grammar           ; tasing grammar mistake every you make
+
        :ui
        deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
@@ -74,8 +79,6 @@
        editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        eval              ; run code, run (also, repls)
-       flycheck          ; tasing you for every semicolon you forget
-       ;;flyspell          ; tasing you for misspelling mispelling
        ;;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
