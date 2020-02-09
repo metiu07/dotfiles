@@ -2,8 +2,8 @@
 Current default configuration consists of:
 
 - arch/manjaro
-- i3 {polybar, compton, nitrogen, rofi, lightdm}
-- bash/fish {urxvt, tmux}
+- sway {waybar, rofi, lightdm}
+- fish {alacritty, urxvt, tmux}
 - emacs [Doom!](https://github.com/hlissner/doom-emacs)
 - ranger
 
