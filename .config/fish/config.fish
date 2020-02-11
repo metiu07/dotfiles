@@ -34,6 +34,9 @@ abbr -a -g E ". $DEFAULT_ENV_DIR/bin/activate.fish"
 # Creating the python environment
 abbr -a -g EC "python3 -m venv $DEFAULT_ENV_DIR"
 
+# Reload fish configuration
+abbr -a -g RE ". ~/.config/fish/config.fish"
+
 # Dynamicaly set the background color
 # TODO: Move to aliases?
 abbr -a -g white_bg 'printf "\033Ptmux;\033\033]11;white\007\033\\\\"'
