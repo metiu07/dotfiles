@@ -255,3 +255,31 @@ function ff -d "Interactive find file"
 	realpath (fzf)
 	popd 2>/dev/null
 end
+
+function _select-docker-container -d "Helper function to select docker container"
+	set -l preview_format "Name:\t\t{{.Names}}\nCommand:\t{{.Command}}\nStatus:\t\t{{.Status}}\nSize:\t\t{{.Size}}\nPorts:\t\t{{.Ports}}\nMounts:\t\t{{.Mounts}}\nNetworks:\t{{.Networks}}"
+	set -l containers (sudo docker ps --format "{{.Names}}" $argv)
+	set -l selected_container (echo "$containers" | tr ' ' '\n' | fzf --preview="sudo docker ps --filter 'name={1}' --format '$preview_format'" | cut -d " " -f 2)
+	echo "$selected_container"
+end
+
+function docker-bash -d "Spawn bash in docker"
+	set -l selected_container (_select-docker-container)
+
+	[ -z "$selected_container" ]; and return
+	sudo docker exec -it "$selected_container" bash $argv
+end
+
+function docker-kill -d "Kill docker container"
+	set -l selected_container (_select-docker-container)
+
+	[ -z "$selected_container" ]; and return
+	sudo docker kill "$selected_container" $argv
+end
+
+function docker-log -d "Display container logs"
+	set -l selected_container (_select-docker-container)
+
+	[ -z "$selected_container" ]; and return
+	sudo docker logs "$selected_container" $argv
+end

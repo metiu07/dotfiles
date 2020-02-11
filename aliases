@@ -24,11 +24,10 @@ alias makei='make install -j(nproc); alert' # makei:        Compile install targ
 alias make1='make -j(nproc --ignore=1)'     # make1:        Compiler with all threads except one, let system keep some resources
 
 # big thanks to bangerino for sharing
-# TODO(mato): There is a problem with running sudo
-alias docker-kill="sudo docker ps --format '{{.Image}} {{.Names}}' | fzf -m --preview 'sudo docker ps | grep {2}' | cut -d ' ' -f 2 | xargs -I '{}' -r sudo docker kill '{}'"
-alias docker-bash='sudo docker exec -it (sudo docker ps --format "{{.Image}} {{.Names}}" | fzf --preview="sudo docker ps | grep {2}"   | cut -d " " -f 2) bash'
-alias docker-rmi='sudo docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" | fzf -m --preview "sudo docker images --format \"{{.ID}} {{.CreatedAt}}\" | grep {3}" | cut -d " " -f 3 | xargs -I "{}" -r sudo docker rmi "{}"'
-alias docker-rmif='sudo docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" | fzf -m --preview "sudo docker images --format \"{{.ID}} {{.CreatedAt}}\" | grep {3}" | cut -d " " -f 3 | xargs -I "{}" -r sudo docker rmi "{}" --force'
+# alias docker-kill="sudo docker ps --format '{{.Image}} {{.Names}}' | fzf -m --preview 'sudo docker ps | grep {2}' | cut -d ' ' -f 2 | xargs -I '{}' -r sudo docker kill '{}'"
+# alias docker-bash='sudo docker exec -it (sudo docker ps --format "{{.Image}} {{.Names}}" | fzf --preview="sudo docker ps | grep {2}"   | cut -d " " -f 2) bash'
+# alias docker-rmi='sudo docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" | fzf -m --preview "sudo docker images --format \"{{.ID}} {{.CreatedAt}}\" | grep {3}" | cut -d " " -f 3 | xargs -I "{}" -r sudo docker rmi "{}"'
+# alias docker-rmif='sudo docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" | fzf -m --preview "sudo docker images --format \"{{.ID}} {{.CreatedAt}}\" | grep {3}" | cut -d " " -f 3 | xargs -I "{}" -r sudo docker rmi "{}" --force'
 
 # pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S
 # yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -r sudo pacman -S
