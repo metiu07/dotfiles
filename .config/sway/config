@@ -57,8 +57,12 @@ bindsym $mod+Shift+t exec --no-startup-id fish -c "wal-theme"
 # bindsym $mod+F2 exec firefox
 
 # Screenshots
-bindsym Print exec --no-startup-id maim ~/Pictures/screenshot_$(date -Iminutes).png
-bindsym $mod+Print --release exec --no-startup-id maim -s ~/Pictures/screenshot_$(date -Iminutes).png
+bindsym Print exec --no-startup-id grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') "$(xdg-user-dir PICTURES)/screenshot_$(date -Iminutes).png"
+bindsym $mod+Print exec --no-startup-id grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshot_$(date -Iminutes).png"
+bindsym $mod+Shift+Print exec --no-startup-id grim -g "$(slurp)" - | wl-copy\
+
+# Color picker
+# bindsym $mod+Shift+Print exec --no-startup-id notify-send $(grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:-)
 
 # focus urgent window
 bindsym $mod+x [urgent=latest] focus
