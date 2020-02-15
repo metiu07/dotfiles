@@ -234,7 +234,7 @@ exec_always --no-startup-id xrdb -merge ~/.Xresources
 exec urxvtd -q -o -f
 
 # Startup notification daemon
-exec --no-startup-id mako
+exec_always --no-startup-id killall -wq mako; mako
 
 # Startup the emacs daemon
 exec emacs --daemon
