@@ -200,6 +200,10 @@ for_window [class="^"] split toggle
 # Open specific applications in floating mode
 # for_window [class="Pamac-manager"] floating enable
 # for_window [class="Thunar"] floating enable
+for_window [app_id="nm-openconnect-auth-dialog"] floating enable
+for_window [title="Firefox - Sharing Indicator"] floating enable
+for_window [title="Picture-in-Picture"] floating enable
+for_window [title="Picture-in-Picture"] sticky enable
 
 # Assign the programs to workspaces
 assign [class="Slack"] 3
