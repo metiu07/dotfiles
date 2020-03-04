@@ -190,8 +190,8 @@ bindsym XF86AudioMicMute exec --no-startup-id notify-send "test"
 
 # Screen brightness controls
 # NOTE: User must be in video group (sudo usermod -g video <USER>)
-bindsym XF86MonBrightnessUp exec "light -A 5; notify-send 'brightness up'"
-bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 5; notify-send 'brightness up' -h int:value:$(light -G)"
+bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5; notify-send 'brightness down' -h int:value:$(light -G)"
 
 # Toggle split direction for each window
 default_orientation vertical
@@ -234,16 +234,16 @@ exec_always --no-startup-id xrdb -merge ~/.Xresources
 exec urxvtd -q -o -f
 
 # Startup notification daemon
-exec_always --no-startup-id killall -wq mako; mako
+exec_always --no-startup-id "killall -wq mako; mako"
 
 # Startup the emacs daemon
-exec emacs --daemon
+exec --no-startup-id emacs --daemon
 
 # Initialize scratchpad
 #exec $reset_scratchpad
 
 # Launch the status bar
-exec_always --no-startup-id killall -wq waybar; waybar
+exec_always --no-startup-id "killall -wq waybar; waybar"
 
 # Startup the sound server
 # exec --no-startup-id pulseaudio -k && pulseaudio -D
