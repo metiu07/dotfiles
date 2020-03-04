@@ -3,7 +3,7 @@ alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ls='lsd'                              # LS implementation with colors
 alias ll='ls -FlAh --group-dirs first --color=auto' # Preferred 'ls' implementation
-alias less='less -FSRXc'                    # Preferred 'less' implementation
+alias less='less -SRXc'                     # Preferred 'less' implementation
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
