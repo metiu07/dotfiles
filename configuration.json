@@ -179,7 +179,11 @@
   "sway": {
     "source": "./.config/sway/config",
     "destination": "~/.config/sway/config",
-    "name": "Sway window manager configuration"
+    "name": "Sway window manager configuration",
+    "$deps": [
+      "mako",
+      "waybar"
+    ]
   },
   "tmux": {
     "source": "./.tmux.conf",
