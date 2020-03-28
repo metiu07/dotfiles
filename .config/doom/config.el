@@ -28,6 +28,8 @@
 (after! company
   (setq company-idle-delay 0))
 
+(setq lsp-keymap-prefix "M-p")
+
 (map!
   (:after helm
     (:map helm-projectile-find-file-map
