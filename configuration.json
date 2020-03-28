@@ -124,6 +124,11 @@
       "vim_noaddons"
     ]
   },
+  "mako": {
+    "source": "./.config/mako/config",
+    "destination": "~/.config/mako/config",
+    "name": "Notification daemon configuration."
+  },
   "polybar": {
     "source": "./.config/polybar/config",
     "destination": "~/.config/polybar/config",
