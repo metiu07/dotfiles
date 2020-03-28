@@ -8,7 +8,8 @@
   (set-face-attribute 'org-level-2 nil
                       :height 1.5)
   (set-face-attribute 'org-level-3 nil
-                      :height 1.3))
+                      :height 1.3)
+  (setq org-startup-folded nil))
 
 (after! evil
   (evil-ex-define-cmd "W" "write"))
