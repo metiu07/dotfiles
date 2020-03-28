@@ -97,7 +97,7 @@ class Installer:
         dest = os.path.abspath(dest)
         if os.path.exists(dest) and not os.path.islink(dest):
             # Copy the file with backup extension
-            self.exec_command('cp {} {}'.format(dest, dest + self.backup_ext))
+            self.exec_command('mv {} {}'.format(dest, dest + self.backup_ext))
 
     def install(self, module):
         """Install the file with specified command."""
