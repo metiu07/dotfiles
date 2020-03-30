@@ -82,7 +82,8 @@
     "$deps": [
       "fish_config",
       "fish_aliases"
-    ]
+    ],
+    "install": "./scripts/install_fish.fish"
   },
   "fish_aliases": {
     "source": "./aliases",
