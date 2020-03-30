@@ -59,8 +59,12 @@ set -gx MAKEFLAGS '-j'(nproc)
 set -l DEFAULT_ENV_DIR env
 # Sourcing the python environment
 abbr -a -g E ". $DEFAULT_ENV_DIR/bin/activate.fish"
+# Sourcing the global python environment
+abbr -a -g EE "source_global"
 # Creating the python environment
 abbr -a -g EC "python3 -m venv $DEFAULT_ENV_DIR"
+# Deactivate the python environment
+abbr -a -g D "deactivate"
 
 # Reload fish configuration
 abbr -a -g RE ". ~/.config/fish/config.fish"
@@ -285,6 +289,16 @@ function ff -d "Interactive find file"
 	[ (count $argv) -eq 1 ] && pushd $argv[1]
 	realpath (fzf)
 	popd 2>/dev/null
+end
+
+function source_global -d "Interactive source python env"
+	pushd ~
+	# TODO: Handle multiselection
+	# TODO: Can we preview packages in the venv?
+	set -l _env (fd -I -t d -d 4 '^v?env' | fzf --height 15 --prompt "Select environment to source: " --layout=reverse)
+	[ -z "$_env" ] && return
+	source "$_env/bin/activate.fish"
+	popd
 end
 
 function _select-docker-container -d "Helper function to select docker container"
