@@ -351,3 +351,17 @@ function _ssh-add -d "Add new ssh-key to the ssh-agent"
 	set -l _key (fd 'id_.*[^\.][^p][^u][^b]$' ~/.ssh/ | fzf --height 15 --prompt "Select a key to add: " --layout=reverse)
 	ssh-add "$_key"
 end
+
+function _ttest -d "Test terminal capabilities"
+
+	curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt
+
+	echo -e "\e[1mbold\e[0m"
+	echo -e "\e[3mitalic\e[0m"
+	echo -e "\e[4munderline\e[0m"
+	echo -e "\e[9mstrikethrough\e[0m"
+	echo -e "\e[31mHello World\e[0m"
+	echo -e "\x1B[31mHello World\e[0m"
+
+	msgcat --color=test
+end
