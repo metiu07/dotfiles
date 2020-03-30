@@ -243,7 +243,7 @@ exec_always --no-startup-id xrdb -merge ~/.Xresources
 exec urxvtd -q -o -f
 
 # Startup notification daemon
-exec_always --no-startup-id "killall -wq mako; mako"
+exec_always --no-startup-id "killall -q mako; mako"
 
 # Startup the emacs daemon
 exec --no-startup-id emacs --daemon
@@ -252,17 +252,17 @@ exec --no-startup-id emacs --daemon
 #exec $reset_scratchpad
 
 # Launch the status bar
-exec_always --no-startup-id "killall -wq waybar; waybar"
+exec_always --no-startup-id "killall -q waybar; waybar"
 
 # Startup the sound server
 # exec --no-startup-id pulseaudio -k && pulseaudio -D
 # exec --no-startup-id pa-applet
 
 # Startup the network manager
-exec_always --no-startup-id killall -q nm-applet; nm-applet --indicator
+exec_always --no-startup-id "killall -q nm-applet; nm-applet --indicator"
 
 # Startup the bluetooth manager
-exec_always --no-startup-id killall -q blueman-applet; blueman-applet
+exec_always --no-startup-id "killall -q blueman-applet; blueman-applet"
 
 # Startup the keyboard mouse navigation
 # exec --no-startup-id keynav
