@@ -2,8 +2,12 @@
 source ~/.config/fish/aliases
 
 # Pure theme configuration
-# set -g pure_symbol_prompt '❯'
-set -g pure_symbol_prompt 'ﬦ'
+# set -g pure_symbol_prompt '❯'  # Better copy
+# set -g pure_symbol_prompt ''  # RPI
+# set -g pure_symbol_prompt ''  # RPI
+# set -g pure_symbol_prompt ''  # RPI
+# set -g pure_symbol_prompt '拾'  # RPI
+set -g pure_symbol_prompt 'ﬦ'  # Default
 
 # Bob the fish theme configuration
 # set -g theme_nerd_fonts yes
