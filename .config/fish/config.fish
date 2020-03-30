@@ -302,6 +302,7 @@ function source_global -d "Interactive source python env"
 	popd
 end
 
+# TODO: Create sepparate package for docker
 function _select-docker-container -d "Helper function to select docker container"
 	set -l preview_format "Name:\t\t{{.Names}}\nCommand:\t{{.Command}}\nStatus:\t\t{{.Status}}\nSize:\t\t{{.Size}}\nPorts:\t\t{{.Ports}}\nMounts:\t\t{{.Mounts}}\nNetworks:\t{{.Networks}}"
 	set -l containers (sudo docker ps --format "{{.Names}}" $argv)
@@ -323,11 +324,24 @@ function docker-kill -d "Kill docker container"
 	sudo docker kill "$selected_container" $argv
 end
 
+function docker-restart -d "Restart docker container"
+	set -l selected_container (_select-docker-container)
+
+	[ -z "$selected_container" ]; and return
+	sudo docker restart "$selected_container" $argv
+end
 function docker-log -d "Display container logs"
 	set -l selected_container (_select-docker-container)
 
 	[ -z "$selected_container" ]; and return
 	sudo docker logs "$selected_container" $argv
+end
+
+function docker-rmi -d "Remove docker images"
+	set -l selected_container (_select-docker-container)
+
+	[ -z "$selected_container" ]; and return
+	sudo docker rmi "$selected_container" $argv
 end
 
 function _ssh-add -d "Add new ssh-key to the ssh-agent"
