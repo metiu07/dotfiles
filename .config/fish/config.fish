@@ -65,6 +65,9 @@ abbr -a -g EC "python3 -m venv $DEFAULT_ENV_DIR"
 # Reload fish configuration
 abbr -a -g RE ". ~/.config/fish/config.fish"
 
+# Add ssh-key
+abbr -a -g SA "_ssh-add"
+
 # Dynamicaly set the background color
 # TODO: Move to aliases?
 abbr -a -g white_bg 'printf "\033Ptmux;\033\033]11;white\007\033\\\\"'
@@ -310,4 +313,12 @@ function docker-log -d "Display container logs"
 
 	[ -z "$selected_container" ]; and return
 	sudo docker logs "$selected_container" $argv
+end
+
+function _ssh-add -d "Add new ssh-key to the ssh-agent"
+	# Startup the ssh-agent if not running
+	[ -z "$SSH_AGENT_PID" ] && eval (ssh-agent -c)
+
+	set -l _key (fd 'id_.*[^\.][^p][^u][^b]$' ~/.ssh/ | fzf --height 15 --prompt "Select a key to add: " --layout=reverse)
+	ssh-add "$_key"
 end
