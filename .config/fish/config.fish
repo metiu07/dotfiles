@@ -10,7 +10,11 @@ set -g pure_symbol_prompt 'ﬦ'
 # set -g theme_display_date no
 # set -g theme_display_vi no
 
-# Set EDITOR and VISUAL, preffer emacs
+# Customize path variable
+set -gx PATH $PATH $HOME/.local/bin
+set -gx PATH $PATH $HOME/.cargo/bin
+
+# Set EDITOR and VISUAL, order emacs -> nvim -> vim -> nano
 if command -v emacsclient >/dev/null 2>&1
 	set -gx EDITOR "emacsclient -t"
 	set -gx VISUAL "emacsclient -t"
