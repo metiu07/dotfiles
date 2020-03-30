@@ -1,16 +1,12 @@
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ls='lsd'                              # LS implementation with colors
-alias ll='ls -FlAh --group-dirs first --color=auto' # Preferred 'ls' implementation
+alias ls='ls -G --group-directories-first --color=auto' # Preferred directory listing
+alias ll='ls -FGlAhp --group-directories-first --color=auto' # Preferred 'ls' implementation
 alias less='less -SRXc'                     # Preferred 'less' implementation
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
-alias .3='cd ../../../'                     # Go back 3 directory levels
-alias .4='cd ../../../../'                  # Go back 4 directory levels
-alias .5='cd ../../../../../'               # Go back 5 directory levels
-alias .6='cd ../../../../../../'            # Go back 6 directory levels
 alias c='clear'                             # c:            Clear terminal display
 alias gdb='gdb -q'                          # gdb:          Make gdb start in quiet mode
 alias em='emacsclient -t'                   # emacs:        Emacs shortcut
@@ -33,6 +29,3 @@ alias make1='make -j(nproc --ignore=1)'     # make1:        Compiler with all th
 
 # pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S
 # yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -r sudo pacman -S
-# LSD doesn't recognize those flags
-# alias ll='ls -FGlAhp --group-directories-first --color=auto' # Preferred 'ls' implementation
-# alias ls='ls -G --group-directories-first --color=auto' # Preferred directory listing
