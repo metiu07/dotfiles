@@ -224,19 +224,19 @@ exec --no-startup-id xset -b
 # Setup multiple monitors
 set $laptop eDP-1
 
-output "*" bg /home/mato/Pictures/Background/forest.png fill
-output eDP-1 pos 0 0 res 1920x1080
+output eDP-1 pos 1080 1400 res 1920x1080
 output DP-4 pos 1920 0 res 1920x1200
 output DP-4 transform 270
 output DP-7 pos 3120 0 res 1920x1200
+output HDMI-A-1 pos 0 0 res 1920x1080
+output HDMI-A-1 transform 270
 
 # TODO: Test clamshell mode
 bindswitch --reload lid:on output $laptop disable
 bindswitch --reload lid:off output $laptop enable
 
 # Setup wallpaper
-output "*" bg /home/mato/Pictures/Background/forest.png fill
-output DP-4 bg /home/mato/Pictures/Background/forest.png fill
+output "*" bg $HOME/Pictures/Background/deer.jpg fill
 
 # Startup urxvt daemon
 exec_always --no-startup-id xrdb -merge ~/.Xresources
