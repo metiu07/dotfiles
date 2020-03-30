@@ -286,8 +286,9 @@ function kp -d "Kill processes"
 end
 
 function ff -d "Interactive find file"
+	# TODO: What if pushd fails?
 	[ (count $argv) -eq 1 ] && pushd $argv[1]
-	realpath (fzf)
+	realpath (fd | fzf -m)
 	popd 2>/dev/null
 end
 
