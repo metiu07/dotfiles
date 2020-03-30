@@ -16,6 +16,15 @@ import sys
 from typing import Dict, List, Optional
 
 
+
+# TODO: Add Ctrl-C handler
+# TODO: Rename to dotfiles
+# TODO: Create symlink to ~/.local/bin/dotfiles
+# TODO: After instalation append the list of installed modules
+# TODO: Add update flag -u and reinstall currently installed modules
+# TODO: Make compat with older python just in case?
+
+
 class Installer:
     """Class managing the instalation process"""
 

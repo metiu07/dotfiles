@@ -35,14 +35,15 @@ This is new and intended way to install dotfiles. To run this script at least
 python version 3.5 is needed. Example usage is shown in the next snippet.
 
 ```bash
-./install.py # install default target (linux)
-./install.py bash # install bash module
-./install.py -r bash # remove bash module
-./install.py linux # install linux target
-./install.py -l # list all modules
+./install.py                 # install default target (linux)
+./install.py bash            # install bash module
+./install.py -r bash         # remove bash module
+./install.py linux           # install linux target
+./install.py -l              # list all modules
 ./install.py -i asd.json asd # use custom json configuration file
-./install.py -d linux # dry run (show user the command which will be run)
-./install.py -m linux # install via moving instead of symlink
+./install.py -d linux        # dry run (show user the command which will be run)
+./install.py -m linux        # install via moving instead of symlink
+./install.py -a linux        # auto-confirm all prompts
 ```
 
 The program configuration is stored in json file `configuration.json`. For
@@ -55,6 +56,7 @@ installed to the location `./.config/ranger/rc.conf` and also depends on module
     "source": "./.config/ranger/rc.conf",
     "destination": "~/.config/ranger/rc.conf",
     "name": "Ranger configuration",
+    "install": "./scripts/install.sh",
     "$deps": [
       "ranger_rifle"
     ]
