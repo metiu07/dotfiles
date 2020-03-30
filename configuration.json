@@ -195,9 +195,15 @@
     "name": "Xresources (xorg) configuration",
     "$deps": ["xresources"]
   },
+  "vim": {
+    "source": "./.vimrc",
+    "destination": "~/.config/vim/vimrc",
+    "name": "Full vim configuration with addons",
+    "install": "./scripts/install_vim_plugins.sh"
+  },
   "vim_noaddons": {
     "source": "./.vim_noaddons",
-    "destination": "~/.vimrc",
+    "destination": "~/config/vim/.vimrc",
     "name": "Vanila vim configuration without addons"
   },
   "waybar": {

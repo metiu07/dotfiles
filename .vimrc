@@ -1,93 +1,120 @@
+" TODO: Banner
+
+" For Vundle -> fish is not compatible
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
+" Set the <leader> character
+let mapleader = "\<Space>"
+
 " Vundle setup
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.config/vim/bundle/Vundle.vim
+call vundle#begin('~/.config/vim')
 
 " Plugins are installed with :PluginInstall
-
 Plugin 'gmarik/vundle'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'ervandew/supertab'
+Plugin 'airblade/vim-rooter'
+Plugin 'junegunn/fzf.vim'
+Plugin 'itchyny/lightline.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'tpope/vim-fugitive'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'mattn/emmet-vim'
-Plugin 'ahw/vim-hooks'
 Plugin 'tpope/vim-surround'
-Plugin 'rodjek/vim-puppet'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'othree/html5.vim'
-Plugin 'hail2u/vim-css3-syntax'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'luochen1990/rainbow'
+
+
+" LSP configuration
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
+map gd :LspDefinition<CR>
+map <leader>ca :LspCodeAction<CR>
+let g:lsp_highlights_enabled = 1
+let g:lsp_textprop_enabled = 1
+let g:lsp_virtual_text_enabled = 1
+let g:lsp_highlight_references_enabled = 1
+highlight lspReference ctermfg=red guifg=red ctermbg=green guibg=green
+
+" Plugin 'scrooloose/syntastic'
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+Plugin 'AndrewRadev/sideways.vim'
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+
+Plugin 'kana/vim-operator-user'
+Plugin 'haya14busa/vim-operator-flashy'
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$
 
 call vundle#end()
+filetype plugin indent on
 
-" NerdTree setup
+" Leader bindings
+map <leader><Space> :GFiles<CR>
+map <leader>. :Files<CR>
+nmap <leader>< :Buffers<CR>
+nmap <leader>/ :Rg<CR>
+map <leader>x :Commands<CR>
 
-" autocmd VimEnter * NERDTree
-" autocmd VimEnter * wincmd p
-
-" Syntastic setup
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" Vim splits
-
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
+" Splits configuration
+nnoremap <leader>wh <C-W><C-H>
+nnoremap <leader>wj <C-W><C-J>
+nnoremap <leader>wk <C-W><C-K>
+nnoremap <leader>wl <C-W><C-L>
 set splitbelow
 set splitright
 
-" Vim setup
-
+" General setup
 set laststatus=2
 set backspace=indent,eol,start
-filetype plugin indent on
-set showmatch 
+set showmatch
 set autoindent 
-set smartindent 
-set hlsearch
-set ai
-set ruler
-set tabstop=4 
-set number 
+set smartindent
 set smarttab
+set hlsearch
+set autoindent
+set ruler
+set relativenumber
+set tabstop=4
 set shiftwidth=4
 set expandtab
 set nofoldenable
 set autoread
 set incsearch
+set ttyfast
+set secure
+set ignorecase
+set smartcase
 syntax enable
 
-let g:netrw_liststyle=3
+" Wildmenu
+set wildmenu
+set wildchar=<Tab>
+set wildmode=list:longest
+set wildignore+=*.o,*.obj,*.pyc,*.aux,*.bbl,*.blg,.git,.svn,.hg
+set suffixes=.bak,~,.swp,.o,.info,.aux,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-autocmd BufWritePost *.md :call SaveAndMake()
-nnoremap <leader>m call SaveAndMake()<CR>
-function SaveAndMake()
-   silent! make
-   :w
-   redraw!
-   redraw!
-endfunction
+" Highligh incorect indenting
+hi SpacesTabsMixture guifg=red guibg=gray19
+match SpacesTabsMixture /^  \+\t\+[\t ]*\|^\t\+  \+[\t ]*/
+
+" Fix Y to yank until the end of line
+noremap Y y$
 
 " Function to toggle betwen wraping and notwrapping lines
-noremap <silent> <Leader>w :call ToggleWrap()<CR>
+noremap <silent> <Leader>tw :call ToggleWrap()<CR>
 function ToggleWrap()
   if &wrap
     echo "Wrap OFF"
