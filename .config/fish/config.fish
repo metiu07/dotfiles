@@ -44,6 +44,9 @@ if command -v bat >/dev/null 2>&1
 	functions -e rat; alias rat='bat -nA'
 end
 
+# Set vim configuration
+set -gx VIMINIT "source ~/.config/vim/vimrc"
+
 # Let theme prompt handle the virtualenv indicator
 set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
 
