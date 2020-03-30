@@ -32,6 +32,16 @@ else
 	set -gx EDITOR nano
 	set -gx VISUAL nano
 end
+
+# If https://github.com/Peltoche/lsd is present use it
+if command -v lsd >/dev/null 2>&1
+	functions -e ls; alias ls='lsd'
+	functions -e ll; alias ll='ls -FlAh --group-dirs first --color=auto'
+end
+
+if command -v bat >/dev/null 2>&1
+	functions -e cat; alias cat='bat -n'
+	functions -e rat; alias rat='bat -nA'
 end
 
 # Let theme prompt handle the virtualenv indicator
