@@ -19,12 +19,11 @@ set -gx PATH $PATH $HOME/.local/bin
 set -gx PATH $PATH $HOME/.cargo/bin
 
 # Set EDITOR and VISUAL, order emacs -> nvim -> vim -> nano
-if command -v emacsclient >/dev/null 2>&1
-	set -gx EDITOR "emacsclient -t"
-	set -gx VISUAL "emacsclient -t"
-else if command -v nvim >/dev/null 2>&1
+if command -v nvim >/dev/null 2>&1
 	set -gx EDITOR nvim
 	set -gx VISUAL nvim
+	# Also preffer nvim over vim
+	functions -e vim; alias vim='nvim'
 else if command -v vim >/dev/null 2>&1
 	set -gx EDITOR vim
 	set -gx VISUAL vim
