@@ -20,6 +20,7 @@ alias path='echo {$PATH} | tr " " "\n"'     # path:         Echo all executable 
 alias make='make -j(nproc)'                 # make:         Compile with available threads
 alias makei='make install -j(nproc); alert' # makei:        Compile install target with available threads
 alias make1='make -j(nproc --ignore=1)'     # make1:        Compiler with all threads except one, let system keep some resources
+alias tmux='tmux -f $HOME/.config/tmux/tmux.conf' # tmux:   Set the default config dir for tmux
 
 # big thanks to bangerino for sharing
 # alias docker-kill="sudo docker ps --format '{{.Image}} {{.Names}}' | fzf -m --preview 'sudo docker ps | grep {2}' | cut -d ' ' -f 2 | xargs -I '{}' -r sudo docker kill '{}'"

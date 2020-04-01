@@ -188,7 +188,7 @@
   },
   "tmux": {
     "source": "./.tmux.conf",
-    "destination": "~/.tmux.conf",
+    "destination": "~/.config/tmux/tmux.conf",
     "name": "Tmux configuration"
   },
   "urxvt": {
