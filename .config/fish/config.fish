@@ -14,6 +14,8 @@ set -g pure_symbol_prompt 'ﬦ'  # Default
 # set -g theme_display_date no
 # set -g theme_display_vi no
 
+set -gx TERM "tmux-256color"
+
 # Customize path variable
 set -gx PATH $PATH $HOME/.local/bin
 set -gx PATH $PATH $HOME/.cargo/bin

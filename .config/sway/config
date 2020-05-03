@@ -24,13 +24,12 @@ font pango:DejaVu Sans Mono 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a new terminal with clean tmux session
-# bindsym $mod+Return exec urxvtc -e tmux new
-# bindsym $mod+Shift+Return exec urxvtc -e tmux a
-bindsym $mod+Return exec alacritty -e tmux new
-bindsym $mod+Shift+Return exec alacritty -e tmux a
+# Start a new terminal with clean tmux session
+# NOTE: Fish is here to set the TERM variable before tmux so TrueColors works
+bindsym $mod+Return exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
+bindsym $mod+Shift+Return exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf a
 
-# kill focused window
+# Kill focused window
 bindsym $mod+q kill
 
 # Start rofi(program launcher)
