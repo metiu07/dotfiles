@@ -379,3 +379,10 @@ function _ttest -d "Test terminal capabilities"
         printf "\n";
     }'
 end
+
+function color_picker -d "Color picker functionality"
+    set -l PIXEL (slurp -p)
+    set -l COLOR (grim -g "$PIXEL" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:-)
+    notify-send -t 10000 "$COLOR"
+    echo "$COLOR" | sed -n 's/.*\(#......\).*/\1\n/p' | wl-copy
+end
