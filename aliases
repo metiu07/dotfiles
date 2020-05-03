@@ -14,6 +14,7 @@ alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in g
 alias alert="echo -ne \"\\a\""              # alert:        Print bell character, this is used for tmux monitoring
 alias makec='make clean'                    # makec:        Run clean make target
 alias dd='dd bs=4M status=progress'         # dd:           Set blocksize and show progress in dd
+alias df='du -h'                            # df:           Always human readable, total and show type
 alias du='du -ch'                           # du:           Always human readable and total
 alias dus='du -chs'                         # du:           Summary
 alias path='echo {$PATH} | tr " " "\n"'     # path:         Echo all executable Paths
