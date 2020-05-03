@@ -352,7 +352,7 @@ end
 
 function _ttest -d "Test terminal capabilities"
 
-	curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt
+    # curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt
 
 	echo -e "\e[1mbold\e[0m"
 	echo -e "\e[3mitalic\e[0m"
@@ -362,4 +362,20 @@ function _ttest -d "Test terminal capabilities"
 	echo -e "\x1B[31mHello World\e[0m"
 
 	msgcat --color=test
+
+    # If the color ramp is perfectly smooth, true color is supported.
+    # Source: https://gist.github.com/XVilka/8346728
+    awk 'BEGIN{
+        s="/\\\\/\\\\/\\\\/\\\\/\\\\"; s=s s s s s s s s;
+        for (colnum = 0; colnum<77; colnum++) {
+            r = 255-(colnum*255/76);
+            g = (colnum*510/76);
+            b = (colnum*255/76);
+            if (g>255) g = 510-g;
+            printf "\033[48;2;%d;%d;%dm", r,g,b;
+            printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
+            printf "%s\033[0m", substr(s,colnum+1,1);
+        }
+        printf "\n";
+    }'
 end
