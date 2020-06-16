@@ -191,7 +191,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86AudioMicMute exec --no-startup-id notify-send "test"
 
 # Screen brightness controls
-# NOTE: User must be in video group (sudo usermod -g video <USER>)
+# NOTE: User must be in video group (sudo usermod -a -G video <USER>)
 bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 5; notify-send 'brightness up' -h int:value:$(light -G)"
 bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5; notify-send 'brightness down' -h int:value:$(light -G)"
 
