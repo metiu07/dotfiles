@@ -1,6 +1,16 @@
 # Source alias file
 source ~/.config/fish/aliases
 
+# Vim
+fish_vi_key_bindings
+bind \cF -M insert forward-char
+bind \cP -M insert up-or-search
+bind \cN -M insert down-or-search
+bind \cE -M insert end-of-line
+bind \cE end-of-line
+bind \cA -M insert beginning-of-line
+bind \cA beginning-of-line
+
 # Pure theme configuration
 # set -g pure_symbol_prompt '❯'  # Better copy
 # set -g pure_symbol_prompt ''  # RPI
