@@ -19,6 +19,8 @@ call vundle#begin('~/.config/vim')
 " Plugins are installed with :PluginInstall
 Plugin 'gmarik/vundle'
 Plugin 'airblade/vim-rooter'
+Plugin 'tpope/vim-fugitive'
+map <leader>gg :Gstatus<CR>
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'itchyny/lightline.vim'
 " Disabled because of: https://github.com/jiangmiao/auto-pairs/issues/272
