@@ -172,22 +172,26 @@ set showmatch
 set autoindent
 set smartindent
 set smarttab
-set hlsearch
-set autoindent
-set ruler
-set number
-set relativenumber
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set nofoldenable
 set autoread
-set incsearch
 set ttyfast
 set hidden
 set secure
+
+" Numbers
+set ruler
+set number
+" set relativenumber
+
+" Searching
+set hlsearch
+set incsearch
 set ignorecase
 set smartcase
+set gdefault
 
 " Searches - centering
 nnoremap <silent> n nzz
