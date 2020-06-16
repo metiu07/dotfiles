@@ -109,7 +109,14 @@ nmap <leader>ti :IndentGuidesToggle<CR>
 Plugin 'YorickPeterse/happy_hacking.vim'
 Plugin 'liuchengxu/space-vim-theme'
 Plugin 'sonph/onehalf', {'rtp': 'vim/'}
+Plugin 'joshdick/onedark.vim'
+let g:onedark_terminal_italics = 1
+Plugin 'arcticicestudio/nord-vim'
+let g:nord_italic = 1
 Plugin 'morhetz/gruvbox'
+let g:gruvbox_italic = 1
+let g:gruvbox_italicize_comments = 0
+
 Plugin 's3rvac/vim-syntax-yara'
 
 Plugin 'junegunn/goyo.vim'
@@ -133,7 +140,7 @@ set background=dark
 colorscheme gruvbox
 " let g:lightline.colorscheme='onehalfdark'
 let g:lightline = {
-            \ 'colorscheme': 'onehalfdark',
+            \ 'colorscheme': 'gruvbox',
             \ }
 highlight lspReference cterm=reverse,italic gui=reverse,italic
 
