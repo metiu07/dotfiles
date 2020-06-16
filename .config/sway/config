@@ -270,7 +270,7 @@ exec_always --no-startup-id "killall -q blueman-applet; blueman-applet"
 input type:keyboard {
         xkb_layout "us,sk"
         xkb_variant ",qwerty"
-        xkb_options "grp:alt_shift_toggle"
+        xkb_options "grp:alt_shift_toggle,caps:escape,altwin:swap_lalt_lwin"
         xkb_numlock enable
         # repeat_delay 500
         repeat_rate 50
