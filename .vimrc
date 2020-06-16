@@ -269,6 +269,10 @@ nnoremap <silent> <Leader>th :call <SID>ToggleHexdumpView()<CR>
 vnoremap < <gv
 vnoremap > >gv
 
+" Save with W
+cabb W w
+cabb E e
+
 " Make double-<Esc> clear search highlights
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
