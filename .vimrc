@@ -110,6 +110,7 @@ Plugin 'YorickPeterse/happy_hacking.vim'
 Plugin 'liuchengxu/space-vim-theme'
 Plugin 'sonph/onehalf', {'rtp': 'vim/'}
 Plugin 'morhetz/gruvbox'
+Plugin 's3rvac/vim-syntax-yara'
 
 Plugin 'junegunn/goyo.vim'
 map <leader>tg :Goyo<CR>
