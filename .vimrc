@@ -151,6 +151,7 @@ highlight lspReference cterm=reverse,italic gui=reverse,italic
 map <leader><Space> :GFiles<CR>
 map <leader>. :Files<CR>
 nmap <leader>< :Buffers<CR>
+nmap <leader>, :Buffers<CR>
 nmap <leader>/ :Rg<CR>
 map <leader>x :Commands<CR>
 map <leader>hk :Maps<CR>
