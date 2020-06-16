@@ -29,7 +29,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'luochen1990/rainbow'
-" Plugin 'dag/vim-fish'
+" Plugin 'dag/vim-fish' This plugin has wrong highting when there is a '
+" escaped in the string
+Plugin 'blankname/vim-fish'
 
 " FZF
 Plugin 'junegunn/fzf.vim'
