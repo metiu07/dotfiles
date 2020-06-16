@@ -26,6 +26,8 @@ Plugin 'itchyny/lightline.vim'
 " Disabled because of: https://github.com/jiangmiao/auto-pairs/issues/272
 " Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
+Plugin 'justinmk/vim-sneak'
+" Plugin 'unblevable/quick-scope'
 Plugin 'tpope/vim-commentary'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'luochen1990/rainbow'
