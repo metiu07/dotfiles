@@ -1,0 +1,89 @@
+[color]
+	ui = true
+	diff = auto
+	status = auto
+	branch = auto
+
+[core]
+	whitespace = trailing-space,space-before-tab
+	pager = less
+	editor = nvim
+
+[fetch]
+	prune = true
+
+[push]
+	recurseSubmodules = check
+	default = simple
+
+[pull]
+	rebase = true
+
+[rebase]
+	autoStash = true
+
+[status]
+	submoduleSummary = true
+
+[merge]
+	tool = vimdiff
+	stat = true
+	log = true
+
+[alias]
+	a = add
+	amend = commit --amend --verbose
+	ap = add --patch
+	authors = "!git log --pretty=format:%aN | sort | uniq -c | sort -rn"
+	bl = "!git blame `fzf`"
+	c = commit --verbose
+	ca = commit --verbose --amend --reset-author
+	cl = clone
+	conflicts = diff --name-only --diff-filter=U --relative
+	co = checkout
+	cob = checkout -b
+	cop = checkout -p
+	cp = cherry-pick
+	ckw = !git diff-tree --check $(git hash-object -t tree /dev/null) HEAD
+	d = diff
+	da = diff HEAD
+	ds = diff --staged
+	f = fetch --all --verbose --prune
+	ignored = ls-files --exclude-standard --ignored --others
+	l = log --decorate --graph --oneline -20
+	ll = log --decorate --graph --oneline
+	lla = log --all --decorate --graph --oneline
+	rl = reflog -20
+	rll = reflog
+	lf = log --name-status --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
+	lp = log --patch --format=fuller
+	lg = log --graph --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
+	lga = log --graph --branches --remotes --tags --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
+	p = push
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbi = rebase --interactive
+	rh = reset --hard
+	rhom = reset --hard origin/master
+	s = status --short --branch
+	sm = submodule
+	smu = submodule update --init --recursive
+	sh = stash
+	sha = stash apply
+	shd = stash drop
+	shl = stash list
+	shp = stash pop
+	shs = stash show -p
+	sw = show --format=fuller --show-signature
+	sf = show --pretty="format:" --name-status
+	sync-fork="!git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD` && git push"
+	tags = tag --list -n1
+	u = pull
+	um = "!git switch master && git p && git switch -"
+	unstage = reset
+	rum = "!git um && git rb master"
+	showtag = show --quiet
+	today = "!git ll --since=midnight"
+	undo = "!git reset --soft HEAD^ && git reset"
+	wip = "!git add --all && git commit -m 'WIP'"

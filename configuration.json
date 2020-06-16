@@ -95,6 +95,11 @@
     "destination": "~/.config/fish/config.fish",
     "name": "Linux fish configuration"
   },
+  "git": {
+    "source": "./.config/git/config",
+    "destination": "~/.config/git/config",
+    "name": "Git configuration"
+  },
   "htop": {
     "source": "./.config/htop/htoprc",
     "destination": "~/.config/htop/htoprc",

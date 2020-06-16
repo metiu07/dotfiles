@@ -75,6 +75,7 @@ This wouldn't have been possible without other people who share their dotfiles. 
 |Name/Link|Note|
 |-|-|
 |https://gitlab.com/JoelDimbernat/rofi-menus | |
+|https://github.com/davidpdrsn| |
 |https://github.com/LukeSmithxyz/voidrice | |
 |https://github.com/s3rvac/dotfiles | |
 |https://github.com/metthal/configs | |
