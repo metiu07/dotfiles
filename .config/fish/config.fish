@@ -44,10 +44,14 @@ else
 	set -gx VISUAL nano
 end
 
-# If https://github.com/Peltoche/lsd is present use it
-if command -v lsd >/dev/null 2>&1
-	functions -e ls; alias ls='lsd'
-	functions -e ll; alias ll='ls -FlAh --group-dirs first --color=auto'
+# Setup the ls aliases preffer exa
+if command -v exa >/dev/null 2>&1
+	functions -e ls; alias ls='exa --icons --group-directories-first'
+	functions -e ll; alias ll='exa --icons -laF --group-directories-first'
+	functions -e lll; alias lll='exa -laF --icons --tree --level=2 --group-directories-first'
+else if command -v lsd >/dev/null 2>&1
+    functions -e ls; alias ls='lsd -F --group-dirs first --color=auto'
+    functions -e ll; alias ll='lsd -FlA --group-dirs first --date=relative --blocks=permission,user,size,date,name --color=auto'
 end
 
 if command -v bat >/dev/null 2>&1
