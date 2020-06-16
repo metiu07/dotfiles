@@ -105,6 +105,9 @@ let g:indentguides_spacechar = '┆'
 let g:indentguides_tabchar = '|'
 nmap <leader>ti :IndentGuidesToggle<CR>
 
+" Visual settings
+Plugin 'mhinz/vim-startify'
+
 " Color themes
 Plugin 'YorickPeterse/happy_hacking.vim'
 Plugin 'liuchengxu/space-vim-theme'
