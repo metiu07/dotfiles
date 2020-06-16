@@ -272,3 +272,17 @@ vnoremap > >gv
 " Make double-<Esc> clear search highlights
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
+augroup gitcommit
+au!
+au FileType gitcommit setl spell         " Enable spellchecking.
+augroup end
+
+augroup latex
+au!
+au FileType tex,plaintex setl spell    " Enable spell checking.
+augroup end
+
+augroup markdown
+au!
+au FileType markdown setl spell         " Enable spellchecking.
+augroup end
