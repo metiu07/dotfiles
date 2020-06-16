@@ -210,6 +210,20 @@ end
 
 " TODO: Try to bind `c to nop? to avoid wrong cursor type when opening a new window
 
+" Spell checking
+set spelllang=en_us,en_gb
+nnoremap <silent> <leader>ts :set spell!<CR>:set spell?<CR>
+
+function! s:ToggleSpelllang()
+	if &spelllang =~ 'en'
+		set spelllang=sk
+	else
+		set spelllang=en_us,en_gb
+	endif
+	set spelllang?
+endfunction
+nnoremap <silent> <leader>tS :call <SID>ToggleSpelllang()<CR>
+
 " Wildmenu
 set wildmenu
 set wildchar=<Tab>
@@ -220,6 +234,9 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.o
 " Highligh incorect indenting
 hi SpacesTabsMixture guifg=red guibg=gray19
 match SpacesTabsMixture /^  \+\t\+[\t ]*\|^\t\+  \+[\t ]*/
+
+" TODO: Add switch between expandtab and noexpand tab to switch between tabs
+" and spaces
 
 " Fix Y to yank until the end of line
 noremap Y y$
