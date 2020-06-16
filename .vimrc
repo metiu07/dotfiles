@@ -54,13 +54,17 @@ Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
 Plugin 'liuchengxu/vista.vim' " TODO: https://github.com/neoclide/coc.nvim ??
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-map gd :LspDefinition<CR>
+map gd :LspDefinition<CR>zz
 map gD :LspReferences<CR>
+map gh :LspHover<CR>
+map gj :LspWorkspaceSymbol<CR>
+map gJ :LspDocumentSymbol<CR>
 " TODO: Add bindings to format the buffer and range
 map <leader>ca :LspCodeAction<CR>
 map <leader>cr :LspRename<CR>
-map <leader>cs :LspStatus<CR>
+map <leader>cS :LspStatus<CR>
 map <leader>ch :LspHover<CR>
+" TODO: Save the document before formatting
 map <leader>cf :LspDocumentFormat<CR>
 map <leader>cF :LspDocumentRangeFormat<CR>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -70,20 +74,13 @@ let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 1
 let g:lsp_virtual_text_enabled = 1
 let g:lsp_highlight_references_enabled = 1
-
-" Plugin 'scrooloose/syntastic'
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-"
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼'}
+let g:lsp_signs_hint = {'text': 'כֿ'}
+let g:lsp_signs_information = {'text': 'כֿ'}
 
 " TODO: Incorporate https://github.com/davidpdrsn/dotfiles/blob/master/nvim/functions.vim#L402
 " TODO: Create <leader>pp
-
 
 Plugin 'AndrewRadev/sideways.vim'
 omap aa <Plug>SidewaysArgumentTextobjA
