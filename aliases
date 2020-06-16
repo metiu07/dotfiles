@@ -3,7 +3,7 @@ alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ls='ls -G --group-directories-first --color=auto' # Preferred directory listing
 alias ll='ls -FGlAhp --group-directories-first --color=auto' # Preferred 'ls' implementation
-alias less='less -SRXc'                     # Preferred 'less' implementation
+alias less='less -SRXci'                    # Preferred 'less' implementation
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
@@ -14,7 +14,7 @@ alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in g
 alias alert="echo -ne \"\\a\""              # alert:        Print bell character, this is used for tmux monitoring
 alias makec='make clean'                    # makec:        Run clean make target
 alias dd='dd bs=4M status=progress'         # dd:           Set blocksize and show progress in dd
-alias df='du -h'                            # df:           Always human readable, total and show type
+alias df='df -h'                            # df:           Always human readable, total and show type
 alias du='du -ch'                           # du:           Always human readable and total
 alias dus='du -chs'                         # du:           Summary
 alias rg='rg -S'                            # rg:           By default use smart case
@@ -24,6 +24,7 @@ alias makei='make install -j(nproc); alert' # makei:        Compile install targ
 alias make1='make -j(nproc --ignore=1)'     # make1:        Compiler with all threads except one, let system keep some resources
 alias tmux='tmux -f $HOME/.config/tmux/tmux.conf' # tmux:   Set the default config dir for tmux
 alias htop='htop -t'                        # htop:         Always preffer the tree view
+alias g='git status -sb'                    # g:            Fast git status
 
 # big thanks to bangerino for sharing
 # alias docker-kill="sudo docker ps --format '{{.Image}} {{.Names}}' | fzf -m --preview 'sudo docker ps | grep {2}' | cut -d ' ' -f 2 | xargs -I '{}' -r sudo docker kill '{}'"
