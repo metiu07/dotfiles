@@ -307,11 +307,24 @@ function kp -d "Kill processes"
 end
 
 function ff -d "Interactive find file"
-	# TODO: What if pushd fails?
-	[ (count $argv) -eq 1 ] && pushd $argv[1]
-	realpath (fd | fzf -m)
-	popd 2>/dev/null
+	set -l _dir '.'
+	[ (count $argv) -eq 1 ] && set -l _dir $argv[1]
+	# TODO: Handle multiselection
+	# TODO: Check if anything was selected?
+	# TODO: Allow to provide custom query to open a new file?
+	# TODO: Fzf info=inline looks nice
+	set -l selected_file (fd --hidden --type f -E '.git' -E 'env' . "$_dir" | fzf -m --prompt "Select a file: ")
+	[ -z "$selected_file" ] && return
+	realpath $selected_file
 end
+
+function fp -d "Interactive find file in project"
+	# TODO: Rice fzf here
+	set -l project_dir (command ls ~/dev | fzf --height 15 --prompt "Select a project: " --layout=reverse)
+    [ -z "$project_dir" ] && return
+	ff "$HOME/dev/$project_dir"
+end
+alias vimp='vim (fp)'
 
 function source_global -d "Interactive source python env"
 	pushd ~
