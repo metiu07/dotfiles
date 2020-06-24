@@ -285,6 +285,15 @@ function wal-theme -d 'Interactive theme setter for wal.'
 	wal --theme "$selected_theme"
 end
 
+function mm -d "Interactive Makefile"
+	set -l _makefile "Makefile"
+	[ (count $argv) -eq 1 ] && set -l _makefile $argv[1]
+    [ ! -f "$_makefile" ] && return
+	set -l make_target (cat "$_makefile" | grep '^[^\.]\w*:.*$' | sed 's/\(.*\):.*/\1/' | uniq | fzf --height 15 --prompt "Select make target: " --layout=reverse --preview="sed -n '/^{1}\s*:/,/^\$/p' '$_makefile'")
+    [ -z "$make_target" ] && return
+	make "$make_target"
+end
+
 # https://github.com/SidOfc/dotfiles/blob/master/config.fish#L67
 function kp -d "Kill processes"
 	set -l pid (ps -ef | tail -n +1 | fzf --tac -m --header='[kill:process]' | awk '{print $2}')
