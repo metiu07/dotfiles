@@ -357,6 +357,13 @@ function docker-bash -d "Spawn bash in docker"
 	sudo docker exec -it "$selected_container" bash $argv
 end
 
+function docker-attach -d "Attach to a docker container"
+	set -l selected_container (_select-docker-container)
+
+	[ -z "$selected_container" ]; and return
+	sudo docker attach "$selected_container"
+end
+
 function docker-kill -d "Kill docker container"
 	set -l selected_container (_select-docker-container)
 
@@ -370,6 +377,7 @@ function docker-restart -d "Restart docker container"
 	[ -z "$selected_container" ]; and return
 	sudo docker restart "$selected_container" $argv
 end
+
 function docker-log -d "Display container logs"
 	set -l selected_container (_select-docker-container)
 
