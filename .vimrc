@@ -162,6 +162,10 @@ nnoremap <leader>wh <C-W><C-H>
 nnoremap <leader>wj <C-W><C-J>
 nnoremap <leader>wk <C-W><C-K>
 nnoremap <leader>wl <C-W><C-L>
+nnoremap <leader>wH <C-W><S-H>
+nnoremap <leader>wJ <C-W><S-J>
+nnoremap <leader>wK <C-W><S-K>
+nnoremap <leader>wL <C-W><S-L>
 set splitbelow
 set splitright
 
