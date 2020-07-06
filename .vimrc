@@ -184,6 +184,7 @@ set autoread
 set ttyfast
 set hidden
 set secure
+set updatetime=100
 
 " Numbers
 set ruler
