@@ -84,6 +84,12 @@ abbr -a -g D "deactivate"
 # Reload fish configuration
 abbr -a -g RE ". ~/.config/fish/config.fish"
 
+# Pacman helpers
+abbr -a -g SYU "sudo pacman -Syu"
+abbr -a -g SS "pacman -Ss"
+abbr -a -g SI "pacman -Si"
+abbr -a -g QL "pacman -Ql | grep "
+
 # Add ssh-key
 abbr -a -g SA "_ssh-add"
 
