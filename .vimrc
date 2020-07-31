@@ -58,36 +58,146 @@ let g:fzf_action = {
 let g:fzf_preview_window = 'up:60%'
 
 " LSP configuration
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'mattn/vim-lsp-settings'
-Plugin 'liuchengxu/vista.vim' " TODO: https://github.com/neoclide/coc.nvim ??
-Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-map gd :LspDefinition<CR>zz
-map gD :LspReferences<CR>
-map gh :LspHover<CR>
-map gj :LspWorkspaceSymbol<CR>
-map gJ :LspDocumentSymbol<CR>
-" TODO: Add bindings to format the buffer and range
-map <leader>ca :LspCodeAction<CR>
-map <leader>cr :LspRename<CR>
-map <leader>cS :LspStatus<CR>
-map <leader>ch :LspHover<CR>
-" TODO: Save the document before formatting
-map <leader>cf :LspDocumentFormat<CR>
-map <leader>cF :LspDocumentRangeFormat<CR>
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-let g:lsp_highlights_enabled = 1
-let g:lsp_textprop_enabled = 1
-let g:lsp_virtual_text_enabled = 1
-let g:lsp_highlight_references_enabled = 1
-let g:lsp_signs_error = {'text': '✗'}
-let g:lsp_signs_warning = {'text': '‼'}
-let g:lsp_signs_hint = {'text': 'כֿ'}
-let g:lsp_signs_information = {'text': 'כֿ'}
+" TODO: Save the document before formatting?
+" vim-lsp
+" Plugin 'prabirshrestha/asyncomplete.vim'
+" Plugin 'prabirshrestha/async.vim'
+" Plugin 'prabirshrestha/vim-lsp'
+" Plugin 'mattn/vim-lsp-settings'
+" Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+" map gd :LspDefinition<CR>zz
+" map gD :LspReferences<CR>
+" map gh :LspHover<CR>
+" map gj :LspWorkspaceSymbol<CR>
+" map gJ :LspDocumentSymbol<CR>
+" map <leader>ca :LspCodeAction<CR>
+" map <leader>cr :LspRename<CR>
+" map <leader>cS :LspStatus<CR>
+" map <leader>ch :LspHover<CR>
+" map <leader>cf :LspDocumentFormat<CR>
+" map <leader>cF :LspDocumentRangeFormat<CR>
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+" let g:lsp_highlights_enabled = 1
+" let g:lsp_textprop_enabled = 1
+" let g:lsp_virtual_text_enabled = 1
+" let g:lsp_highlight_references_enabled = 1
+" let g:lsp_signs_error = {'text': '✗'}
+" let g:lsp_signs_warning = {'text': '‼'}
+" let g:lsp_signs_hint = {'text': 'כֿ'}
+" let g:lsp_signs_information = {'text': 'כֿ'}
+" " vim-lsp debugging
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/.config/vim/vim-lsp.log')
+
+" CoC
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_config_home = expand('~/.config/vim/coc-config.json')
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)zz
+nmap <silent> gy <Plug>(coc-type-definition)zz
+nmap <silent> gi <Plug>(coc-implementation)zz
+nmap <silent> gD <Plug>(coc-references)
+
+" Symbol renaming.
+nmap <leader>cr <Plug>(coc-rename)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Formatting code.
+xmap <leader>cf :Format<CR>
+nmap <leader>cf :Format<CR>
+" Formatting selected code.
+xmap <leader>cF  <Plug>(coc-format-selected)
+nmap <leader>cF  <Plug>(coc-format-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ca  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>cF  <Plug>(coc-fix-current)
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>cA  <Plug>(coc-codeaction-selected)
+nmap <leader>cA  <Plug>(coc-codeaction-selected)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <leader>Ca  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <leader>Ce  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <leader>Cc  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <leader>Co  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <leader>Cs  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <leader>Cj  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <leader>Ck  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <leader>Cp  :<C-u>CocListResume<CR>
 
 " TODO: Incorporate https://github.com/davidpdrsn/dotfiles/blob/master/nvim/functions.vim#L402
 " TODO: Create <leader>pp
