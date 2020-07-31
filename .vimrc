@@ -276,7 +276,11 @@ colorscheme gruvbox
 let g:lightline = {
             \ 'colorscheme': 'gruvbox',
             \ }
-highlight lspReference cterm=reverse,italic gui=reverse,italic
+" highlight lspReference cterm=reverse,italic gui=reverse,italic
+" highlight lspReference cterm=reverse,italic gui=reverse,italic guifg=red
+
+" Transparency
+" highlight Normal guibg=NONE ctermbg=NONE
 
 " Leader bindings
 map <leader><Space> :GFiles<CR>
