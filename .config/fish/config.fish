@@ -9,8 +9,13 @@
 source ~/.config/fish/aliases
 
 # Vim
+# `fish_key_reader` - check the SEQUENCE
+# `bind -f`         - show possible commands
 fish_vi_key_bindings
-bind \cF -M insert forward-char
+bind \cO -M insert 'cd -; commandline -f repaint'
+bind \cO 'cd -; commandline -f repaint'
+bind \cF -M insert accept-autosuggestion
+bind \cF accept-autosuggestion
 bind \cP -M insert up-or-search
 bind \cN -M insert down-or-search
 bind \cE -M insert end-of-line
