@@ -208,6 +208,13 @@ xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
 
+" Snippets
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-n>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-p>"
+
 Plugin 'kana/vim-operator-user'
 Plugin 'haya14busa/vim-operator-flashy'
 map y <Plug>(operator-flashy)
