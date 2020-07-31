@@ -379,6 +379,17 @@ function source_global -d "Interactive source python env"
 end
 
 # TODO: Create separate package for docker functions
+function docker-df -d "Report docker disk space usage"
+	sudo docker system df
+	# TODO: Add other checks if any
+end
+
+function docker-cleanup -d "Clean up docker space"
+	sudo docker volume rm (sudo docker volume ls -f dangling=true -q)
+	sudo docker rmi (sudo docker images -f "dangling=true" -q)
+	sudo docker rm (sudo docker ps -a -f status=exited -q)
+end
+
 # TODO: Maybe swap the order of selected_container and argv, this is preffered I think
 function _select-docker-container -d "Helper function to select docker container"
 	set -l preview_format "Name:\t\t{{.Names}}\nCommand:\t{{.Command}}\nStatus:\t\t{{.Status}}\nSize:\t\t{{.Size}}\nPorts:\t\t{{.Ports}}\nMounts:\t\t{{.Mounts}}\nNetworks:\t{{.Networks}}"
