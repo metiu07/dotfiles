@@ -35,6 +35,7 @@
 	amend = commit --amend --verbose
 	ap = add --patch
 	authors = "!git log --pretty=format:%aN | sort | uniq -c | sort -rn"
+	b = "branch -vv"
 	bl = "!git blame `fzf`"
 	c = commit --verbose
 	ca = commit --verbose --amend --reset-author
@@ -64,6 +65,7 @@
 	rba = rebase --abort
 	rbc = rebase --continue
 	rbi = rebase --interactive
+	remote = remote -v
 	rh = reset --hard
 	rhom = reset --hard origin/master
 	s = status --short --branch
