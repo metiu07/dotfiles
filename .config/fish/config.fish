@@ -23,12 +23,15 @@ bind \cE end-of-line
 bind \cA -M insert beginning-of-line
 bind \cA beginning-of-line
 
+# Let theme prompt handle the virtualenv indicator
+set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
+
 # Pure theme configuration
-# set -g pure_symbol_prompt '❯'  # Better copy
+# set -g pure_symbol_prompt '❯'  # Default
 # set -g pure_symbol_prompt ''  # RPI
 # set -g pure_symbol_prompt ''  # RPI
 # set -g pure_symbol_prompt ''  # RPI
-# set -g pure_symbol_prompt '拾'  # RPI
+# set -g pure_symbol_prompt '拾'  # School
 set -g pure_symbol_prompt 'ﬦ'  # Default
 
 # Bob the fish theme configuration
@@ -36,13 +39,14 @@ set -g pure_symbol_prompt 'ﬦ'  # Default
 # set -g theme_display_date no
 # set -g theme_display_vi no
 
+# Set TERM to allow for true color in terminal
 set -gx TERM "tmux-256color"
 
 # Customize path variable
 set -gx PATH $PATH $HOME/.local/bin
 set -gx PATH $PATH $HOME/.cargo/bin
 
-# Set EDITOR and VISUAL, order emacs -> nvim -> vim -> nano
+# Set EDITOR and VISUAL, prior emacs -> nvim -> vim -> nano
 if command -v nvim >/dev/null 2>&1
 	set -gx EDITOR nvim
 	set -gx VISUAL nvim
@@ -62,27 +66,25 @@ if command -v exa >/dev/null 2>&1
 	functions -e ll; alias ll='exa --icons -laF --group-directories-first'
 	functions -e lll; alias lll='exa -laF --icons --tree --level=2 --group-directories-first'
 else if command -v lsd >/dev/null 2>&1
-    functions -e ls; alias ls='lsd -F --group-dirs first --color=auto'
-    functions -e ll; alias ll='lsd -FlA --group-dirs first --date=relative --blocks=permission,user,size,date,name --color=auto'
+	functions -e ls; alias ls='lsd -F --group-dirs first --color=auto'
+	functions -e ll; alias ll='lsd -FlA --group-dirs first --date=relative --blocks=permission,user,size,date,name --color=auto'
 end
 
 if command -v bat >/dev/null 2>&1
 	functions -e cat; alias cat='bat -n'
-	functions -e rat; alias rat='bat -nA'
+	functions -e bat; alias rat='bat -nA'
 end
 
 # Set vim configuration
 set -gx VIMINIT "source ~/.config/vim/vimrc"
 
-# Let theme prompt handle the virtualenv indicator
-set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
 
 # Makepkg should build packages with all available threads
 set -gx MAKEFLAGS '-j'(nproc)
 
 # Abbreviations
 #
-# Default python enviroment direcotry
+# Default python enviroment directory
 set -l DEFAULT_ENV_DIR env
 # Sourcing the python environment
 abbr -a -g E ". $DEFAULT_ENV_DIR/bin/activate.fish"
@@ -105,56 +107,8 @@ abbr -a -g QL "pacman -Ql | grep "
 # Add ssh-key
 abbr -a -g SA "_ssh-add"
 
-# Dynamicaly set the background color
-# TODO: Move to aliases?
-abbr -a -g white_bg 'printf "\033Ptmux;\033\033]11;white\007\033\\\\"'
-abbr -a -g black_bg 'printf "\033Ptmux;\033\033]11;black\007\033\\\\"'
-
-function fzf-complete -d 'fzf completion and print selection back to commandline'
-	# As of 2.6, fish's "complete" function does not understand
-	# subcommands. Instead, we use the same hack as __fish_complete_subcommand and
-	# extract the subcommand manually.
-	set -l cmd (commandline -co) (commandline -ct)
-	switch $cmd[1]
-		case env sudo
-			for i in (seq 2 (count $cmd))
-				switch $cmd[$i]
-					case '-*'
-					case '*=*'
-					case '*'
-						set cmd $cmd[$i..-1]
-						break
-				end
-			end
-	end
-	set cmd (string join -- ' ' $cmd)
-
-	set -l complist (complete -C$cmd)
-	set -l result
-	string join -- \n $complist | sort | eval (__fzfcmd) -m --select-1 --exit-0 --header '(commandline)' | cut -f1 | while read -l r; set result $result $r; end
-
-	set prefix (string sub -s 1 -l 1 -- (commandline -t))
-	for i in (seq (count $result))
-		set -l r $result[$i]
-		switch $prefix
-			case "'"
-				commandline -t -- (string escape -- $r)
-			case '"'
-				if string match '*"*' -- $r >/dev/null
-					commandline -t --  (string escape -- $r)
-				else
-					commandline -t -- '"'$r'"'
-				end
-			case '~'
-				commandline -t -- (string sub -s 2 (string escape -n -- $r))
-			case '*'
-				commandline -t -- (string escape -n -- $r)
-		end
-		[ $i -lt (count $result) ]; and commandline -i ' '
-	end
-
-	commandline -f repaint
-end
+# Git shortcut
+abbr -a -g g "git"
 
 # This is a fish alias to automatically change the directory to the last visited
 # one after ranger quits.
@@ -190,7 +144,7 @@ function ranger-wal -d 'Interactive ranger wallpaper and theme generator using f
 	set ranger_bin (which ranger)
 	$ranger_bin --choosefile=$dir $argv $HOME/Pictures
 	echo (cat $dir)
-    wallpaper (cat $dir)
+	wallpaper (cat $dir)
 	wal -ni (cat $dir)
 	rm $dir
 end
@@ -242,9 +196,9 @@ end
 
 function color-switcher -d 'Change terminal color.'
 
-	# Privide default value, if called without paramters
+	# Provide default value, if called without paramters
 	if [ (count $argv) -eq 0 ]
-	   set argv $argv 11
+		set argv $argv 11
 	end
 
 	# Let user select the color
@@ -264,7 +218,7 @@ function font-switcher -d 'Change terminal font.'
 
 	# Privide default value, if called without paramters
 	if [ (count $argv) -eq 0 ]
-	   set argv $argv 710
+		set argv $argv 710
 	end
 
 	# Let user select the font
@@ -384,7 +338,8 @@ function source_global -d "Interactive source python env"
 	popd
 end
 
-# TODO: Create sepparate package for docker
+# TODO: Create separate package for docker functions
+# TODO: Maybe swap the order of selected_container and argv, this is preffered I think
 function _select-docker-container -d "Helper function to select docker container"
 	set -l preview_format "Name:\t\t{{.Names}}\nCommand:\t{{.Command}}\nStatus:\t\t{{.Status}}\nSize:\t\t{{.Size}}\nPorts:\t\t{{.Ports}}\nMounts:\t\t{{.Mounts}}\nNetworks:\t{{.Networks}}"
 	set -l containers (sudo docker ps --format "{{.Names}}" $argv)
@@ -439,12 +394,13 @@ function _ssh-add -d "Add new ssh-key to the ssh-agent"
 	[ -z "$SSH_AGENT_PID" ] && eval (ssh-agent -c)
 
 	set -l _key (fd 'id_.*[^\.][^p][^u][^b]$' ~/.ssh/ | fzf --height 15 --prompt "Select a key to add: " --layout=reverse)
+	# TODO: Check if they _key is valid
 	ssh-add "$_key"
 end
 
 function _ttest -d "Test terminal capabilities"
 
-    # curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt
+	# curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt
 
 	echo -e "\e[1mbold\e[0m"
 	echo -e "\e[3mitalic\e[0m"
@@ -455,26 +411,26 @@ function _ttest -d "Test terminal capabilities"
 
 	msgcat --color=test
 
-    # If the color ramp is perfectly smooth, true color is supported.
-    # Source: https://gist.github.com/XVilka/8346728
-    awk 'BEGIN{
-        s="/\\\\/\\\\/\\\\/\\\\/\\\\"; s=s s s s s s s s;
-        for (colnum = 0; colnum<77; colnum++) {
-            r = 255-(colnum*255/76);
-            g = (colnum*510/76);
-            b = (colnum*255/76);
-            if (g>255) g = 510-g;
-            printf "\033[48;2;%d;%d;%dm", r,g,b;
-            printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
-            printf "%s\033[0m", substr(s,colnum+1,1);
-        }
-        printf "\n";
-    }'
+	# If the color ramp is perfectly smooth, true color is supported.
+	# Source: https://gist.github.com/XVilka/8346728
+	awk 'BEGIN{
+		s="/\\\\/\\\\/\\\\/\\\\/\\\\"; s=s s s s s s s s;
+		for (colnum = 0; colnum<77; colnum++) {
+			r = 255-(colnum*255/76);
+			g = (colnum*510/76);
+			b = (colnum*255/76);
+			if (g>255) g = 510-g;
+			printf "\033[48;2;%d;%d;%dm", r,g,b;
+			printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
+			printf "%s\033[0m", substr(s,colnum+1,1);
+		}
+		printf "\n";
+	}'
 end
 
 function color_picker -d "Color picker functionality"
-    set -l PIXEL (slurp -p)
-    set -l COLOR (grim -g "$PIXEL" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:-)
-    notify-send -t 10000 "$COLOR"
-    echo "$COLOR" | sed -n 's/.*\(#......\).*/\1\n/p' | wl-copy
+	set -l PIXEL (slurp -p)
+	set -l COLOR (grim -g "$PIXEL" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:-)
+	notify-send -t 10000 "$COLOR"
+	echo "$COLOR" | sed -n 's/.*\(#......\).*/\1\n/p' | wl-copy
 end
