@@ -326,6 +326,24 @@ set ignorecase
 set smartcase
 set gdefault
 
+" backups & undo
+set backup
+set backupdir=~/.config/vim/tmp/backup/
+set backupskip=/tmp/*,/private/tmp/*
+set noswapfile
+set history=1000
+set undodir=~/.config/vim/tmp/undo/
+set undofile
+set undolevels=1000
+set writebackup
+
+" Wildmenu
+set wildmenu
+set wildchar=<Tab>
+set wildmode=list:longest
+set wildignore+=*.o,*.obj,*.pyc,*.aux,*.bbl,*.blg,.git,.svn,.hg
+set suffixes=.bak,~,.swp,.o,.info,.aux,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+
 " Searches - centering
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -357,12 +375,6 @@ function! s:ToggleSpelllang()
 endfunction
 nnoremap <silent> <leader>tS :call <SID>ToggleSpelllang()<CR>
 
-" Wildmenu
-set wildmenu
-set wildchar=<Tab>
-set wildmode=list:longest
-set wildignore+=*.o,*.obj,*.pyc,*.aux,*.bbl,*.blg,.git,.svn,.hg
-set suffixes=.bak,~,.swp,.o,.info,.aux,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
 " Highligh incorect indenting
 hi SpacesTabsMixture guifg=red guibg=gray19
