@@ -37,6 +37,7 @@ Plugin 'luochen1990/rainbow'
 " Plugin 'dag/vim-fish' This plugin has wrong highting when there is a '
 " escaped in the string
 Plugin 'blankname/vim-fish'
+Plugin 'kevinoid/vim-jsonc'
 "TODO: Install conceal for latex https://github.com/PietroPate/vim-tex-conceal
 
 " FZF
@@ -270,6 +271,7 @@ if !has('gui_running')
 endif
 set background=dark
 colorscheme gruvbox
+
 " let g:lightline.colorscheme='onehalfdark'
 let g:lightline = {
             \ 'colorscheme': 'gruvbox',
