@@ -202,7 +202,19 @@ function _urxvt_command -d 'Issue urxvt command'
 	[ (count $argv) -ne 2 ]; and return
 
 	set -l command (printf "\e]%s;%s\007" "$argv[2]" "$argv[1]")
-	_send_command $command
+	_tmux_send_command $command
+end
+
+function _urxvt_set_font -d 'Set the urxvt font'
+	[ (count $argv) -ne 2 ]; and return
+
+	set -l formated_font (printf "xft:%s:pixelsize=21:antialias=true, xft:Inconsolata Nerd Font Mono:style=Medium:pixelsize=21" $selected_font)
+	set -l command (printf "\e]%s;%s\007" "$argv[2]" "$formated_font")
+	_tmux_send_command $command
+end
+
+function _alacritty_set_font  -d 'Set the font in alacritty terminal'
+    sed -i "s/^\(\s*family:\)\(.*\)/\1 $argv[1]/g" ~/.config/alacritty/alacritty.yml
 end
 
 function color-switcher -d 'Change terminal color.'
@@ -221,6 +233,13 @@ function color-switcher -d 'Change terminal color.'
 	_urxvt_command $selected_color $argv[1]
 end
 
+# TODO: Create fzf alternative
+# TODO: Create dmenu alternative
+# TODO: User can change default selecter via the variable
+function _rofi_select_font -d 'Select the font using rofi'
+	string trim (fc-list | grep -i ttf | cut -d: -f2 | sort -ru | rofi -dmenu -i)
+end
+
 # TODO: Create new function with default fallbacks e.g
 # User will pick dejavu font but this function will also by default append other fonts
 # so everything in shell works just fine
@@ -233,29 +252,29 @@ function font-switcher -d 'Change terminal font.'
 	end
 
 	# Let user select the font
-	set -l selected_font (fc-list | grep -i ttf | cut -d: -f2 | sort -ru | rofi -dmenu -i)
+	set -l selected_font (_rofi_select_font)
 	[ -z "$selected_font" ]; and return
 
 	# Format the font string
 	# set -l formated_font (printf "xft:%s:pixelsize=21" $selected_font)
-	set -l formated_font (printf "xft:%s:pixelsize=21, xft:Inconsolata Nerd Font Mono:style=Medium:pixelsize=21" $selected_font)
+    # set -l formated_font (printf "xft:%s:pixelsize=21, xft:Inconsolata Nerd Font Mono:style=Medium:pixelsize=21" $selected_font)
 
 	# Set the font
-	_urxvt_command $formated_font $argv[1]
+    # _urxvt_command $formated_font $argv[1]
+    _alacritty_set_font "$selected_font"
 end
 
 function random-font -d 'Change terminal font to random one.'
 	set -l selected_font (fc-list | grep -i ttf | cut -d: -f2 | sort -u | shuf | head -n1)
 	[ -z "$selected_font" ]; and return
+	echo "$selected_font"
 
-	# Format the font string
-	set -l formated_font (printf "xft:%s:pixelsize=21:antialias=true, xft:Inconsolata Nerd Font Mono:style=Medium:pixelsize=21" $selected_font)
-
-	echo "$formated_font"
 	# Set the font
-	_urxvt_command $formated_font 710
+	# _urxvt_set_font $formated_font 710
+	_alacritty_set_font "$selected_font"
 end
 
+# TODO: Create separate package for terminal functions
 function terminal-control -d 'Entry point for terminal control.'
 
 	# TODO: Those can be maybe global variables, that are destoried at the end
