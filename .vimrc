@@ -37,6 +37,7 @@ Plugin 'luochen1990/rainbow'
 " Plugin 'dag/vim-fish' This plugin has wrong highting when there is a '
 " escaped in the string
 Plugin 'blankname/vim-fish'
+"TODO: Install conceal for latex https://github.com/PietroPate/vim-tex-conceal
 
 " FZF
 Plugin 'junegunn/fzf.vim'
@@ -362,6 +363,23 @@ end
 " TODO: Try to bind `c to nop? to avoid wrong cursor type when opening a new window
 
 autocmd BufNewFile,BufRead *.yar,*.yara set filetype=yara
+
+" Conceal
+"
+" By default be more explicit
+function! ToggleConcealLevel()
+    if &conceallevel == 0
+        setlocal conceallevel=2
+    else
+        setlocal conceallevel=0
+    endif
+endfunction
+
+nnoremap <silent> <leader>tc :call ToggleConcealLevel()<CR>
+set conceallevel=0
+set concealcursor=""
+au FileType * setl conceallevel=0
+
 " Spell checking
 set spelllang=en_us,en_gb
 nnoremap <silent> <leader>ts :set spell!<CR>:set spell?<CR>
