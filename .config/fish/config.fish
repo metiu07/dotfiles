@@ -164,7 +164,56 @@ function ranger-open -d 'Interactive ranger opener using xdg-open.'
 	rm $dir
 end
 
-function _send_command -d 'Send command through tmux if its running.'
+function ranger-wallpaper -d 'Interactive ranger wallpaper setter using feh.'
+	set dir (mktemp -t ranger_open.XXX)
+	set ranger_bin (which ranger)
+	$ranger_bin --choosefile=$dir $argv $HOME/Pictures
+	echo (cat $dir)
+    wallpaper (cat $dir)
+	rm $dir
+end
+
+function ranger-wal -d 'Interactive ranger wallpaper and theme generator using feh and wal.'
+	set dir (mktemp -t ranger_open.XXX)
+	set ranger_bin (which ranger)
+	$ranger_bin --choosefile=$dir $argv $HOME/Pictures
+	echo (cat $dir)
+    wallpaper (cat $dir)
+	wal -ni (cat $dir)
+	rm $dir
+end
+
+
+# TODO: Create function to detect terminal emulator
+# TODO: Create backup function (cpbackup <file> -> cp <file> <file>.backup)
+
+function _wallpaper_sway -d 'Set the wallpaper on sway.'
+	killall -q swaybg
+	nohup swaybg -i "$argv[1]" -m fill 2>&1 >/dev/null &
+end
+
+function _wallpaper_feh -d 'Set the wallpaper with feh.'
+	# TODO: Not implemented
+	echo "Not implemented"
+end
+
+# TODO: Add a way to blur the image
+function wallpaper -d 'Set the wallpaper.'
+	if [ (count $argv) -eq 1 ];
+		set _wallpaper_path "$argv[1]"
+	else
+		# TODO: If the are no wallpapers set the solid color
+		set _wallpaper_path (fd . ~/Pictures/Wallpapers | shuf -n 1)
+		# set _wallpaper_path (mktemp -t wallpaper.XXX)
+		# set _random_wallpaper (fd . ~/Pictures/Wallpapers | shuf -n 1)
+		# convert "$_random_wallpaper" -blur 0x5 "$_wallpaper_path"
+	end
+
+	# TODO: Create function to detect window manager
+	_wallpaper_sway "$_wallpaper_path"
+end
+
+function _tmux_send_command -d 'Send command through tmux if its running.'
 	if [ -n "$TMUX" ];
 		printf "\ePtmux;\e%s\e\\" $argv[1]
 	else
@@ -262,25 +311,6 @@ function terminal-control -d 'Entry point for terminal control.'
 	else
 		font-switcher $ESCAPE_NORMAL
 	end
-end
-
-function ranger-wallpaper -d 'Interactive ranger wallpaper setter using feh.'
-	set dir (mktemp -t ranger_open.XXX)
-	set ranger_bin (which ranger)
-	$ranger_bin --choosefile=$dir $argv $HOME/Pictures
-	echo (cat $dir)
-	feh --bg-fill (cat $dir)
-	rm $dir
-end
-
-function ranger-wal -d 'Interactive ranger wallpaper setter using feh and wal.'
-	set dir (mktemp -t ranger_open.XXX)
-	set ranger_bin (which ranger)
-	$ranger_bin --choosefile=$dir $argv $HOME/Pictures
-	echo (cat $dir)
-	feh --bg-fill (cat $dir)
-	wal -ni (cat $dir)
-	rm $dir
 end
 
 function wal-theme -d 'Interactive theme setter for wal.'

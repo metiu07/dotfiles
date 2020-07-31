@@ -49,6 +49,7 @@ bindsym $mod+o exec --no-startup-id urxvt -e fish -c "ranger-open"
 # Ranger as wallpaper setter
 bindsym $mod+w exec --no-startup-id urxvt -e fish -c "ranger-wallpaper"
 bindsym $mod+Shift+w exec --no-startup-id urxvt -e fish -c "ranger-wal"
+bindsym $mod+Alt+w exec --no-startup-id fish -c "wallpaper"
 
 # Wal themes
 bindsym $mod+Shift+t exec --no-startup-id fish -c "wal-theme"
@@ -235,7 +236,10 @@ bindswitch --reload lid:on output $laptop disable
 bindswitch --reload lid:off output $laptop enable
 
 # Setup wallpaper
-output "*" bg $HOME/Pictures/Background/deer.jpg fill
+# output "*" bg $HOME/Pictures/Background/deer.jpg fill
+# exec swaybg -i $HOME/Pictures/Background/deer.jpg fill
+# Pick a random wallpaper from ~/Pictures/Wallpapers
+exec --no-startup-id fish -c wallpaper
 
 # Startup urxvt daemon
 exec_always --no-startup-id xrdb -merge ~/.Xresources
