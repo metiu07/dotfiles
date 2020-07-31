@@ -40,15 +40,22 @@ Plugin 'blankname/vim-fish'
 
 " FZF
 Plugin 'junegunn/fzf.vim'
-command! -bang Buffers
-    \ call fzf#vim#buffers({'options': ['--layout=reverse', '--info=inline']}, <bang>0)
+" \ call fzf#vim#buffers({'options': ['--info=inline']}, <bang>0)
+" command! -bang Buffers
+" \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'tab': 'split',
   \ 'ctrl-v': 'vsplit' }
 
-map <leader>wc :Colors<CR>
+" let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+" let g:fzf_layout = { 'window': 'enew' }
+" let g:fzf_layout = { 'window': '-tabnew' }
+" let g:fzf_layout = { 'window': '100split enew' } " 100 lines
+" let g:fzf_layout = { 'down': '40%' }
+" let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_preview_window = 'up:60%'
 
 " LSP configuration
 Plugin 'prabirshrestha/asyncomplete.vim'
