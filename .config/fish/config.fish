@@ -370,13 +370,12 @@ function vimp -d "Interactive vim open file in a project"
 end
 
 function source_global -d "Interactive source python env"
-	pushd ~
 	# TODO: Handle multiselection
 	# TODO: Can we preview packages in the venv?
-	set -l _env (fd -I -t d -d 4 '^v?env' | fzf --height 15 --prompt "Select environment to source: " --layout=reverse)
+	set -l _env (fd -I -t d -d 4 '^v?env' "$HOME" | fzf --height 15 --prompt "Select environment to source: " --layout=reverse)
 	[ -z "$_env" ] && return
-	source "$_env/bin/activate.fish"
-	popd
+	set -l _activate_file "$_env/bin/activate.fish"
+	[ -f "$_activate_file" ] && source "$_activate_file" || echo "Cannot find file: \"$_activate_file\""
 end
 
 # TODO: Create separate package for docker functions
