@@ -243,7 +243,8 @@ Plugin 'joshdick/onedark.vim'
 let g:onedark_terminal_italics = 1
 Plugin 'arcticicestudio/nord-vim'
 let g:nord_italic = 1
-Plugin 'morhetz/gruvbox'
+" Plugin 'morhetz/gruvbox'
+Plugin 'gruvbox-community/gruvbox'
 let g:gruvbox_italic = 1
 let g:gruvbox_italicize_comments = 0
 
