@@ -80,6 +80,15 @@ alias notif='notify-send "Task finished" "Exit code: $status"'
 # Set vim configuration
 set -gx VIMINIT "source ~/.config/vim/vimrc"
 
+# Set ipython configuration home
+set -gx IPYTHONDIR "$HOME/.config/ipython"
+
+# Set weechat configuration home
+set -gx WEECHAT_HOME "$HOME/.config/weechat"
+
+# Set taskwarrior and timewarrior configuration
+set -gx TASKRC ~/.config/task/.taskrc
+set -gx TIMEWARRIORDB ~/.config/task/.timewarrior.cfg
 
 # Makepkg should build packages with all available threads
 set -gx MAKEFLAGS '-j'(nproc)
