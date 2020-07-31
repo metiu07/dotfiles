@@ -75,6 +75,8 @@ if command -v bat >/dev/null 2>&1
 	functions -e bat; alias rat='bat -nA'
 end
 
+alias notif='notify-send "Task finished" "Exit code: $status"'
+
 # Set vim configuration
 set -gx VIMINIT "source ~/.config/vim/vimrc"
 
