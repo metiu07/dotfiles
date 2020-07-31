@@ -361,6 +361,7 @@ end
 
 " TODO: Try to bind `c to nop? to avoid wrong cursor type when opening a new window
 
+autocmd BufNewFile,BufRead *.yar,*.yara set filetype=yara
 " Spell checking
 set spelllang=en_us,en_gb
 nnoremap <silent> <leader>ts :set spell!<CR>:set spell?<CR>
