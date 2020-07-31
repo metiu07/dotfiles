@@ -307,7 +307,7 @@ set smartindent
 set smarttab
 set tabstop=4
 set shiftwidth=4
-set expandtab
+" set expandtab
 set nofoldenable
 set autoread
 set ttyfast
