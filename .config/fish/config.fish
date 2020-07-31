@@ -354,10 +354,20 @@ end
 function fp -d "Interactive find file in project"
 	# TODO: Rice fzf here
 	set -l project_dir (command ls ~/dev | fzf --height 15 --prompt "Select a project: " --layout=reverse)
-    [ -z "$project_dir" ] && return
-	ff "$HOME/dev/$project_dir"
+	[ -z "$project_dir" ] && return
+	pushd "$HOME/dev/$project_dir"
+	ff
+	popd
 end
-alias vimp='vim (fp)'
+
+function vimp -d "Interactive vim open file in a project"
+	# TODO: Rice fzf here
+	set -l project_dir (command ls ~/dev | fzf --height 15 --prompt "Select a project: " --layout=reverse)
+    [ -z "$project_dir" ] && return
+	pushd "$HOME/dev/$project_dir"
+	vim (ff)
+	popd
+end
 
 function source_global -d "Interactive source python env"
 	pushd ~
