@@ -28,6 +28,7 @@ floating_modifier $mod
 # NOTE: Fish is here to set the TERM variable before tmux so TrueColors works
 bindsym $mod+Return exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
 bindsym $mod+Shift+Return exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf a
+bindsym $mod+Alt+Return exec alacritty
 
 # Kill focused window
 bindsym $mod+q kill
