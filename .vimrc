@@ -291,6 +291,13 @@ nmap <leader>/ :Rg<CR>
 map <leader>x :Commands<CR>
 map <leader>hk :Maps<CR>
 map <leader>wc :Colors<CR>
+" Clipboard
+vnoremap <leader>y "+y
+nnoremap <leader>y "+y
+nnoremap <leader>yy "+yy
+nnoremap <leader>p "+p
+vnoremap <leader>x "+x
+nnoremap <leader>x "+x
 
 " Splits configuration
 nnoremap <leader>wh <C-W><C-H>
