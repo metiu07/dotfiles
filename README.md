@@ -73,8 +73,12 @@ because of nostalgy and for educational purposes.
 
 ```
 mkdir -p ~/.local/share/applications
+# Setup for rofi
 cp /usr/share/applications/firefox.desktop ~/.local/share/applications
 # Every "Exec=..." prefix with "Exec=env MOZ_ENABLE_WAYLAND=1 ..."
+# Correct links from applications
+# NOTE: firefox.desktop is only a name, not a file path
+xdg-settings set default-web-browser firefox.desktop
 ```
 
 ## Inspiration
