@@ -25,6 +25,8 @@ alias make1='make -j(nproc --ignore=1)'     # make1:        Compiler with all th
 alias tmux='tmux -f $HOME/.config/tmux/tmux.conf' # tmux:   Set the default config dir for tmux
 alias htop='htop -t'                        # htop:         Always preffer the tree view
 alias g='git status -sb'                    # g:            Fast git status
+alias r2='r2 -c "e scr.prompt.vi=true"'     # r2:           Vim bindings for radare2
+alias ipython='ipython --TerminalInteractiveShell.editing_mode=vi' # ipython: Vim bindings for ipython
 
 # big thanks to bangerino for sharing
 # alias docker-kill="sudo docker ps --format '{{.Image}} {{.Names}}' | fzf -m --preview 'sudo docker ps | grep {2}' | cut -d ' ' -f 2 | xargs -I '{}' -r sudo docker kill '{}'"
