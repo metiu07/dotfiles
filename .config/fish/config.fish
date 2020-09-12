@@ -442,6 +442,12 @@ function docker-rmi -d "Remove docker images"
 	sudo docker rmi "$selected_container" $argv
 end
 
+function temp_env -d "Create new temporary virtualenv"
+	set dir (mktemp -d venv.XXX)
+	python -m venv "$dir"
+	. "$dir/bin/activate.fish"
+end
+
 function _ssh-add -d "Add new ssh-key to the ssh-agent"
 	# Startup the ssh-agent if not running
 	[ -z "$SSH_AGENT_PID" ] && eval (ssh-agent -c)
