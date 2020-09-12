@@ -87,6 +87,12 @@ cp /usr/share/applications/firefox.desktop ~/.local/share/applications
 xdg-settings set default-web-browser firefox.desktop
 ```
 
+### Mac keyboard - fn keys
+
+```bash
+echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
+```
+
 ## Inspiration
 
 This wouldn't have been possible without other people who share their dotfiles. Take this as a list of my appreciation and inspiration.
