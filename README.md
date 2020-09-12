@@ -68,6 +68,15 @@ installed to the location `./.config/ranger/rc.conf` and also depends on module
 This script is deprecated and should not be used anymore. It's included only
 because of nostalgy and for educational purposes.
 
+## FAQ
+### Wayland firefox
+
+```
+mkdir -p ~/.local/share/applications
+cp /usr/share/applications/firefox.desktop ~/.local/share/applications
+# Every "Exec=..." prefix with "Exec=env MOZ_ENABLE_WAYLAND=1 ..."
+```
+
 ## Inspiration
 
 This wouldn't have been possible without other people who share their dotfiles. Take this as a list of my appreciation and inspiration.
