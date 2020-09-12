@@ -69,9 +69,15 @@ This script is deprecated and should not be used anymore. It's included only
 because of nostalgy and for educational purposes.
 
 ## FAQ
+### How to setup default applications
+
+```bash
+xdg-mime default org.pwmt.zathura.desktop application/pdf
+```
+
 ### Wayland firefox
 
-```
+```bash
 mkdir -p ~/.local/share/applications
 # Setup for rofi
 cp /usr/share/applications/firefox.desktop ~/.local/share/applications
