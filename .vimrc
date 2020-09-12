@@ -95,7 +95,7 @@ let g:fzf_preview_window = 'up:60%'
 
 " CoC
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_config_home = expand('~/.config/vim/coc-config.json')
+let g:coc_config_home = expand('~/.config/vim')
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
