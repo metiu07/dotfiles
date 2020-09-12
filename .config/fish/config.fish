@@ -23,6 +23,9 @@ bind \cE end-of-line
 bind \cA -M insert beginning-of-line
 bind \cA beginning-of-line
 
+bind \cr _fzf-multi-command-history-widget
+bind \cr -M insert _fzf-multi-command-history-widget
+
 # Let theme prompt handle the virtualenv indicator
 set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
 
@@ -506,4 +509,13 @@ function color_picker -d "Color picker functionality"
 	set -l COLOR (grim -g "$PIXEL" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:-)
 	notify-send -t 10000 "$COLOR"
 	echo "$COLOR" | sed -n 's/.*\(#......\).*/\1\n/p' | wl-copy
+end
+
+function _fzf-multi-command-history-widget -d "Show command history"
+	test -n "$FZF_TMUX_HEIGHT"; or set FZF_TMUX_HEIGHT 40%
+	set -lx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT $FZF_DEFAULT_OPTS --tiebreak=index --bind=ctrl-r:toggle-sort --bind=tab:clear-query+toggle+down --bind=enter:toggle+accept-non-empty $FZF_CTRL_R_OPTS -m"
+
+	history -z | eval (__fzfcmd) --read0 --print0 -q '(commandline)' | sed 's/\x0\(.\)/; \1/g' | read -lz result
+	and commandline -- $result
+	commandline -f repaint
 end
