@@ -75,7 +75,14 @@ because of nostalgy and for educational purposes.
 xdg-mime default org.pwmt.zathura.desktop application/pdf
 ```
 
-### Wayland firefox
+### Firefox
+
+#### Fullscreen - don't hide the toolbar
+
+1) Go to `about:config` in firefox
+2) Set the `browser.fullscreen.autohide` to `false`
+
+#### Wayland
 
 ```bash
 mkdir -p ~/.local/share/applications
