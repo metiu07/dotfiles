@@ -108,7 +108,10 @@
   "i3": {
     "source": "./.config/i3/config",
     "destination": "~/.config/i3/config",
-    "name": "i3 window manager configuration"
+    "name": "i3 window manager configuration",
+    "$deps": [
+      "polybar"
+    ]
   },
   "i3.matus": {
     "source": "./.config/i3/config.matus",
@@ -118,16 +121,17 @@
   "linux": {
     "name": "Linux configuration profile",
     "$deps": [
-      "compton_blur",
+      "alacritty",
       "emacs",
       "fish",
+      "git",
       "htop",
       "i3",
-      "polybar",
       "ranger",
+      "sway",
       "tmux",
       "urxvt",
-      "vim_noaddons"
+      "vim"
     ]
   },
   "mako": {
@@ -214,7 +218,7 @@
   },
   "vim_noaddons": {
     "source": "./.vim_noaddons",
-    "destination": "~/config/vim/.vimrc",
+    "destination": "~/.config/vim/.vimrc",
     "name": "Vanila vim configuration without addons"
   },
   "waybar": {
