@@ -238,11 +238,20 @@ function color-switcher -d 'Change terminal color.'
 	_urxvt_command $selected_color $argv[1]
 end
 
+function _font_list -d 'List available font families'
+	# fc-list | grep -i ttf | cut -d: -f2 | sort -ru
+	# fc-list -f '%{family}\n' | awk '!x[$0]++' | sort -ru
+	# TODO: For some reason alacritty loads the wrong font if the family
+	# contains ','. For now strip everyting that is before the ','. (This is a hack)
+	# fc-list -f '%{family}\n' | awk '!x[$0]++' | sed 's/\(.*\),.*/\1/' | sort -ru
+	fc-list -f '%{family}\n' | awk '!x[$0]++' | sed 's/.*,\(.*\)/\1/' | sort -ru
+end
+
 # TODO: Create fzf alternative
 # TODO: Create dmenu alternative
 # TODO: User can change default selecter via the variable
 function _rofi_select_font -d 'Select the font using rofi'
-	string trim (fc-list | grep -i ttf | cut -d: -f2 | sort -ru | rofi -dmenu -i)
+	string trim (_font_list | rofi -dmenu -i)
 end
 
 # TODO: Create new function with default fallbacks e.g
@@ -270,7 +279,7 @@ function font-switcher -d 'Change terminal font.'
 end
 
 function random-font -d 'Change terminal font to random one.'
-	set -l selected_font (fc-list | grep -i ttf | cut -d: -f2 | sort -u | shuf | head -n1)
+	set -l selected_font (_font_list | shuf | head -n1)
 	[ -z "$selected_font" ]; and return
 	echo "$selected_font"
 
