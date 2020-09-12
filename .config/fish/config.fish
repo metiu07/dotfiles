@@ -103,7 +103,11 @@ abbr -a -g E ". $DEFAULT_ENV_DIR/bin/activate.fish"
 # Sourcing the global python environment
 abbr -a -g EE "source_global"
 # Creating the python environment
-abbr -a -g EC "python3 -m venv $DEFAULT_ENV_DIR"
+abbr -a -g EC "python3 -m venv $DEFAULT_ENV_DIR && . $DEFAULT_ENV_DIR/bin/activate.fish"
+# Recreate the python environment
+abbr -a -g ER "rm -r $DEFAULT_ENV_DIR; python3 -m venv $DEFAULT_ENV_DIR && . $DEFAULT_ENV_DIR/bin/activate.fish"
+# Create temporary python environment
+abbr -a -g ET "temp_env"
 # Deactivate the python environment
 abbr -a -g D "deactivate"
 
