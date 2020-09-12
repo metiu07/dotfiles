@@ -369,6 +369,8 @@ function vimp -d "Interactive vim open file in a project"
 	popd
 end
 
+alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
+
 function source_global -d "Interactive source python env"
 	# TODO: Handle multiselection
 	# TODO: Can we preview packages in the venv?
