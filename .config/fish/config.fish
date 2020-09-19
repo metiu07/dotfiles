@@ -387,6 +387,7 @@ function vimp -d "Interactive vim open file in a project"
 end
 
 alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
+alias vimt="vim (mktemp)"
 
 function source_global -d "Interactive source python env"
 	# TODO: Handle multiselection
