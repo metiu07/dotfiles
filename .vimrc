@@ -20,7 +20,9 @@ call vundle#begin('~/.config/vim')
 Plugin 'gmarik/vundle'
 Plugin 'airblade/vim-rooter'
 Plugin 'tpope/vim-fugitive'
-map <leader>gg :Gstatus<CR>
+map <leader>gg :Git<CR>
+map <leader>gb :Git blame<CR>
+map <leader>gl :Git log<CR>
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'itchyny/lightline.vim'
 " Disabled because of: https://github.com/jiangmiao/auto-pairs/issues/272
