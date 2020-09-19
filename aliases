@@ -17,7 +17,7 @@ alias dd='dd bs=4M status=progress'         # dd:           Set blocksize and sh
 alias df='df -h'                            # df:           Always human readable, total and show type
 alias du='du -ch'                           # du:           Always human readable and total
 alias dus='du -chs'                         # du:           Summary
-alias rg='rg -S'                            # rg:           By default use smart case
+alias rg='rg -S --hidden'                   # rg:           By default use smart case
 alias path='echo {$PATH} | tr " " "\n"'     # path:         Echo all executable Paths
 alias make='make -j(nproc)'                 # make:         Compile with available threads
 alias makei='make install -j(nproc); alert' # makei:        Compile install target with available threads
