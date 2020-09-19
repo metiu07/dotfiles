@@ -422,7 +422,11 @@ function docker-bash -d "Spawn bash in docker"
 	set -l selected_container (_select-docker-container)
 
 	[ -z "$selected_container" ]; and return
-	sudo docker exec -it "$selected_container" bash $argv
+	if [ (count $argv) -eq 0 ];
+		sudo docker exec -it "$selected_container" bash
+	else
+		sudo docker exec -it "$selected_container" $argv
+	end
 end
 
 function docker-attach -d "Attach to a docker container"
@@ -452,6 +456,14 @@ function docker-log -d "Display container logs"
 	[ -z "$selected_container" ]; and return
 	sudo docker logs "$selected_container" $argv
 end
+
+function docker-inspect -d "Inspect docker container"
+	set -l selected_container (_select-docker-container)
+
+	[ -z "$selected_container" ]; and return
+	sudo docker inspect "$selected_container"
+end
+
 
 function docker-rmi -d "Remove docker images"
 	set -l selected_container (_select-docker-container)
