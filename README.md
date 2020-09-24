@@ -12,7 +12,7 @@ You can see preview in
 
 More screenshots can be found in this [folder](screenshots).
 
-# Instalation
+# Installation
 
 First step is to clone this repository:
 
@@ -66,7 +66,7 @@ installed to the location `./.config/ranger/rc.conf` and also depends on module
 ## Script - install.sh
 
 This script is deprecated and should not be used anymore. It's included only
-because of nostalgy and for educational purposes.
+because of nostalgia and for educational purposes.
 
 ## FAQ
 ### How to setup default applications
@@ -97,6 +97,11 @@ xdg-settings set default-web-browser firefox.desktop
 ### Mac keyboard - fn keys
 
 ```bash
+# Permanent
+echo "options hid_apple fnmode=2" | sudo tee /etc/modprobe.d/hid_apple.conf
+mkinitcpio -p linux
+
+# Temporary
 echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
 ```
 
