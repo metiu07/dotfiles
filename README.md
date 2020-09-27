@@ -75,6 +75,12 @@ because of nostalgia and for educational purposes.
 xdg-mime default org.pwmt.zathura.desktop application/pdf
 ```
 
+### Sway
+
+#### How to change tty
+
+Press `ctrl` + `alt` + `cmd` + `fX` key.
+
 ### Firefox
 
 #### Fullscreen - don't hide the toolbar
