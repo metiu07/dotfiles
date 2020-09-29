@@ -42,6 +42,7 @@ Plugin 'luochen1990/rainbow'
 " escaped in the string
 Plugin 'blankname/vim-fish'
 Plugin 'kevinoid/vim-jsonc'
+Plugin 'cespare/vim-toml'
 "TODO: Install conceal for latex https://github.com/PietroPate/vim-tex-conceal
 
 " FZF
