@@ -31,6 +31,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'justinmk/vim-sneak'
 Plugin 'liuchengxu/vista.vim'
 let g:vista_default_executive = 'vim_lsp'
+" Ignore module symbols, they are not relevant and only polute the search list
+let g:vista_ignore_kinds = ['Module']
 map gj :Vista finder<CR>
 " Plugin 'unblevable/quick-scope'
 Plugin 'tpope/vim-commentary'
