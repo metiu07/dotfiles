@@ -22,7 +22,7 @@ Plugin 'airblade/vim-rooter'
 Plugin 'tpope/vim-fugitive'
 map <leader>gg :Git<CR>
 map <leader>gb :Git blame<CR>
-map <leader>gl :Git log<CR>
+map <leader>gl :Git log --oneline<CR>
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'itchyny/lightline.vim'
 " Disabled because of: https://github.com/jiangmiao/auto-pairs/issues/272
