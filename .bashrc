@@ -46,6 +46,12 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # default flags for makepkg
 export MAKEFLAGS="-j$(nproc)"
+# make: Compile with available threads
+alias make='make -j$(nproc)'
+# makei: Compile install target with available threads
+alias makei='make install -j$(nproc); alert'
+# make1: Compiler with all threads except one, let the system keep some resources
+alias make1='make -j$(nproc --ignore=1)'
 
 # bind TAB:menu-complete
 complete -cf sudo

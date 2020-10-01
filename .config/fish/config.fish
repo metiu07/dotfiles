@@ -81,6 +81,14 @@ end
 
 alias notif='notify-send "Task finished" "Exit code: $status"'
 
+# Set make aliases
+# make: Compile with available threads
+alias make='make -j(nproc)'
+# makei: Compile install target with available threads
+alias makei='make install -j(nproc); alert'
+# make1: Compiler with all threads except one, let the system keep some resources
+alias make1='make -j(nproc --ignore=1)'
+
 # Set vim configuration
 set -gx VIMINIT "source ~/.config/vim/vimrc"
 

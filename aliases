@@ -20,9 +20,6 @@ alias du='du -ch'                           # du:           Always human readabl
 alias dus='du -chs'                         # du:           Summary
 alias rg='rg -S --hidden'                   # rg:           By default use smart case
 alias path='echo {$PATH} | tr " " "\n"'     # path:         Echo all executable Paths
-alias make='make -j(nproc)'                 # make:         Compile with available threads
-alias makei='make install -j(nproc); alert' # makei:        Compile install target with available threads
-alias make1='make -j(nproc --ignore=1)'     # make1:        Compiler with all threads except one, let system keep some resources
 alias tmux='tmux -f $HOME/.config/tmux/tmux.conf' # tmux:   Set the default config dir for tmux
 alias htop='htop -t'                        # htop:         Always preffer the tree view
 alias g='git status -sb'                    # g:            Fast git status
