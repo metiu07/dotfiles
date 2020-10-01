@@ -1,0 +1,8 @@
+set editing-mode vi
+set keymap vi-command
+"gg": beginning-of-history
+"G": end-of-history
+set keymap vi-insert
+# "jj": vi-movement-mode
+"\C-p": history-search-backward C-L: clear-screen 
+"\C-n": history-search-forward C-L: clear-screen 

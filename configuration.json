@@ -9,7 +9,8 @@
     "$deps": [
       "bashrc_linux",
       "bash_profile",
-      "bash_aliases"
+      "bash_aliases",
+      "inputrc"
     ]
   },
   "bash_posix": {
@@ -104,6 +105,11 @@
     "source": "./.config/htop/htoprc",
     "destination": "~/.config/htop/htoprc",
     "name": "Htop configuration"
+  },
+  "inputrc": {
+    "source": "./.inputrc",
+    "destination": "~/.inputrc",
+    "name": "Readline configuration"
   },
   "i3": {
     "source": "./.config/i3/config",
