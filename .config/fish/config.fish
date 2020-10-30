@@ -393,16 +393,21 @@ function fp -d "Interactive find file in project"
 end
 
 function vimp -d "Interactive vim open file in a project"
+	# TODO: Take one optional argument with the name of the project
 	# TODO: Rice fzf here
 	set -l project_dir (command ls ~/dev | fzf --height 15 --prompt "Select a project: " --layout=reverse)
     [ -z "$project_dir" ] && return
 	pushd "$HOME/dev/$project_dir"
-	vim (ff)
+	set -l selected_file (ff)
+    [ -z "$selected_file" ] && return
+	commandline "vim \"$selected_file\""
+	commandline -f execute
 	popd
 end
 
 alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias vimt="vim (mktemp)"
+# TODO: Add vimf alias to find a file in current directory = vim (ff)
 
 function source_global -d "Interactive source python env"
 	# TODO: Handle multiselection
