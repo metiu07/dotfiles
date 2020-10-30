@@ -36,8 +36,12 @@ set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
 # set -g pure_symbol_prompt ''  # RPI
 # set -g pure_symbol_prompt ''  # RPI
 # set -g pure_symbol_prompt '拾' # School
-set -g pure_symbol_prompt 'ﬦ'    # Default
-set -g pure_symbol_reverse_prompt '烈' # Vim mode
+set -g pure_symbol_prompt 'λ'    # Unicode lamdba
+# set -g pure_symbol_prompt 'ﬦ'    # Default
+# set -g pure_symbol_reverse_prompt '烈' # Vim mode
+# set -g pure_symbol_reverse_prompt 'ε' # Vim mode - unicode
+# set -g pure_symbol_reverse_prompt 'ξ' # Vim mode - unicode
+set -g pure_symbol_reverse_prompt 'Σ' # Vim mode - unicode
 
 # Bob the fish theme configuration
 # set -g theme_nerd_fonts yes
