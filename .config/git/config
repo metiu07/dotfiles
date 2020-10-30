@@ -30,6 +30,9 @@
 	stat = true
 	log = true
 
+[absorb]
+	maxStack = 50
+
 [alias]
 	a = add
 	amend = commit --amend --verbose
