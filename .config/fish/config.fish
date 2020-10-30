@@ -552,3 +552,15 @@ function _fzf-multi-command-history-widget -d "Show command history"
 	and commandline -- $result
 	commandline -f repaint
 end
+
+function _progress -d "Display ascii progress bar"
+	read progress
+	[ -z "$progress" ]; and return
+	
+	set -l symbol_complete "▰"
+	set -l symbol_incomplete "▱"
+	# TODO: Add way to change number of total symbols in progressbar - default 10
+	set -l complete (math -s0 $progress / 10)
+	string repeat --no-newline -n "$complete" "$symbol_complete"
+	string repeat -n (math 10 - "$complete") "$symbol_incomplete"
+end
