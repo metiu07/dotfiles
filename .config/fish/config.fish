@@ -54,6 +54,7 @@ set -gx TERM "tmux-256color"
 # Customize path variable
 set -gx PATH $PATH $HOME/.local/bin
 set -gx PATH $PATH $HOME/.cargo/bin
+set -gx PATH $PATH $HOME/.yarn/bin
 
 # Set EDITOR and VISUAL, prior emacs -> nvim -> vim -> nano
 if command -v nvim >/dev/null 2>&1
