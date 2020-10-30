@@ -82,7 +82,8 @@ end
 
 if command -v bat >/dev/null 2>&1
 	functions -e cat; alias cat='bat -n'
-	functions -e bat; alias rat='bat -nA'
+	functions -e ccat; alias ccat='bat -nA'
+	functions -e rat; alias rat='command cat'
 end
 
 alias notif='notify-send "Task finished" "Exit code: $status"'
