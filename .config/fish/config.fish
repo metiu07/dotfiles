@@ -237,7 +237,7 @@ function _urxvt_set_font -d 'Set the urxvt font'
 end
 
 function _alacritty_set_font  -d 'Set the font in alacritty terminal'
-    sed -i "s/^\(\s*family:\)\(.*\)/\1 $argv[1]/g" ~/.config/alacritty/alacritty.yml
+    sed -i --follow-symlinks "s/^\(\s*family:\)\(.*\)/\1 $argv[1]/g" ~/.config/alacritty/alacritty.yml
 end
 
 function color-switcher -d 'Change terminal color.'
