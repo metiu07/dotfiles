@@ -17,6 +17,7 @@ bind \cO 'cd -; commandline -f repaint'
 bind \cF -M insert accept-autosuggestion
 bind \cF accept-autosuggestion
 bind \cP -M insert up-or-search
+bind \cP up-or-search
 bind \cN -M insert down-or-search
 bind \cE -M insert end-of-line
 bind \cE end-of-line
