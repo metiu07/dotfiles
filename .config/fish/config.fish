@@ -139,6 +139,7 @@ abbr -a -g QL "pacman -Ql | grep "
 
 # Add ssh-key
 abbr -a -g SA "_ssh-add"
+abbr -a -g SL "ssh-add -l"
 
 # Git shortcut
 abbr -a -g g "git"
