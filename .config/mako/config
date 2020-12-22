@@ -1,1 +1,8 @@
 default-timeout=10000
+layer=overlay
+background-color=#282828
+border-color=#458588
+border-size=5
+icons=1
+markup=1
+actions=1
