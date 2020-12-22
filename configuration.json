@@ -145,6 +145,11 @@
     "destination": "~/.config/mako/config",
     "name": "Notification daemon configuration."
   },
+  "newsboat": {
+    "source": "./.config/newsboat",
+    "destination": "~/.config/newsboat",
+    "name": "Newsboat configuration & urls"
+  },
   "polybar": {
     "source": "./.config/polybar/config",
     "destination": "~/.config/polybar/config",
