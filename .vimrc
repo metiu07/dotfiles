@@ -31,6 +31,7 @@ map <leader>gl :Git log --oneline<CR>
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-surround'
+Plugin 'godlygeek/tabular'
 Plugin 'justinmk/vim-sneak'
 Plugin 'liuchengxu/vista.vim'
 let g:vista_default_executive = 'vim_lsp'
@@ -45,7 +46,9 @@ Plugin 'luochen1990/rainbow'
 " escaped in the string
 Plugin 'blankname/vim-fish'
 Plugin 'kevinoid/vim-jsonc'
+Plugin 'stephpy/vim-yaml'
 Plugin 'cespare/vim-toml'
+Plugin 'plasticboy/vim-markdown'
 "TODO: Install conceal for latex https://github.com/PietroPate/vim-tex-conceal
 
 " FZF
