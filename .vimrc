@@ -41,6 +41,8 @@ map gj :Vista finder<CR>
 " Plugin 'unblevable/quick-scope'
 Plugin 'tpope/vim-commentary'
 Plugin 'airblade/vim-gitgutter'
+let g:gitgutter_set_sign_backgrounds = 1
+highlight SignColumn ctermbg=NONE gui=NONE guibg=NONE
 Plugin 'luochen1990/rainbow'
 " Plugin 'dag/vim-fish' This plugin has wrong highting when there is a '
 " escaped in the string
@@ -274,7 +276,16 @@ nmap <leader>ti :IndentGuidesToggle<CR>
 Plugin 'mhinz/vim-startify'
 
 " Color themes
+Plugin 'humanoid-colors/vim-humanoid-colorscheme'
+Plugin 'haishanh/night-owl.vim'
+Plugin 'ghifarit53/tokyonight-vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'sjl/badwolf'
+Plugin 'nanotech/jellybeans.vim'
 Plugin 'YorickPeterse/happy_hacking.vim'
+Plugin 'tomasr/molokai'
+let g:rehash256 = 1
+Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'liuchengxu/space-vim-theme'
 Plugin 'sonph/onehalf', {'rtp': 'vim/'}
 Plugin 'joshdick/onedark.vim'
@@ -285,6 +296,7 @@ let g:nord_italic = 1
 Plugin 'gruvbox-community/gruvbox'
 let g:gruvbox_italic = 1
 let g:gruvbox_italicize_comments = 0
+let g:gruvbox_undercurl = 0
 
 Plugin 's3rvac/vim-syntax-yara'
 
@@ -307,14 +319,29 @@ if !has('gui_running')
   set t_Co=256
 endif
 set background=dark
-colorscheme gruvbox
 
-" let g:lightline.colorscheme='onehalfdark'
-let g:lightline = {
-            \ 'colorscheme': 'gruvbox',
-            \ }
-" highlight lspReference cterm=reverse,italic gui=reverse,italic
-" highlight lspReference cterm=reverse,italic gui=reverse,italic guifg=red
+color gruvbox
+
+" TODO: Create function to change the whole colorscheme not only the editor
+" but also lightline, etc.
+" TODO: Research ColorScheme event (:help au + search event) and set the
+" lightline
+" https://github.com/itchyny/lightline.vim/issues/9
+" https://hiphish.github.io/blog/2019/09/21/switching-automatically-themes-in-lightline/
+
+" Disable background - transparency
+"
+" highlight Normal ctermbg=NONE gui=NONE guibg=NONE
+" highlight nonText ctermbg=NONE gui=NONE guibg=NONE
+
+" Gruvbox spell in terminal is not supported, modify it
+" TODO: Better colors
+highlight SpellCap cterm=reverse,italic gui=reverse,italic guifg=green
+highlight SpellBad cterm=reverse,italic gui=reverse,italic guifg=red
+highlight SpellLocal cterm=reverse,italic gui=reverse,italic
+highlight SpellRare cterm=reverse,italic gui=reverse,italic guifg=blue
+
+let g:lightline = { 'colorscheme': 'gruvbox' }
 
 
 " Leader bindings
@@ -477,8 +504,8 @@ endfunction
 nnoremap z= :call FzfSpell()<CR>
 
 " Highligh incorect indenting
-hi SpacesTabsMixture guifg=red guibg=gray19
-match SpacesTabsMixture /^  \+\t\+[\t ]*\|^\t\+  \+[\t ]*/
+" hi SpacesTabsMixture guifg=red guibg=gray19
+" match SpacesTabsMixture /^  \+\t\+[\t ]*\|^\t\+  \+[\t ]*/
 
 " TODO: Add switch between expandtab and noexpand tab to switch between tabs
 " and spaces
