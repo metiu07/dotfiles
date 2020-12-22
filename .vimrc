@@ -14,9 +14,14 @@ set nocompatible
 filetype off
 set rtp+=~/.config/vim/bundle/Vundle.vim
 set rtp+=~/.tools/fzf
+" TODO:Isolate the plugins directory from the configuration directory.
+" If `rtp` dir contains also other files/folders that are not directly plugins
+" and the '+PluginClean' is executed it will also remove all files that are
+" not explicitly listed in this configuration as plugins (backups, undo,
+" coc_config).
 call vundle#begin('~/.config/vim')
 
-" Plugins are installed with :PluginInstall
+" Plugins can be installed with :PluginInstall
 Plugin 'gmarik/vundle'
 Plugin 'airblade/vim-rooter'
 Plugin 'tpope/vim-fugitive'
@@ -25,8 +30,6 @@ map <leader>gb :Git blame<CR>
 map <leader>gl :Git log --oneline<CR>
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'itchyny/lightline.vim'
-" Disabled because of: https://github.com/jiangmiao/auto-pairs/issues/272
-" Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 Plugin 'justinmk/vim-sneak'
 Plugin 'liuchengxu/vista.vim'
@@ -283,6 +286,7 @@ let g:gruvbox_italicize_comments = 0
 Plugin 's3rvac/vim-syntax-yara'
 
 Plugin 'junegunn/goyo.vim'
+" TODO: Also toggle wrapping with this command
 map <leader>tg :Goyo<CR>
 
 call vundle#end()
@@ -309,8 +313,6 @@ let g:lightline = {
 " highlight lspReference cterm=reverse,italic gui=reverse,italic
 " highlight lspReference cterm=reverse,italic gui=reverse,italic guifg=red
 
-" Transparency
-" highlight Normal guibg=NONE ctermbg=NONE
 
 " Leader bindings
 map <leader><Space> :GFiles<CR>
@@ -321,8 +323,10 @@ nmap <leader>/ :Rg<CR>
 map <leader>x :Commands<CR>
 map <leader>hk :Maps<CR>
 map <leader>wc :Colors<CR>
+
 " Clipboard
 vnoremap <leader>y "+y
+vnoremap <leader>Y "*y
 nnoremap <leader>y "+y
 nnoremap <leader>yy "+yy
 nnoremap <leader>p "+p
@@ -363,14 +367,7 @@ set ruler
 set number
 " set relativenumber
 
-" Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set gdefault
-
-" backups & undo
+" Backups & Undo
 set backup
 set backupdir=~/.config/vim/tmp/backup/
 set backupskip=/tmp/*,/private/tmp/*
@@ -388,6 +385,29 @@ set wildmode=list:longest
 set wildignore+=*.o,*.obj,*.pyc,*.aux,*.bbl,*.blg,.git,.svn,.hg
 set suffixes=.bak,~,.swp,.o,.info,.aux,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set gdefault
+
+" Make double-<Esc> clear search highlights
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+
+" Stay in visual mode when indenting.
+vnoremap < <gv
+vnoremap > >gv
+
+" Save with W
+cabb W w
+cabb E e
+
+" Fix Y to yank until the end of line
+noremap Y y$
+" TODO: Is this correct?
+imap <M-BS> <C-W>
+
 " Searches - centering
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -397,7 +417,7 @@ nnoremap <silent> g* g*zz
 nnoremap <silent> <C-O> <C-O>zz
 " TODO: Also bind CTRL-o to center the screen
 
-" nvim specific
+" Nvim specific
 if has('nvim')
     set guicursor=n-v-c-sm:hor20,i-ci-ve:ver25,r-cr-o:block
     set inccommand=nosplit
@@ -419,6 +439,8 @@ function! ToggleConcealLevel()
 endfunction
 
 nnoremap <silent> <leader>tc :call ToggleConcealLevel()<CR>
+" TODO: Check out https://github.com/thaerkh/vim-indentguides/pull/22
+" Plugin thaerkh/vim-indentguides is forcing higher conceallevel
 set conceallevel=0
 set concealcursor=""
 au FileType * setl conceallevel=0
@@ -453,12 +475,6 @@ match SpacesTabsMixture /^  \+\t\+[\t ]*\|^\t\+  \+[\t ]*/
 
 " TODO: Add switch between expandtab and noexpand tab to switch between tabs
 " and spaces
-
-" Fix Y to yank until the end of line
-noremap Y y$
-
-" Fix Y to yank until the end of line
-imap <M-BS> <C-W>
 
 " Function to toggle betwen wraping and notwrapping lines
 noremap <silent> <Leader>tw :call ToggleWrap()<CR>
@@ -500,6 +516,7 @@ function ToggleWrap()
 endfunction
 silent call ToggleWrap()
 
+" Function to toggle hexdump view
 function! s:ToggleHexdumpView()
 	if &filetype ==# 'xxd'
 		" Turn off hexdump view.
@@ -514,17 +531,6 @@ function! s:ToggleHexdumpView()
 	endif
 endfunction
 nnoremap <silent> <Leader>th :call <SID>ToggleHexdumpView()<CR>
-
-" Stay in visual mode when indenting.
-vnoremap < <gv
-vnoremap > >gv
-
-" Save with W
-cabb W w
-cabb E e
-
-" Make double-<Esc> clear search highlights
-nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 augroup gitcommit
 au!
