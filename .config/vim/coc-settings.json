@@ -1,65 +1,84 @@
 {
-	"coc.preferences.formatOnSaveFiletypes": [
-		"json",
-		"jsonc",
-		"python",
-		"yara"
-	],
-	"diagnostic.virtualText": true,
-	"diagnostic.virtualTextCurrentLineOnly": false,
-	"languageserver": {
-		"bash": {
-			"command": "bash-language-server",
-			"args": [
-				"start"
-			],
-			"filetypes": [
-				"sh"
-			],
-			"ignoredRootPaths": [
-				"~"
-			]
-		},
-		"python": {
-			"command": "pyls",
-			"args": [
-				"-vv",
-				"--log-file",
-				"/tmp/lsp_python.log"
-			],
-			"trace.server": "verbose",
-			"filetypes": [
-				"python"
-			],
-			"settings": {
-				"pyls.enable": true,
-				"pyls.trace.server": "verbose",
-				"pyls.commandPath": "",
-				"pyls.configurationSources": [
-					"pycodestyle"
-				],
-				"pyls.plugins.jedi_completion.enabled": true,
-				"pyls.plugins.jedi_hover.enabled": true,
-				"pyls.plugins.jedi_references.enabled": true,
-				"pyls.plugins.jedi_signature_help.enabled": true,
-				"pyls.plugins.jedi_symbols.enabled": true,
-				"pyls.plugins.jedi_symbols.all_scopes": true,
-				"pyls.plugins.mccabe.enabled": true,
-				"pyls.plugins.mypy.enabled": true,
-				"pyls.plugins.mccabe.threshold": 15,
-				"pyls.plugins.preload.enabled": true,
-				"pyls.plugins.flake8.enabled": true,
-				"pyls.plugins.flake8.ignore": [
-					"E203"
-				],
-				"pyls.plugins.pycodestyle.enabled": true,
-				"pyls.plugins.pydocstyle.enabled": false,
-				"pyls.plugins.pydocstyle.match": "(?!test_).*\\.py",
-				"pyls.plugins.pydocstyle.matchDir": "[^\\.].*",
-				"pyls.plugins.pyflakes.enabled": true,
-				"pyls.plugins.rope_completion.enabled": true,
-				// "pyls.plugins.yapf.enabled": true
-			}
-		}
-	}
+  // In order to skip format on save use ":noa w"
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "json",
+    "jsonc",
+    "python",
+    "rust",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx"
+  ],
+  "rust-analyzer.inlayHints.chainingHintsSeparator": "&",
+  "yaml.format.enable": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
+    },
+    "haskell": {
+      "command": "hie-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml"
+      ],
+      "filetypes": ["hs", "lhs", "haskell"],
+      "initializationOptions": {
+        "haskell": {}
+      }
+    },
+    "python": {
+      "command": "pyls",
+      "args": ["-vv", "--log-file", "/tmp/lsp_python.log"],
+      "trace.server": "verbose",
+      "filetypes": ["python"],
+      "settings": {
+        "pyls.enable": true,
+        "pyls.trace.server": "verbose",
+        "pyls.commandPath": "",
+        "pyls.configurationSources": ["pycodestyle"],
+        "pyls.plugins.jedi_completion.enabled": true,
+        "pyls.plugins.jedi_hover.enabled": true,
+        "pyls.plugins.jedi_references.enabled": true,
+        "pyls.plugins.jedi_signature_help.enabled": true,
+        "pyls.plugins.jedi_symbols.enabled": true,
+        "pyls.plugins.jedi_symbols.all_scopes": true,
+        "pyls.plugins.mccabe.enabled": true,
+        // "pyls.plugins.mypy.enabled": true,
+        "pyls.plugins.mccabe.threshold": 15,
+        "pyls.plugins.preload.enabled": true,
+        "pyls.plugins.flake8.enabled": true,
+        "pyls.plugins.flake8.ignore": ["E203"],
+        "pyls.plugins.pycodestyle.enabled": false,
+        "pyls.plugins.pycodestyle.maxLineLength": 100,
+        "pyls.plugins.pydocstyle.enabled": false,
+        "pyls.plugins.pydocstyle.match": "(?!test_).*\\.py",
+        "pyls.plugins.pydocstyle.matchDir": "[^\\.].*",
+        "pyls.plugins.pyflakes.enabled": true,
+        "pyls.plugins.rope_completion.enabled": true,
+        "pyls.plugins.yapf.enabled": false,
+        "pyls.plugins.autopep8.enabled": false,
+        "pyls.plugins.black.enabled": true,
+        "pyls.plugins.isort.enabled": true
+      }
+    },
+    "rust": {
+      "command": "rust-analyzer",
+      "args": [],
+      "filetypes": ["rust"]
+    }
+  }
 }
