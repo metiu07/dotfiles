@@ -70,6 +70,16 @@ else
 	set -gx VISUAL nano
 end
 
+# Set the fzf color theme (https://github.com/junegunn/fzf/wiki/Color-schemes)
+# Gruvbox
+set -x FZF_DEFAULT_OPTS "\
+   --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+   --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54"
+# Nord
+# set -x FZF_DEFAULT_OPTS "\
+#    --color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C \
+#    --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B"
+
 # Setup the ls aliases preffer exa
 if command -v exa >/dev/null 2>&1
 	functions -e ls; alias ls='exa --icons --group-directories-first'
