@@ -277,7 +277,7 @@ function _font_list -d 'List available font families'
 	# TODO: For some reason alacritty loads the wrong font if the family
 	# contains ','. For now strip everyting that is before the ','. (This is a hack)
 	# fc-list -f '%{family}\n' | awk '!x[$0]++' | sed 's/\(.*\),.*/\1/' | sort -ru
-	fc-list -f '%{family}\n' | awk '!x[$0]++' | sed 's/.*,\(.*\)/\1/' | sort -ru
+	fc-list -f '%{family}\n' | awk '!x[$0]++' | sed 's/.*,\(.*\)/\1/' | grep -vi 'nerd font mono' | grep -vi 'stix' | sort -ru
 end
 
 # TODO: Create fzf alternative
@@ -285,6 +285,10 @@ end
 # TODO: User can change default selecter via the variable
 function _rofi_select_font -d 'Select the font using rofi'
 	string trim (_font_list | rofi -dmenu -i)
+end
+
+function _fzf_select_font -d 'Select the font using fzf'
+	string trim (_font_list | fzf -i)
 end
 
 # TODO: Create new function with default fallbacks e.g
