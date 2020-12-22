@@ -576,3 +576,17 @@ function _progress -d "Display ascii progress bar"
 	string repeat --no-newline -n "$complete" "$symbol_complete"
 	string repeat -n (math 10 - "$complete") "$symbol_incomplete"
 end
+
+function _trans -d "Translate word using rofi"
+	set -l tmp_file (mktemp)
+	# TODO: How to set the tooltip/default text
+	trans -no-ansi $argv[1] (rofi -dmenu -p $argv[2]) > $tmp_file && zenity --title "Trans - $argv[1]" --text-info --filename $tmp_file
+end
+
+function trans_sk -d "Translate slovak word"
+	_trans "sk:" "Slovak"
+end
+
+function trans_en -d "Translate english word"
+	_trans ":en" "English"
+end
