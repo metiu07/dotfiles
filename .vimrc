@@ -52,6 +52,16 @@ Plugin 'stephpy/vim-yaml'
 Plugin 'cespare/vim-toml'
 Plugin 'plasticboy/vim-markdown'
 "TODO: Install conceal for latex https://github.com/PietroPate/vim-tex-conceal
+"TODO: Checkout for toggle line numbers https://github.com/myusuf3/numbers.vim
+
+" Typescript
+Plugin 'HerringtonDarkholme/yats.vim'
+" Plugin 'pangloss/vim-javascript'
+" Plugin 'neoclide/vim-jsx-improve'
+" Plugin 'leafgarland/typescript-vim'
+" Plugin 'peitalin/vim-jsx-typescript'
+" set filetypes as typescriptreact
+" autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 " FZF
 Plugin 'junegunn/fzf.vim'
