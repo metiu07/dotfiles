@@ -33,6 +33,8 @@
 [absorb]
 	maxStack = 50
 
+# TODO: Add alias to show log of a function
+# git log -L:<function>:file
 [alias]
 	a = add
 	amend = commit --amend --verbose
