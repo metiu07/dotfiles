@@ -42,6 +42,11 @@
     "destination": "~/.config/bash/aliases",
     "name": "Mac bash alias configuration"
   },
+  "bat": {
+    "source": "./.config/bat",
+    "destination": "~/.config/bat",
+    "name": "Bat configuration"
+  },
   "compton_blur": {
     "source": "./.config/compton/compton_blur.conf",
     "destination": "~/.config/compton/compton_blur.conf",
