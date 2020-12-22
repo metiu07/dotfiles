@@ -117,6 +117,7 @@ This wouldn't have been possible without other people who share their dotfiles. 
 
 |Name/Link|Note|
 |-|-|
+|https://github.com/valebes/nix-dotfiles | |
 |https://gitlab.com/JoelDimbernat/rofi-menus | |
 |https://github.com/davidpdrsn| |
 |https://github.com/LukeSmithxyz/voidrice | |

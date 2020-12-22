@@ -4,101 +4,71 @@
     font-family: "Ubuntu Nerd Font";
     font-size: 13px;
     min-height: 0;
-    /* background: #00171f; */
-    background: #000f14;
 }
+
+@import "gruvbox.css";
 
 window#waybar {
-    /* background: transparent; */
-    /* color: white; */
-    color: white;
+    background: rgba(40, 40, 40, 1);
+    border-bottom: 3px solid rgba(69, 133, 136, 1);
+    color: @white_b;
 }
-
-#window {
-    font-weight: bold;
-    font-family: "Ubuntu";
-}
-/*
-#workspaces {
-    padding: 0 5px;
-}
-*/
 
 #workspaces button {
     padding: 0 5px;
     background: transparent;
-    color: white;
-    border-top: 2px solid transparent;
+    color: @white_b;
+    border-bottom: 3px solid transparent;
 }
 
 #workspaces button.focused {
-    color: #007ea7;
-    border-top: 2px solid #007ea7;
+    background: @blue;
+    border-bottom: 3px solid @blue;
+}
+
+#mode, #clock, #battery {
+    padding: 0 10px;
+    margin: 0 5px;
 }
 
 #mode {
-    background: #64727D;
-    border-bottom: 3px solid white;
-}
-
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode {
-    padding: 0 3px;
-    margin: 0 2px;
+    background: @red;
+    border-bottom: 3px solid @white_b;
 }
 
 #clock {
-    font-weight: bold;
+    background-color: @orange_b;
+    color: @white_b;
 }
 
 #battery {
-}
-
-#battery icon {
-    color: red;
+    background-color: @white_b;
+    color: @background;
 }
 
 #battery.charging {
+    color: @background;
+    background-color: @green;
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: black;
+        background-color: @white_b;
+        color: @background;
     }
 }
 
+#idle_inhibitor, #pulseaudio, #custom-openvpn, #network, #cpu, #memory, #temperature, #backlight, #battery, #clock, #tray {
+     padding: 0 6px;
+     margin: 0 3px;
+}
+
 #battery.warning:not(.charging) {
-    color: white;
+    background: @red;
+    color: @white_b;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-
-#cpu {
-}
-
-#memory {
-}
-
-#network {
-}
-
-#network.disconnected {
-    background: #003459;
-}
-
-#pulseaudio {
-}
-
-#pulseaudio.muted {
-}
-
-#custom-spotify {
-    color: rgb(102, 220, 105);
-}
-
-#tray {
-}
-
