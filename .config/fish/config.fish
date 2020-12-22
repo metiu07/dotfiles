@@ -505,7 +505,7 @@ function docker-rmi -d "Remove docker images"
 end
 
 function temp_env -d "Create new temporary virtualenv"
-	set dir (mktemp -d venv.XXX)
+	set dir (mktemp -d venv.XXX --tmpdir)
 	python -m venv "$dir"
 	. "$dir/bin/activate.fish"
 end
