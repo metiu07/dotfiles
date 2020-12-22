@@ -364,6 +364,10 @@ set ttyfast
 set hidden
 set secure
 set updatetime=100
+" If in insert mode, don't enable the mouse
+" This causes the paste to paste directly at the text cursor
+" instead moving to mouse cursor coordinates and then pasting
+set mouse=nvch
 
 " Numbers
 set ruler
