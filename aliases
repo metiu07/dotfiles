@@ -20,7 +20,7 @@ alias du='du -ch'                           # du:           Always human readabl
 alias dus='du -chs'                         # du:           Summary
 alias rg='rg -S --hidden'                   # rg:           By default use smart case
 alias path='echo {$PATH} | tr " " "\n"'     # path:         Echo all executable Paths
-alias tmux='tmux -f $HOME/.config/tmux/tmux.conf' # tmux:   Set the default config dir for tmux
+alias tmux='tmux -u -f $HOME/.config/tmux/tmux.conf' # tmux:   Set the default config dir for tmux
 alias htop='htop -t'                        # htop:         Always preffer the tree view
 alias g='git status -sb'                    # g:            Fast git status
 alias r2='r2 -c "e scr.prompt.vi=true"'     # r2:           Vim bindings for radare2
