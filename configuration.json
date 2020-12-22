@@ -216,6 +216,11 @@
     "destination": "~/.Xresources",
     "name": "Xresources (xorg) configuration"
   },
+  "zathura": {
+    "source": "./.config/zathura",
+    "destination": "~/.config/zathura",
+    "name": "Zathura (pdf viewer) configuration"
+  },
   "zsh": {
     "source": "./.zshrc",
     "destination": "~/.zshrc",
