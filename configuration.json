@@ -6,20 +6,11 @@
   },
   "bash": {
     "name": "Default bash configuration",
-    "$deps": [
-      "bashrc_linux",
-      "bash_profile",
-      "bash_aliases",
-      "inputrc"
-    ]
+    "$deps": ["bashrc_linux", "bash_profile", "bash_aliases", "inputrc"]
   },
   "bash_posix": {
     "name": "Posix bash configuration",
-    "$deps": [
-      "bashrc_posix",
-      "bash_profile",
-      "bash_aliases_posix"
-    ]
+    "$deps": ["bashrc_posix", "bash_profile", "bash_aliases_posix"]
   },
   "bashrc_linux": {
     "source": "./.bashrc",
@@ -73,17 +64,11 @@
   },
   "emacs": {
     "name": "Emacs doom config configuration",
-    "$deps": [
-      "emacs_doom_init",
-      "emacs_doom_config"
-    ]
+    "$deps": ["emacs_doom_init", "emacs_doom_config"]
   },
   "fish": {
     "name": "Default fish configuration",
-    "$deps": [
-      "fish_config",
-      "fish_aliases"
-    ],
+    "$deps": ["fish_config", "fish_aliases"],
     "install": "./scripts/install_fish.fish"
   },
   "fish_aliases": {
@@ -115,9 +100,7 @@
     "source": "./.config/i3/config",
     "destination": "~/.config/i3/config",
     "name": "i3 window manager configuration",
-    "$deps": [
-      "polybar"
-    ]
+    "$deps": ["polybar"]
   },
   "i3.matus": {
     "source": "./.config/i3/config.matus",
@@ -154,9 +137,7 @@
     "source": "./.config/polybar/config",
     "destination": "~/.config/polybar/config",
     "name": "Polybar configuration",
-    "$deps": [
-      "polybar_launch"
-    ]
+    "$deps": ["polybar_launch"]
   },
   "polybar_launch": {
     "source": "./.config/polybar/launch.sh",
@@ -167,10 +148,7 @@
     "source": "./.config/ranger/rc.conf",
     "destination": "~/.config/ranger/rc.conf",
     "name": "Ranger configuration",
-    "$deps": [
-      "ranger_rifle",
-      "ranger_scope"
-    ]
+    "$deps": ["ranger_rifle", "ranger_scope"]
   },
   "ranger_rifle": {
     "source": "./.config/ranger/rifle.conf",
@@ -201,10 +179,7 @@
     "source": "./.config/sway/config",
     "destination": "~/.config/sway/config",
     "name": "Sway window manager configuration",
-    "$deps": [
-      "mako",
-      "waybar"
-    ]
+    "$deps": ["mako", "waybar"]
   },
   "tmux": {
     "source": "./.tmux.conf",
