@@ -98,9 +98,40 @@ let g:fzf_preview_window = 'up:60%'
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/.config/vim/vim-lsp.log')
 
+" Debugging
+" Plugin 'puremourning/vimspector'
+" let g:vimspector_enable_mappings = 'HUMAN'
+
 " CoC
+" TODO: Checkout https://github.com/neoclide/coc-pairs
+" Plugin 'jiangmiao/auto-pairs'
+" Disabled because of: https://github.com/jiangmiao/auto-pairs/issues/272
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = ['coc-json',
+			\ 'coc-prettier',
+			\ 'coc-clangd',
+			\ 'coc-yaml',
+			\ 'coc-tsserver',
+			\ 'coc-rust-analyzer',
+			\ 'coc-snippets',
+			\ 'coc-texlab',
+			\ 'coc-vimlsp']
 let g:coc_config_home = expand('~/.config/vim')
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -163,8 +194,10 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -179,17 +212,6 @@ if exists('*complete_info')
 else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-      let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 " Mappings for CoCList
 " Show all diagnostics.
