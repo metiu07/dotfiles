@@ -54,6 +54,12 @@ bindsym $mod+Alt+w exec --no-startup-id fish -c "wallpaper"
 # Wal themes
 bindsym $mod+Shift+t exec --no-startup-id fish -c "wal-theme"
 
+# Translator
+bindsym $mod+p exec fish -c "trans_sk"
+
+# Dictionary
+bindsym $mod+Shift+p exec fish -c "trans_en"
+
 # Programs
 # bindsym $mod+F1 exec thunar
 # bindsym $mod+F1 exec spacefm
@@ -209,6 +215,7 @@ for_window [title="Firefox - Sharing Indicator"] floating enable
 for_window [title="Launch Application"] floating enable
 for_window [title="Picture-in-Picture"] floating enable
 for_window [title="Picture-in-Picture"] sticky enable
+for_window [title="Trans - .*"] focus, floating enable, resize set 700 900
 
 # Assign the programs to workspaces
 assign [class="Slack"] 3
