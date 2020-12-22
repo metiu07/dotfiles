@@ -444,6 +444,8 @@ function docker-df -d "Report docker disk space usage"
 end
 
 function docker-cleanup -d "Clean up docker space"
+	# TODO: Add some king of user interaction
+	# TODO: Add error handling in case commnads don't have any containers to delete
 	sudo docker volume rm (sudo docker volume ls -f dangling=true -q)
 	sudo docker rmi (sudo docker images -f "dangling=true" -q)
 	sudo docker rm (sudo docker ps -a -f status=exited -q)
@@ -520,7 +522,8 @@ end
 function _ssh-add -d "Add new ssh-key to the ssh-agent"
 	# Startup the ssh-agent if not running
 	[ -z "$SSH_AGENT_PID" ] && eval (ssh-agent -c)
-
+	
+	# TODO: Filter out keys that are already active
 	set -l _key (fd 'id_.*[^\.][^p][^u][^b]$' ~/.ssh/ | fzf --height 15 --prompt "Select a key to add: " --layout=reverse)
 	# TODO: Check if they _key is valid
 	ssh-add "$_key"
