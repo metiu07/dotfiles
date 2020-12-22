@@ -288,6 +288,12 @@ exec_always --no-startup-id "killall -q nm-applet; nm-applet --indicator"
 # Startup the bluetooth manager
 exec_always --no-startup-id "killall -q blueman-applet; blueman-applet"
 
+# Startup the habits notifier
+exec_always --no-startup-id "killall -q habi; habi"
+
+# Startup the pomodoro timer
+exec_always --no-startup-id "killall -q pomod; pomod"
+
 # Startup the keyboard mouse navigation
 # exec --no-startup-id keynav
 
