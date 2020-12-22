@@ -176,8 +176,8 @@
     "name": "Screen (gnu) configuration"
   },
   "sway": {
-    "source": "./.config/sway/config",
-    "destination": "~/.config/sway/config",
+    "source": "./.config/sway",
+    "destination": "~/.config/sway",
     "name": "Sway window manager configuration",
     "$deps": ["mako", "waybar"]
   },

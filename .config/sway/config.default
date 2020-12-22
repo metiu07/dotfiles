@@ -1,0 +1,25 @@
+# Theme colors
+# Border color is esentialy set with barckground color
+# class                   border  backgr. text    indic.   child_border
+#  client.focused          #A3B8BF #A4BAC1 #80FFF9 #007700
+#  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+#  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+#  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+#  client.placeholder      #000000 #0C0C0C #FFFFFF #000000
+#
+#  client.background       #2B2C2B
+
+
+# background: #000f14;
+# focused:    #007ea7;
+# danger:     #003459;
+# indicator:  #00a8e8;
+
+# class                 border  backgr. text    indic.   child_border
+client.focused          #003459 #000f14 #ffffff #00a8e8  #000f14
+client.focused_inactive #007ea7 #000f14 #ffffff #00a8e8  #000f14
+client.unfocused        #007ea7 #000f14 #ffffff #00a8e8  #000f14
+client.urgent           #007ea7 #000f14 #ffffff #00a8e8  #000f14
+client.placeholder      #007ea7 #000f14 #ffffff #00a8e8  #000f14
+
+client.background       #ffffff

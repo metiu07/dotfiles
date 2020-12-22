@@ -288,36 +288,9 @@ input type:touchpad {
       drag disabled
 }
 
-# Theme colors
-# Border color is esentialy set with barckground color
-# class                   border  backgr. text    indic.   child_border
-#  client.focused          #A3B8BF #A4BAC1 #80FFF9 #007700
-#  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-#  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-#  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-#  client.placeholder      #000000 #0C0C0C #FFFFFF #000000
-#
-#  client.background       #2B2C2B
-
-
-# background: #000f14;
-# focused:    #007ea7;
-# danger:     #003459;
-# indicator:  #00a8e8;
-
-# class                 border  backgr. text    indic.   child_border
-client.focused          #003459 #000f14 #ffffff #00a8e8  #000f14
-client.focused_inactive #007ea7 #000f14 #ffffff #00a8e8  #000f14
-client.unfocused        #007ea7 #000f14 #ffffff #00a8e8  #000f14
-client.urgent           #007ea7 #000f14 #ffffff #00a8e8  #000f14
-client.placeholder      #007ea7 #000f14 #ffffff #00a8e8  #000f14
-
-client.background       #ffffff
-
-
 # Set inner/outer gaps
-# gaps inner 14
-# gaps outer -2
+gaps inner 5
+gaps outer 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -382,3 +355,4 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+include ~/.config/sway/config.gruvbox
