@@ -156,6 +156,9 @@ abbr -a -g SL "ssh-add -l"
 # Git shortcut
 abbr -a -g g "git"
 
+# Docker abbrs
+abbr -a -g DR "sudo docker run --rm -it --detach-keys=\"ctrl-@\""
+
 # This is a fish alias to automatically change the directory to the last visited
 # one after ranger quits.
 function cdranger -d 'Ranger stay in directory after exit.'
