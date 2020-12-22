@@ -455,9 +455,9 @@ function docker-bash -d "Spawn bash in docker"
 
 	[ -z "$selected_container" ]; and return
 	if [ (count $argv) -eq 0 ];
-		sudo docker exec -it "$selected_container" bash
+		sudo docker exec -it --detach-keys="ctrl-@" "$selected_container" bash
 	else
-		sudo docker exec -it "$selected_container" $argv
+		sudo docker exec -it --detach-keys="ctrl-@" "$selected_container" $argv
 	end
 end
 
