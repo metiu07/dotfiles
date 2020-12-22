@@ -75,6 +75,7 @@ if command -v exa >/dev/null 2>&1
 	functions -e ls; alias ls='exa --icons --group-directories-first'
 	functions -e ll; alias ll='exa --icons -laF --group-directories-first'
 	functions -e lll; alias lll='exa -laF --icons --tree --level=2 --group-directories-first'
+	functions -e llll; alias llll='exa -laF --icons --tree --group-directories-first'
 else if command -v lsd >/dev/null 2>&1
 	functions -e ls; alias ls='lsd -F --group-dirs first --color=auto'
 	functions -e ll; alias ll='lsd -FlA --group-dirs first --date=relative --blocks=permission,user,size,date,name --color=auto'
