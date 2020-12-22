@@ -71,7 +71,7 @@
 	remote = remote -v
 	rh = reset --hard
 	rhom = reset --hard origin/master
-	s = status --short --branch
+	s = status --branch
 	sm = submodule
 	smu = submodule update --init --recursive
 	sh = stash
