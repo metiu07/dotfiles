@@ -1,3 +1,4 @@
+set colored-stats On
 set editing-mode vi
 set keymap vi-command
 "gg": beginning-of-history
@@ -6,3 +7,5 @@ set keymap vi-insert
 # "jj": vi-movement-mode
 "\C-p": history-search-backward C-L: clear-screen 
 "\C-n": history-search-forward C-L: clear-screen 
+"\C-a": beginning-of-line
+"\C-e": end-of-line
