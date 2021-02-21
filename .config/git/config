@@ -56,6 +56,12 @@
 	ds = diff --staged
 	f = fetch --all --verbose --prune
 	ignored = ls-files --exclude-standard --ignored --others
+	large = "!git rev-list --objects --all \
+		| git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+		| sed -n 's/^blob //p' \
+		| sort --numeric-sort --key=2 \
+		| cut -c 1-12,41- \
+		| numfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
 	l = log --decorate --graph --oneline -20
 	ll = log --decorate --graph
 	lla = log --all --decorate --graph --oneline
