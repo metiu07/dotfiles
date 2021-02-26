@@ -479,6 +479,10 @@ end
 
 autocmd BufNewFile,BufRead *.yar,*.yara set filetype=yara
 
+" Set the dockerfile filetype for every file that starts with Dockerfile
+" For example: Dockerfile.backend, Dockerfile.frontend
+autocmd BufNewFile,BufRead Dockerfile* set filetype=dockerfile
+
 " Conceal
 "
 " By default be more explicit
