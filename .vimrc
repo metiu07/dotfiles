@@ -47,6 +47,7 @@ Plugin 'luochen1990/rainbow'
 " Plugin 'dag/vim-fish' This plugin has wrong highting when there is a '
 " escaped in the string
 Plugin 'blankname/vim-fish'
+Plugin 'udalov/kotlin-vim'
 Plugin 'kevinoid/vim-jsonc'
 Plugin 'stephpy/vim-yaml'
 Plugin 'cespare/vim-toml'
@@ -323,7 +324,14 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+
 syntax on
+
+" Fix the annoying syntax bug when scrolling. This can be slow for large
+" files, but is always accurate. In case of performance problems consider
+" restricting this only to particular file types.
+syntax sync fromstart
+
 " set cursorline
 if !has('gui_running')
   set t_Co=256
