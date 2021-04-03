@@ -516,6 +516,9 @@ function! s:ToggleSpelllang()
 endfunction
 nnoremap <silent> <leader>tS :call <SID>ToggleSpelllang()<CR>
 
+" Formatting
+nnoremap Q vapgq
+
 " https://coreyja.com/vim-spelling-suggestions-fzf/
 function! FzfSpellSink(word)
   exe 'normal! "_ciw'.a:word
@@ -602,4 +605,5 @@ augroup end
 augroup markdown
 au!
 au FileType markdown setl spell         " Enable spellchecking.
+au BufRead,BufNewFile *.md setlocal textwidth=80
 augroup end
