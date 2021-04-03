@@ -451,23 +451,23 @@ end
 
 # TODO: Create separate package for docker functions
 function docker-df -d "Report docker disk space usage"
-	sudo docker system df
+	docker system df
 	# TODO: Add other checks if any
 end
 
 function docker-cleanup -d "Clean up docker space"
 	# TODO: Add some king of user interaction
 	# TODO: Add error handling in case commnads don't have any containers to delete
-	sudo docker volume rm (sudo docker volume ls -f dangling=true -q)
-	sudo docker rmi (sudo docker images -f "dangling=true" -q)
-	sudo docker rm (sudo docker ps -a -f status=exited -q)
+	docker volume rm (docker volume ls -f dangling=true -q)
+	docker rmi (docker images -f "dangling=true" -q)
+	docker rm (docker ps -a -f status=exited -q)
 end
 
 # TODO: Maybe swap the order of selected_container and argv, this is preffered I think
 function _select-docker-container -d "Helper function to select docker container"
 	set -l preview_format "Name:\t\t{{.Names}}\nCommand:\t{{.Command}}\nStatus:\t\t{{.Status}}\nSize:\t\t{{.Size}}\nPorts:\t\t{{.Ports}}\nMounts:\t\t{{.Mounts}}\nNetworks:\t{{.Networks}}"
-	set -l containers (sudo docker ps --format "{{.Names}}" $argv)
-	set -l selected_container (echo "$containers" | tr ' ' '\n' | fzf --preview="sudo docker ps --filter 'name={1}' --format '$preview_format'" | cut -d " " -f 2)
+	set -l containers (docker ps --format "{{.Names}}" $argv)
+	set -l selected_container (echo "$containers" | tr ' ' '\n' | fzf --preview="docker ps --filter 'name={1}' --format '$preview_format'" | cut -d " " -f 2)
 	echo "$selected_container"
 end
 
@@ -476,9 +476,9 @@ function docker-bash -d "Spawn bash in docker"
 
 	[ -z "$selected_container" ]; and return
 	if [ (count $argv) -eq 0 ];
-		sudo docker exec -it --detach-keys="ctrl-@" "$selected_container" bash
+		docker exec -it --detach-keys="ctrl-@" "$selected_container" bash
 	else
-		sudo docker exec -it --detach-keys="ctrl-@" "$selected_container" $argv
+		docker exec -it --detach-keys="ctrl-@" "$selected_container" $argv
 	end
 end
 
@@ -486,35 +486,35 @@ function docker-attach -d "Attach to a docker container"
 	set -l selected_container (_select-docker-container)
 
 	[ -z "$selected_container" ]; and return
-	sudo docker attach "$selected_container"
+	docker attach "$selected_container"
 end
 
 function docker-kill -d "Kill docker container"
 	set -l selected_container (_select-docker-container)
 
 	[ -z "$selected_container" ]; and return
-	sudo docker kill "$selected_container" $argv
+	docker kill "$selected_container" $argv
 end
 
 function docker-restart -d "Restart docker container"
 	set -l selected_container (_select-docker-container)
 
 	[ -z "$selected_container" ]; and return
-	sudo docker restart "$selected_container" $argv
+	docker restart "$selected_container" $argv
 end
 
 function docker-log -d "Display container logs"
 	set -l selected_container (_select-docker-container)
 
 	[ -z "$selected_container" ]; and return
-	sudo docker logs "$selected_container" $argv
+	docker logs "$selected_container" $argv
 end
 
 function docker-inspect -d "Inspect docker container"
 	set -l selected_container (_select-docker-container)
 
 	[ -z "$selected_container" ]; and return
-	sudo docker inspect "$selected_container"
+	docker inspect "$selected_container"
 end
 
 
@@ -522,7 +522,7 @@ function docker-rmi -d "Remove docker images"
 	set -l selected_container (_select-docker-container)
 
 	[ -z "$selected_container" ]; and return
-	sudo docker rmi "$selected_container" $argv
+	docker rmi "$selected_container" $argv
 end
 
 function temp_env -d "Create new temporary virtualenv"
