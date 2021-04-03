@@ -159,7 +159,10 @@ abbr -a -g SL "ssh-add -l"
 abbr -a -g g "git"
 
 # Docker abbrs
-abbr -a -g DR "sudo docker run --rm -it --detach-keys=\"ctrl-@\""
+abbr -a -g DR "docker run --rm -it --detach-keys=\"ctrl-@\""
+abbr -a -g DRR "docker run --rm -it --detach-keys=\"ctrl-@\" -w (pwd) -v (pwd):(pwd)"
+abbr -a -g DRRR "docker run --rm -it --detach-keys=\"ctrl-@\" --network none -w (pwd) -v (pwd):(pwd)"
+
 
 # This is a fish alias to automatically change the directory to the last visited
 # one after ranger quits.
