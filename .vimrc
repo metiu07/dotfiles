@@ -355,10 +355,10 @@ color gruvbox
 
 " Gruvbox spell in terminal is not supported, modify it
 " TODO: Better colors
-highlight SpellCap cterm=reverse,italic gui=reverse,italic guifg=green
-highlight SpellBad cterm=reverse,italic gui=reverse,italic guifg=red
-highlight SpellLocal cterm=reverse,italic gui=reverse,italic
-highlight SpellRare cterm=reverse,italic gui=reverse,italic guifg=blue
+highlight SpellCap cterm=undercurl gui=undercurl guifg=green
+highlight SpellBad cterm=undercurl gui=undercurl guifg=red guisp=red
+highlight SpellLocal cterm=undercurl gui=undercurl
+highlight SpellRare cterm=undercurl gui=undercurl guifg=blue
 
 let g:lightline = { 'colorscheme': 'gruvbox' }
 
