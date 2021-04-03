@@ -122,6 +122,9 @@ set -gx WEECHAT_HOME "$HOME/.config/weechat"
 set -gx TASKRC ~/.config/task/.taskrc
 set -gx TIMEWARRIORDB ~/.config/task/.timewarrior.cfg
 
+# Set kubectl configuration file
+set -gx KUBECONFIG "$HOME/.config/kube/config"
+
 # Makepkg should build packages with all available threads
 set -gx MAKEFLAGS '-j'(nproc)
 
