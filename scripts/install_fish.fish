@@ -1,6 +1,6 @@
 #!/bin/fish
-curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 
-fisher add jethrokuan/z
-fisher add rafaelrinaldi/pure
-fisher add laughedelic/pisces
+fisher install jethrokuan/z
+fisher install rafaelrinaldi/pure
+fisher install laughedelic/pisces
