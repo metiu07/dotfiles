@@ -375,3 +375,7 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+bar {
+    status_command i3status
+}
+
