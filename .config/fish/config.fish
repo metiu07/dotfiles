@@ -27,6 +27,8 @@ bind \cA beginning-of-line
 bind \cr _fzf-multi-command-history-widget
 bind \cr -M insert _fzf-multi-command-history-widget
 
+fzf_key_bindings
+
 # Let theme prompt handle the virtualenv indicator
 set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
 
