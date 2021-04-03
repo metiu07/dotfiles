@@ -438,7 +438,7 @@ end
 
 alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias vimt="vim (mktemp)"
-# TODO: Add vimf alias to find a file in current directory = vim (ff)
+alias vimf="vim (ff)"
 
 function source_global -d "Interactive source python env"
 	# TODO: Handle multiselection
