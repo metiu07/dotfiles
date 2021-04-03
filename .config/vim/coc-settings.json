@@ -46,33 +46,30 @@
       "trace.server": "verbose",
       "filetypes": ["python"],
       "settings": {
-        "pyls.enable": true,
-        "pyls.trace.server": "verbose",
-        "pyls.commandPath": "",
-        "pyls.configurationSources": ["pycodestyle"],
-        "pyls.plugins.jedi_completion.enabled": true,
-        "pyls.plugins.jedi_hover.enabled": true,
-        "pyls.plugins.jedi_references.enabled": true,
-        "pyls.plugins.jedi_signature_help.enabled": true,
-        "pyls.plugins.jedi_symbols.enabled": true,
-        "pyls.plugins.jedi_symbols.all_scopes": true,
-        "pyls.plugins.mccabe.enabled": true,
-        // "pyls.plugins.mypy.enabled": true,
-        "pyls.plugins.mccabe.threshold": 15,
-        "pyls.plugins.preload.enabled": true,
-        "pyls.plugins.flake8.enabled": true,
-        "pyls.plugins.flake8.ignore": ["E203"],
-        "pyls.plugins.pycodestyle.enabled": false,
-        "pyls.plugins.pycodestyle.maxLineLength": 100,
-        "pyls.plugins.pydocstyle.enabled": false,
-        "pyls.plugins.pydocstyle.match": "(?!test_).*\\.py",
-        "pyls.plugins.pydocstyle.matchDir": "[^\\.].*",
-        "pyls.plugins.pyflakes.enabled": true,
-        "pyls.plugins.rope_completion.enabled": true,
-        "pyls.plugins.yapf.enabled": false,
-        "pyls.plugins.autopep8.enabled": false,
-        "pyls.plugins.black.enabled": true,
-        "pyls.plugins.isort.enabled": true
+        "pyls": {
+          "configurationSources": ["pycodestyle"],
+          "plugins": {
+            "pycodestyle": { "enabled": false, "maxLineLength": 100 },
+
+            "pydocstyle.enabled": false,
+            "pydocstyle.match": "(?!test_).*\\.py",
+            "pydocstyle.matchDir": "[^\\.].*",
+
+            "pyflakes": { "enabled": true },
+            "mccabe": { "enabled": true, "threshold": 15 },
+            "flake8": {
+              "enabled": true,
+              "ignore": ["E101", "E203", "E402", "W191", "W503"]
+            },
+
+            "pyls_mypy": { "enabled": true },
+            "pyls_black": { "enabled": true },
+            "pyls_isort": { "enabled": true },
+
+            "yapf": { "enabled": false },
+            "autopep8": { "enabled": false }
+          }
+        }
       }
     },
     "rust": {
