@@ -429,12 +429,11 @@ function vimp -d "Interactive vim open file in a project"
 	# TODO: Rice fzf here
 	set -l project_dir (command ls ~/dev | fzf --height 15 --prompt "Select a project: " --layout=reverse)
     [ -z "$project_dir" ] && return
-	pushd "$HOME/dev/$project_dir"
+	cd "$HOME/dev/$project_dir"
 	set -l selected_file (ff)
     [ -z "$selected_file" ] && return
 	commandline "vim \"$selected_file\""
 	commandline -f execute
-	popd
 end
 
 alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
