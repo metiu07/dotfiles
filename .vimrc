@@ -506,6 +506,9 @@ au FileType * setl conceallevel=0
 set spelllang=en_us,en_gb
 nnoremap <silent> <leader>ts :set spell!<CR>:set spell?<CR>
 
+" Correct the last spelling error
+inoremap <C-l> <C-g>u<ESC>[s1z=`]a<C-g>u
+
 function! s:ToggleSpelllang()
 	if &spelllang =~ 'en'
 		set spelllang=sk
