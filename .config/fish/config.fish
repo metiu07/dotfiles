@@ -166,6 +166,11 @@ abbr -a -g DR "docker run --rm -it --detach-keys=\"ctrl-@\""
 abbr -a -g DRR "docker run --rm -it --detach-keys=\"ctrl-@\" -w (pwd) -v (pwd):(pwd)"
 abbr -a -g DRRR "docker run --rm -it --detach-keys=\"ctrl-@\" --network none -w (pwd) -v (pwd):(pwd)"
 
+# This is skip the pacman check for a missing command.
+# See: https://github.com/fish-shell/fish-shell/issues/7841
+function fish_command_not_found
+    __fish_default_command_not_found_handler $argv
+end
 
 # This is a fish alias to automatically change the directory to the last visited
 # one after ranger quits.
