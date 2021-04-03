@@ -330,7 +330,8 @@ syntax on
 " Fix the annoying syntax bug when scrolling. This can be slow for large
 " files, but is always accurate. In case of performance problems consider
 " restricting this only to particular file types.
-syntax sync fromstart
+" Ref: https://vim.fandom.com/wiki/Fix_syntax_highlighting
+autocmd BufEnter * :syntax sync fromstart
 
 " set cursorline
 if !has('gui_running')
