@@ -26,6 +26,7 @@ alias g='git status -sb'                    # g:            Fast git status
 alias r2='r2 -c "e scr.prompt.vi=true"'     # r2:           Vim bindings for radare2
 alias ipython='ipython --TerminalInteractiveShell.editing_mode=vi' # ipython: Vim bindings for ipython
 alias clear='clear -x'                      # clear: Don't delete scrollback
+alias serve='python3 -m http.server'        # serve: Serve the current directory via http
 
 # big thanks to bangerino for sharing
 # alias docker-kill="sudo docker ps --format '{{.Image}} {{.Names}}' | fzf -m --preview 'sudo docker ps | grep {2}' | cut -d ' ' -f 2 | xargs -I '{}' -r sudo docker kill '{}'"
