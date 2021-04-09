@@ -85,7 +85,7 @@ set -x FZF_DEFAULT_OPTS "\
 # Setup the ls aliases preffer exa
 if command -v exa >/dev/null 2>&1
 	functions -e ls; alias ls='exa --icons --group-directories-first'
-	functions -e ll; alias ll='exa --icons -laF --group-directories-first'
+	functions -e ll; alias ll='exa --icons -laFg --group-directories-first'
 	functions -e lll; alias lll='exa -laF --icons --tree --level=2 --group-directories-first'
 	functions -e llll; alias llll='exa -laF --icons --tree --group-directories-first'
 else if command -v lsd >/dev/null 2>&1
