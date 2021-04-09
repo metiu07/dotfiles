@@ -32,11 +32,13 @@ code
 cpio
 dhcpcd
 dictd
+dnsmasq
 docker
 docker-compose
 dos2unix
 dosfstools
 doxygen
+ebtables
 efibootmgr
 emacs
 entr
@@ -85,6 +87,7 @@ libappindicator-gtk2
 libappindicator-gtk3
 libreoffice-fresh
 libvdpau-va-gl
+libvirt
 light
 lightdm
 lightdm-gtk-greeter
@@ -128,6 +131,7 @@ postgresql
 python
 python-pynvim
 python-pywal
+qemu
 radare2
 ranger
 remind
@@ -172,6 +176,7 @@ ttf-liberation
 unrar
 unzip
 usbutils
+virt-manager
 w3m
 waybar
 weechat

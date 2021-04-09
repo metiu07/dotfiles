@@ -262,6 +262,9 @@ bindswitch --reload lid:off output $laptop enable
 # Pick a random wallpaper from ~/Pictures/Wallpapers
 exec --no-startup-id fish -c wallpaper
 
+# Startup the polkit authenticator agent
+exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 # Startup urxvt daemon
 exec_always --no-startup-id xrdb -merge ~/.Xresources
 exec urxvtd -q -o -f
