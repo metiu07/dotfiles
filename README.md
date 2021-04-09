@@ -126,3 +126,4 @@ This wouldn't have been possible without other people who share their dotfiles. 
 |https://github.com/geohot/configuration | |
 |https://github.com/okubax/dotfiles | |
 |https://github.com/089kili/dotfiles | | 
+|https://github.com/Madic-/Sway-DE | |
