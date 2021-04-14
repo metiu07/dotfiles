@@ -44,12 +44,12 @@ bindsym $mod+d exec rofi -combi-modi drun#ssh#run -show combi
 bindsym $mod+c exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
 
 # Ranger as file manager
-bindsym $mod+o exec --no-startup-id urxvt -e fish -c "ranger-open"
+bindsym $mod+o exec kitty fish -c "TERM=kitty ranger-open"
 
 # Ranger as wallpaper setter
-bindsym $mod+w exec --no-startup-id urxvt -e fish -c "ranger-wallpaper"
-bindsym $mod+Shift+w exec --no-startup-id urxvt -e fish -c "ranger-wal"
-bindsym $mod+Alt+w exec --no-startup-id fish -c "wallpaper"
+bindsym $mod+w exec kitty fish -c "TERM=kitty ranger-wallpaper"
+bindsym $mod+Shift+w exec kitty fish -c "TERM=kitty ranger-wal"
+bindsym $mod+Alt+w exec fish -c "wallpaper"
 
 # Wal themes
 bindsym $mod+Shift+t exec --no-startup-id fish -c "wal-theme"
