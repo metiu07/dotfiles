@@ -6,8 +6,15 @@
 
 [core]
 	whitespace = trailing-space,space-before-tab
-	pager = less
+	# pager = less
+	pager = delta
 	editor = nvim
+
+[interactive]
+	diffFilter = delta --color-only
+
+[diff]
+	colorMoved = default
 
 [fetch]
 	prune = true
@@ -31,6 +38,16 @@
 	tool = vimdiff
 	stat = true
 	log = true
+
+# https://github.com/dandavison/delta
+[delta]
+	features = line-numbers decorations
+    whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
 
 [absorb]
 	maxStack = 50
