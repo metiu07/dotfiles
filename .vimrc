@@ -63,6 +63,7 @@ Plugin 'HerringtonDarkholme/yats.vim'
 " Plugin 'peitalin/vim-jsx-typescript'
 " set filetypes as typescriptreact
 " autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+Plugin 'axvr/org.vim'
 
 " FZF
 Plugin 'junegunn/fzf.vim'
