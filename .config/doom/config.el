@@ -38,3 +38,5 @@
       "TAB"    #'helm-buffer-switch-other-window)))
 
 (setq x-select-enable-clipboard nil)
+
+(setq doom-theme 'doom-gruvbox)
