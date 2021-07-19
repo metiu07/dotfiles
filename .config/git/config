@@ -30,6 +30,8 @@
 	autoStash = true
 	autoSquash = true
 
+[submodule]
+	recurse = true
 
 [status]
 	submoduleSummary = true
