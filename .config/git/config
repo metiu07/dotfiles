@@ -52,6 +52,7 @@
     file-style = bold yellow ul
     file-decoration-style = none
 
+# https://github.com/tummychow/git-absorb
 [absorb]
 	maxStack = 50
 
