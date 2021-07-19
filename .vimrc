@@ -604,6 +604,7 @@ augroup end
 augroup latex
 au!
 au FileType tex,plaintex setl spell    " Enable spell checking.
+au BufRead,BufNewFile *.tex setlocal textwidth=80
 augroup end
 
 augroup markdown
