@@ -14,7 +14,8 @@
 
        :completion
        (company          ; the ultimate code completion backend
-        +childframe)     ; a nicer company UI. Emacs +26 only!
+        ;;+childframe     ; a nicer company UI. Emacs +26 only!
+       )
        (helm             ; the *other* search engine for love and life
         +fuzzy)          ; fuzzy matching
        ;;ido               ; the other *other* search engine...
@@ -22,7 +23,9 @@
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
-       spell             ; tasing you for misspelling mispelling
+       (spell             ; tasing you for misspelling mispelling
+        +flyspell
+        )
        ;;grammar           ; tasing grammar mistake every you make
 
        :ui
@@ -32,7 +35,7 @@
        ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
-       indent-guides     ; highlighted indent columns
+       ;;indent-guides     ; highlighted indent columns
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
        ;;neotree           ; a project drawer, like NERDTree for vim
@@ -55,7 +58,7 @@
        fold              ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
-       multiple-cursors  ; editing in many places at once
+       ;;multiple-cursors  ; editing in many places at once
        ;;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
@@ -73,7 +76,7 @@
 
        :tools
        ;;ansible
-       debugger          ; FIXME stepping through code, to help you add bugs
+       ;;debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        ;;docker
        editorconfig      ; let someone else argue about tabs vs spaces
@@ -93,8 +96,11 @@
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
-       ;;wakatime
        ;;vterm             ; another terminals in Emacs
+
+       :os
+       ;;(:if IS-MAC macos)  ; improve compatibility with macOS
+       tty               ; improve the terminal Emacs experience
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -112,7 +118,7 @@
        emacs-lisp        ; drown in parentheses
        ;;ess               ; emacs speaks statistics
        ;;go                ; the hipster dialect
-       (haskell +intero) ; a language that's lazier than I am
+       ;;(haskell +intero) ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
@@ -127,13 +133,15 @@
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org              ; organize your plain life in plain text
-        +attach          ; custom attachment system
-        +babel           ; running code in org
-        +capture         ; org-capture in and outside of Emacs
+        ;;+attach          ; custom attachment system
+        ;;+babel           ; running code in org
+        ;;+capture         ; org-capture in and outside of Emacs
         +export          ; Exporting org to whatever you want
-        +habit           ; Keep track of your habits
-        +present         ; Emacs for presentations
-        +protocol)       ; Support for org-protocol:// links
+        +roam
+        ;;+habit           ; Keep track of your habits
+        ;;+present         ; Emacs for presentations
+        ;;+protocol
+        )       ; Support for org-protocol:// links
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
