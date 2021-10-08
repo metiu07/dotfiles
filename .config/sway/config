@@ -227,6 +227,11 @@ assign [class="Steam"] 5
 assign [class="csgo_linux64"] 5
 
 # ==================== Autostart ====================
+#
+# Fix long startup of GTK apps
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 # Terminal
 exec --no-startup-id alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
