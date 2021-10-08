@@ -228,6 +228,12 @@ assign [class="csgo_linux64"] 5
 
 # ==================== Autostart ====================
 
+# Terminal
+exec --no-startup-id alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
+
+# Brave browser
+exec --no-startup-id brave
+
 # Disable bell sound
 exec --no-startup-id xset -b
 
