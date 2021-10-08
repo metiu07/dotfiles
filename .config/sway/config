@@ -191,8 +191,8 @@ bindsym $mod+0 mode "$mode_system"
 
 # Pulse Audio controls
 # NOTE: Keycode definitions can be found on https://cgit.freedesktop.org/xorg/proto/x11proto/tree/XF86keysym.h
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +2%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -2%
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +2%; notify-send 'volume up' -h int:value:$(pactl get-sink-volume 0 | grep '[0-9]*%' -o | head -n1 | cut --complement -c 3)"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -2%; notify-send 'volume down' -h int:value:$(pactl get-sink-volume 0 | grep '[0-9]*%' -o | head -n1 | cut --complement -c 3)"
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 # TODO: Decide what to bind on MicMute key
 bindsym XF86AudioMicMute exec --no-startup-id notify-send "test"
