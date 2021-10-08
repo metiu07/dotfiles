@@ -220,6 +220,7 @@ for_window [title="Picture-in-Picture"] sticky enable
 for_window [title="Trans - .*"] focus, floating enable, resize set 700 900
 
 # Assign the programs to workspaces
+assign [class="Brave-browser"] 2
 assign [class="Slack"] 3
 assign [class="discord"] 3
 assign [class="Steam"] 5
