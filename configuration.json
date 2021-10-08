@@ -86,6 +86,11 @@
     "destination": "~/.config/fish/config.fish",
     "name": "Linux fish configuration"
   },
+  "gdb": {
+    "source": "./.config/gdb/gdbinit",
+    "destination": "~/.config/gdb/gdbinit",
+    "name": "GDB configuration"
+  },
   "git": {
     "source": "./.config/git/config",
     "destination": "~/.config/git/config",
