@@ -439,6 +439,7 @@ end
 alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias vimt="vim (mktemp)"
 alias vimf="vim (ff)"
+alias catf="cat (ff)"
 
 function source_global -d "Interactive source python env"
 	# TODO: Handle multiselection
