@@ -10,6 +10,9 @@
 	pager = delta
 	editor = nvim
 
+[commit]
+    verbose = true
+
 [interactive]
 	diffFilter = delta --color-only
 
