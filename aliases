@@ -1,3 +1,4 @@
+alias cal='cal -3m'                         # Preferred 'cal' implementation
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
@@ -9,6 +10,7 @@ alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
 alias c='clear'                             # c:            Clear terminal display
 alias gdb='gdb -q'                          # gdb:          Make gdb start in quiet mode
+alias rust-gdb='rust-gdb -q'                # rust-gdb:     Make rust-gdb start in quiet mode
 alias em='emacsclient -t'                   # emacs:        Emacs shortcut
 alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
 alias alert="echo -ne \"\\a\""              # alert:        Print bell character, this is used for tmux monitoring
@@ -27,6 +29,7 @@ alias r2='r2 -c "e scr.prompt.vi=true"'     # r2:           Vim bindings for rad
 alias ipython='ipython --TerminalInteractiveShell.editing_mode=vi' # ipython: Vim bindings for ipython
 alias clear='clear -x'                      # clear: Don't delete scrollback
 alias serve='python3 -m http.server'        # serve: Serve the current directory via http
+alias timestamp='date --utc +%+4Y%m%dT%H%MZ' # timestamp: Current timestamp in UTC ISO 8601 compliant usable in filenames
 
 # big thanks to bangerino for sharing
 # alias docker-kill="sudo docker ps --format '{{.Image}} {{.Names}}' | fzf -m --preview 'sudo docker ps | grep {2}' | cut -d ' ' -f 2 | xargs -I '{}' -r sudo docker kill '{}'"
