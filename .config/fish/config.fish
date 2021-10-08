@@ -328,6 +328,22 @@ function font-switcher -d 'Change terminal font.'
     _alacritty_set_font "$selected_font"
 end
 
+function random-favorite-font -d 'Change termin font to a random one picked from favorites.'
+    set -l favorite_fonts "Comic Mono" \
+    # "Source Code Pro Medium" \
+    "UbuntuMono Nerd Font" \
+    "agave Nerd Font" \
+    "VictorMono Nerd Font" \
+    "Anonymice Nerd Font" \
+    "TerminessTTF Nerd Font"
+
+    set -l pick_one (random choice $favorite_fonts)
+
+    echo "Random font is: $pick_one"
+
+    _alacritty_set_font "$pick_one"
+end
+
 function random-font -d 'Change terminal font to random one.'
 	set -l selected_font (_font_list | shuf | head -n1)
 	[ -z "$selected_font" ]; and return
