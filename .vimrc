@@ -1,138 +1,74 @@
 " TODO: Banner
-" TODO: Add nvim configuration to source ~/.config/vim/vimrc
+" TODO: Incorporate https://github.com/davidpdrsn/dotfiles/blob/master/nvim/functions.vim#L402
+" TODO: Create <leader>pp
+" TODO: Install conceal for latex https://github.com/PietroPate/vim-tex-conceal
+" TODO: Checkout for toggle line numbers https://github.com/myusuf3/numbers.vim
 
-" For Vundle -> fish is not compatible
-if &shell =~# 'fish$'
-    set shell=sh
-endif
-
-" Set the <leader> character
+" Set the <leader> character to spacebar
 let mapleader = "\<Space>"
 
-" Vundle setup
-set nocompatible
-filetype off
-set rtp+=~/.config/vim/bundle/Vundle.vim
-set rtp+=~/.tools/fzf
-" TODO:Isolate the plugins directory from the configuration directory.
-" If `rtp` dir contains also other files/folders that are not directly plugins
-" and the '+PluginClean' is executed it will also remove all files that are
-" not explicitly listed in this configuration as plugins (backups, undo,
-" coc_config).
-call vundle#begin('~/.config/vim')
+" Set runtimepath to same as vim
+set runtimepath+=~/.config/vim/
 
-" Plugins can be installed with :PluginInstall
-Plugin 'gmarik/vundle'
-Plugin 'airblade/vim-rooter'
-Plugin 'tpope/vim-fugitive'
-map <leader>gg :Git<CR>
-map <leader>gb :Git blame<CR>
-map <leader>gl :Git log --oneline<CR>
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'itchyny/lightline.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/tabular'
-Plugin 'justinmk/vim-sneak'
-Plugin 'liuchengxu/vista.vim'
-let g:vista_default_executive = 'vim_lsp'
-" Ignore module symbols, they are not relevant and only polute the search list
-let g:vista_ignore_kinds = ['Module']
-map gj :Vista finder<CR>
-" Plugin 'unblevable/quick-scope'
-Plugin 'tpope/vim-commentary'
-Plugin 'airblade/vim-gitgutter'
-let g:gitgutter_set_sign_backgrounds = 1
-highlight SignColumn ctermbg=NONE gui=NONE guibg=NONE
-Plugin 'luochen1990/rainbow'
-" Plugin 'dag/vim-fish' This plugin has wrong highting when there is a '
-" escaped in the string
-Plugin 'blankname/vim-fish'
-Plugin 'udalov/kotlin-vim'
-Plugin 'kevinoid/vim-jsonc'
-Plugin 'stephpy/vim-yaml'
-Plugin 'cespare/vim-toml'
-Plugin 'plasticboy/vim-markdown'
-"TODO: Install conceal for latex https://github.com/PietroPate/vim-tex-conceal
-"TODO: Checkout for toggle line numbers https://github.com/myusuf3/numbers.vim
+" Plugins can be installed with :PlugInstall
+call plug#begin('~/.config/vim/plugged')
 
-" Typescript
-Plugin 'HerringtonDarkholme/yats.vim'
-" Plugin 'pangloss/vim-javascript'
-" Plugin 'neoclide/vim-jsx-improve'
-" Plugin 'leafgarland/typescript-vim'
-" Plugin 'peitalin/vim-jsx-typescript'
-" set filetypes as typescriptreact
-" autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
-Plugin 'axvr/org.vim'
+" GUI
+Plug 'itchyny/lightline.vim'
+Plug 'Nudin/vim-indentguides'
+Plug 'mhinz/vim-startify'
+Plug 'junegunn/goyo.vim'
 
-" FZF
-Plugin 'junegunn/fzf.vim'
-" \ call fzf#vim#buffers({'options': ['--info=inline']}, <bang>0)
-" command! -bang Buffers
-" \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+" Tools
+Plug 'junegunn/fzf.vim'
+Plug 'AndrewRadev/sideways.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'godlygeek/tabular'
 
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'tab': 'split',
-  \ 'ctrl-v': 'vsplit' }
+" GIT
+Plug 'airblade/vim-rooter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
-" let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-" let g:fzf_layout = { 'window': 'enew' }
-" let g:fzf_layout = { 'window': '-tabnew' }
-" let g:fzf_layout = { 'window': '100split enew' } " 100 lines
-" let g:fzf_layout = { 'down': '40%' }
-" let g:fzf_layout = { 'down': '~40%' }
-let g:fzf_preview_window = 'up:60%'
+" LSP
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'liuchengxu/vista.vim'
 
-" LSP configuration
-" TODO: Save the document before formatting?
-" vim-lsp
-" Plugin 'prabirshrestha/asyncomplete.vim'
-" Plugin 'prabirshrestha/async.vim'
-" Plugin 'prabirshrestha/vim-lsp'
-" Plugin 'mattn/vim-lsp-settings'
-" Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-" map gd :LspDefinition<CR>zz
-" map gD :LspReferences<CR>
-" map gh :LspHover<CR>
-" map gj :LspWorkspaceSymbol<CR>
-" map gJ :LspDocumentSymbol<CR>
-" map <leader>ca :LspCodeAction<CR>
-" map <leader>cr :LspRename<CR>
-" map <leader>cS :LspStatus<CR>
-" map <leader>ch :LspHover<CR>
-" map <leader>cf :LspDocumentFormat<CR>
-" map <leader>cF :LspDocumentRangeFormat<CR>
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-" let g:lsp_highlights_enabled = 1
-" let g:lsp_textprop_enabled = 1
-" let g:lsp_virtual_text_enabled = 1
-" let g:lsp_highlight_references_enabled = 1
-" let g:lsp_signs_error = {'text': '✗'}
-" let g:lsp_signs_warning = {'text': '‼'}
-" let g:lsp_signs_hint = {'text': 'כֿ'}
-" let g:lsp_signs_information = {'text': 'כֿ'}
-" " vim-lsp debugging
-" let g:lsp_log_verbose = 1
-" let g:lsp_log_file = expand('~/.config/vim/vim-lsp.log')
+" Syntax
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'blankname/vim-fish'
+Plug 'udalov/kotlin-vim'
+Plug 'kevinoid/vim-jsonc'
+Plug 'stephpy/vim-yaml'
+Plug 'cespare/vim-toml'
+Plug 's3rvac/vim-syntax-yara'
+Plug 'plasticboy/vim-markdown'
+Plug 'axvr/org.vim'
 
-" Debugging
-" Plugin 'puremourning/vimspector'
-" let g:vimspector_enable_mappings = 'HUMAN'
+" Flashing operations
+Plug 'haya14busa/vim-operator-flashy' | Plug 'kana/vim-operator-user'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'epilande/vim-react-snippets'
+
+" Color themes
+Plug 'gruvbox-community/gruvbox'
+
+call plug#end()
 
 " CoC
 " TODO: Checkout https://github.com/neoclide/coc-pairs
 " Plugin 'jiangmiao/auto-pairs'
 " Disabled because of: https://github.com/jiangmiao/auto-pairs/issues/272
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = ['coc-json',
 			\ 'coc-prettier',
 			\ 'coc-clangd',
 			\ 'coc-yaml',
 			\ 'coc-tsserver',
-			\ 'coc-rust-analyzer',
 			\ 'coc-snippets',
 			\ 'coc-texlab',
 			\ 'coc-vimlsp']
@@ -193,7 +129,6 @@ xmap <leader>cA  <Plug>(coc-codeaction-selected)
 nmap <leader>cA  <Plug>(coc-codeaction-selected)
 
 " Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
@@ -204,7 +139,6 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 " Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
@@ -251,82 +185,62 @@ nnoremap <silent><nowait> <leader>Ck  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <leader>Cp  :<C-u>CocListResume<CR>
 
-" TODO: Incorporate https://github.com/davidpdrsn/dotfiles/blob/master/nvim/functions.vim#L402
-" TODO: Create <leader>pp
+" Goyo
+" TODO: Also toggle wrapping with this command
+map <leader>tg :Goyo<CR>
 
-Plugin 'AndrewRadev/sideways.vim'
-omap aa <Plug>SidewaysArgumentTextobjA
-xmap aa <Plug>SidewaysArgumentTextobjA
-omap ia <Plug>SidewaysArgumentTextobjI
-xmap ia <Plug>SidewaysArgumentTextobjI
+" Fugitive
+map <leader>gg :Git<CR>
+map <leader>gb :Git blame<CR>
+map <leader>gl :Git log --oneline<CR>
 
-" Snippets
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-n>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-p>"
+" Vista
+let g:vista_default_executive = 'vim_lsp'
+" Ignore module symbols, they are not relevant and only polute the search list
+let g:vista_ignore_kinds = ['Module']
+map gj :Vista finder<CR>
 
-Plugin 'kana/vim-operator-user'
-Plugin 'haya14busa/vim-operator-flashy'
-map y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
+" Gitgutter
+let g:gitgutter_set_sign_backgrounds = 1
+highlight SignColumn ctermbg=NONE gui=NONE guibg=NONE
 
-" Plugin 'nathanaelkane/vim-indent-guides'
-" let g:indent_guides_start_level = 2
-" let g:indent_guides_guide_size = 1
-" let g:indent_guides_enable_on_vim_startup = 1
-" let g:indent_guides_auto_colors = 0
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=24
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=30
-Plugin 'thaerkh/vim-indentguides'
+" FZF
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'tab': 'split',
+  \ 'ctrl-v': 'vsplit' }
+let g:fzf_preview_window = 'up:60%'
+
+" Indent guides
 let g:indentguides_spacechar = '┆'
 let g:indentguides_tabchar = '|'
 nmap <leader>ti :IndentGuidesToggle<CR>
 
-" Visual settings
-Plugin 'mhinz/vim-startify'
+" Vim operator flashy
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$
 
-" Color themes
-Plugin 'humanoid-colors/vim-humanoid-colorscheme'
-Plugin 'haishanh/night-owl.vim'
-Plugin 'ghifarit53/tokyonight-vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'sjl/badwolf'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'YorickPeterse/happy_hacking.vim'
-Plugin 'tomasr/molokai'
-let g:rehash256 = 1
-Plugin 'dracula/vim', { 'name': 'dracula' }
-Plugin 'liuchengxu/space-vim-theme'
-Plugin 'sonph/onehalf', {'rtp': 'vim/'}
-Plugin 'joshdick/onedark.vim'
-let g:onedark_terminal_italics = 1
-Plugin 'arcticicestudio/nord-vim'
-let g:nord_italic = 1
-" Plugin 'morhetz/gruvbox'
-Plugin 'gruvbox-community/gruvbox'
-let g:gruvbox_italic = 1
-let g:gruvbox_italicize_comments = 0
-let g:gruvbox_undercurl = 0
-
-Plugin 's3rvac/vim-syntax-yara'
-
-Plugin 'junegunn/goyo.vim'
-" TODO: Also toggle wrapping with this command
-map <leader>tg :Goyo<CR>
-
-call vundle#end()
-filetype plugin indent on
+" Sideways
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+nnoremap <c-h> :SidewaysLeft<cr>
+nnoremap <c-l> :SidewaysRight<cr>
 
 " Color scheme settings
+syntax on
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-
-syntax on
+let g:gruvbox_bold = 1
+let g:gruvbox_italic = 1
+let g:gruvbox_italicize_comments = 0
+let g:gruvbox_undercurl = 0
+colorscheme gruvbox
+let g:lightline = { 'colorscheme': 'gruvbox' }
 
 " Fix the annoying syntax bug when scrolling. This can be slow for large
 " files, but is always accurate. In case of performance problems consider
@@ -340,29 +254,10 @@ if !has('gui_running')
 endif
 set background=dark
 
-color gruvbox
-
-" TODO: Create function to change the whole colorscheme not only the editor
-" but also lightline, etc.
-" TODO: Research ColorScheme event (:help au + search event) and set the
-" lightline
-" https://github.com/itchyny/lightline.vim/issues/9
-" https://hiphish.github.io/blog/2019/09/21/switching-automatically-themes-in-lightline/
-
 " Disable background - transparency
 "
 " highlight Normal ctermbg=NONE gui=NONE guibg=NONE
 " highlight nonText ctermbg=NONE gui=NONE guibg=NONE
-
-" Gruvbox spell in terminal is not supported, modify it
-" TODO: Better colors
-highlight SpellCap cterm=undercurl gui=undercurl guifg=green
-highlight SpellBad cterm=undercurl gui=undercurl guifg=red guisp=red
-highlight SpellLocal cterm=undercurl gui=undercurl
-highlight SpellRare cterm=undercurl gui=undercurl guifg=blue
-
-let g:lightline = { 'colorscheme': 'gruvbox' }
-
 
 " Leader bindings
 map <leader><Space> :GFiles<CR>
@@ -404,7 +299,7 @@ set smartindent
 set smarttab
 set tabstop=4
 set shiftwidth=4
-" set expandtab
+set expandtab
 set nofoldenable
 set autoread
 set ttyfast
@@ -453,14 +348,10 @@ nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 vnoremap < <gv
 vnoremap > >gv
 
-" Save with W
-cabb W w
+" Aliases - Save with W
 cabb E e
-
-" Fix Y to yank until the end of line
-noremap Y y$
-" TODO: Is this correct?
-imap <M-BS> <C-W>
+cabb Q w
+cabb W w
 
 " Searches - centering
 nnoremap <silent> n nzz
@@ -478,8 +369,6 @@ if has('nvim')
 end
 
 " TODO: Try to bind `c to nop? to avoid wrong cursor type when opening a new window
-
-autocmd BufNewFile,BufRead *.yar,*.yara set filetype=yara
 
 " Set the dockerfile filetype for every file that starts with Dockerfile
 " For example: Dockerfile.backend, Dockerfile.frontend
@@ -604,11 +493,18 @@ augroup end
 augroup latex
 au!
 au FileType tex,plaintex setl spell    " Enable spell checking.
-au BufRead,BufNewFile *.tex setlocal textwidth=80
+au BufRead,BufNewFile *.tex setl textwidth=80
 augroup end
 
 augroup markdown
 au!
 au FileType markdown setl spell         " Enable spellchecking.
-au BufRead,BufNewFile *.md setlocal textwidth=80
+au BufRead,BufNewFile *.md setl textwidth=80
+augroup end
+
+autocmd BufNewFile,BufRead *.yar,*.yara set filetype=yara
+augroup yara
+au!
+au FileType yara setl expandtab
+au BufRead,BufNewFile *.tex setl textwidth=80
 augroup end

@@ -194,7 +194,7 @@
     "destination": "~/.config/vim/vimrc",
     "name": "Full vim configuration with addons",
     "install": "./scripts/install_vim_plugins.sh",
-    "$deps": ["vim_coc"]
+    "$deps": ["vim_coc", "vim_plug"]
   },
   "vim_coc": {
     "source": "./.config/vim/coc-settings.json",
@@ -205,6 +205,11 @@
     "source": "./.vim_noaddons",
     "destination": "~/.config/vim/.vimrc",
     "name": "Vanila vim configuration without addons"
+  },
+  "vim_plug": {
+    "source": "./.config/vim/autoload/plug.vim",
+    "destination": "~/.config/vim/autoload/plug.vim",
+    "name": "Vim-plug plugin manager"
   },
   "waybar": {
     "source": "./.config/waybar",
