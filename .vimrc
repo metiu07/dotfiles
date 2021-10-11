@@ -351,7 +351,7 @@ vnoremap > >gv
 
 " Aliases - Save with W
 cabb E e
-cabb Q w
+cabb Q q
 cabb W w
 
 " Searches - centering
