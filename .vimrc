@@ -15,7 +15,7 @@ call plug#begin('~/.config/vim/plugged')
 
 " GUI
 Plug 'itchyny/lightline.vim'
-Plug 'Nudin/vim-indentguides'
+Plug 'yggdroot/indentline'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 
@@ -212,9 +212,8 @@ let g:fzf_action = {
 let g:fzf_preview_window = 'up:60%'
 
 " Indent guides
-let g:indentguides_spacechar = '┆'
-let g:indentguides_tabchar = '|'
-nmap <leader>ti :IndentGuidesToggle<CR>
+let g:indentLine_fileTypeExclude = ['markdown', 'jsonc']
+nmap <leader>ti :IndentLinesToggle<CR>
 
 " Vim operator flashy
 map y <Plug>(operator-flashy)
@@ -377,8 +376,6 @@ end
 autocmd BufNewFile,BufRead Dockerfile* set filetype=dockerfile
 
 " Conceal
-"
-" By default be more explicit
 function! ToggleConcealLevel()
     if &conceallevel == 0
         setlocal conceallevel=2
@@ -386,13 +383,7 @@ function! ToggleConcealLevel()
         setlocal conceallevel=0
     endif
 endfunction
-
 nnoremap <silent> <leader>tc :call ToggleConcealLevel()<CR>
-" TODO: Check out https://github.com/thaerkh/vim-indentguides/pull/22
-" Plugin thaerkh/vim-indentguides is forcing higher conceallevel
-set conceallevel=0
-set concealcursor=""
-au FileType * setl conceallevel=0
 
 " Spell checking
 set spelllang=en_us,en_gb
