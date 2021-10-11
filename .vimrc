@@ -239,6 +239,8 @@ let g:gruvbox_bold = 1
 let g:gruvbox_italic = 1
 let g:gruvbox_italicize_comments = 0
 let g:gruvbox_undercurl = 0
+" Needed for spell
+let g:gruvbox_guisp_fallback = "bg"
 colorscheme gruvbox
 let g:lightline = { 'colorscheme': 'gruvbox' }
 
