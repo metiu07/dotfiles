@@ -161,6 +161,9 @@ abbr -a -g SL "ssh-add -l"
 # Git shortcut
 abbr -a -g g "git"
 
+# Docker shortcut
+abbr -a -g d "docker"
+
 # Docker abbrs
 abbr -a -g DR "docker run --rm -it --detach-keys=\"ctrl-@\""
 abbr -a -g DRR "docker run --rm -it --detach-keys=\"ctrl-@\" -w (pwd) -v (pwd):(pwd)"
