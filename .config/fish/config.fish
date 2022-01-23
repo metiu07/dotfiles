@@ -8,25 +8,39 @@
 # Initlialize aliases
 source ~/.config/fish/aliases
 
+function fish_qwerty_key_bindings -d "Setup QWERTY bindings"
+    # fish_vi_key_bindings
+
+    bind \cO -M insert 'cd -; commandline -f repaint'
+    bind \cO 'cd -; commandline -f repaint'
+    bind \cF -M insert accept-autosuggestion
+    bind \cF accept-autosuggestion
+    bind \cP -M insert up-or-search
+    bind \cP up-or-search
+    bind \cN -M insert down-or-search
+    bind \cE -M insert end-of-line
+    bind \cE end-of-line
+    bind \cA -M insert beginning-of-line
+    bind \cA beginning-of-line
+
+    bind \cR _fzf-multi-command-history-widget
+    bind \cR -M insert _fzf-multi-command-history-widget
+
+    fzf_key_bindings
+end
+
+bind \cF -M insert end-of-line
+bind \cF end-of-line
+bind \cT -M insert accept-autosuggestion
+bind \cT accept-autosuggestion
+bind \cP -M insert _fzf-multi-command-history-widget
+bind \cP _fzf-multi-command-history-widget
+bind \; -M insert up-or-search
+bind \; up-or-search
+
 # Vim
 # `fish_key_reader` - check the SEQUENCE
 # `bind -f`         - show possible commands
-fish_vi_key_bindings
-bind \cO -M insert 'cd -; commandline -f repaint'
-bind \cO 'cd -; commandline -f repaint'
-bind \cF -M insert accept-autosuggestion
-bind \cF accept-autosuggestion
-bind \cP -M insert up-or-search
-bind \cP up-or-search
-bind \cN -M insert down-or-search
-bind \cE -M insert end-of-line
-bind \cE end-of-line
-bind \cA -M insert beginning-of-line
-bind \cA beginning-of-line
-
-bind \cr _fzf-multi-command-history-widget
-bind \cr -M insert _fzf-multi-command-history-widget
-
 fzf_key_bindings
 
 # Let theme prompt handle the virtualenv indicator
