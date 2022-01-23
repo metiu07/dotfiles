@@ -51,9 +51,7 @@ Plug 'axvr/org.vim'
 Plug 'haya14busa/vim-operator-flashy' | Plug 'kana/vim-operator-user'
 
 " Snippets
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'epilande/vim-react-snippets'
 
 " Color themes
 Plug 'gruvbox-community/gruvbox'
