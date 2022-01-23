@@ -59,6 +59,17 @@ Plug 'epilande/vim-react-snippets'
 Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
+" set langmap=dg,ek,fe,gt,il,jy,kn,lu,nj,pr,rs,sd,tf,ui,yo,op,DG,EK,FE,GT,IL,JY,KN,LU,NJ,PR,RS,SD,TF,UI,YO,OP
+set langmap=mh,ek,fe,il,jy,kn,lu,nj,pr,rs,sd,tf,ui,yo,op,bt,dv,vb,UI,DV,EK,FE,IL,JY,KN,LU,NJ,PR,RS,SD,TF,UI,YO
+nmap <c-p> :redo<cr>
+" Page down
+nnoremap <c-l> <c-u>
+vnoremap <c-l> <c-u>
+" Page up
+nnoremap <c-s> <c-d>
+vnoremap <c-s> <c-d>
+" Block select
+nnoremap <c-d> <c-v>
 
 " CoC
 " TODO: Checkout https://github.com/neoclide/coc-pairs
@@ -137,10 +148,6 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
-
-" Use CTRL-S for selections ranges.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -224,8 +231,6 @@ omap aa <Plug>SidewaysArgumentTextobjA
 xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
-nnoremap <c-h> :SidewaysLeft<cr>
-nnoremap <c-l> :SidewaysRight<cr>
 
 " Color scheme settings
 syntax on
