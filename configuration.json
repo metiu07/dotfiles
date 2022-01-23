@@ -117,6 +117,11 @@
     "destination": "~/.config/i3/config",
     "name": "i3 window manager configuration (matus)"
   },
+  "less": {
+    "source": "./.lesskey",
+    "destination": "~/.lesskey",
+    "name": "Less key configuration"
+  },
   "linux": {
     "name": "Linux configuration profile",
     "$deps": [
