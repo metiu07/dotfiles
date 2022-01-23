@@ -460,6 +460,9 @@ end
 alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias vimt="vim (mktemp)"
 alias vimf="vim (ff)"
+alias ee="vim (ff)"
+alias ep="vimp"
+alias ec="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias catf="cat (ff)"
 
 function source_global -d "Interactive source python env"
