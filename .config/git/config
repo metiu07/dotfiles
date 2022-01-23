@@ -47,7 +47,7 @@
 
 # https://github.com/dandavison/delta
 [delta]
-	features = line-numbers decorations
+	features = line-numbers decorations side-by-side
     whitespace-error-style = 22 reverse
 
 [delta "decorations"]
