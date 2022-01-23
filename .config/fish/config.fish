@@ -338,7 +338,9 @@ function random-favorite-font -d 'Change termin font to a random one picked from
     "agave Nerd Font" \
     "VictorMono Nerd Font" \
     "Anonymice Nerd Font" \
-    "TerminessTTF Nerd Font"
+    "TerminessTTF Nerd Font" \
+    "FiraCode Nerd Font" \
+    "InconsolataLGC Nerd Font"
 
     set -l pick_one (random choice $favorite_fonts)
 
