@@ -651,3 +651,11 @@ end
 function trans_en -d "Translate english word"
 	_trans ":en" "English"
 end
+
+# TODO: Add interface picker using fzf
+function wireshark_monitor -d "Open wireshark on a given interface"
+	[ (count $argv) -ne 1 ]; and return
+    set -l IF $argv[1]
+    set -l IF_IP (ip a show $IF | grep -m 1 'inet\b' | awk '{print $2}' | cut -d/ -f1)
+    wireshark -k -i $IF -f "host $IF_IP" -Y "not arp"
+end
