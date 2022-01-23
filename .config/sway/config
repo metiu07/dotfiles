@@ -236,10 +236,8 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 # Terminal
 exec --no-startup-id alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
 
-# Brave browser
-exec --no-startup-id brave
-
 # Disable bell sound
+# TODO: Is this still relevant?
 exec --no-startup-id xset -b
 
 # exec swayidle -w \
