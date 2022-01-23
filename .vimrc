@@ -217,7 +217,7 @@ let g:fzf_action = {
 let g:fzf_preview_window = 'up:60%'
 
 " Indent guides
-let g:indentLine_fileTypeExclude = ['markdown', 'jsonc']
+let g:indentLine_fileTypeExclude = ['markdown', 'jsonc', 'json']
 nmap <leader>ti :IndentLinesToggle<CR>
 
 " Vim operator flashy
