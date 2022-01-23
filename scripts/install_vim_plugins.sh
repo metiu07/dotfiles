@@ -1,11 +1,9 @@
 #!/bin/sh
 
-git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.config/vim/bundle/Vundle.vim
-
 if ! command -v vim &> /dev/null; then
-    vim +PluginInstall +qall
+    vim +PlugInstall +PlugUpdate +qall
 fi
 
 if ! command -v nvim &> /dev/null; then
-    nvim +PluginInstall +qall
+    vim +PlugInstall +PlugUpdate +qall
 fi
