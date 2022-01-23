@@ -31,34 +31,34 @@ bindsym $mod+Shift+Return exec alacritty -e fish -c tmux -f $HOME/.config/tmux/t
 bindsym $mod+Alt+Return exec alacritty
 
 # Kill focused window
-bindsym $mod+q kill
+bindcode $mod+24 kill
 
 # Start rofi(program launcher)
 # Putting commas in sway config can cause issues! Either create script to run
 # program or replace commas with '#'
 # bindsym $mod+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
-bindsym $mod+d exec rofi -combi-modi drun#ssh#run -show combi
+bindcode $mod+40 exec rofi -combi-modi drun#ssh#run -show combi
 # bindsym $mod+d exec dmenu_run
 
 # Rofi as calculator
-bindsym $mod+c exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
+bindcode $mod+54 exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
 
 # Ranger as file manager
 bindsym $mod+o exec kitty fish -c "TERM=kitty ranger-open"
 
 # Ranger as wallpaper setter
-bindsym $mod+w exec kitty fish -c "TERM=kitty ranger-wallpaper"
-bindsym $mod+Shift+w exec kitty fish -c "TERM=kitty ranger-wal"
-bindsym $mod+Alt+w exec fish -c "wallpaper"
+bindcode $mod+25 exec kitty fish -c "TERM=kitty ranger-wallpaper"
+bindcode $mod+Shift+25 exec kitty fish -c "TERM=kitty ranger-wal"
+bindcode $mod+Alt+25 exec fish -c "wallpaper"
 
 # Wal themes
-bindsym $mod+Shift+t exec --no-startup-id fish -c "wal-theme"
+bindcode $mod+Shift+28 exec --no-startup-id fish -c "wal-theme"
 
 # Translator
-bindsym $mod+p exec fish -c "trans_sk"
+bindcode $mod+33 exec fish -c "trans_sk"
 
 # Dictionary
-bindsym $mod+Shift+p exec fish -c "trans_en"
+bindcode $mod+Shift+33 exec fish -c "trans_en"
 
 # Programs
 # bindsym $mod+F1 exec thunar
@@ -66,41 +66,41 @@ bindsym $mod+Shift+p exec fish -c "trans_en"
 # bindsym $mod+F2 exec firefox
 
 # Screenshots
-bindsym Print exec --no-startup-id grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') "$(xdg-user-dir PICTURES)/screenshot_$(date -Iminutes).png"
-bindsym $mod+Print exec --no-startup-id grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshot_$(date -Iminutes).png"
-bindsym $mod+Shift+Print exec --no-startup-id grim -g "$(slurp)" - | wl-copy
+bindsym Print exec flameshot gui
+bindsym $mod+Print exec --no-startup-id /usr/share/sway/scripts/grimshot --notify copy area
+bindsym $mod+Shift+Print exec --no-startup-id grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshot_$(date -Iminutes).png"
 
 # Color picker
 bindsym $mod+Alt+Print exec --no-startup-id fish -c color_picker
 
 # focus urgent window
-bindsym $mod+x [urgent=latest] focus
+bindcode $mod+53 [urgent=latest] focus
 
 # Change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindcode $mod+43 focus left
+bindcode $mod+44 focus down
+bindcode $mod+45 focus up
+bindcode $mod+46 focus right
 
 # Move the focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindcode $mod+Shift+43 move left
+bindcode $mod+Shift+44 move down
+bindcode $mod+Shift+45 move up
+bindcode $mod+Shift+46 move right
 
 # Split in horizontal orientation
-bindsym $mod+n split h
+bindcode $mod+57 split h
 
 # Split in vertical orientation
-bindsym $mod+v split v
+bindcode $mod+55 split v
 
 # Fullscreen mode
-bindsym $mod+f fullscreen
+bindcode $mod+41 fullscreen
 
 # Change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
+bindcode $mod+39 layout stacking
+bindcode $mod+28 layout tabbed
+bindcode $mod+26 layout toggle split
 
 # Toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -118,46 +118,46 @@ bindsym $mod+Shift+a focus child
 bindsym $mod+Tab workspace back_and_forth
 
 # Switch to workspace
-bindsym --to-code $mod+1 workspace 1
-bindsym --to-code $mod+2 workspace 2
-bindsym --to-code $mod+3 workspace 3
-bindsym --to-code $mod+4 workspace 4
-bindsym --to-code $mod+5 workspace 5
-bindsym --to-code $mod+6 workspace 6
-bindsym --to-code $mod+7 workspace 7
-bindsym --to-code $mod+8 workspace 8
-bindsym --to-code $mod+9 workspace 9
+bindcode $mod+10 workspace 1
+bindcode $mod+11 workspace 2
+bindcode $mod+12 workspace 3
+bindcode $mod+13 workspace 4
+bindcode $mod+14 workspace 5
+bindcode $mod+15 workspace 6
+bindcode $mod+16 workspace 7
+bindcode $mod+17 workspace 8
+bindcode $mod+18 workspace 9
 
 # Move focused container to workspace
-bindsym --to-code $mod+Shift+1 move container to workspace 1
-bindsym --to-code $mod+Shift+2 move container to workspace 2
-bindsym --to-code $mod+Shift+3 move container to workspace 3
-bindsym --to-code $mod+Shift+4 move container to workspace 4
-bindsym --to-code $mod+Shift+5 move container to workspace 5
-bindsym --to-code $mod+Shift+6 move container to workspace 6
-bindsym --to-code $mod+Shift+7 move container to workspace 7
-bindsym --to-code $mod+Shift+8 move container to workspace 8
-bindsym --to-code $mod+Shift+9 move container to workspace 9
+bindcode $mod+Shift+10 move container to workspace 1
+bindcode $mod+Shift+11 move container to workspace 2
+bindcode $mod+Shift+12 move container to workspace 3
+bindcode $mod+Shift+13 move container to workspace 4
+bindcode $mod+Shift+14 move container to workspace 5
+bindcode $mod+Shift+15 move container to workspace 6
+bindcode $mod+Shift+16 move container to workspace 7
+bindcode $mod+Shift+17 move container to workspace 8
+bindcode $mod+Shift+18 move container to workspace 9
 
 # Move workspaces
-bindsym $mod+Control+h move workspace to output left
-bindsym $mod+Control+j move workspace to output down
-bindsym $mod+Control+k move workspace to output up
-bindsym $mod+Control+l move workspace to output right
+bindcode $mod+Control+43 move workspace to output left
+bindcode $mod+Control+44 move workspace to output down
+bindcode $mod+Control+45 move workspace to output up
+bindcode $mod+Control+46 move workspace to output right
 
 # Reload the configuration file
-bindsym $mod+Shift+c reload
+bindcode $mod+Shift+54 reload
 
 # Resize window mode
 mode "resize" {
-        bindsym h resize shrink width 25 px or 25 ppt
-        bindsym j resize grow height 25 px or 25 ppt
-        bindsym k resize shrink height 25 px or 25 ppt
-        bindsym l resize grow width 25 px or 25 ppt
-        bindsym Shift+h resize shrink width 50 px or 50 ppt
-        bindsym Shift+j resize grow height 50 px or 50 ppt
-        bindsym Shift+k resize shrink height 50 px or 50 ppt
-        bindsym Shift+l resize grow width 50 px or 50 ppt
+        bindcode 44 resize shrink width 25 px or 25 ppt
+        bindcode 45 resize grow height 25 px or 25 ppt
+        bindcode 46 resize shrink height 25 px or 25 ppt
+        bindcode 47 resize grow width 25 px or 25 ppt
+        bindcode Shift+44 resize shrink width 50 px or 50 ppt
+        bindcode Shift+45 resize grow height 50 px or 50 ppt
+        bindcode Shift+46 resize shrink height 50 px or 50 ppt
+        bindcode Shift+47 resize grow width 50 px or 50 ppt
         bindsym Alt+h resize shrink width 2 px or 2 ppt
         bindsym Alt+j resize grow height 2 px or 2 ppt
         bindsym Alt+k resize shrink height 2 px or 2 ppt
@@ -169,7 +169,7 @@ mode "resize" {
         bindsym q mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindcode $mod+27 mode "resize"
 
 # Set shut down, restart and locking features
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
@@ -187,7 +187,7 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+0 mode "$mode_system"
+bindcode $mod+19 mode "$mode_system"
 
 # Pulse Audio controls
 # NOTE: Keycode definitions can be found on https://cgit.freedesktop.org/xorg/proto/x11proto/tree/XF86keysym.h
@@ -314,10 +314,24 @@ exec_always --no-startup-id "killall -q pomod; pomod"
 
 # Set keyboard layouts
 input type:keyboard {
-        xkb_layout "us,sk"
-        xkb_variant ",qwerty"
-        xkb_options "grp:rctrl_rshift_toggle,caps:escape,altwin:swap_lalt_lwin"
-        # repeat_delay 500
+        # xkb_layout "us,sk"
+        # xkb_variant ",qwerty"
+        # xkb_options "grp:rctrl_rshift_toggle,caps:escape,altwin:swap_lalt_lwin"
+        # # repeat_delay 500
+        # repeat_rate 50
+        xkb_model "pc105"
+        xkb_layout "us"
+        xkb_variant "colemak"
+        xkb_options "grp:rctrl_rshift_toggle,caps:escape,altwin:swap_lalt_lwin,misc:cmk_curl_dh"
+        repeat_rate 50
+}
+
+# Set keyboard layouts
+input 1452:591:USB_Keychron_K2_USB_DEVICE {
+        xkb_model "pc105"
+        xkb_layout "us"
+        xkb_variant "colemak"
+        xkb_options "grp:rctrl_rshift_toggle,caps:escape,altwin:swap_lalt_lwin,misc:cmk_curl_dh"
         repeat_rate 50
 }
 
