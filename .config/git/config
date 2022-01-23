@@ -121,7 +121,7 @@
 	tags = tag --list -n1
 	u = pull
 	um = "!git switch master && git p && git switch -"
-	unstage = reset
+	unstage = restore --staged
 	rum = "!git um && git rb master"
 	showtag = show --quiet
 	today = "!git ll --since=midnight"

@@ -479,6 +479,10 @@ alias ep="vimp"
 alias ec="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias catf="cat (ff)"
 
+function fzf -d "FZF configuration for Colemak"
+    command fzf --bind="ctrl-k:down,ctrl-e:up"
+end
+
 function source_global -d "Interactive source python env"
 	# TODO: Handle multiselection
 	# TODO: Can we preview packages in the venv?
