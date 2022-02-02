@@ -5,7 +5,7 @@
 # |_|    |_||___/|_| |_|  \___|\___/ |_| |_||_|  |_| \__, |
 #                                                    |___/
 
-# Initlialize aliases
+# Initialize aliases
 source ~/.config/fish/aliases
 
 function fish_qwerty_key_bindings -d "Setup QWERTY bindings"
@@ -28,15 +28,6 @@ function fish_qwerty_key_bindings -d "Setup QWERTY bindings"
 
     fzf_key_bindings
 end
-
-bind \cF -M insert end-of-line
-bind \cF end-of-line
-bind \cT -M insert accept-autosuggestion
-bind \cT accept-autosuggestion
-bind \cP -M insert _fzf-multi-command-history-widget
-bind \cP _fzf-multi-command-history-widget
-bind \; -M insert up-or-search
-bind \; up-or-search
 
 # Vim
 # `fish_key_reader` - check the SEQUENCE
