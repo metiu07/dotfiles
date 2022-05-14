@@ -464,7 +464,8 @@ function vimp -d "Interactive vim open file in a project"
 end
 
 alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
-alias vimt="vim (mktemp)"
+alias vimt="vim (mktemp --suffix=.md)"
+alias vimtt="vim (mktemp)"
 alias vimf="vim (ff)"
 alias ee="vim (ff)"
 alias ep="vimp"
