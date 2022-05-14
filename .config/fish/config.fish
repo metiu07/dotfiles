@@ -652,3 +652,9 @@ function wireshark_monitor -d "Open wireshark on a given interface"
     set -l IF_IP (ip a show $IF | grep -m 1 'inet\b' | awk '{print $2}' | cut -d/ -f1)
     wireshark -k -i $IF -f "host $IF_IP" -Y "not arp"
 end
+
+function duck
+    set -l query (string join '+' $argv)
+    w3m "https://duckduckgo.com/lite?q=$query"
+end
+alias s='duck'
