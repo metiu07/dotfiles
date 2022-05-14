@@ -33,7 +33,7 @@ bindcode $mod+24 kill
 bindcode $mod+40 exec rofi -combi-modi drun#ssh#run -show combi
 
 # Rofi as calculator
-bindcode $mod+54 exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
+bindcode $mod+54 exec rofi -show calc -modi calc -no-show-match -no-sort
 
 # Ranger as file manager
 bindsym $mod+o exec kitty fish -c "TERM=kitty ranger-open"
@@ -44,7 +44,7 @@ bindcode $mod+Shift+25 exec kitty fish -c "TERM=kitty ranger-wal"
 bindcode $mod+Alt+25 exec fish -c "wallpaper"
 
 # Wal themes
-bindcode $mod+Shift+28 exec --no-startup-id fish -c "wal-theme"
+bindcode $mod+Shift+28 exec fish -c "wal-theme"
 
 # Translator
 bindcode $mod+33 exec fish -c "trans_sk"
@@ -54,11 +54,11 @@ bindcode $mod+Shift+33 exec fish -c "trans_en"
 
 # Screenshots
 bindsym Print exec flameshot gui
-bindsym $mod+Print exec --no-startup-id /usr/share/sway/scripts/grimshot --notify copy area
-bindsym $mod+Shift+Print exec --no-startup-id grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshot_$(date -Iminutes).png"
+bindsym $mod+Print exec /usr/share/sway/scripts/grimshot --notify copy area
+bindsym $mod+Shift+Print exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshot_$(date -Iminutes).png"
 
 # Color picker
-bindsym $mod+Alt+Print exec --no-startup-id fish -c color_picker
+bindsym $mod+Alt+Print exec fish -c color_picker
 
 # Focus urgent window
 bindcode $mod+53 [urgent=latest] focus
@@ -158,14 +158,14 @@ bindcode $mod+27 mode "resize"
 # Set shut down, restart and locking features
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    # bindsym l exec --no-startup-id swayexit lock, mode "default"
-    bindsym l exec --no-startup-id swaylock -c 000000 -e, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id swayexit shutdown, mode "default"
+    # bindsym l exec swayexit lock, mode "default"
+    bindsym l exec swaylock -c 000000 -e, mode "default"
+    bindsym s exec i3exit suspend, mode "default"
+    bindsym u exec i3exit switch_user, mode "default"
+    bindsym e exec i3exit logout, mode "default"
+    bindsym h exec i3exit hibernate, mode "default"
+    bindsym r exec i3exit reboot, mode "default"
+    bindsym Shift+s exec swayexit shutdown, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -175,16 +175,16 @@ bindcode $mod+19 mode "$mode_system"
 
 # Pulse Audio controls
 # NOTE: Keycode definitions can be found on https://cgit.freedesktop.org/xorg/proto/x11proto/tree/XF86keysym.h
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 0 +2%; notify-send 'volume up' -h int:value:$(pactl get-sink-volume 0 | grep '[0-9]*%' -o | head -n1 | cut --complement -c 3)"
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume 0 -2%; notify-send 'volume down' -h int:value:$(pactl get-sink-volume 0 | grep '[0-9]*%' -o | head -n1 | cut --complement -c 3)"
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume 0 +2%; notify-send 'volume up' -h int:value:$(pactl get-sink-volume 0 | grep '[0-9]*%' -o | head -n1 | cut --complement -c 3)"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume 0 -2%; notify-send 'volume down' -h int:value:$(pactl get-sink-volume 0 | grep '[0-9]*%' -o | head -n1 | cut --complement -c 3)"
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 # TODO: Decide what to bind on MicMute key
-bindsym XF86AudioMicMute exec --no-startup-id notify-send "test"
+bindsym XF86AudioMicMute exec notify-send "test"
 
 # Screen brightness controls
 # NOTE: User must be in video group (sudo usermod -a -G video <USER>)
-bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 5; notify-send 'brightness up' -h int:value:$(light -G)"
-bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 5; notify-send 'brightness down' -h int:value:$(light -G)"
+bindsym XF86MonBrightnessUp exec "light -A 5; notify-send 'brightness up' -h int:value:$(light -G)"
+bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down' -h int:value:$(light -G)"
 
 # Toggle split direction for each window
 default_orientation horizontal
@@ -212,7 +212,7 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 # Terminal
-exec --no-startup-id alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
+exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
 
 # exec swayidle -w \
 #   timeout 300 '~/.config/sway/lock.sh' \
@@ -229,31 +229,31 @@ bindswitch --reload lid:off output eDP-1 enable
 
 # Setup wallpaper
 # Pick a random wallpaper from ~/Pictures/Wallpapers
-exec --no-startup-id fish -c wallpaper
+exec fish -c wallpaper
 
 # Startup the polkit authenticator agent
 exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Startup notification daemon
-exec_always --no-startup-id "killall -q mako; mako"
+exec_always "killall -q mako; mako"
 
 # Startup the emacs daemon
-exec --no-startup-id emacs --daemon
+exec emacs --daemon
 
 # Launch the status bar
-exec_always --no-startup-id "killall -q waybar; waybar"
+exec_always "killall -q waybar; waybar"
 
 # Startup the network manager
-exec_always --no-startup-id "killall -q nm-applet; nm-applet --indicator"
+exec_always "killall -q nm-applet; nm-applet --indicator"
 
 # Startup the bluetooth manager
-exec_always --no-startup-id "killall -q blueman-applet; blueman-applet"
+exec_always "killall -q blueman-applet; blueman-applet"
 
 # Startup the habits notifier
-exec_always --no-startup-id "killall -q habi; habi"
+exec_always "killall -q habi; habi"
 
 # Startup the pomodoro timer
-exec_always --no-startup-id "killall -q pomod; pomod"
+exec_always "killall -q pomod; pomod"
 
 # Set keyboard layouts
 input type:keyboard {
