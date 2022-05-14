@@ -47,6 +47,11 @@
     "destination": "~/.config/bat",
     "name": "Bat configuration"
   },
+  "keyboard_colemak": {
+    "source": "./.config/keyboard/keymap_colemak_dh.xkb",
+    "destination": "~/.config/keyboard/keymap_colemak_dh.xkb",
+    "name": "Colemak-dh keyboard configuration"
+  },
   "compton_blur": {
     "source": "./.config/compton/compton_blur.conf",
     "destination": "~/.config/compton/compton_blur.conf",
@@ -183,7 +188,7 @@
     "source": "./.config/sway",
     "destination": "~/.config/sway",
     "name": "Sway window manager configuration",
-    "$deps": ["mako", "waybar"]
+    "$deps": ["keyboard_colemak", "mako", "waybar"]
   },
   "tmux": {
     "source": "./.tmux.conf",

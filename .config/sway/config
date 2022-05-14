@@ -257,24 +257,7 @@ exec_always "killall -q pomod; pomod"
 
 # Set keyboard layouts
 input type:keyboard {
-        # xkb_layout "us,sk"
-        # xkb_variant ",qwerty"
-        # xkb_options "grp:rctrl_rshift_toggle,caps:escape,altwin:swap_lalt_lwin"
-        # # repeat_delay 500
-        # repeat_rate 50
-        xkb_model "pc105"
-        xkb_layout "us"
-        xkb_variant "colemak"
-        xkb_options "grp:rctrl_rshift_toggle,caps:escape,altwin:swap_lalt_lwin,misc:cmk_curl_dh"
-        repeat_rate 50
-}
-
-# Set keyboard layouts
-input 1452:591:USB_Keychron_K2_USB_DEVICE {
-        xkb_model "pc105"
-        xkb_layout "us"
-        xkb_variant "colemak"
-        xkb_options "grp:rctrl_rshift_toggle,caps:escape,altwin:swap_lalt_lwin,misc:cmk_curl_dh"
+        xkb_file "$HOME/.config/keyboard/keymap_colemak_dh.xkb"
         repeat_rate 50
 }
 
