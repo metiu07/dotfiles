@@ -122,6 +122,11 @@
     "destination": "~/.config/i3/config",
     "name": "i3 window manager configuration (matus)"
   },
+  "kanshi": {
+    "source": "./.config/kanshi/config",
+    "destination": "~/.config/kanshi/config",
+    "name": "Display configuration manager"
+  },
   "less": {
     "source": "./.lesskey",
     "destination": "~/.lesskey",
@@ -188,7 +193,7 @@
     "source": "./.config/sway",
     "destination": "~/.config/sway",
     "name": "Sway window manager configuration",
-    "$deps": ["keyboard_colemak", "mako", "waybar"]
+    "$deps": ["kanshi", "keyboard_colemak", "mako", "waybar"]
   },
   "tmux": {
     "source": "./.tmux.conf",
