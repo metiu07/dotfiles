@@ -246,25 +246,12 @@ exec --no-startup-id xset -b
 # 	   resume 'swaymsg "output * dpms on"' \
 #   before-sleep '~/.config/sway/lock.sh'
 
-# Setup multiple monitors
-set $laptop eDP-1
+# Startup display configuration manager
+exec kanshi
 
-output eDP-1 pos 1920 900 res 1920x1080
-output HDMI-A-1 pos 0 0 res 1920x1080
-output DP-4 pos 1920 0 res 1920x1200
-output DP-4 transform 270
-output DP-7 pos 3120 0 res 1920x1200
-
-# output eDP-1 pos 1080 1400 res 1920x1080
-# output DP-4 pos 1920 0 res 1920x1200
-# output DP-4 transform 270
-# output DP-7 pos 3120 0 res 1920x1200
-# output HDMI-A-1 pos 0 0 res 1920x1080
-# output HDMI-A-1 transform 270
-
-# TODO: Test clamshell mode
-bindswitch --reload lid:on output $laptop disable
-bindswitch --reload lid:off output $laptop enable
+# Manage what to do when the laptop lid closes
+bindswitch --reload lid:on output eDP-1 disable
+bindswitch --reload lid:off output eDP-1 enable
 
 # Setup wallpaper
 # output "*" bg $HOME/Pictures/Background/deer.jpg fill
