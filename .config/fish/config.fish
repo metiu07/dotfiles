@@ -452,15 +452,14 @@ function fp -d "Interactive find file in project"
 end
 
 function vimp -d "Interactive vim open file in a project"
-	# TODO: Take one optional argument with the name of the project
-	# TODO: Rice fzf here
-	set -l project_dir (command ls ~/dev | fzf --height 15 --prompt "Select a project: " --layout=reverse)
+    # TODO: Take one optional argument with the name of the project
+    # TODO: Rice fzf here
+    set -l project_dir (command ls ~/dev | command fzf --height 15 --prompt "Select a project: " --layout=reverse)
     [ -z "$project_dir" ] && return
-	cd "$HOME/dev/$project_dir"
-	set -l selected_file (ff)
+    cd "$HOME/dev/$project_dir"
+    set -l selected_file (ff)
     [ -z "$selected_file" ] && return
-	commandline "vim \"$selected_file\""
-	commandline -f execute
+    vim $selected_file
 end
 
 alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
