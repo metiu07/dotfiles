@@ -10,7 +10,6 @@
     "typescriptreact",
     "typescript.tsx"
   ],
-  "rust-analyzer.inlayHints.chainingHintsSeparator": "&",
   "yaml.format.enable": true,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
@@ -75,7 +74,18 @@
     "rust": {
       "command": "rust-analyzer",
       "args": [],
-      "filetypes": ["rust"]
+      "filetypes": ["rust"],
+      "settings": {
+        "rust-analyzer": {
+          "inlayHints": {
+            "enable": true,
+            "typeHints": true
+          },
+          "checkOnSave": {
+            "command": "clippy"
+          }
+        }
+      }
     }
   }
 }
