@@ -57,8 +57,16 @@
             "pyflakes": { "enabled": true },
             "mccabe": { "enabled": true, "threshold": 15 },
             "flake8": {
-              "enabled": true,
+              "enabled": false,
               "ignore": ["E101", "E203", "E402", "W191", "W503"]
+            },
+            "pylint": {
+              "enabled": true,
+              "args": [
+                "-j2",
+                "--disable",
+                "W1203,C0114,C0115,C0116,C0413,C0301"
+              ]
             },
 
             "pyls_mypy": { "enabled": true },
