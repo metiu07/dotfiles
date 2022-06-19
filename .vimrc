@@ -73,14 +73,15 @@ nnoremap <c-d> <c-v>
 " TODO: Checkout https://github.com/neoclide/coc-pairs
 " Plugin 'jiangmiao/auto-pairs'
 " Disabled because of: https://github.com/jiangmiao/auto-pairs/issues/272
-let g:coc_global_extensions = ['coc-json',
+let g:coc_global_extensions = ['coc-clangd',
+			\ 'coc-eslint',
+			\ 'coc-json',
 			\ 'coc-prettier',
-			\ 'coc-clangd',
-			\ 'coc-yaml',
-			\ 'coc-tsserver',
 			\ 'coc-snippets',
 			\ 'coc-texlab',
-			\ 'coc-vimlsp']
+			\ 'coc-tsserver',
+			\ 'coc-vimlsp',
+			\ 'coc-yaml']
 let g:coc_config_home = expand('~/.config/vim')
 
 " Use tab for trigger completion with characters ahead and navigate.
