@@ -11,6 +11,7 @@
 import argparse
 import json
 import os
+import stat
 import subprocess
 import sys
 from typing import Dict, List, Optional
@@ -148,16 +149,21 @@ class Installer:
         """Install the file with specified command."""
 
         # Create directories if they don't exists already
-        os.makedirs(
-            os.path.dirname(self.prepare_path(module["destination"])), exist_ok=True
-        )
+        dest = self.prepare_path(module["destination"])
+        src = self.prepare_path(module["source"])
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+
         self.exec_command(
             self.install_cmd
             + [
-                self.prepare_path(module["source"]),
-                self.prepare_path(module["destination"]),
+                src,
+                dest,
             ]
         )
+
+        if module["exec"]:
+            orig_mode = os.stat(dest).st_mode
+            os.chmod(dest, mode=orig_mode | stat.S_IEXEC)
 
     def remove_conf(self, module):
         """Remove the configuration file.
