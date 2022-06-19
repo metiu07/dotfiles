@@ -40,12 +40,12 @@
       }
     },
     "python": {
-      "command": "pyls",
+      "command": "pylsp",
       "args": ["-vv", "--log-file", "/tmp/lsp_python.log"],
       "trace.server": "verbose",
       "filetypes": ["python"],
       "settings": {
-        "pyls": {
+        "pylsp": {
           "configurationSources": ["pycodestyle"],
           "plugins": {
             "pycodestyle": { "enabled": false, "maxLineLength": 100 },
@@ -54,24 +54,24 @@
             "pydocstyle.match": "(?!test_).*\\.py",
             "pydocstyle.matchDir": "[^\\.].*",
 
-            "pyflakes": { "enabled": true },
-            "mccabe": { "enabled": true, "threshold": 15 },
+            "pyflakes": { "enabled": false },
+            "mccabe": { "enabled": true, "threshold": 20 },
             "flake8": {
               "enabled": false,
               "ignore": ["E101", "E203", "E402", "W191", "W503"]
             },
             "pylint": {
               "enabled": true,
+              "executable": "pylint",
               "args": [
                 "-j2",
-                "--disable",
-                "W1203,C0114,C0115,C0116,C0413,C0301"
+                "--disable=W1203,C0114,C0115,C0116,C0413,C0301,R1705"
               ]
             },
 
-            "pyls_mypy": { "enabled": true },
-            "pyls_black": { "enabled": true },
-            "pyls_isort": { "enabled": true },
+            // "pyls_mypy": { "enabled": true },
+            // "pyls_black": { "enabled": true },
+            // "pyls_isort": { "enabled": true },
 
             "yapf": { "enabled": false },
             "autopep8": { "enabled": false }
@@ -94,6 +94,11 @@
           }
         }
       }
+    },
+    "yara": {
+      "command": "yls",
+      "args": ["-vv"],
+      "filetypes": ["yara"]
     }
   }
 }
