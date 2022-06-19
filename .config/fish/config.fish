@@ -164,11 +164,17 @@ abbr -a -g QL "pacman -Ql | grep "
 abbr -a -g SA "_ssh-add"
 abbr -a -g SL "ssh-add -l"
 
+# Cargo shortcut
+abbr -a -g c "cargo"
+
 # Git shortcut
 abbr -a -g g "git"
 
 # Docker shortcut
 abbr -a -g d "docker"
+
+# Kubectl shortcut
+abbr -a -g k "kubectl"
 
 # Docker abbrs
 abbr -a -g DR "docker run --rm -it --detach-keys=\"ctrl-@\""
