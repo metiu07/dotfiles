@@ -98,7 +98,6 @@
 	lp = log --patch --format=fuller
 	lg = log --graph --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
 	lga = log --graph --branches --remotes --tags --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
-	p = push
 	rb = rebase
 	rba = rebase --abort
 	rbc = rebase --continue
