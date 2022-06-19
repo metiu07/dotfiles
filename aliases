@@ -17,6 +17,7 @@ alias alert="echo -ne \"\\a\""              # alert:        Print bell character
 alias makec='make clean'                    # makec:        Run clean make target
 alias dd='dd bs=4M status=progress'         # dd:           Set blocksize and show progress in dd
 alias free='free -htw'                      # free:         Always human readable, total, wide
+alias pstree='pstree -ahl'                  # pstree:       Arguments, highlight, long
 alias df='df -h'                            # df:           Always human readable, total and show type
 alias du='du -ch'                           # du:           Always human readable and total
 alias dus='du -chs'                         # du:           Summary
