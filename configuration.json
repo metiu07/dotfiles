@@ -200,6 +200,12 @@
     "destination": "~/.config/tmux/tmux.conf",
     "name": "Tmux configuration"
   },
+  "tmux_copy": {
+    "source": "./.local/bin/tmux_copy",
+    "destination": "~/.local/bin/tmux_copy",
+    "name": "Tmux copy helper",
+    "exec": true
+  },
   "urxvt": {
     "name": "Xresources (xorg) configuration",
     "$deps": ["xresources"]
