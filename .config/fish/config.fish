@@ -464,8 +464,19 @@ function vimp -d "Interactive vim open file in a project"
     [ -z "$project_dir" ] && return
     cd "$HOME/dev/$project_dir"
     set -l selected_file (ff)
+    
+    # Try to setup python venv
+    # Vim python tools work better from project venv (they can see deps, etc.)
+    set -l poetry_env (poetry env info -p)
+    test $status -eq 0 && . "$poetry_env/bin/activate.fish"
+    [ -e "$DEFAULT_ENV_DIR" ] && . "$DEFAULT_ENV_DIR/bin/activate.fish"
+
+    # Open the file
     [ -z "$selected_file" ] && return
     vim $selected_file
+
+    # Clean up venv if we can
+    functions -n | grep deactivate && deactivate; true
 end
 
 alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
