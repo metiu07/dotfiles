@@ -161,7 +161,7 @@ class Installer:
             ]
         )
 
-        if module["exec"]:
+        if module.get("exec", False):
             orig_mode = os.stat(dest).st_mode
             os.chmod(dest, mode=orig_mode | stat.S_IEXEC)
 
