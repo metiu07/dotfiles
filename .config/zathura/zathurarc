@@ -5,3 +5,17 @@ set recolor-keephue true
 # == gruvbox ==
 set recolor-lightcolor "#282828"
 set recolor-darkcolor "#ebdbb2"
+
+map m scroll left
+map n scroll down
+map e scroll up
+map i scroll right
+
+map <C-l> scroll half-up
+map <C-s> scroll half-down
+
+# I am not able to set the following, using shift
+# map <S-n> navigate next
+# map <S-e> navigate previous
+map <C-n> navigate next
+map <C-e> navigate previous
