@@ -2,10 +2,11 @@
 Current default configuration consists of:
 
 - arch/manjaro
+- [gruvbox](https://github.com/morhetz/gruvbox)
 - sway {waybar, rofi, lightdm}
-- fish {alacritty, urxvt, tmux}
-- emacs [Doom!](https://github.com/hlissner/doom-emacs)
-- ranger
+- fish {alacritty, tmux}
+- Neovim for coding, emacs [Doom!](https://github.com/hlissner/doom-emacs) for [org-mode](https://orgmode.org/)
+- [rg](https://github.com/BurntSushi/ripgrep), [fzf](https://github.com/junegunn/fzf), [ranger](https://github.com/ranger/ranger)
 
 You can see preview in
 ![Current state of dotfiles](./screenshots/23.6.2019.png)
