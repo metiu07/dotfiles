@@ -5,7 +5,3 @@ set recolor-keephue true
 # == gruvbox ==
 set recolor-lightcolor "#282828"
 set recolor-darkcolor "#ebdbb2"
-
-# == nord ==
-# set recolor-lightcolor "#2e3440"
-# set recolor-darkcolor "#d8dee9"
