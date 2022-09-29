@@ -158,6 +158,7 @@ abbr -a -g RE ". ~/.config/fish/config.fish"
 abbr -a -g SYU "sudo pacman -Syu"
 abbr -a -g SS "pacman -Ss"
 abbr -a -g SI "pacman -Si"
+abbr -a -g QI "pacman -Qi"
 abbr -a -g QL "pacman -Ql | grep "
 
 # Add ssh-key
