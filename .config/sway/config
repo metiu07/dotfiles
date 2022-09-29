@@ -53,7 +53,7 @@ bindcode $mod+33 exec fish -c "trans_sk"
 bindcode $mod+Shift+33 exec fish -c "trans_en"
 
 # Screenshots
-bindsym Print exec flameshot gui
+bindsym Print exec $HOME/.local/bin/screenshot
 bindsym $mod+Print exec /usr/share/sway/scripts/grimshot --notify copy area
 bindsym $mod+Shift+Print exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshot_$(date -Iminutes).png"
 

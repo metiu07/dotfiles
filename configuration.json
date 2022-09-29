@@ -189,6 +189,12 @@
     "destination": "~/.screenrc",
     "name": "Screen (gnu) configuration"
   },
+  "screenshot": {
+    "source": "./.local/bin/screenshot",
+    "destination": "~/.local/bin/screenshot",
+    "name": "Screenshot program",
+    "exec": true
+  },
   "sway": {
     "source": "./.config/sway",
     "destination": "~/.config/sway",

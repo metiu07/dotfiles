@@ -1,0 +1,5 @@
+#!/bin/bash
+SCREENSHOT=$(mktemp)
+echo "$SCREENSHOT"
+/usr/share/sway/scripts/grimshot --notify save screen "$SCREENSHOT"
+ksnip "$SCREENSHOT"
