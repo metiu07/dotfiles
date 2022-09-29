@@ -274,6 +274,9 @@ map <leader>x :Commands<CR>
 map <leader>hk :Maps<CR>
 map <leader>wc :Colors<CR>
 
+" Make
+nnoremap <F1> :make<CR>
+
 " Clipboard
 vnoremap <leader>y "+y
 vnoremap <leader>Y "*y
@@ -481,6 +484,11 @@ function! s:ToggleHexdumpView()
 	endif
 endfunction
 nnoremap <silent> <Leader>th :call <SID>ToggleHexdumpView()<CR>
+
+augroup rust
+au!
+au FileType rust setl makeprg=cargo\ test
+augroup end
 
 augroup gitcommit
 au!
