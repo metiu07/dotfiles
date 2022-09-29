@@ -13,6 +13,7 @@
   "yaml.format.enable": true,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
+  "suggest.noselect": true,
   "python": {
     "formatting": {
       "provider": "black"
