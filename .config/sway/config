@@ -284,7 +284,7 @@ smart_borders on
 # outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or
 # 0 (remove gaps for current workspace). If you also press Shift with these
 # keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o)uter, (i)nner, (r)eset, (q)uit
+set $mode_gaps Gaps: (o)uter, (i)nner, (r)eset, (q)uit, (0)off
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global), (r)eset, (q)uit
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global), (r)eset, (q)uit
 bindsym $mod+Shift+g mode "$mode_gaps"
@@ -293,6 +293,7 @@ mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
         bindsym i      mode "$mode_gaps_inner"
         bindsym r      gaps inner all set 14; gaps outer all set -2
+        bindsym 0      gaps inner all set 0; gaps outer all set 0
         bindsym q      mode "default"
         bindsym Return mode "default"
         bindsym Escape mode "default"
