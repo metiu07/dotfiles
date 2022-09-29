@@ -13,87 +13,29 @@
   "yaml.format.enable": true,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
+  "python": {
+    "formatting": {
+      "provider": "black"
+    },
+    "linting": {
+      "mypyEnabled": true,
+      "pylintEnabled": true
+    }
+  },
+  "rust-analyzer": {
+    "server": {
+      "path": "/usr/bin/rust-analyzer"
+    },
+    "checkOnSave": {
+      "command": "clippy"
+    }
+  },
   "languageserver": {
     "bash": {
       "command": "bash-language-server",
       "args": ["start"],
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
-    },
-    "dockerfile": {
-      "command": "docker-langserver",
-      "filetypes": ["dockerfile"],
-      "args": ["--stdio"]
-    },
-    "haskell": {
-      "command": "hie-wrapper",
-      "args": ["--lsp"],
-      "rootPatterns": [
-        "*.cabal",
-        "stack.yaml",
-        "cabal.project",
-        "package.yaml"
-      ],
-      "filetypes": ["hs", "lhs", "haskell"],
-      "initializationOptions": {
-        "haskell": {}
-      }
-    },
-    "python": {
-      "command": "pylsp",
-      "args": ["-vv", "--log-file", "/tmp/lsp_python.log"],
-      "trace.server": "verbose",
-      "filetypes": ["python"],
-      "settings": {
-        "pylsp": {
-          "configurationSources": ["pycodestyle"],
-          "plugins": {
-            "pycodestyle": { "enabled": false, "maxLineLength": 100 },
-
-            "pydocstyle.enabled": false,
-            "pydocstyle.match": "(?!test_).*\\.py",
-            "pydocstyle.matchDir": "[^\\.].*",
-
-            "pyflakes": { "enabled": false },
-            "mccabe": { "enabled": true, "threshold": 20 },
-            "flake8": {
-              "enabled": false,
-              "ignore": ["E101", "E203", "E402", "W191", "W503"]
-            },
-            "pylint": {
-              "enabled": true,
-              "executable": "pylint",
-              "args": [
-                "-j2",
-                "--disable=W1203,C0114,C0115,C0116,C0413,C0301,R1705"
-              ]
-            },
-
-            // "pyls_mypy": { "enabled": true },
-            // "pyls_black": { "enabled": true },
-            // "pyls_isort": { "enabled": true },
-
-            "yapf": { "enabled": false },
-            "autopep8": { "enabled": false }
-          }
-        }
-      }
-    },
-    "rust": {
-      "command": "rust-analyzer",
-      "args": [],
-      "filetypes": ["rust"],
-      "settings": {
-        "rust-analyzer": {
-          "inlayHints": {
-            "enable": true,
-            "typeHints": true
-          },
-          "checkOnSave": {
-            "command": "clippy"
-          }
-        }
-      }
     },
     "yara": {
       "command": "yls",
