@@ -49,7 +49,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: none
+  decorations: full
 
   # Startup Mode (changes require restart)
   #
@@ -60,7 +60,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Windowed
+  startup_mode: Maximized
 
   # Window title
   #title: Alacritty
@@ -71,12 +71,13 @@ window:
   #instance: Alacritty
   # General application class
   #general: Alacritty
-
-  # GTK theme variant (Linux/BSD only)
+  
+  # Decorations theme variant (Linux/BSD only)
   #
-  # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
-  # Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
+  # Override the variant of the GTK theme/Wayland client side decorations.
+  # Commonly supported values are `dark` and `light`. Set this to `None` to use
+  # the default theme variant.
+  decorations_theme_variant: dark
 
 #scrolling:
 # Maximum number of lines in the scrollback buffer.
@@ -108,10 +109,10 @@ font:
     #   - (Windows) Consolas
     # family:  Tinos Nerd Font
     # family: Iosevka Nerd Font
-    family: NotoSansMono Nerd Font
+    family: ComicMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Normal
 
   # Bold font face
   bold:
@@ -119,10 +120,10 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: NotoSansMono Nerd Font
+    family: ComicMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Normal
 
   # Italic font face
   #italic:
@@ -162,24 +163,8 @@ font:
   #  x: 0
   #  y: 0
 
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`
-  #
-  # macOS >= 10.14.x:
-  #
-  # If the font quality on non-retina display looks bad then set
-  # `use_thin_strokes` to `true` and enable font smoothing by running the
-  # following command:
-  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
-  #
-  # This is a global setting and will require a log out or restart to take
-  # effect.
-  use_thin_strokes: true
-
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+# draw_bold_text_with_bright_colors: true
 
 schemes:
   gruvbox: &gruvbox
