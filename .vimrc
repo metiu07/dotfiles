@@ -20,6 +20,7 @@ Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 
 " Tools
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'tpope/vim-surround'
@@ -215,7 +216,7 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'tab': 'split',
   \ 'ctrl-v': 'vsplit' }
-let g:fzf_preview_window = 'up:60%'
+let g:fzf_preview_window = ['up,60%', 'ctrl-/']
 
 " Indent guides
 let g:indentLine_fileTypeExclude = ['markdown', 'jsonc', 'json']
