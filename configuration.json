@@ -195,6 +195,11 @@
     "name": "Screenshot program",
     "exec": true
   },
+  "starship": {
+    "source": "./.config/starship.toml",
+    "destination": "~/.config/starship.toml",
+    "name": "Starship cross-shell prompt configuration"
+  },
   "sway": {
     "source": "./.config/sway",
     "destination": "~/.config/sway",

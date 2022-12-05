@@ -16,23 +16,11 @@ fzf_key_bindings
 # Let theme prompt handle the virtualenv indicator
 set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
 
-# Pure theme configuration
-# set -g pure_symbol_prompt '❯'  # Default
-# set -g pure_symbol_prompt ''  # RPI
-# set -g pure_symbol_prompt ''  # RPI
-# set -g pure_symbol_prompt ''  # RPI
-# set -g pure_symbol_prompt '拾' # School
-set -g pure_symbol_prompt 'λ'    # Unicode lamdba
-# set -g pure_symbol_prompt 'ﬦ'    # Default
-# set -g pure_symbol_reverse_prompt '烈' # Vim mode
-# set -g pure_symbol_reverse_prompt 'ε' # Vim mode - unicode
-# set -g pure_symbol_reverse_prompt 'ξ' # Vim mode - unicode
-set -g pure_symbol_reverse_prompt 'Σ' # Vim mode - unicode
+# Disable the greeting message
+set -gx fish_greeting ""
 
-# Bob the fish theme configuration
-# set -g theme_nerd_fonts yes
-# set -g theme_display_date no
-# set -g theme_display_vi no
+# Enable starship
+source (starship init fish --print-full-init | sed 's/fish_vi_key_bindings/fish_vi_colemak_key_bindings/' | psub)
 
 # Set TERM to allow for true color in terminal
 set -gx TERM "tmux-256color"
@@ -41,6 +29,8 @@ set -gx TERM "tmux-256color"
 set -gx PATH $PATH $HOME/.local/bin
 set -gx PATH $PATH $HOME/.cargo/bin
 set -gx PATH $PATH $HOME/.yarn/bin
+set -gx PATH /usr/lib/cargo/bin $PATH 
+set -gx PATH /usr/local/bin $PATH 
 
 # Set EDITOR and VISUAL, prior emacs -> nvim -> vim -> nano
 if command -v nvim >/dev/null 2>&1
@@ -565,7 +555,7 @@ function _ssh-add -d "Add new ssh-key to the ssh-agent"
 	[ -z "$SSH_AGENT_PID" ] && eval (ssh-agent -c)
 	
 	# TODO: Filter out keys that are already active
-	set -l _key (fd 'id_.*[^\.][^p][^u][^b]$' ~/.ssh/ | fzf --height 15 --prompt "Select a key to add: " --layout=reverse)
+	set -l _key (fd . -E '*.pub' ~/.ssh/ | fzf --height 15 --prompt "Select a key to add: " --layout=reverse)
 	# TODO: Check if they _key is valid
 	ssh-add "$_key"
 end

@@ -1,0 +1,64 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$kubernetes\
+$jobs\
+$cmd_duration\
+$battery\
+$line_break\
+$python\
+$character"""
+
+[directory]
+style = "blue"
+truncate_to_repo = false
+
+[character]
+success_symbol = "[λ](purple)"
+error_symbol = "[λ](red)"
+# vimcmd_symbol = "[λ](green)"
+
+[git_branch]
+format = "[$branch]($style)"
+style = "bright-black"
+
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed )]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+# show_notifications = true
+# TODO: This triggers on vim exists, which is not ideal
+# min_time_to_notify = 1_000
+
+[python]
+format = "[($virtualenv )]($style)"
+style = "bright-black"
+
+[kubernetes]
+disabled = false
+format = '[\($symbol$context\)]($style) '
+
+[battery]
+disabled = false
+
+[[battery.display]]
+threshold = 15
+style = "bold red"
