@@ -32,6 +32,7 @@ alias clear='clear -x'                      # clear: Don't delete scrollback
 alias serve='python3 -m http.server'        # serve: Serve the current directory via http
 alias timestamp='date --utc +%+4Y%m%dT%H%MZ' # timestamp: Current timestamp in UTC ISO 8601 compliant usable in filenames
 alias e='vim'                               # e:            Launch editor
+alias ip='ip --color=auto'                  # ip:           Add color to ip commands
 
 # big thanks to bangerino for sharing
 # alias docker-kill="sudo docker ps --format '{{.Image}} {{.Names}}' | fzf -m --preview 'sudo docker ps | grep {2}' | cut -d ' ' -f 2 | xargs -I '{}' -r sudo docker kill '{}'"
