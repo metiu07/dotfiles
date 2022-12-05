@@ -105,7 +105,7 @@
 	remote = remote -v
 	rh = reset --hard
 	rhom = reset --hard origin/master
-	s = status --branch
+	s = "!git status --branch && echo '' && git log --oneline -5"
 	sm = submodule
 	smu = submodule update --init --recursive
 	sh = stash
