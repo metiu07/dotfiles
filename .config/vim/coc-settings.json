@@ -25,7 +25,7 @@
   },
   "rust-analyzer": {
     "server": {
-      "path": "/usr/bin/rust-analyzer"
+      "path": "~/.cargo/bin/rust-analyzer"
     },
     "checkOnSave": {
       "command": "clippy"
