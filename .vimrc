@@ -58,7 +58,7 @@ Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
 " set langmap=dg,ek,fe,gt,il,jy,kn,lu,nj,pr,rs,sd,tf,ui,yo,op,DG,EK,FE,GT,IL,JY,KN,LU,NJ,PR,RS,SD,TF,UI,YO,OP
-set langmap=mh,ek,fe,il,jy,kn,lu,nj,pr,rs,sd,tf,ui,yo,op,bt,dv,vb,UI,DV,EK,FE,IL,JY,KN,LU,NJ,PR,RS,SD,TF,UI,YO
+set langmap=mh,ek,fe,il,jy,kn,lu,nj,pr,rs,sd,tf,ui,yo,op,bt,dv,vb,UI,DV,EK,FE,IL,JY,KN,LU,NJ,PR,RS,SD,TF,UI,YO,OP
 nmap <c-p> :redo<cr>
 " Page down
 nnoremap <c-l> <c-u>
