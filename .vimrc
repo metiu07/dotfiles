@@ -7,58 +7,6 @@
 " Set the <leader> character to spacebar
 let mapleader = "\<Space>"
 
-" Set runtimepath to same as vim
-set runtimepath+=~/.config/vim/
-
-" Plugins can be installed with :PlugInstall
-call plug#begin('~/.config/vim/plugged')
-
-" GUI
-Plug 'itchyny/lightline.vim'
-Plug 'yggdroot/indentline'
-Plug 'mhinz/vim-startify'
-Plug 'junegunn/goyo.vim'
-
-" Tools
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'AndrewRadev/sideways.vim'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'godlygeek/tabular'
-
-" GIT
-Plug 'airblade/vim-rooter'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-
-" LSP
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'liuchengxu/vista.vim'
-
-" Syntax
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'blankname/vim-fish'
-Plug 'udalov/kotlin-vim'
-Plug 'kevinoid/vim-jsonc'
-Plug 'stephpy/vim-yaml'
-Plug 'cespare/vim-toml'
-Plug 's3rvac/vim-syntax-yara'
-Plug 'plasticboy/vim-markdown'
-Plug 'axvr/org.vim'
-
-" Flashing operations
-Plug 'haya14busa/vim-operator-flashy' | Plug 'kana/vim-operator-user'
-
-" Snippets
-Plug 'honza/vim-snippets'
-
-" Color themes
-Plug 'gruvbox-community/gruvbox'
-
-call plug#end()
-" set langmap=dg,ek,fe,gt,il,jy,kn,lu,nj,pr,rs,sd,tf,ui,yo,op,DG,EK,FE,GT,IL,JY,KN,LU,NJ,PR,RS,SD,TF,UI,YO,OP
 set langmap=mh,ek,fe,il,jy,kn,lu,nj,pr,rs,sd,tf,ui,yo,op,bt,dv,vb,UI,DV,EK,FE,IL,JY,KN,LU,NJ,PR,RS,SD,TF,UI,YO,OP
 nmap <c-p> :redo<cr>
 " Page down
@@ -69,168 +17,6 @@ nnoremap <c-s> <c-d>
 vnoremap <c-s> <c-d>
 " Block select
 nnoremap <c-d> <c-v>
-
-" CoC
-" TODO: Checkout https://github.com/neoclide/coc-pairs
-" Plugin 'jiangmiao/auto-pairs'
-" Disabled because of: https://github.com/jiangmiao/auto-pairs/issues/272
-let g:coc_global_extensions = ['coc-clangd',
-			\ 'coc-eslint',
-			\ 'coc-json',
-			\ 'coc-prettier',
-			\ 'coc-pyright',
-			\ 'coc-rust-analyzer',
-			\ 'coc-snippets',
-			\ 'coc-texlab',
-			\ 'coc-tsserver',
-			\ 'coc-vimlsp',
-			\ 'coc-yaml']
-let g:coc_config_home = expand('~/.config/vim')
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)zz
-nmap <silent> gy <Plug>(coc-type-definition)zz
-nmap <silent> gi <Plug>(coc-implementation)zz
-nmap <silent> gD <Plug>(coc-references)
-
-" Symbol renaming.
-nmap <leader>cr <Plug>(coc-rename)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Formatting code.
-xmap <leader>cf :Format<CR>
-nmap <leader>cf :Format<CR>
-" Formatting selected code.
-xmap <leader>cF  <Plug>(coc-format-selected)
-nmap <leader>cF  <Plug>(coc-format-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ca  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>cF  <Plug>(coc-fix-current)
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>cA  <Plug>(coc-codeaction-selected)
-nmap <leader>cA  <Plug>(coc-codeaction-selected)
-
-" Map function and class text objects
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call ShowDocumentation()<CR>
-
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <leader>Ca  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <leader>Ce  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <leader>Cc  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <leader>Co  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <leader>Cs  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <leader>Cj  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <leader>Ck  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <leader>Cp  :<C-u>CocListResume<CR>
-
-" Goyo
-" TODO: Also toggle wrapping with this command
-map <leader>tg :Goyo<CR>
-
-" Fugitive
-map <leader>gg :Git<CR>
-map <leader>gb :Git blame<CR>
-map <leader>gl :Git log --oneline<CR>
-
-" Vista
-let g:vista_default_executive = 'vim_lsp'
-" Ignore module symbols, they are not relevant and only polute the search list
-let g:vista_ignore_kinds = ['Module']
-map gj :Vista finder<CR>
-
-" Gitgutter
-let g:gitgutter_set_sign_backgrounds = 1
-highlight SignColumn ctermbg=NONE gui=NONE guibg=NONE
-
-" FZF
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'tab': 'split',
-  \ 'ctrl-v': 'vsplit' }
-let g:fzf_preview_window = ['up,60%', 'ctrl-/']
-
-" Indent guides
-let g:indentLine_fileTypeExclude = ['markdown', 'jsonc', 'json']
-nmap <leader>ti :IndentLinesToggle<CR>
-
-" Vim operator flashy
-map y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
-
-" Sideways
-omap aa <Plug>SidewaysArgumentTextobjA
-xmap aa <Plug>SidewaysArgumentTextobjA
-omap ia <Plug>SidewaysArgumentTextobjI
-xmap ia <Plug>SidewaysArgumentTextobjI
 
 " Color scheme settings
 syntax on
@@ -246,7 +32,6 @@ let g:gruvbox_undercurl = 0
 " Needed for spell
 let g:gruvbox_guisp_fallback = "bg"
 colorscheme gruvbox
-let g:lightline = { 'colorscheme': 'gruvbox' }
 
 " Fix the annoying syntax bug when scrolling. This can be slow for large
 " files, but is always accurate. In case of performance problems consider
@@ -259,21 +44,6 @@ if !has('gui_running')
   set t_Co=256
 endif
 set background=dark
-
-" Disable background - transparency
-"
-" highlight Normal ctermbg=NONE gui=NONE guibg=NONE
-" highlight nonText ctermbg=NONE gui=NONE guibg=NONE
-
-" Leader bindings
-map <leader><Space> :GFiles<CR>
-map <leader>. :Files<CR>
-nmap <leader>< :Buffers<CR>
-nmap <leader>, :Buffers<CR>
-nmap <leader>/ :Rg<CR>
-map <leader>x :Commands<CR>
-map <leader>hk :Maps<CR>
-map <leader>wc :Colors<CR>
 
 " Make
 nnoremap <F1> :make<CR>
@@ -354,7 +124,7 @@ set gdefault
 set listchars=nbsp:+,tab:>\ ,trail:·,extends:>,lead:·
 
 " Make double-<Esc> clear search highlights
-nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+" nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 " Stay in visual mode when indenting.
 vnoremap < <gv
@@ -501,7 +271,7 @@ augroup end
 
 augroup latex
 au!
-au FileType tex,plaintex setl spell    " Enable spell checking.
+au FileType tex,plaintex setl spell    " Enable spellchecking.
 au BufRead,BufNewFile *.tex setl textwidth=80
 augroup end
 
@@ -515,5 +285,4 @@ autocmd BufNewFile,BufRead *.yar,*.yara set filetype=yara
 augroup yara
 au!
 au FileType yara setl expandtab
-au BufRead,BufNewFile *.tex setl textwidth=80
 augroup end
