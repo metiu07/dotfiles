@@ -135,15 +135,6 @@ cabb E e
 cabb Q q
 cabb W w
 
-" Searches - centering
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
-nnoremap <silent> <C-O> <C-O>zz
-" TODO: Also bind CTRL-o to center the screen
-
 " Nvim specific
 if has('nvim')
     set guicursor=n-v-c-sm:hor20,i-ci-ve:ver25,r-cr-o:block
