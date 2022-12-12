@@ -11,8 +11,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
--- FIXME: Dynamically find the path to the config
-vim.cmd('source ~/.config/nvim/config.vim')
+vim.cmd('source ' .. vim.fn.expand('$HOME/.config/nvim/config.vim'))
 
 -- Gruvbox
 vim.g.gruvbox_baby_use_original_palette = 1
