@@ -69,6 +69,7 @@ require('packer').startup(function(use)
 
     -- Syntax
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use 'nvim-treesitter/playground'
     use { 's3rvac/vim-syntax-yara', ft = "yara" }
 
     -- Flashing operations
@@ -153,6 +154,9 @@ require 'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
     },
+    playground = {
+        enable = true,
+    }
 }
 
 -- Completion
