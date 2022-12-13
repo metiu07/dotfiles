@@ -16,6 +16,10 @@ vim.cmd('source ' .. vim.fn.expand('$HOME/.config/nvim/config.vim'))
 -- Gruvbox
 vim.g.gruvbox_baby_use_original_palette = 1
 vim.cmd('colorscheme gruvbox-baby')
+vim.cmd([[
+highlight! link @text.diff.add diffAdded
+highlight! link @text.diff.delete diffRemoved
+]])
 
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
