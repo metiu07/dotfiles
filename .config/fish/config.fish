@@ -22,6 +22,9 @@ set -gx fish_greeting ""
 # Enable starship
 source (starship init fish --print-full-init | sed 's/fish_vi_key_bindings/fish_vi_colemak_key_bindings/' | psub)
 
+# Enable zoxide
+zoxide init fish | source
+
 # Set TERM to allow for true color in terminal
 set -gx TERM "tmux-256color"
 
