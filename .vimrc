@@ -25,13 +25,6 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-let g:gruvbox_bold = 1
-let g:gruvbox_italic = 1
-let g:gruvbox_italicize_comments = 0
-let g:gruvbox_undercurl = 0
-" Needed for spell
-let g:gruvbox_guisp_fallback = "bg"
-colorscheme gruvbox
 
 " Fix the annoying syntax bug when scrolling. This can be slow for large
 " files, but is always accurate. In case of performance problems consider
