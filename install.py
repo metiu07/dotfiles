@@ -225,7 +225,7 @@ def parse_arguments():
 
     parser = argparse.ArgumentParser(
         description="Dotfiles installer program to symlink config files for user"
-    )  # noqa
+    )
     parser.add_argument("modules", nargs="*", default=["linux"])
     parser.add_argument(
         "-r", "--remove", action="store_true", help="uninstall selected modules"
@@ -257,10 +257,10 @@ def parse_arguments():
         action="store",
         default="./configuration.json",
         help="set the input file (default: ./configuration.json)",
-    )  # noqa
+    )
     parser.add_argument(
         "-v", "--verbose", action="store_true", help="verbose output"
-    )  # noqa
+    )
     return parser.parse_args()
 
 
