@@ -37,6 +37,12 @@ require('packer').startup(function(use)
     -- FIXME: We can maybe replace with https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     use 'AndrewRadev/sideways.vim'
     use 'tpope/vim-commentary'
+    use({
+        "andrewferrier/debugprint.nvim",
+        config = function()
+            require("debugprint").setup()
+        end,
+    })
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         requires = { { 'nvim-lua/plenary.nvim' } }
