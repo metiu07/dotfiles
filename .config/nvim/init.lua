@@ -81,6 +81,21 @@ require('packer').startup(function(use)
     -- Syntax
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'nvim-orgmode/orgmode' }
+    use { 'nfrid/treesitter-utils', commit = "8505c912e29388d2ebb92cf22e91e55052a861cd" }
+    use { 'nfrid/markdown-togglecheck', ft = "markdown", commit = "c0656836e2ef0b1c2ff6d8b68d3d11ac7973282e",
+        config = function()
+            require('markdown-togglecheck').setup({
+                -- create empty checkbox on item without any while toggling
+                create = true,
+                -- remove checked checkbox instead of unckecking it while toggling
+                remove = false,
+            })
+
+            vim.keymap.set('n', '<leader><CR>', function()
+                require('markdown-togglecheck').toggle()
+            end, OPTS)
+        end,
+    }
     use 'nvim-treesitter/playground'
     use { 's3rvac/vim-syntax-yara', ft = "yara" }
 
