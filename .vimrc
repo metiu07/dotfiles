@@ -66,8 +66,6 @@ set splitright
 set laststatus=2
 set backspace=indent,eol,start
 set showmatch
-set autoindent
-set smartindent
 set smarttab
 set tabstop=4
 set shiftwidth=4
