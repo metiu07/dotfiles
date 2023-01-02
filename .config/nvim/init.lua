@@ -10,6 +10,7 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
+local OPTS = { noremap = true, silent = true }
 
 vim.cmd('source ' .. vim.fn.expand('$HOME/.config/nvim/config.vim'))
 
@@ -127,8 +128,7 @@ require('nvim-lastplace').setup {
 }
 
 -- Neogen
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", OPTS)
 
 -- Highlight yanked things
 -- FIXME: Convert to lua
@@ -263,11 +263,10 @@ cmp.setup.filetype('gitcommit', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- LSP
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']g', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, OPTS)
+vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, OPTS)
+vim.keymap.set('n', ']g', vim.diagnostic.goto_next, OPTS)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, OPTS)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
