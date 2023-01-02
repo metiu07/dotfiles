@@ -80,6 +80,7 @@ require('packer').startup(function(use)
 
     -- Syntax
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use { 'nvim-orgmode/orgmode' }
     use 'nvim-treesitter/playground'
     use { 's3rvac/vim-syntax-yara', ft = "yara" }
 
@@ -156,6 +157,8 @@ omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
 ]])
 
+require('orgmode').setup_ts_grammar()
+
 -- Treesitter
 require 'nvim-treesitter.configs'.setup {
     ensure_installed = { "c", "diff", "gitcommit", "lua", "rust", "fish", "javascript", "typescript" },
@@ -168,6 +171,13 @@ require 'nvim-treesitter.configs'.setup {
         enable = true,
     }
 }
+
+require('orgmode').setup({
+    org_hide_leading_stars = true,
+    org_indent_mode = "noindent",
+    -- FIXME: This seems to now work
+    -- org_blank_before_new_entry = { heading = false }
+})
 
 -- Completion
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
