@@ -124,7 +124,7 @@ abbr -a -g D "deactivate"
 abbr -a -g RE ". ~/.config/fish/config.fish"
 
 # Pacman helpers
-abbr -a -g SYU "sudo pacman -Syu"
+abbr -a -g SYU "sudo pacman -Syu --needed"
 abbr -a -g SS "pacman -Ss"
 abbr -a -g SI "pacman -Si"
 abbr -a -g QI "pacman -Qi"
