@@ -2,15 +2,11 @@
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar at the bottom of your screen
   "height": 24, // Waybar height
-  // "width": 1366, // Waybar width
   // Choose the order of the modules
   "modules-left": ["sway/workspaces", "sway/mode"],
-  // "modules-center": ["custom/pomodoro", "sway/window"],
-  "modules-center": ["custom/pomodoro"],
   "modules-right": [
     "pulseaudio",
     // "network",
-    "custom/keyboard_layout",
     "cpu",
     "memory",
     "battery",
