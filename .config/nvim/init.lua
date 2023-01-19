@@ -176,7 +176,7 @@ require('orgmode').setup_ts_grammar()
 
 -- Treesitter
 require 'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "diff", "gitcommit", "lua", "rust", "fish", "javascript", "typescript" },
+    ensure_installed = { "c", "diff", "gitcommit", "lua", "rust", "fish", "markdown", "javascript", "typescript" },
     sync_install = false,
     auto_install = true,
     highlight = {
