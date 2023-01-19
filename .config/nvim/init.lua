@@ -80,7 +80,6 @@ require('packer').startup(function(use)
 
     -- Syntax
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use { 'nvim-orgmode/orgmode' }
     use { 'nfrid/treesitter-utils', commit = "8505c912e29388d2ebb92cf22e91e55052a861cd" }
     use { 'nfrid/markdown-togglecheck', ft = "markdown", commit = "c0656836e2ef0b1c2ff6d8b68d3d11ac7973282e",
         config = function()
@@ -172,8 +171,6 @@ omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
 ]])
 
-require('orgmode').setup_ts_grammar()
-
 -- Treesitter
 require 'nvim-treesitter.configs'.setup {
     ensure_installed = { "c", "diff", "gitcommit", "lua", "rust", "fish", "markdown", "javascript", "typescript" },
@@ -187,12 +184,6 @@ require 'nvim-treesitter.configs'.setup {
     }
 }
 
-require('orgmode').setup({
-    org_hide_leading_stars = true,
-    org_indent_mode = "noindent",
-    -- FIXME: This seems to now work
-    -- org_blank_before_new_entry = { heading = false }
-})
 
 -- Completion
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
