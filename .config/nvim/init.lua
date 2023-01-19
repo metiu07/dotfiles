@@ -181,9 +181,20 @@ require 'nvim-treesitter.configs'.setup {
     },
     playground = {
         enable = true,
+    },
+    indent = {
+        enable = true,
     }
 }
 
+-- Folding
+vim.cmd([[
+set foldmethod=expr
+set foldlevel=9
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable                     " Disable folding at startup.
+]])
+-- vim.cmd('set nofoldenable')
 
 -- Completion
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
