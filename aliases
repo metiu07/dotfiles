@@ -1,7 +1,7 @@
 alias cal='cal -3m'                         # Preferred 'cal' implementation
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias mkdir='mkdir -v'                      # Preferred 'mkdir' implementation
 alias ls='ls -G --group-directories-first --color=auto' # Preferred directory listing
 alias ll='ls -FGlAhp --group-directories-first --color=auto' # Preferred 'ls' implementation
 alias less='less -SRXci'                    # Preferred 'less' implementation
