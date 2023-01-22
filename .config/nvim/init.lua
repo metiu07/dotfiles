@@ -127,6 +127,7 @@ vim.keymap.set('n', '<leader>,', builtin.buffers, {})
 vim.keymap.set('n', '<leader>hh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>hk', builtin.keymaps, {})
 vim.keymap.set('n', '<leader>x', builtin.commands, {})
+vim.keymap.set('n', 'z=', builtin.spell_suggest, {})
 
 -- Fugitive
 vim.keymap.set('n', '<leader>gg', "<cmd>Git<CR>", {})
