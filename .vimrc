@@ -40,6 +40,7 @@ set background=dark
 
 " Make
 nnoremap <F1> :make<CR>
+nnoremap <leader>r :make<CR>
 
 " Clipboard
 vnoremap <leader>y "+y
