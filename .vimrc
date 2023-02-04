@@ -7,7 +7,8 @@
 " Set the <leader> character to spacebar
 let mapleader = "\<Space>"
 
-set langmap=hm,mh,ek,fe,il,jy,kn,lu,nj,pr,rs,sd,tf,ui,yo,op,bt,dv,vb,HM,UI,DV,EK,FE,IL,JY,KN,LU,NJ,PR,RS,SD,TF,UI,YO,OP
+" My old wrong colemak - set langmap=hm,mh,ek,fe,il,jy,kn,lu,nj,pr,rs,sd,tf,ui,yo,op,bt,dv,vb,HM,UI,DV,EK,FE,IL,JY,KN,LU,NJ,PR,RS,SD,TF,UI,YO,OP
+set langmap=zb,xz,cx,dc,hm,mh,ek,fe,il,jy,kn,lu,nj,pr,rs,sd,tf,ui,yo,op,bt,XZ,CX,DC,ZB,HM,UI,EK,FE,IL,JY,KN,LU,NJ,PR,RS,SD,TF,UI,YO,OP
 nmap <c-p> :redo<cr>
 " Page down
 nnoremap <c-l> <c-u>
