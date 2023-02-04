@@ -25,9 +25,6 @@ source (starship init fish --print-full-init | sed 's/fish_vi_key_bindings/fish_
 # Enable zoxide
 zoxide init fish | source
 
-# Set TERM to allow for true color in terminal
-set -gx TERM "tmux-256color"
-
 # Customize path variable
 set -gx PATH $PATH $HOME/.local/bin
 set -gx PATH $PATH $HOME/.cargo/bin
