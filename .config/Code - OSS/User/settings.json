@@ -1,0 +1,1027 @@
+{
+    "cSpell.userWords": [
+        "mobi",
+        "pandoc"
+    ],
+    "cSpell.enabled": false,
+    "telemetry.telemetryLevel": "off",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "vim.enableNeovim": true,
+    "vim.gdefault": true,
+        "vim.operatorPendingModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "\\"
+            ],
+            "after": [
+                "b"
+            ]
+        },
+        {
+            "before": [
+                "z"
+            ],
+            "after": [
+                "b"
+            ]
+        },
+        {
+            "before": [
+                "x"
+            ],
+            "after": [
+                "z"
+            ]
+        },
+        {
+            "before": [
+                "c"
+            ],
+            "after": [
+                "x"
+            ]
+        },
+        {
+            "before": [
+                "d"
+            ],
+            "after": [
+                "c"
+            ]
+        },
+        {
+            "before": [
+                "h"
+            ],
+            "after": [
+                "m"
+            ]
+        },
+        {
+            "before": [
+                "m"
+            ],
+            "after": [
+                "h"
+            ]
+        },
+        {
+            "before": [
+                "e"
+            ],
+            "after": [
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "f"
+            ],
+            "after": [
+                "e"
+            ]
+        },
+        {
+            "before": [
+                "i"
+            ],
+            "after": [
+                "l"
+            ]
+        },
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "y"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "n"
+            ]
+        },
+        {
+            "before": [
+                "l"
+            ],
+            "after": [
+                "u"
+            ]
+        },
+        {
+            "before": [
+                "n"
+            ],
+            "after": [
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "p"
+            ],
+            "after": [
+                "r"
+            ]
+        },
+        {
+            "before": [
+                "r"
+            ],
+            "after": [
+                "s"
+            ]
+        },
+        {
+            "before": [
+                "s"
+            ],
+            "after": [
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "t"
+            ],
+            "after": [
+                "f"
+            ]
+        },
+        {
+            "before": [
+                "u"
+            ],
+            "after": [
+                "i"
+            ]
+        },
+        {
+            "before": [
+                "y"
+            ],
+            "after": [
+                "o"
+            ]
+        },
+        {
+            "before": [
+                "o"
+            ],
+            "after": [
+                "p"
+            ]
+        },
+        {
+            "before": [
+                "b"
+            ],
+            "after": [
+                "t"
+            ]
+        },
+        {
+            "before": [
+                "X"
+            ],
+            "after": [
+                "Z"
+            ]
+        },
+        {
+            "before": [
+                "C"
+            ],
+            "after": [
+                "X"
+            ]
+        },
+        {
+            "before": [
+                "D"
+            ],
+            "after": [
+                "C"
+            ]
+        },
+        {
+            "before": [
+                "Z"
+            ],
+            "after": [
+                "B"
+            ]
+        },
+        {
+            "before": [
+                "H"
+            ],
+            "after": [
+                "M"
+            ]
+        },
+        {
+            "before": [
+                "U"
+            ],
+            "after": [
+                "I"
+            ]
+        },
+        {
+            "before": [
+                "E"
+            ],
+            "after": [
+                "K"
+            ]
+        },
+        {
+            "before": [
+                "F"
+            ],
+            "after": [
+                "E"
+            ]
+        },
+        {
+            "before": [
+                "I"
+            ],
+            "after": [
+                "L"
+            ]
+        },
+        {
+            "before": [
+                "J"
+            ],
+            "after": [
+                "Y"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "after": [
+                "N"
+            ]
+        },
+        {
+            "before": [
+                "L"
+            ],
+            "after": [
+                "U"
+            ]
+        },
+        {
+            "before": [
+                "N"
+            ],
+            "after": [
+                "J"
+            ]
+        },
+        {
+            "before": [
+                "P"
+            ],
+            "after": [
+                "R"
+            ]
+        },
+        {
+            "before": [
+                "R"
+            ],
+            "after": [
+                "S"
+            ]
+        },
+        {
+            "before": [
+                "S"
+            ],
+            "after": [
+                "D"
+            ]
+        },
+        {
+            "before": [
+                "T"
+            ],
+            "after": [
+                "F"
+            ]
+        },
+        {
+            "before": [
+                "U"
+            ],
+            "after": [
+                "I"
+            ]
+        },
+        {
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "O"
+            ]
+        },
+        {
+            "before": [
+                "O"
+            ],
+            "after": [
+                "P"
+            ]
+        },
+    ],
+        "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "\\"
+            ],
+            "after": [
+                "b"
+            ]
+        },
+        {
+            "before": [
+                "z"
+            ],
+            "after": [
+                "b"
+            ]
+        },
+        {
+            "before": [
+                "x"
+            ],
+            "after": [
+                "z"
+            ]
+        },
+        {
+            "before": [
+                "c"
+            ],
+            "after": [
+                "x"
+            ]
+        },
+        {
+            "before": [
+                "d"
+            ],
+            "after": [
+                "c"
+            ]
+        },
+        {
+            "before": [
+                "h"
+            ],
+            "after": [
+                "m"
+            ]
+        },
+        {
+            "before": [
+                "m"
+            ],
+            "after": [
+                "h"
+            ]
+        },
+        {
+            "before": [
+                "e"
+            ],
+            "after": [
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "f"
+            ],
+            "after": [
+                "e"
+            ]
+        },
+        {
+            "before": [
+                "i"
+            ],
+            "after": [
+                "l"
+            ]
+        },
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "y"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "n"
+            ]
+        },
+        {
+            "before": [
+                "l"
+            ],
+            "after": [
+                "u"
+            ]
+        },
+        {
+            "before": [
+                "n"
+            ],
+            "after": [
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "p"
+            ],
+            "after": [
+                "r"
+            ]
+        },
+        {
+            "before": [
+                "r"
+            ],
+            "after": [
+                "s"
+            ]
+        },
+        {
+            "before": [
+                "s"
+            ],
+            "after": [
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "t"
+            ],
+            "after": [
+                "f"
+            ]
+        },
+        {
+            "before": [
+                "u"
+            ],
+            "after": [
+                "i"
+            ]
+        },
+        {
+            "before": [
+                "y"
+            ],
+            "after": [
+                "o"
+            ]
+        },
+        {
+            "before": [
+                "o"
+            ],
+            "after": [
+                "p"
+            ]
+        },
+        {
+            "before": [
+                "b"
+            ],
+            "after": [
+                "t"
+            ]
+        },
+        {
+            "before": [
+                "X"
+            ],
+            "after": [
+                "Z"
+            ]
+        },
+        {
+            "before": [
+                "C"
+            ],
+            "after": [
+                "X"
+            ]
+        },
+        {
+            "before": [
+                "D"
+            ],
+            "after": [
+                "C"
+            ]
+        },
+        {
+            "before": [
+                "Z"
+            ],
+            "after": [
+                "B"
+            ]
+        },
+        {
+            "before": [
+                "H"
+            ],
+            "after": [
+                "M"
+            ]
+        },
+        {
+            "before": [
+                "U"
+            ],
+            "after": [
+                "I"
+            ]
+        },
+        {
+            "before": [
+                "E"
+            ],
+            "after": [
+                "K"
+            ]
+        },
+        {
+            "before": [
+                "F"
+            ],
+            "after": [
+                "E"
+            ]
+        },
+        {
+            "before": [
+                "I"
+            ],
+            "after": [
+                "L"
+            ]
+        },
+        {
+            "before": [
+                "J"
+            ],
+            "after": [
+                "Y"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "after": [
+                "N"
+            ]
+        },
+        {
+            "before": [
+                "L"
+            ],
+            "after": [
+                "U"
+            ]
+        },
+        {
+            "before": [
+                "N"
+            ],
+            "after": [
+                "J"
+            ]
+        },
+        {
+            "before": [
+                "P"
+            ],
+            "after": [
+                "R"
+            ]
+        },
+        {
+            "before": [
+                "R"
+            ],
+            "after": [
+                "S"
+            ]
+        },
+        {
+            "before": [
+                "S"
+            ],
+            "after": [
+                "D"
+            ]
+        },
+        {
+            "before": [
+                "T"
+            ],
+            "after": [
+                "F"
+            ]
+        },
+        {
+            "before": [
+                "U"
+            ],
+            "after": [
+                "I"
+            ]
+        },
+        {
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "O"
+            ]
+        },
+        {
+            "before": [
+                "O"
+            ],
+            "after": [
+                "P"
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "\\"
+            ],
+            "after": [
+                "b"
+            ]
+        },
+        {
+            "before": [
+                "z"
+            ],
+            "after": [
+                "b"
+            ]
+        },
+        {
+            "before": [
+                "x"
+            ],
+            "after": [
+                "z"
+            ]
+        },
+        {
+            "before": [
+                "c"
+            ],
+            "after": [
+                "x"
+            ]
+        },
+        {
+            "before": [
+                "d"
+            ],
+            "after": [
+                "c"
+            ]
+        },
+        {
+            "before": [
+                "h"
+            ],
+            "after": [
+                "m"
+            ]
+        },
+        {
+            "before": [
+                "m"
+            ],
+            "after": [
+                "h"
+            ]
+        },
+        {
+            "before": [
+                "e"
+            ],
+            "after": [
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "f"
+            ],
+            "after": [
+                "e"
+            ]
+        },
+        {
+            "before": [
+                "i"
+            ],
+            "after": [
+                "l"
+            ]
+        },
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "y"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "n"
+            ]
+        },
+        {
+            "before": [
+                "l"
+            ],
+            "after": [
+                "u"
+            ]
+        },
+        {
+            "before": [
+                "n"
+            ],
+            "after": [
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "p"
+            ],
+            "after": [
+                "r"
+            ]
+        },
+        {
+            "before": [
+                "r"
+            ],
+            "after": [
+                "s"
+            ]
+        },
+        {
+            "before": [
+                "s"
+            ],
+            "after": [
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "t"
+            ],
+            "after": [
+                "f"
+            ]
+        },
+        {
+            "before": [
+                "u"
+            ],
+            "after": [
+                "i"
+            ]
+        },
+        {
+            "before": [
+                "y"
+            ],
+            "after": [
+                "o"
+            ]
+        },
+        {
+            "before": [
+                "o"
+            ],
+            "after": [
+                "p"
+            ]
+        },
+        {
+            "before": [
+                "b"
+            ],
+            "after": [
+                "t"
+            ]
+        },
+        {
+            "before": [
+                "X"
+            ],
+            "after": [
+                "Z"
+            ]
+        },
+        {
+            "before": [
+                "C"
+            ],
+            "after": [
+                "X"
+            ]
+        },
+        {
+            "before": [
+                "D"
+            ],
+            "after": [
+                "C"
+            ]
+        },
+        {
+            "before": [
+                "Z"
+            ],
+            "after": [
+                "B"
+            ]
+        },
+        {
+            "before": [
+                "H"
+            ],
+            "after": [
+                "M"
+            ]
+        },
+        {
+            "before": [
+                "U"
+            ],
+            "after": [
+                "I"
+            ]
+        },
+        {
+            "before": [
+                "E"
+            ],
+            "after": [
+                "K"
+            ]
+        },
+        {
+            "before": [
+                "F"
+            ],
+            "after": [
+                "E"
+            ]
+        },
+        {
+            "before": [
+                "I"
+            ],
+            "after": [
+                "L"
+            ]
+        },
+        {
+            "before": [
+                "J"
+            ],
+            "after": [
+                "Y"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "after": [
+                "N"
+            ]
+        },
+        {
+            "before": [
+                "L"
+            ],
+            "after": [
+                "U"
+            ]
+        },
+        {
+            "before": [
+                "N"
+            ],
+            "after": [
+                "J"
+            ]
+        },
+        {
+            "before": [
+                "P"
+            ],
+            "after": [
+                "R"
+            ]
+        },
+        {
+            "before": [
+                "R"
+            ],
+            "after": [
+                "S"
+            ]
+        },
+        {
+            "before": [
+                "S"
+            ],
+            "after": [
+                "D"
+            ]
+        },
+        {
+            "before": [
+                "T"
+            ],
+            "after": [
+                "F"
+            ]
+        },
+        {
+            "before": [
+                "U"
+            ],
+            "after": [
+                "I"
+            ]
+        },
+        {
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "O"
+            ]
+        },
+        {
+            "before": [
+                "O"
+            ],
+            "after": [
+                "P"
+            ]
+        },
+    ]
+}
