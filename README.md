@@ -84,6 +84,9 @@ Press `ctrl` + `alt` + `cmd` + `fX` key.
 
 ### Firefox
 
+#### Vimperator
+- there is a setting to ignore keyboard layout
+
 #### Fullscreen - don't hide the toolbar
 
 1) Go to `about:config` in firefox
