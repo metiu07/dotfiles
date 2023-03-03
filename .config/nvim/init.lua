@@ -37,6 +37,7 @@ require('packer').startup(function(use)
     -- Tools
     -- FIXME: We can maybe replace with https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     use 'AndrewRadev/sideways.vim'
+    use 'tpope/vim-abolish'
     use 'tpope/vim-commentary'
     use({
         "andrewferrier/debugprint.nvim",
