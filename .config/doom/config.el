@@ -56,11 +56,11 @@
         :nv "n" 'evil-next-line
         :nv "e" 'evil-previous-line
         :nv "i" 'evil-forward-char
-        :nv "f" 'evil-forward-word-end
-        :nv "v" 'evil-backward-word-begin
-        :n "d" 'evil-visual-char
-        :n "D" 'evil-visual-line
-        :n "C-d" 'evil-visual-block
+        :nv "f" 'evil-forward-word-end   
+        :n "z" 'evil-backward-word-begin
+        :n "d" 'evil-change   
+        :n "D" 'evil-change-line
+        :n "c" 'evil-delete-char
         :n "p" 'evil-replace
         :n "P" 'evil-replace-state
         :n "o" 'evil-paste-after
@@ -78,6 +78,9 @@
   (map! :map evil-org-mode-map
         :n "o" 'evil-paste-after
         :n "O" 'evil-paste-before
+        :n "d" 'evil-change
+        :n "D" 'evil-change-line
+        :nv "z" 'evil-backward-word-begin
         :n "M-m" 'org-metaleft
         :n "M-n" 'org-metadown
         :n "M-e" 'org-metaup
