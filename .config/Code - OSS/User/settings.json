@@ -10,7 +10,7 @@
     },
     "vim.enableNeovim": true,
     "vim.gdefault": true,
-        "vim.operatorPendingModeKeyBindingsNonRecursive": [
+    "vim.operatorPendingModeKeyBindingsNonRecursive": [
         {
             "before": [
                 "\\"
@@ -348,7 +348,7 @@
             ]
         },
     ],
-        "vim.visualModeKeyBindingsNonRecursive": [
+    "vim.visualModeKeyBindingsNonRecursive": [
         {
             "before": [
                 "\\"
