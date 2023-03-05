@@ -83,8 +83,16 @@ xdg-mime default org.pwmt.zathura.desktop application/pdf
 Press `ctrl` + `alt` + `cmd` + `fX` key.
 
 ### Firefox
+**Add-ons:**
+- [NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/)
+- [Dark Reader](https://addons.mozilla.org/en-US/firefox/addon/darkreader/)
+- [Vimium-FF](https://addons.mozilla.org/en-US/firefox/addon/vimium-ff/)
+- [Imagus](https://addons.mozilla.org/en-US/firefox/addon/imagus/)
+- [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
+- [I don't care about cookies](https://addons.mozilla.org/en-US/firefox/addon/i-dont-care-about-cookies/)
+- [Web Archives](https://addons.mozilla.org/en-US/firefox/addon/view-page-archive/)
 
-#### Vimperator
+#### Vimium-FF
 - there is a setting to ignore keyboard layout
 
 #### Fullscreen - don't hide the toolbar
