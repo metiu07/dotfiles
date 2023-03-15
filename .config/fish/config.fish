@@ -426,7 +426,7 @@ function fp -d "Interactive find file in project"
 end
 
 function select_project -d "Interactive select the project from ~/dev"
-    set -l project_dir (command ls ~/dev | command fzf --height 15 --prompt "Select a project: " --layout=reverse)
+    set -l project_dir (command ls ~/dev | command fzf --height 15 --prompt "Select a project: " --layout=reverse --select-1 --query "$argv[1]")
     realpath ~/dev/$project_dir
 end
 
@@ -459,7 +459,12 @@ alias vimf="vim (ff)"
 alias ep="vimp"
 alias ec="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias catf="cat (ff)"
-alias zz="cd (select_project)"
+
+function zz -d "Interactive select a project"
+    set -l selected_project (select_project "$argv[1]")
+	[ -z "$selected_project" ] && return
+    cd $selected_project
+end
 
 function ee -d "Interactive file picker for vim open"
 	set -l selected_file (ff)
