@@ -456,11 +456,16 @@ alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias vimt="vim (mktemp --suffix=.md)"
 alias vimtt="vim (mktemp)"
 alias vimf="vim (ff)"
-alias ee="vim (ff)"
 alias ep="vimp"
 alias ec="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias catf="cat (ff)"
 alias zz="cd (select_project)"
+
+function ee -d "Interactive file picker for vim open"
+	set -l selected_file (ff)
+	[ -z "$selected_file" ] && return
+	vim $selected_file
+end
 
 function source_global -d "Interactive source python env"
 	# TODO: Handle multiselection
