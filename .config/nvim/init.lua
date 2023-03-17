@@ -45,10 +45,13 @@ require('packer').startup(function(use)
             require("debugprint").setup()
         end,
     })
+
+    -- Telescope
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        'nvim-telescope/telescope.nvim', tag = '0.1.1',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     use 'ethanholz/nvim-lastplace'
 
