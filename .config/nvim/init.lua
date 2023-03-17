@@ -41,6 +41,7 @@ require('packer').startup(function(use)
     use({
         "andrewferrier/debugprint.nvim",
         config = function()
+            -- mapping: `g?p`
             require("debugprint").setup()
         end,
     })
