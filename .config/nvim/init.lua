@@ -313,7 +313,7 @@ local on_attach = function(_, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
     map("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
-    map("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>")
+    map("n", "gD", "<cmd>Lspsaga goto_type_definition<CR>")
     map('n', 'gi', vim.lsp.buf.implementation, bufopts)
 
     map("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
