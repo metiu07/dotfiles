@@ -71,7 +71,6 @@ require('packer').startup(function(use)
         end,
         requires = {
             { "nvim-tree/nvim-web-devicons" },
-            --Please make sure you install markdown and markdown_inline parser
             { "nvim-treesitter/nvim-treesitter" }
         }
     })
@@ -183,7 +182,8 @@ xmap ia <Plug>SidewaysArgumentTextobjI
 
 -- Treesitter
 require 'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "diff", "gitcommit", "lua", "rust", "fish", "markdown", "javascript", "typescript" },
+    ensure_installed = { "c", "diff", "gitcommit", "lua", "rust", "fish", "markdown", "markdown_inline", "javascript",
+        "typescript" },
     sync_install = false,
     auto_install = true,
     highlight = {
