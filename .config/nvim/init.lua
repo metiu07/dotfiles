@@ -126,6 +126,14 @@ require('packer').startup(function(use)
 end)
 
 require('telescope').setup({
+    defaults = {
+        mappings = {
+            i = {
+                ["<C-n>"] = "move_selection_next",
+                ["<C-e>"] = "move_selection_previous",
+            }
+        },
+    },
     pickers = {
         find_files = {
             hidden = true
