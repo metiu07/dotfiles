@@ -182,7 +182,7 @@ xmap ia <Plug>SidewaysArgumentTextobjI
 ]])
 
 -- Treesitter
-require 'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup({
     ensure_installed = { "c", "diff", "gitcommit", "lua", "rust", "fish", "markdown", "markdown_inline", "javascript",
         "typescript" },
     sync_install = false,
@@ -196,7 +196,7 @@ require 'nvim-treesitter.configs'.setup {
     indent = {
         enable = true,
     }
-}
+})
 
 -- Folding
 vim.cmd([[
