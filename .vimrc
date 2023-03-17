@@ -85,8 +85,9 @@ set mouse=nvch
 
 " Numbers
 set ruler
-set number
-" set relativenumber
+set relativenumber
+set cursorline
+set scrolloff=999
 
 " Backups & Undo
 set backup
