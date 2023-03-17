@@ -60,6 +60,18 @@ require('packer').startup(function(use)
 
     -- LSP
     use 'neovim/nvim-lspconfig'
+    use({
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+        config = function()
+            require("lspsaga").setup({})
+        end,
+        requires = {
+            { "nvim-tree/nvim-web-devicons" },
+            --Please make sure you install markdown and markdown_inline parser
+            { "nvim-treesitter/nvim-treesitter" }
+        }
+    })
 
     -- Completion
     use 'L3MON4D3/LuaSnip'
@@ -300,30 +312,55 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, OPTS)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local map = vim.keymap.set
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<space>Wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>Wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>Wl', function()
+
+    map("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
+    map("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>")
+    map('n', 'gi', vim.lsp.buf.implementation, bufopts)
+
+    map("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+    map('n', 'gr', builtin.lsp_references, bufopts)
+    map('n', 'gj', builtin.lsp_document_symbols, {})
+
+    map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+    map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+
+    map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+    map("n", "<leader>cr", "<cmd>Lspsaga rename<CR>")
+
+    map("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
+    map("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+    map("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+
+    map("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
+    map("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+    map("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+    map({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
+
+    map('n', '<leader>Wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    map('n', '<leader>Wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    map('n', '<leader>Wl', function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, bufopts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<space>cr', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>f', function()
-        print("Formatting")
-        vim.lsp.buf.format { async = true }
-    end, bufopts)
 
+    map('n', '<leader>f', function()
+        print("Formatting")
+        vim.lsp.buf.format({ async = true })
+    end, bufopts)
     -- Automatic formatting on save
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
+    -- FIXME: Find a way to enable this, maybe allowlist in some home location and disabled by default?
+    -- vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
+
+    map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+    map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+    map("n", "[E", function()
+        require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+    end)
+    map("n", "]E", function()
+        require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+    end)
+
     -- FIXME: Add a way to distinguish between read/write
     vim.cmd([[
     " hi default link LspReferenceText IncSearch
