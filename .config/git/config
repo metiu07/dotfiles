@@ -62,21 +62,10 @@
 # TODO: Add alias to show log of a function
 # git log -L:<function>:file
 [alias]
-	a = add
 	amend = commit --amend --verbose
-	ap = add --patch
 	authors = "!git log --pretty=format:%aN | sort | uniq -c | sort -rn"
-	b = "branch -vv"
-	bl = "!git blame `fzf`"
 	c = commit --verbose
-	ca = commit --verbose --amend --reset-author
-	cl = clone
 	conflicts = diff --name-only --diff-filter=U --relative
-	co = checkout
-	cob = checkout -b
-	cop = checkout -p
-	cp = cherry-pick
-	ckw = !git diff-tree --check $(git hash-object -t tree /dev/null) HEAD
 	d = diff
 	da = diff HEAD
 	ds = diff --staged
@@ -92,37 +81,14 @@
 	ll = log --decorate --graph
 	lla = log --all --decorate --graph
 	lll = log --all --decorate --graph --oneline
-	rl = reflog -20
-	rll = reflog
 	lf = log --name-status --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
 	lp = log --patch --format=fuller
 	lg = log --graph --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
 	lga = log --graph --branches --remotes --tags --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
-	rb = rebase
-	rba = rebase --abort
-	rbc = rebase --continue
-	rbi = rebase --interactive
 	remote = remote -v
-	rh = reset --hard
-	rhom = reset --hard origin/master
 	s = "!git status --branch && echo '' && git log --oneline -5"
-	sm = submodule
 	smu = submodule update --init --recursive
-	sh = stash
-	sha = stash apply
-	shd = stash drop
-	shl = stash list
-	shp = stash pop
-	shs = stash show -p
-	sw = show --format=fuller --show-signature
-	sf = show --pretty="format:" --name-status
-	sync-fork="!git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD` && git push"
-	tags = tag --list -n1
-	u = pull
-	um = "!git switch master && git p && git switch -"
+	pullm = "!git switch master && git p && git switch -"
 	unstage = restore --staged
-	rum = "!git um && git rb master"
-	showtag = show --quiet
-	today = "!git ll --since=midnight"
-	undo = "!git reset --soft HEAD^ && git reset"
+	rebasemaster = "!git pullm && git rb master"
 	wip = "!git add --all && git commit -m 'WIP'"
