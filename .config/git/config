@@ -69,6 +69,7 @@
 	da = diff HEAD
 	ds = diff --staged
 	f = fetch --all --verbose --prune
+	feature = "!f() { git checkout master && git pull --autostash && git checkout -b \"$1\"; }; f"
 	ignored = ls-files --exclude-standard --ignored --others
 	large = "!git rev-list --objects --all \
 		| git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
@@ -87,7 +88,7 @@
 	remote = remote -v
 	s = "!git status --branch && echo '' && git log --oneline -5"
 	smu = submodule update --init --recursive
-	pullm = "!git switch master && git p && git switch -"
+	pullm = "fetch origin master:master"
 	unstage = restore --staged
-	rebasemaster = "!git pullm && git rb master"
+	rebasemaster = "!git pullm && git rebase master"
 	wip = "!git add --all && git commit -m 'WIP'"
