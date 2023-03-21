@@ -461,7 +461,7 @@ alias ec="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias catf="cat (ff)"
 
 function zz -d "Interactive select a project"
-    set -l selected_project (select_project "$argv[1]")
+    set -l selected_project (select_project "$argv")
 	[ -z "$selected_project" ] && return
     cd $selected_project
 end
