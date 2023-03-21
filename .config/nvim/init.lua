@@ -94,6 +94,8 @@ require('packer').startup(function(use)
         requires = "nvim-treesitter/nvim-treesitter",
     }
 
+    use 'simrat39/rust-tools.nvim'
+
     -- Syntax
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/playground'
@@ -452,10 +454,24 @@ require('lspconfig')['lua_ls'].setup {
         },
     },
 }
-require('lspconfig')['rust_analyzer'].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        ["rust-analyzer"] = {}
+
+-- Rust tools
+require('rust-tools').setup({
+    tools = {
+        inlay_hints = {
+            show_parameter_hints = false,
+            right_align = true,
+            right_align_padding = 1,
+        },
+    },
+    server = {
+        on_attach = function(_, bufnr)
+            on_attach(_, bufnr)
+            vim.keymap.set('n', 'gD', "<cmd>RustOpenExternalDocs<CR>", { silent = true, buffer = bufnr })
+        end,
+        capabilities = capabilities,
+        settings = {
+            ["rust-analyzer"] = {}
+        }
     }
-}
+})
