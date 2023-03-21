@@ -40,7 +40,6 @@
 	submoduleSummary = true
 
 [merge]
-	# tool = vimdiff
 	tool = meld
 	stat = true
 	log = true
