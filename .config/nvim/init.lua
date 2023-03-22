@@ -479,7 +479,11 @@ require('rust-tools').setup({
         end,
         capabilities = capabilities,
         settings = {
-            ["rust-analyzer"] = {}
+            ["rust-analyzer"] = {
+                check = {
+                    command = "clippy",
+                }
+            }
         }
     }
 })
