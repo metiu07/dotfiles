@@ -11,6 +11,7 @@
     "memory",
     "battery",
     "upower",
+    "custom/keyboard_layout",
     "clock",
     "tray"
   ],
@@ -99,10 +100,11 @@
     "on-click-right": "pavucontrol"
   },
   "custom/keyboard_layout": {
-    "format": "{} ",
-    "max-length": 40,
-    "tooltip": false,
-    "exec": "swaymsg -t get_inputs | jq -r '.[] | select(.type == \"keyboard\") | .xkb_active_layout_name' | head -1"
+      "exec": "swaymsg -t get_inputs | jq -r '.[] | select(.type == \"keyboard\") | .xkb_active_layout_name' | head -1",
+      "interval": 10,
+      "format": " {}",
+      "tooltip": false,
+      "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
   },
   "custom/pomodoro": {
     "format": "{}",
