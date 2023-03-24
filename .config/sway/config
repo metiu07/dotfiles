@@ -257,8 +257,8 @@ exec_always "killall -q pomod; pomod"
 
 # Set keyboard layouts
 input type:keyboard {
-        xkb_layout "us"
-        xkb_variant "colemak_dh"
+        xkb_layout "us,sk"
+        xkb_variant "colemak_dh,qwerty"
         repeat_rate 50
 }
 
