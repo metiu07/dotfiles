@@ -13,3 +13,9 @@ xkbcomp .config/keyboard/keymap_colemak_dh.xkb $DISPLAY
 ```
 
 More info on [arch wiki](https://wiki.archlinux.org/title/X_keyboard_extension#Using_keymap).
+
+# How to see available keyboard options on the system?
+
+```bash
+less /usr/share/X11/xkb/rules/base.lst
+```

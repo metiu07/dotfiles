@@ -259,6 +259,7 @@ exec_always "killall -q pomod; pomod"
 input type:keyboard {
         xkb_layout "us,sk"
         xkb_variant "colemak_dh,qwerty"
+        xkb_options "caps:escape,altwin:swap_lalt_lwin"
         repeat_rate 50
 }
 
