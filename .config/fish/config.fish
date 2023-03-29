@@ -661,3 +661,7 @@ function duck
     w3m "https://duckduckgo.com/lite?q=$query"
 end
 alias s='duck'
+
+function qr -d "Generate QR code from stdin (split into multiple QR codes if necessary)"
+    split -b 1500 --filter 'qrencode -o - | display '
+end
