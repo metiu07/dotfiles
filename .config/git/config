@@ -58,8 +58,6 @@
 [absorb]
 	maxStack = 50
 
-# TODO: Add alias to show log of a function
-# git log -L:<function>:file
 [alias]
 	amend = commit --amend --verbose
 	authors = "!git log --pretty=format:%aN | sort | uniq -c | sort -rn"
