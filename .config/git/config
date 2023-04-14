@@ -90,4 +90,4 @@
 	unstage = restore --staged
 	rebasemaster = "!git pullm && git rebase master"
 	release = "!f() { set -x && git commit -m \"Release v$1\" && git tag -a \"v$1\" -m \"Release v$1\" && echo \"Check the release by running: git show\"; }; f"
-	wip = "!git add --all && git commit -m 'WIP'"
+	wip = "!git commit -m 'WIP'"
