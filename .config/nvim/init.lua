@@ -64,6 +64,7 @@ require('packer').startup(function(use)
 
     -- LSP
     use 'neovim/nvim-lspconfig'
+    use 'jose-elias-alvarez/null-ls.nvim'
     use({
         "glepnir/lspsaga.nvim",
         branch = "main",
@@ -408,6 +409,29 @@ local function get_python_path(workspace)
     -- Fallback to system Python.
     return exepath('python3') or exepath('python') or 'python'
 end
+
+local null_ls = require("null-ls")
+
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+null_ls.setup({
+    -- on_attach = function(client, bufnr)
+    --     if client.supports_method("textDocument/formatting") then
+    --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    --         vim.api.nvim_create_autocmd("BufWritePre", {
+    --             group = augroup,
+    --             buffer = bufnr,
+    --             callback = function()
+    --                 vim.lsp.buf.format({ bufnr = bufnr })
+    --             end,
+    --         })
+    --     end
+    -- end,
+    sources = {
+        null_ls.builtins.formatting.isort,
+        null_ls.builtins.formatting.black,
+    },
+})
 
 require('lspconfig')['pyright'].setup {
     on_attach = on_attach,
