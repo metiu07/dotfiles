@@ -121,7 +121,6 @@ require('packer').startup(function(use)
     if packer_bootstrap then
         require('packer').sync()
     end
-
 end)
 
 require('telescope').setup({
@@ -257,7 +256,6 @@ cmp.setup({
                 fallback()
             end
         end, { "i", "s" }),
-
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -430,8 +428,16 @@ null_ls.setup({
     sources = {
         null_ls.builtins.formatting.isort,
         null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.prettier.with({
+            filetypes = { "html", "json", "yaml", "markdown" },
+        }),
     },
 })
+
+vim.keymap.set('n', '<leader>f', function()
+    print("Formatting")
+    vim.lsp.buf.format({ async = true })
+end, OPTS)
 
 require('lspconfig')['pyright'].setup {
     on_attach = on_attach,
