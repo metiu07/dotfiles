@@ -436,15 +436,6 @@ null_ls.setup({
 require('lspconfig')['pyright'].setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    settings = {
-        formatting = {
-            provider = "black"
-        },
-        linting = {
-            mypyEnabled = true,
-            pylintEnabled = true
-        }
-    },
     before_init = function(_, config)
         config.settings.python.pythonPath = get_python_path(config.root_dir)
     end
