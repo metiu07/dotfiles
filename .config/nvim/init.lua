@@ -137,6 +137,14 @@ require('telescope').setup({
             hidden = true
         },
     },
+    extensions = {
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+        }
+    }
 })
 
 local builtin = require('telescope.builtin')
@@ -147,6 +155,8 @@ vim.keymap.set('n', '<leader>hh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>hk', builtin.keymaps, {})
 vim.keymap.set('n', '<leader>x', builtin.commands, {})
 vim.keymap.set('n', 'z=', builtin.spell_suggest, {})
+
+require('telescope').load_extension('fzf')
 
 -- Fugitive
 vim.keymap.set('n', '<leader>gg', "<cmd>Git<CR>", {})
