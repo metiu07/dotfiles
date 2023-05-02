@@ -169,6 +169,9 @@ function! s:ToggleSpelllang()
 endfunction
 nnoremap <silent> <leader>tS :call <SID>ToggleSpelllang()<CR>
 
+" Open last buffer using backspace
+nnoremap <BS> <C-^>
+
 " Formatting
 nnoremap Q vapgq
 
