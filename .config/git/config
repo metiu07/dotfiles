@@ -33,6 +33,9 @@
 	autoStash = true
 	autoSquash = true
 
+[tag]
+    sort = -creatordate
+
 [submodule]
 	recurse = true
 
