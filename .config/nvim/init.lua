@@ -402,7 +402,7 @@ local function get_python_path(workspace)
     -- Find and use virtualenv via poetry in workspace directory.
     local match = vim.fn.glob(path.join(workspace, 'poetry.lock'))
     if match ~= '' then
-        local venv = vim.fn.trim(vim.fn.system('poetry env info -p'))
+        local venv = vim.fn.trim(vim.fn.system('poetry env info -p 2>/dev/null'))
         return path.join(venv, 'bin', 'python')
     end
 
