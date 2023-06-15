@@ -518,3 +518,19 @@ require('rust-tools').setup({
         }
     }
 })
+
+-- Custom LSP servers
+local configs = require('lspconfig.configs')
+
+-- YLS
+if not configs.yls then
+ configs.yls = {
+   default_config = {
+     cmd = {'yls', '-vvv'},
+     filetypes = {'yara'},
+     root_dir = util.find_git_ancestor,
+     settings = {},
+   },
+ }
+end
+require('lspconfig')['yls'].setup{}
