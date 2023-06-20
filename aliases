@@ -11,7 +11,6 @@ alias ...='cd ../../'                       # Go back 2 directory levels
 alias c='clear'                             # c:            Clear terminal display
 alias gdb='gdb -q'                          # gdb:          Make gdb start in quiet mode
 alias rust-gdb='rust-gdb -q'                # rust-gdb:     Make rust-gdb start in quiet mode
-alias em='emacsclient -t'                   # emacs:        Emacs shortcut
 alias gitc='git ls-files | xargs wc -l'     # gitc:         Count all lines in git repository
 alias alert="echo -ne \"\\a\""              # alert:        Print bell character, this is used for tmux monitoring
 alias dd='dd bs=128M status=progress'       # dd:           Set blocksize and show progress in dd
