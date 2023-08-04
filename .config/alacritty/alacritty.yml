@@ -115,7 +115,7 @@ font:
     #   - (Windows) Consolas
     # family:  Tinos Nerd Font
     # family: Iosevka Nerd Font
-    family: ComicMono Nerd Font
+    family: VictorMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Normal
@@ -126,7 +126,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: ComicMono Nerd Font
+    family: VictorMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Normal
