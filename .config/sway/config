@@ -176,11 +176,10 @@ bindcode $mod+19 mode "$mode_system"
 
 # Pulse Audio controls
 # NOTE: Keycode definitions can be found on https://cgit.freedesktop.org/xorg/proto/x11proto/tree/XF86keysym.h
-bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume 0 +2%; notify-send 'volume up' -h int:value:$(pactl get-sink-volume 0 | grep '[0-9]*%' -o | head -n1 | cut --complement -c 3)"
-bindsym XF86AudioLowerVolume exec "pactl set-sink-volume 0 -2%; notify-send 'volume down' -h int:value:$(pactl get-sink-volume 0 | grep '[0-9]*%' -o | head -n1 | cut --complement -c 3)"
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
-# TODO: Decide what to bind on MicMute key
-bindsym XF86AudioMicMute exec notify-send "test"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +2%; notify-send 'volume up' -h int:value:$(pactl get-sink-volume @DEFAULT_SINK@ | grep '[0-9]*%' -o | head -n1 | cut --complement -c 3)"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -2%; notify-send 'volume down' -h int:value:$(pactl get-sink-volume @DEFAULT_SINK@ | grep '[0-9]*%' -o | head -n1 | cut --complement -c 3)"
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle 
 
 # Screen brightness controls
 # NOTE: User must be in video group (sudo usermod -a -G video <USER>)
