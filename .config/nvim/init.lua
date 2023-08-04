@@ -496,13 +496,6 @@ require('lspconfig')['lua_ls'].setup {
 
 -- Rust tools
 require('rust-tools').setup({
-    tools = {
-        inlay_hints = {
-            show_parameter_hints = false,
-            right_align = true,
-            right_align_padding = 1,
-        },
-    },
     server = {
         on_attach = function(_, bufnr)
             on_attach(_, bufnr)
