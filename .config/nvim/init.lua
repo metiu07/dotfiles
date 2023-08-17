@@ -154,6 +154,7 @@ vim.keymap.set('n', '<leader>,', builtin.buffers, {})
 vim.keymap.set('n', '<leader>hh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>hk', builtin.keymaps, {})
 vim.keymap.set('n', '<leader>x', builtin.commands, {})
+vim.keymap.set('n', '<leader>R', builtin.registers, {})
 vim.keymap.set('n', 'z=', builtin.spell_suggest, {})
 
 require('telescope').load_extension('fzf')
@@ -343,7 +344,7 @@ local on_attach = function(_, bufnr)
     map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 
     map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
-    map("n", "<leader>cr", "<cmd>Lspsaga rename<CR>")
+    map("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
 
     map("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
     map("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
