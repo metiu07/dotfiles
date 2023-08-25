@@ -208,7 +208,7 @@ assign [class="Steam"] 5
 assign [class="csgo_linux64"] 5
 
 # ==================== Autostart ====================
-#
+
 # Fix long startup of GTK apps
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
@@ -257,6 +257,9 @@ exec_always "killall -q habi; habi"
 
 # Startup the pomodoro timer
 exec_always "killall -q pomod; pomod"
+
+# Autostart ~/.config/sway/local.sh if it exists
+exec [ -x $HOME/.config/sway/local.sh ] && $HOME/.config/sway/local.sh
 
 # Set keyboard layouts
 input type:keyboard {
