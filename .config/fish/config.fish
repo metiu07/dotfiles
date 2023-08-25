@@ -153,8 +153,8 @@ abbr -a -g k "kubectl"
 
 # Docker abbrs
 abbr -a -g DR "docker run --rm -it --detach-keys=\"ctrl-@\""
-abbr -a -g DRR "docker run --rm -it --detach-keys=\"ctrl-@\" -w (pwd) -v (pwd):(pwd)"
-abbr -a -g DRRR "docker run --rm -it --detach-keys=\"ctrl-@\" --network none -w (pwd) -v (pwd):(pwd)"
+abbr -a -g DRR "docker run --rm -it --detach-keys=\"ctrl-@\" -w /app -v (pwd):/app"
+abbr -a -g DRRR "docker run --rm -it --detach-keys=\"ctrl-@\" --network none -w /app -v (pwd):/app"
 
 # This is skip the pacman check for a missing command.
 # See: https://github.com/fish-shell/fish-shell/issues/7841
