@@ -212,6 +212,11 @@
     "destination": "~/.config/starship.toml",
     "name": "Starship cross-shell prompt configuration"
   },
+  "swappy": {
+    "source": "./.config/swappy/config",
+    "destination": "~/.config/swappy/config",
+    "name": "Swappy configuration"
+  },
   "sway": {
     "source": "./.config/sway",
     "destination": "~/.config/sway",
