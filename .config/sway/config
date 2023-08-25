@@ -193,6 +193,7 @@ for_window [title="^"] split toggle
 # Open specific applications in floating mode
 for_window [app_id="nm-openconnect-auth-dialog"] floating enable
 for_window [app_id="qalculate-gtk"] focus, floating enable, resize set 700 250
+for_window [app_id="zoom"] floating enable
 for_window [app_id="blueman-manager"] floating enable
 for_window [title="Firefox - Sharing Indicator"] floating enable
 for_window [instance="sun-awt-X11-XWindowPeer" title="win.*"] floating enable, focus
