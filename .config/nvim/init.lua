@@ -22,6 +22,16 @@ highlight! link @text.diff.add diffAdded
 highlight! link @text.diff.delete diffRemoved
 ]])
 
+-- Copilot
+vim.cmd([[
+    let g:copilot_filetypes = {
+          \ 'yara': v:false,
+          \ 'def': v:false,
+          \ }
+    let g:copilot_no_tab_map = v:true
+    imap <silent><script><expr> <C-F> copilot#Accept("")
+]])
+
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
@@ -94,6 +104,9 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
     use 'onsails/lspkind.nvim'
+
+    -- Copilot
+    use "github/copilot.vim"
 
     use {
         "danymat/neogen",
