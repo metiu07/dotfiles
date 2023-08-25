@@ -476,9 +476,12 @@ require('lspconfig')['bashls'].setup {
     on_attach = on_attach,
     capabilities = capabilities,
 }
+-- For some reason we need to set offsetEncoding to utf-8 for clangd to work
+local clangd_capabilities = require('cmp_nvim_lsp').default_capabilities()
+clangd_capabilities.offsetEncoding = "utf-8"
 require('lspconfig')['clangd'].setup {
     on_attach = on_attach,
-    capabilities = capabilities,
+    capabilities = clangd_capabilities,
 }
 require('lspconfig')['lua_ls'].setup {
     on_attach = on_attach,
