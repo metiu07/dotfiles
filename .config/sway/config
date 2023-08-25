@@ -3,6 +3,9 @@
 # Set the default modifier key
 set $mod Mod4
 
+# Set the lock command
+set $LOCK swaylock -c 000000 -e
+
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 2
 
@@ -157,16 +160,14 @@ mode "resize" {
 bindcode $mod+27 mode "resize"
 
 # Set shut down, restart and locking features
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+set $mode_system (l)ock, (e)xit/logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    # bindsym l exec swayexit lock, mode "default"
-    bindsym l exec swaylock -c 000000 -e, mode "default"
-    bindsym s exec i3exit suspend, mode "default"
-    bindsym u exec i3exit switch_user, mode "default"
-    bindsym e exec i3exit logout, mode "default"
-    bindsym h exec i3exit hibernate, mode "default"
-    bindsym r exec i3exit reboot, mode "default"
-    bindsym Shift+s exec swayexit shutdown, mode "default"
+    bindsym l exec $LOCK, mode "default"
+    bindsym s exec systemctl suspend, mode "default"
+    bindsym e exec killall sway, mode "default"
+    bindsym h exec systemctl hibernate, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym Shift+s exec systemctl poweroff, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -216,11 +217,11 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 # Terminal
 exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
 
-# exec swayidle -w \
-#   timeout 300 '~/.config/sway/lock.sh' \
-#   timeout 600 'swaymsg "output * dpms off"' \
-# 	   resume 'swaymsg "output * dpms on"' \
-#   before-sleep '~/.config/sway/lock.sh'
+exec swayidle -w \
+  timeout 300 '$LOCK' \
+  timeout 360 'swaymsg "output * dpms off"' \
+	   resume 'swaymsg "output * dpms on"' \
+  before-sleep '$LOCK'
 
 # Startup display configuration manager
 exec kanshi
