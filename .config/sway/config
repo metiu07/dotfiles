@@ -54,9 +54,9 @@ bindcode $mod+33 exec fish -c "trans_sk"
 bindcode $mod+Shift+33 exec fish -c "trans_en"
 
 # Screenshots
-bindsym Print exec $HOME/.local/bin/screenshot
-bindsym $mod+Print exec /usr/share/sway/scripts/grimshot --notify copy area
-bindsym $mod+Shift+Print exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshot_$(date -Iminutes).png"
+bindsym Print exec grimshot --notify save window - | swappy -f -
+bindsym $mod+Print exec grimshot --notify save area - | swappy -f -
+bindsym $mod+Shift+Print exec grimshot --notify copy area
 
 # Color picker
 bindsym $mod+Alt+Print exec fish -c color_picker
