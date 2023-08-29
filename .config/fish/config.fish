@@ -668,5 +668,12 @@ end
 alias s='duck'
 
 function qr -d "Generate QR code from stdin (split into multiple QR codes if necessary)"
-    split -b 1500 --filter 'qrencode -o - | display '
+    # Read the whole stdin into a vairable
+    read -l --null STDIN
+
+    # Generate the QR codes
+    echo -n $STDIN | split -b 1500 --filter 'qrencode -o - | display ' > /dev/null
+
+    # Print the original STDIN back to stdout. This is useful when using the from vim.
+    echo -n $STDIN
 end
