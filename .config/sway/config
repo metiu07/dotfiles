@@ -4,7 +4,7 @@
 set $mod Mod4
 
 # Set the lock command
-set $LOCK swaylock -c 000000 -e
+set $LOCK swaylock -f -c 000000 -e
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 2
@@ -191,6 +191,10 @@ bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down' -h
 default_orientation horizontal
 for_window [title="^"] split toggle
 
+# Fullscreen firefox will prevent the sleep
+for_window [class="Firefox"] inhibit_idle fullscreen
+for_window [app_id="firefox"] inhibit_idle fullscreen
+
 # Open specific applications in floating mode
 for_window [app_id="nm-openconnect-auth-dialog"] floating enable
 for_window [app_id="qalculate-gtk"] focus, floating enable, resize set 700 250
@@ -218,10 +222,10 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
 
 exec swayidle -w \
-  timeout 300 '$LOCK' \
-  timeout 360 'swaymsg "output * dpms off"' \
-	   resume 'swaymsg "output * dpms on"' \
-  before-sleep '$LOCK'
+    timeout 290 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+    timeout 300 '$LOCK' \
+    before-sleep '$LOCK'
 
 # Startup display configuration manager
 exec kanshi
