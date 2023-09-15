@@ -210,6 +210,8 @@ assign [class="Slack"] 3
 assign [class="discord"] 3
 assign [class="Steam"] 5
 assign [class="csgo_linux64"] 5
+assign [app_id="com.cisco.anyconnect.gui"] 8
+assign [app_id="ZSTray"] 8
 
 # ==================== Autostart ====================
 
