@@ -188,7 +188,7 @@ bindsym XF86MonBrightnessUp exec "light -A 5; notify-send 'brightness up' -h int
 bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down' -h int:value:$(light -G)"
 
 # Toggle split direction for each window
-default_orientation horizontal
+default_orientation vertical
 for_window [title="^"] split toggle
 
 # Fullscreen firefox will prevent the sleep
