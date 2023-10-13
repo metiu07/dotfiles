@@ -246,9 +246,6 @@ exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Startup notification daemon
 exec_always "killall -q mako; mako"
 
-# Startup the emacs daemon
-exec emacs --daemon
-
 # Launch the status bar
 exec_always "killall -q waybar; waybar"
 
