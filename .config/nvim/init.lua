@@ -149,6 +149,10 @@ require('telescope').setup({
         find_files = {
             hidden = true
         },
+        buffers = {
+            ignore_current_buffer = true,
+            sort_mru = true
+        }
     },
     extensions = {
         fzf = {
