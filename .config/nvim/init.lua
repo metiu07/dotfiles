@@ -358,7 +358,7 @@ local on_attach = function(_, bufnr)
     map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
     map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 
-    map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+    map({ "n", "v" }, "<leader>a", "<cmd>Lspsaga code_action<CR>")
     map("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
 
     map("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
