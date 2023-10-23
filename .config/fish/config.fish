@@ -338,8 +338,18 @@ function random-favorite-font -d 'Change termin font to a random one picked from
     _alacritty_set_font "$pick_one"
 end
 
+function random-nerd-font -d 'Change terminal font to random Nerd font'
+	set -l selected_font (_font_list | grep -i nerd | shuf -n1)
+	[ -z "$selected_font" ]; and return
+	echo "$selected_font"
+
+	# Set the font
+	# _urxvt_set_font $formated_font 710
+	_alacritty_set_font "$selected_font"
+end
+
 function random-font -d 'Change terminal font to random one.'
-	set -l selected_font (_font_list | shuf | head -n1)
+	set -l selected_font (_font_list | shuf -n1)
 	[ -z "$selected_font" ]; and return
 	echo "$selected_font"
 
