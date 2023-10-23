@@ -324,6 +324,7 @@ function random-favorite-font -d 'Change termin font to a random one picked from
     "UbuntuMono Nerd Font" \
     "agave Nerd Font" \
     "VictorMono Nerd Font" \
+    "JetBrains Mono Light" \
     "Iosevka Nerd Font" \
     "Anonymice Nerd Font" \
     "TerminessTTF Nerd Font" \
