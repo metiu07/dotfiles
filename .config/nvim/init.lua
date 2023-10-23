@@ -353,7 +353,7 @@ local on_attach = function(_, bufnr)
 
     map("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
     map('n', 'gr', builtin.lsp_references, bufopts)
-    map('n', 'gj', builtin.lsp_document_symbols, {})
+    map('n', 'gj', builtin.lsp_dynamic_workspace_symbols, {})
 
     map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
     map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
