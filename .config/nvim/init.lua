@@ -138,6 +138,10 @@ end)
 
 require('telescope').setup({
     defaults = {
+        layout_strategy = 'vertical',
+        layout_config = {
+            preview_cutoff = 1,
+        },
         mappings = {
             i = {
                 ["<C-n>"] = "move_selection_next",
