@@ -191,8 +191,7 @@ bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down' -h
 default_orientation vertical
 for_window [title="^"] split toggle
 
-# Fullscreen firefox will prevent the sleep
-for_window [class="Firefox"] inhibit_idle fullscreen
+# Prevent the sleep/lock for certain applications
 for_window [app_id="firefox"] inhibit_idle fullscreen
 for_window [title="Zoom Meeting"] inhibit_idle fullscreen
 
