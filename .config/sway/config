@@ -194,6 +194,7 @@ for_window [title="^"] split toggle
 # Fullscreen firefox will prevent the sleep
 for_window [class="Firefox"] inhibit_idle fullscreen
 for_window [app_id="firefox"] inhibit_idle fullscreen
+for_window [title="Zoom Meeting"] inhibit_idle fullscreen
 
 # Open specific applications in floating mode
 for_window [app_id="nm-openconnect-auth-dialog"] floating enable
