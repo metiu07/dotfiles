@@ -688,3 +688,7 @@ function qr -d "Generate QR code from stdin (split into multiple QR codes if nec
     # Print the original STDIN back to stdout. This is useful when using the from vim.
     echo -n $STDIN
 end
+
+function json_logs -d "Reformat JSON logs to a more readable format"
+    jq -Rr 'fromjson? | "\(.time) \(.severity) \(.message)"'
+end
