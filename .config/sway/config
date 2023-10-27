@@ -255,11 +255,6 @@ exec_always "killall -q nm-applet; nm-applet --indicator"
 # Startup the bluetooth manager
 exec_always "killall -q blueman-applet; blueman-applet"
 
-# Startup the habits notifier
-exec_always "killall -q habi; habi"
-
-# Startup the pomodoro timer
-exec_always "killall -q pomod; pomod"
 
 # Autostart ~/.config/sway/local.sh if it exists
 exec [ -x $HOME/.config/sway/local.sh ] && $HOME/.config/sway/local.sh
