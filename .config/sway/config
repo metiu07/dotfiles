@@ -223,12 +223,6 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 # Terminal
 exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
 
-exec swayidle -w \
-    timeout 290 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
-    timeout 300 '$LOCK' \
-    before-sleep '$LOCK'
-
 # Startup display configuration manager
 exec kanshi
 
@@ -255,6 +249,13 @@ exec_always "killall -q nm-applet; nm-applet --indicator"
 # Startup the bluetooth manager
 exec_always "killall -q blueman-applet; blueman-applet"
 
+# Startup automatic screen locaking when idle
+exec_always killall -q swayidle; swayidle -w \
+    timeout 285 'notify-send "Locking the screen in 15s"' \
+    timeout 290 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+    timeout 300 '$LOCK' \
+    before-sleep '$LOCK'
 
 # Autostart ~/.config/sway/local.sh if it exists
 exec [ -x $HOME/.config/sway/local.sh ] && $HOME/.config/sway/local.sh
