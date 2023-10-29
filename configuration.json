@@ -76,10 +76,10 @@
     "name": "Emacs doom config configuration",
     "$deps": ["emacs_doom_init", "emacs_doom_config"]
   },
-  "enviroment": {
+  "environment": {
     "source": ".config/environment.d/envvars.conf",
     "destination": "~/.config/environment.d/envvars.conf",
-    "name": "Common enviroment variables"
+    "name": "Common environment variables"
   },
   "fish": {
     "name": "Default fish configuration",
@@ -142,6 +142,7 @@
     "$deps": [
       "alacritty",
       "emacs",
+      "environment",
       "fish",
       "git",
       "htop",
