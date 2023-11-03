@@ -52,6 +52,9 @@ nnoremap <leader>p "+p
 vnoremap <leader>x "+x
 nnoremap <leader>x "+x
 
+" Unbind K in visual selection mode
+xnoremap K <Nop>
+
 " Splits configuration
 nnoremap <leader>wh <C-W><C-H>
 nnoremap <leader>wj <C-W><C-J>
