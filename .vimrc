@@ -173,7 +173,7 @@ nnoremap <silent> <leader>tS :call <SID>ToggleSpelllang()<CR>
 nnoremap <BS> <C-^>
 
 " Formatting
-nnoremap Q vapgq
+nnoremap Q vapgw
 
 " Highligh incorect indenting
 " hi SpacesTabsMixture guifg=red guibg=gray19
