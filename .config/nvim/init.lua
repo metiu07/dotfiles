@@ -170,7 +170,7 @@ require('telescope').setup({
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader><leader>', builtin.find_files, {})
-vim.keymap.set('n', '<leader>F', function() builtin.find_files({ no_ignore = true }) end, {})
+vim.keymap.set('n', '<leader>.', function() builtin.find_files({ no_ignore = true }) end, {})
 vim.keymap.set('n', '<leader>/', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>,', builtin.buffers, {})
 vim.keymap.set('n', '<leader>hh', builtin.help_tags, {})
