@@ -57,9 +57,8 @@ bindcode $mod+33 exec fish -c "trans_sk"
 bindcode $mod+Shift+33 exec fish -c "trans_en"
 
 # Screenshots
-bindsym Print exec grimshot --notify save window - | swappy -f -
-bindsym $mod+Print exec grimshot --notify save area - | swappy -f -
-bindsym $mod+Shift+Print exec grimshot --notify copy area
+bindsym Print exec grimshot --notify copy window -
+bindsym $mod+Print exec wl-paste | swappy -f -
 
 # Color picker
 bindsym $mod+Alt+Print exec fish -c color_picker
