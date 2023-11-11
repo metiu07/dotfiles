@@ -214,10 +214,8 @@ assign [app_id="ZSTray"] 8
 
 # ==================== Autostart ====================
 
-# Fix long startup of GTK apps
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec hash dbus-update-activation-environment 2>/dev/null && \
-    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+# Fix long startup of GTK apps and enable screensharing
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
 
 # Terminal
 exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
