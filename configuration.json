@@ -149,10 +149,11 @@
       "i3",
       "less",
       "ranger",
+      "starship",
       "sway",
       "tmux",
       "urxvt",
-      "vim"
+      "neovim"
     ]
   },
   "mako": {
