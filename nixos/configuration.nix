@@ -19,7 +19,7 @@
   boot.initrd.kernelModules = [ 
     "8821au" 
   ];
-
+  
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
@@ -97,38 +97,65 @@
   # Docker
   virtualisation.docker.enable = true;
 
+  # Libvirt
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true; # virt-manager requires dconf to remember settings
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.anon = {
-    isNormalUser = true;
-    description = "Anon";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
-    packages = with pkgs; [
-      alacritty
-      anki-bin
-      bat
-      brave
-      calibre
-      firefox
-      gimp
-      hyperfine
-      keepassxc
-      lua-language-server
-      mpv
-      networkmanagerapplet
-      python311Packages.black
-      python311Packages.ipdb
-      python311Packages.ipython
-      python311Packages.isort
-      tor-browser-bundle-bin
-      vscodium
-      wdisplays
-      wireshark
-      wl-clipboard
-      wofi
-      xfce.thunar
-      youtube-dl
-    ];
-    shell = pkgs.fish;
+  users.users = {
+    anon = {
+      isNormalUser = true;
+      description = "Anon";
+      extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
+      packages = with pkgs; [
+        alacritty
+        anki-bin
+        bat
+        brave
+        calibre
+        firefox
+        gimp
+        hyperfine
+        keepassxc
+        lua-language-server
+        mpv
+        networkmanagerapplet
+        python311Packages.black
+        python311Packages.ipdb
+        python311Packages.ipython
+        python311Packages.isort
+        python311Packages.yt-dlp
+        qalculate-qt
+        tor-browser-bundle-bin
+        vscodium
+        wdisplays
+        wireshark
+        wl-clipboard
+        wofi
+        xfce.thunar
+      ];
+      shell = pkgs.fish;
+    };
+    gamey = {
+      isNormalUser = true;
+      description = "Gamey";
+      extraGroups = [ "networkmanager" "video" ];
+      packages = with pkgs; [
+        alacritty
+        brave
+        firefox
+        mpv
+        networkmanagerapplet
+        obs-studio
+        steam
+        tor-browser-bundle-bin
+        vscodium
+        wl-clipboard
+        wofi
+        xfce.thunar
+      ];
+      shell = pkgs.fish;
+    };
   };
 
   # Allow unfree packages
@@ -145,7 +172,7 @@
 
   # Fish
   programs.fish.enable = true;
-
+  
   # XDG desktop portal
   services.dbus.enable = true;
   xdg.portal = {
@@ -153,6 +180,12 @@
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  # Tor
+  services.tor = {
+    enable = true;
+    client.enable = true;
   };
 
   # enable sway window manager
@@ -173,6 +206,11 @@
       export XDG_CURRENT_DESKTOP=sway
     '';
   };
+
+  # enable DE
+  # services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
 
   # Brightness control
   programs.light.enable = true;
@@ -204,10 +242,12 @@
     btop
     cmake
     curl
+    delta
     docker-compose
     entr
     exa
     fd
+    ffmpeg
     file
     fishPlugins.fzf-fish
     fwupd
@@ -220,7 +260,9 @@
     gnumake
     grim
     htop
+    imv
     jq
+    libqalculate
     linuxHeaders
     lshw
     lsof
@@ -229,7 +271,6 @@
     ncdu
     neovim
     netcat-gnu
-    obs-studio
     openssh
     poetry
     powertop
@@ -243,16 +284,21 @@
     slurp
     starship
     strace
+    swappy
+    sway-contrib.grimshot
     swayidle
     swaylock
     tcpdump
     tmux
     torsocks
+    torsocks
     traceroute
     tree
+    unixtools.xxd
     unzip
     upower
     util-linux
+    virt-manager
     waybar
     wayland
     wget
