@@ -37,13 +37,6 @@ require('packer').startup(function(use)
     use 'AndrewRadev/sideways.vim'
     use 'tpope/vim-abolish'
     use 'tpope/vim-commentary'
-    use({
-        "andrewferrier/debugprint.nvim",
-        config = function()
-            -- mapping: `g?p`
-            require("debugprint").setup()
-        end,
-    })
 
     -- Telescope
     use {
