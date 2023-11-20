@@ -605,8 +605,8 @@ function _ttest -d "Test terminal capabilities"
 
 	msgcat --color=test
 
-	# If the color ramp is perfectly smooth, true color is supported.
 	# Source: https://gist.github.com/XVilka/8346728
+	echo "If the color ramp bellow is perfectly smooth, true color is supported."
 	awk 'BEGIN{
 		s="/\\\\/\\\\/\\\\/\\\\/\\\\"; s=s s s s s s s s;
 		for (colnum = 0; colnum<77; colnum++) {
