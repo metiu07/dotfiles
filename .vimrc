@@ -19,11 +19,7 @@ vnoremap <c-s> <c-d>
 " Block select
 nnoremap <c-d> <c-v>
 
-" Color scheme settings
-" syntax on
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+if has('termguicolors')
   set termguicolors
 endif
 
@@ -32,12 +28,6 @@ endif
 " restricting this only to particular file types.
 " Ref: https://vim.fandom.com/wiki/Fix_syntax_highlighting
 autocmd BufEnter * :syntax sync fromstart
-
-" set cursorline
-if !has('gui_running')
-  set t_Co=256
-endif
-set background=dark
 
 " Make
 nnoremap <F1> :make<CR>
