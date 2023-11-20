@@ -57,7 +57,7 @@ require('packer').startup(function(use)
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'jose-elias-alvarez/null-ls.nvim'
-    use({
+    use {
         "glepnir/lspsaga.nvim",
         branch = "main",
         config = function()
@@ -75,7 +75,7 @@ require('packer').startup(function(use)
             { "nvim-tree/nvim-web-devicons" },
             { "nvim-treesitter/nvim-treesitter" }
         }
-    })
+    }
 
     -- Completion
     use 'L3MON4D3/LuaSnip'
