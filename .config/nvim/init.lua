@@ -14,14 +14,6 @@ local OPTS = { noremap = true, silent = true }
 
 vim.cmd('source ' .. vim.fn.expand('$HOME/.config/nvim/config.vim'))
 
--- Gruvbox
-vim.g.gruvbox_baby_use_original_palette = 1
-vim.cmd('colorscheme gruvbox-baby')
-vim.cmd([[
-highlight! link @text.diff.add diffAdded
-highlight! link @text.diff.delete diffRemoved
-]])
-
 -- Copilot
 vim.cmd([[
     let g:copilot_filetypes = {
@@ -38,9 +30,6 @@ require('packer').startup(function(use)
     -- TODO: Consider https://github.com/ziontee113/syntax-tree-surfer
     -- TODO: Consider https://github.com/windwp/nvim-autopairs
 
-    use {
-        'nvim-lualine/lualine.nvim',
-    }
     use "lukas-reineke/indent-blankline.nvim"
 
     -- Tools
@@ -128,8 +117,28 @@ require('packer').startup(function(use)
     use 'kana/vim-operator-user'
 
     -- Color themes
-    use 'gruvbox-community/gruvbox'
-    use 'luisiacc/gruvbox-baby'
+    -- use { 'luisiacc/gruvbox-baby', config = function()
+    --     vim.g.gruvbox_baby_use_original_palette = 1
+    --     vim.cmd('colorscheme gruvbox-baby')
+    --     vim.cmd([[
+    --     highlight! link @text.diff.add diffAdded
+    --     highlight! link @text.diff.delete diffRemoved
+    --     ]])
+    -- end }
+    use {
+        "neanias/everforest-nvim",
+        config = function()
+            vim.o.background = "light"
+            require("everforest").load()
+        end,
+    }
+
+    use {
+        'nvim-lualine/lualine.nvim',
+        config = function ()
+            require('lualine').setup { theme = 'everforest' }
+        end
+    }
 
     if packer_bootstrap then
         require('packer').sync()
@@ -211,9 +220,6 @@ augroup END
 vim.api.nvim_set_var("indent_blankline_char", "¦")
 vim.api.nvim_set_var("indent_blankline_filetype_exclude", { 'markdown', 'jsonc', 'json' })
 vim.api.nvim_set_var("indent_blankline_char_blankline", '')
-
--- Lualine
-require('lualine').setup { theme = 'gruvbox-baby' }
 
 -- Sideways
 -- FIXME: Convert to lua
