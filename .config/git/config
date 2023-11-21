@@ -7,7 +7,7 @@
 [core]
 	whitespace = trailing-space,space-before-tab
 	# pager = less
-	pager = delta
+	pager = delta --light
 	editor = nvim
 
 [commit]
