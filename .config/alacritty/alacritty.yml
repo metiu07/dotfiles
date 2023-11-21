@@ -354,6 +354,35 @@ schemes:
       cyan: "0x0db9d7"
       white: "0xacb0d0"
 
+  # Colors (Everforest Light) https://github.com/alacritty/alacritty-theme/blob/master/themes/everforest_light.yaml
+  everforest-light: &everforest-light
+    # Default colors
+    primary:
+      background: '0xfdf6e3'
+      foreground: '0x5c6a72'
+
+    # Normal colors
+    normal:
+      black:   '0x5c6a72'
+      red:     '0xf85552'
+      green:   '0x8da101'
+      yellow:  '0xdfa000'
+      blue:    '0x3a94c5'
+      magenta: '0xdf69ba'
+      cyan:    '0x35a77c'
+      white:   '0xe0dcc7'
+
+    # Bright Colors
+    bright:
+      black:   '0x5c6a72'
+      red:     '0xf85552'
+      green:   '0x8da101'
+      yellow:  '0xdfa000'
+      blue:    '0x3a94c5'
+      magenta: '0xdf69ba'
+      cyan:    '0x35a77c'
+      white:   '0xe0dcc7'
+
   default: &default
     primary:
       background: "#000000"
@@ -431,7 +460,7 @@ schemes:
     #indexed_colors: []
 
 colors:
-  *gruvbox
+  *everforest-light
   # Default colors
   # primary:
   # background: '#000f14'
