@@ -5,6 +5,10 @@
       ./hardware-configuration.nix
     ];
 
+  # Nix configuration
+  nix.gc.automatic = true;
+  # nix.gc.options = "--delete-older-than 10d"
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -66,7 +70,7 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -133,6 +137,8 @@
         wl-clipboard
         wofi
         xfce.thunar
+        xfce.thunar-archive-plugin
+        xfce.thunar-volman
       ];
       shell = pkgs.fish;
     };
@@ -245,6 +251,7 @@
     delta
     docker-compose
     entr
+    evince
     exa
     fd
     ffmpeg
@@ -258,8 +265,11 @@
     glib
     gnome3.adwaita-icon-theme
     gnumake
+    gparted
     grim
     htop
+    imagemagick
+    imhex
     imv
     jq
     libqalculate
@@ -268,6 +278,7 @@
     lsof
     ltrace
     mako
+    meld
     ncdu
     neovim
     netcat-gnu
@@ -277,11 +288,13 @@
     pstree
     pyright
     python311Full
+    qrencode
     ranger
     ripgrep
     rofi
     rustup
     slurp
+    speechd
     starship
     strace
     swappy
@@ -294,6 +307,7 @@
     torsocks
     traceroute
     tree
+    unixtools.fdisk
     unixtools.xxd
     unzip
     upower
@@ -303,7 +317,9 @@
     wayland
     wget
     xdg-utils
+    xfce.mousepad
     yq-go
+    zathura
     zip
     zoxide
   ];
