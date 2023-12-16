@@ -83,8 +83,7 @@
   },
   "fish": {
     "name": "Default fish configuration",
-    "$deps": ["fish_config", "fish_aliases"],
-    "install": "./scripts/install_fish.fish"
+    "$deps": ["fish_config", "fish_aliases"]
   },
   "fish_aliases": {
     "source": "./aliases",
