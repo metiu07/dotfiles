@@ -128,8 +128,9 @@ require('packer').startup(function(use)
 
     use {
         'nvim-lualine/lualine.nvim',
-        config = function ()
-            require('lualine').setup { theme = 'everforest' }
+        requires = 'neanias/everforest-nvim',
+        config = function()
+            require('lualine').setup()
         end
     }
 
@@ -137,6 +138,8 @@ require('packer').startup(function(use)
         require('packer').sync()
     end
 end)
+
+vim.o.background = 'light'
 
 require('telescope').setup({
     defaults = {
