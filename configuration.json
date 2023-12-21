@@ -140,6 +140,7 @@
     "name": "Linux configuration profile",
     "$deps": [
       "alacritty",
+      "bat",
       "emacs",
       "environment",
       "fish",
