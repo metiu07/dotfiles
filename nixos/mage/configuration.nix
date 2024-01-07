@@ -12,8 +12,14 @@
   # Set the kernel
   boot.kernelPackages = pkgs.linuxPackages_hardened;
 
-  networking.hostName = "rpi";
+  networking.hostName = "mage";
   networking.networkmanager.enable = true;
+
+  system.autoUpgrade = {
+    enable = true;
+    dates = "02:00";
+    randomizedDelaySec = "45min";
+  };
 
   # Firewall
   networking.firewall.enable = true;

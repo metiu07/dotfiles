@@ -29,7 +29,7 @@
     "/crypto_keyfile.bin" = null;
   };
 
-  networking.hostName = "nixos";
+  networking.hostName = "druid";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -65,8 +65,9 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "colemak_dh";
+    layout = "us,sk";
+    xkbVariant = "colemak_dh,qwerty";
+    xkbOptions = "caps:escape,altwin:swap_lalt_lwin";
   };
 
   # Enable CUPS to print documents.
@@ -124,12 +125,13 @@
         lua-language-server
         mpv
         networkmanagerapplet
+        pandoc
         python311Packages.black
         python311Packages.ipdb
         python311Packages.ipython
         python311Packages.isort
         python311Packages.yt-dlp
-        qalculate-qt
+        qalculate-gtk
         tor-browser-bundle-bin
         vscodium
         wdisplays
@@ -168,7 +170,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Fonts
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     liberation_ttf
     nerdfonts
     noto-fonts
@@ -252,7 +254,7 @@
     docker-compose
     entr
     evince
-    exa
+    eza
     fd
     ffmpeg
     file
@@ -285,7 +287,7 @@
     openssh
     poetry
     powertop
-    pstree
+    psmisc
     pyright
     python311Full
     qrencode
@@ -311,6 +313,7 @@
     unixtools.xxd
     unzip
     upower
+    usbutils
     util-linux
     virt-manager
     waybar
@@ -322,5 +325,6 @@
     zathura
     zip
     zoxide
+    zstd
   ];
 }
