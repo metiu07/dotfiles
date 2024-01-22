@@ -354,6 +354,35 @@ schemes:
       cyan: "0x0db9d7"
       white: "0xacb0d0"
 
+  # Colors (Gruvbox Material Medium Light) https://github.com/alacritty/alacritty-theme/blob/808b81b2e88884e8eca5d951b89f54983fa6c237/themes/gruvbox_material_medium_light.yaml
+  gruvbox-material-light-medium: &gruvbox-material-light-medium
+    # Default colors
+    primary:
+      background: '#fbf1c7'
+      foreground: '#654735'
+
+    # Normal colors
+    normal:
+      black:   '#654735'
+      red:     '#c14a4a'
+      green:   '#6c782e'
+      yellow:  '#b47109'
+      blue:    '#45707a'
+      magenta: '#945e80'
+      cyan:    '#4c7a5d'
+      white:   '#eee0b7'
+
+    # Bright colors (same as normal colors)
+    bright:
+      black:   '#654735'
+      red:     '#c14a4a'
+      green:   '#6c782e'
+      yellow:  '#b47109'
+      blue:    '#45707a'
+      magenta: '#945e80'
+      cyan:    '#4c7a5d'
+      white:   '#eee0b7'
+
   # Colors (Everforest Light) https://github.com/alacritty/alacritty-theme/blob/master/themes/everforest_light.yaml
   everforest-light: &everforest-light
     # Default colors
@@ -460,7 +489,7 @@ schemes:
     #indexed_colors: []
 
 colors:
-  *everforest-light
+  *gruvbox-material-light-medium
   # Default colors
   # primary:
   # background: '#000f14'
