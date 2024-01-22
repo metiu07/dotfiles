@@ -258,3 +258,5 @@ augroup yara
 au!
 au FileType yara setl expandtab
 augroup end
+
+autocmd BufNewFile,BufRead */waybar/config set filetype=jsonc
