@@ -388,9 +388,19 @@ local on_attach = function(_, bufnr)
         print("Formatting")
         vim.lsp.buf.format({ async = true })
     end, bufopts)
+
     -- Automatic formatting on save
-    -- FIXME: Find a way to enable this, maybe allowlist in some home location and disabled by default?
-    -- vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
+    map('n', '<leader>F', function()
+        if vim.g.anon_format_on_save then
+            vim.g.anon_format_on_save = false
+            vim.cmd("autocmd! BufWritePre <buffer>")
+            print("Auto formatting on save disabled")
+        else
+            vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
+            vim.g.anon_format_on_save = true
+            print("Auto formatting on save enabled")
+        end
+    end, bufopts)
 
     map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
     map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
