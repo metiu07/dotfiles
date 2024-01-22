@@ -258,7 +258,22 @@ function _urxvt_set_font -d 'Set the urxvt font'
 end
 
 function _alacritty_set_font  -d 'Set the font in alacritty terminal'
+    # Check if alacritty.yml exists
+    if [ -f ~/.config/alacritty/alacritty.yml ]; then
+        _alacritty_set_font_yaml "$argv[1]"
+    elif [ -f ~/.config/alacritty/alacritty.toml ]; then
+        _alacritty_set_font_toml "$argv[1]"
+    else
+        echo "Cannot find alacritty config file"
+    end
+end
+
+function _alacritty_set_font_yaml  -d 'Set the font in alacritty terminal YAML config'
     sed -i --follow-symlinks "s/^\(\s*family:\)\(.*\)/\1 $argv[1]/g" ~/.config/alacritty/alacritty.yml
+end
+
+function _alacritty_set_font_toml  -d 'Set the font in alacritty terminal TOML config'
+    sed -i --follow-symlinks "s/^\(\s*family:\)\(.*\)/\1 $argv[1]/g" ~/.config/alacritty/alacritty.toml
 end
 
 function color-switcher -d 'Change terminal color.'
