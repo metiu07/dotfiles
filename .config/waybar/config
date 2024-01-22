@@ -4,6 +4,7 @@
   "height": 24, // Waybar height
   // Choose the order of the modules
   "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["custom/task"],
   "modules-right": [
     "pulseaudio",
     // "network",
@@ -99,5 +100,12 @@
     "exec": "sleep 1 && fish -c 'math 100 - 4 x (pomoctl state | cut -f 2 -d \" \" | cut -d \":\" -f 1 | sed \"s/^\\$/0/\" ) | _progress'",
     "on-click": "pomoctl stop; pomoctl start",
     "on-click-middle": "pomoctl stop"
+  },
+  "custom/task": {
+    "format": "{}",
+    "interval": 5,
+    "exec-on-event": true,
+    "exec": "fd -e md . $HOME/Documents/notes/ --changed-within 1day -x grep '\\[~\\]' | sed 's/^\\s*- \\[.\\] \/\/'",
+  },
   }
 }
