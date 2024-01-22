@@ -250,7 +250,6 @@
     "source": "./.vimrc",
     "destination": "~/.config/vim/vimrc",
     "name": "Full vim configuration with addons",
-    "install": "./scripts/install_vim_plugins.sh",
     "$deps": ["vim_coc", "vim_plug"]
   },
   "vim_coc": {
