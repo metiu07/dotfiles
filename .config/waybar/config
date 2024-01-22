@@ -105,7 +105,7 @@
     "format": "{}",
     "interval": 5,
     "exec-on-event": true,
-    "exec": "fd -e md . $HOME/Documents/notes/ --changed-within 1day -x grep '\\[~\\]' | sed 's/^\\s*- \\[.\\] \/\/'",
+    "exec": "fd -e md . $HOME/Documents/notes/ --changed-within 1day -x grep -m 1 '\\[~\\]' | head -1 | sed 's/^\\s*- \\[.\\] \/\/'",
   },
   }
 }
