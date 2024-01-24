@@ -585,3 +585,5 @@ augroup highlight_yank
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=50}
 augroup END
 ]])
+
+vim.o.cursorline = true
