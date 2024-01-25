@@ -131,38 +131,38 @@ require('lazy').setup({
     {
         'nvim-telescope/telescope.nvim', tag = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        opts = {
-            defaults = {
-                layout_strategy = 'vertical',
-                layout_config = {
-                    preview_cutoff = 1,
+        config = function()
+            require('telescope').setup({
+                defaults = {
+                    layout_strategy = 'vertical',
+                    layout_config = {
+                        preview_cutoff = 1,
+                    },
+                    mappings = {
+                        i = {
+                            ["<C-n>"] = "move_selection_next",
+                            ["<C-e>"] = "move_selection_previous",
+                        }
+                    },
                 },
-                mappings = {
-                    i = {
-                        ["<C-n>"] = "move_selection_next",
-                        ["<C-e>"] = "move_selection_previous",
+                pickers = {
+                    find_files = {
+                        hidden = true
+                    },
+                    buffers = {
+                        ignore_current_buffer = true,
+                        sort_mru = true
                     }
                 },
-            },
-            pickers = {
-                find_files = {
-                    hidden = true
-                },
-                buffers = {
-                    ignore_current_buffer = true,
-                    sort_mru = true
+                extensions = {
+                    fzf = {
+                        fuzzy = true,
+                        override_generic_sorter = true,
+                        override_file_sorter = true,
+                        case_mode = "smart_case",
+                    }
                 }
-            },
-            extensions = {
-                fzf = {
-                    fuzzy = true,
-                    override_generic_sorter = true,
-                    override_file_sorter = true,
-                    case_mode = "smart_case",
-                }
-            }
-        },
-        config = function()
+            })
             local builtin = require('telescope.builtin')
             vim.keymap.set('n', '<leader><leader>', builtin.find_files, {})
             vim.keymap.set('n', '<leader>.', function() builtin.find_files({ no_ignore = true }) end, {})
