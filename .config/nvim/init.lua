@@ -15,7 +15,7 @@ local OPTS = { noremap = true, silent = true }
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local ON_ATTACH = function(_, bufnr)
+local ON_ATTACH = function(client, bufnr)
     local map = vim.keymap.set
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -79,15 +79,17 @@ local ON_ATTACH = function(_, bufnr)
     end)
 
     -- FIXME: Add a way to distinguish between read/write
-    vim.cmd([[
-    " hi default link LspReferenceText IncSearch
-    hi default link LspReferenceText CursorLine
-    hi default link LspReferenceRead LspReferenceText
-    hi default link LspReferenceWrite LspReferenceText
-    autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-    autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    ]])
+    if client.name ~= "yamlls" then
+        vim.cmd([[
+        " hi default link LspReferenceText IncSearch
+        hi default link LspReferenceText CursorLine
+        hi default link LspReferenceRead LspReferenceText
+        hi default link LspReferenceWrite LspReferenceText
+        autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        ]])
+    end
 end
 
 
@@ -266,6 +268,10 @@ require('lazy').setup({
                 capabilities = capabilities,
             }
             require('lspconfig')['bashls'].setup {
+                on_attach = ON_ATTACH,
+                capabilities = capabilities,
+            }
+            require('lspconfig')['yamlls'].setup {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
             }
