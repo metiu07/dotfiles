@@ -6,6 +6,7 @@
   "modules-left": ["sway/workspaces", "sway/mode"],
   "modules-center": ["custom/task"],
   "modules-right": [
+    "custom/eyes20",
     "pulseaudio",
     // "network",
     "cpu",
@@ -89,7 +90,7 @@
   "custom/keyboard_layout": {
       "exec": "swaymsg -t get_inputs | jq -r '.[] | select(.type == \"keyboard\") | .xkb_active_layout_name' | head -1",
       "interval": 10,
-      "format": " {}",
+      "format": "{} ",
       "tooltip": false,
       "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
   },
@@ -107,5 +108,11 @@
     "exec-on-event": true,
     "exec": "fd -e md . $HOME/Documents/notes/ --changed-within 1day -x grep -m 1 '\\[~\\]' | head -1 | sed 's/^\\s*- \\[.\\] \/\/'",
   },
+  "custom/eyes20": {
+    "format": "{}🧐",
+    "interval": 60,
+    "exec": "echo \"20 - ($(date +%s) - $(cat /tmp/eyes20)) / 60\" | bc",
+    "on-click": "echo $(date +%s) > /tmp/eyes20"
+  }
   }
 }
