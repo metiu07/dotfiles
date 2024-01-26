@@ -274,6 +274,14 @@ require('lazy').setup({
             require('lspconfig')['yamlls'].setup {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
+                settings = {
+                    yaml = {
+                        schemas = {
+                            kubernetes = { "/luft/*/*.yaml", "/kubernetes/*/*.yaml" },
+                            ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+                        }
+                    }
+                }
             }
             -- For some reason we need to set offsetEncoding to utf-8 for clangd to work
             local clangd_capabilities = require('cmp_nvim_lsp').default_capabilities()
