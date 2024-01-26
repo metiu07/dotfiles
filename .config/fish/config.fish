@@ -647,15 +647,6 @@ function color_picker -d "Color picker functionality"
 	echo "$COLOR" | sed -n 's/.*\(#......\).*/\1\n/p' | wl-copy
 end
 
-function _fzf-multi-command-history-widget -d "Show command history"
-	test -n "$FZF_TMUX_HEIGHT"; or set FZF_TMUX_HEIGHT 40%
-	set -lx FZF_DEFAULT_OPTS "--height $FZF_TMUX_HEIGHT $FZF_DEFAULT_OPTS --tiebreak=index --bind=ctrl-r:toggle-sort --bind=tab:clear-query+toggle+down --bind=enter:toggle+accept-non-empty $FZF_CTRL_R_OPTS -m"
-
-	history -z | eval (__fzfcmd) --read0 --print0 -q '(commandline)' | sed 's/\x0\(.\)/; \1/g' | read -lz result
-	and commandline -- $result
-	commandline -f repaint
-end
-
 function _progress -d "Display ascii progress bar"
 	read progress
 	[ -z "$progress" ]; and return
