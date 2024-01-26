@@ -714,3 +714,12 @@ end
 function json_logs -d "Reformat JSON logs to a more readable format"
     jq -Rr 'fromjson? | "\(.time) \(.severity) \(.message)"'
 end
+
+function rsync_dev -d "Continuously sync directory to the server"
+    set -l src $argv[1]
+    set -l dst $argv[2]
+    echo "Syncing $src to $dst using rsync"
+    while true
+        find $src | entr -d time rsync -rzvhP -f '- env/' -f '- env-tests/' -f '- __pycache__' -f '- target' -f '- *.o' $src $dst
+    end
+end
