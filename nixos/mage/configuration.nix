@@ -84,7 +84,7 @@
     chmod 770 /sftp/anon_data
   '';
 
-  users.groups.anon_data_g = {};
+  users.groups.anon_data_g = { };
   users.users = {
     anon = {
       isNormalUser = true;
@@ -115,10 +115,10 @@
   services.tailscale.enable = true;
 
   # Swap
-  swapDevices = [ {
+  swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 4*1024;
-  } ];
+    size = 4 * 1024;
+  }];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -145,7 +145,7 @@
         ForceCommand internal-sftp
     '';
   };
-  
+
   # Needed in order to allow only anon_data to login with password
   security.pam.services.sshd.unixAuth = lib.mkForce true;
 
@@ -230,7 +230,7 @@
     yq-go
     zip
     zoxide
-    zstd 
+    zstd
   ];
 }
 

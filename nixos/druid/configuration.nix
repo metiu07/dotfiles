@@ -17,13 +17,13 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Driver for the USB WiFi dongle
-  boot.extraModulePackages = with config.boot.kernelPackages; [ 
-    rtl8821au 
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    rtl8821au
   ];
-  boot.initrd.kernelModules = [ 
-    "8821au" 
+  boot.initrd.kernelModules = [
+    "8821au"
   ];
-  
+
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
@@ -81,10 +81,15 @@
   # Syncthing
   services = {
     syncthing = {
-        enable = true;
-        user = "anon";
-        dataDir = "/home/anon/Documents";    # Default folder for new synced folders
-        configDir = "/home/anon/Documents/.config/syncthing";   # Folder for Syncthing's settings and keys
+      enable = true;
+      user = "anon";
+      dataDir = "/home/anon/Documents"; # Default folder for new synced folders
+      configDir = "/home/anon/Documents/.config/syncthing"; # Folder for Syncthing's settings and keys
+    };
+
+    # TailScale
+    tailscale = {
+      enable = true;
     };
   };
 
@@ -114,7 +119,7 @@
       extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
       packages = with pkgs; [
         alacritty
-        anki-bin
+        # anki-bin
         bat
         brave
         calibre
@@ -172,7 +177,20 @@
   # Fonts
   fonts.packages = with pkgs; [
     liberation_ttf
-    nerdfonts
+    # (nerdfonts.override { fonts = [
+    #     "Anonymice"
+    #     "DroidSansMono"
+    #     "FiraCode"
+    #     "InconsolataLGC"
+    #     "Iosevka"
+    #     "IosevkaTerm"
+    #     "JetBrainsMono"
+    #     "TerminessTTF"
+    #     "UbuntuMono"
+    #     "VictorMono"
+    #     "VictorMono"
+    #     "agave"
+    # ]; })
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -180,7 +198,7 @@
 
   # Fish
   programs.fish.enable = true;
-  
+
   # XDG desktop portal
   services.dbus.enable = true;
   xdg.portal = {
@@ -230,10 +248,10 @@
   # networking.firewall.enable = false;
 
   # Swap
-  swapDevices = [ {
+  swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 4*1024;
-  } ];
+    size = 4 * 1024;
+  }];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -258,7 +276,6 @@
     fd
     ffmpeg
     file
-    fishPlugins.fzf-fish
     fwupd
     fzf
     gcc
@@ -284,6 +301,9 @@
     ncdu
     neovim
     netcat-gnu
+    nil
+    nixd
+    nixpkgs-fmt
     openssh
     poetry
     powertop
