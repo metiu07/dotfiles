@@ -240,22 +240,22 @@ exec fish -c wallpaper
 exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Startup notification daemon
-exec_always "killall -q mako; mako"
+exec_always "pkill mako; mako"
 
 # Launch the status bar
-exec_always "killall -q waybar; waybar"
+exec_always "pkill waybar; waybar"
 
 # Startup the network manager
-exec_always "killall -q nm-applet; nm-applet --indicator"
+exec_always "pkill nm-applet; nm-applet --indicator"
 
 # Startup the bluetooth manager
-exec_always "killall -q blueman-applet; blueman-applet"
+exec_always "pkill blueman-applet; blueman-applet"
 
 # Startup automatic screen locaking when idle
-exec_always killall -q swayidle; swayidle -w \
+exec_always pkill swayidle; swayidle -w \
     timeout 285 'notify-send "Locking the screen in 15s"' \
     timeout 290 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
+         resume 'swaymsg "output * dpms on"' \
     timeout 300 '$LOCK' \
     before-sleep '$LOCK'
 
