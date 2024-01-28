@@ -21,6 +21,12 @@
     randomizedDelaySec = "45min";
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
   # Firewall
   networking.firewall.enable = true;
 
@@ -69,15 +75,46 @@
 
   programs.fish.enable = true;
 
+  system.activationScripts.sftp_data = ''
+    mkdir -p /sftp
+    chown root:root /sftp
+    chmod 755 /sftp
+    mkdir -p /sftp/anon_data
+    chown anon_data:anon_data_g /sftp/anon_data
+    chmod 770 /sftp/anon_data
+  '';
+
+  users.groups.anon_data_g = {};
   users.users = {
     anon = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "networkmanager" "wheel" "anon_data_g" ];
       packages = with pkgs; [ ];
       shell = pkgs.fish;
+      openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfwRxqULadhhk84HROmF6DSbS75qDzguXWUGV4FQ5Wv anon@nixos" ];
     };
+    anon_data = {
+      isSystemUser = true;
+      home = "/sftp/anon_data";
+      group = "anon_data_g";
+      openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfwRxqULadhhk84HROmF6DSbS75qDzguXWUGV4FQ5Wv anon@nixos" ];
+    };
+    # anon_data = {
+    #   isNormalUser = true;
+    #   home = "/sftp/anon_data";
+    #   extraGroups = [ "anon_data_g" ];
+    #   openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfwRxqULadhhk84HROmF6DSbS75qDzguXWUGV4FQ5Wv anon@nixos" ];
+    # };
   };
 
+  # Workaround for nixos-rebuild switch failure
+  # https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501
+  services.logrotate.checkConfig = false;
+
+  # Tailscale
+  services.tailscale.enable = true;
+
+  # Swap
   swapDevices = [ {
     device = "/var/lib/swapfile";
     size = 4*1024;
@@ -94,15 +131,23 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.openssh.settings.PermitRootLogin = "no";
-  services.openssh.settings.PasswordAuthentication = false;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  services.openssh = {
+    enable = true;
+    allowSFTP = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+    extraConfig = ''
+      Match User anon_data
+        ChrootDirectory /sftp
+        PasswordAuthentication yes
+        ForceCommand internal-sftp
+    '';
+  };
+  
+  # Needed in order to allow only anon_data to login with password
+  security.pam.services.sshd.unixAuth = lib.mkForce true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -139,7 +184,6 @@
     fd
     ffmpeg
     file
-    fishPlugins.fzf-fish
     fwupd
     fzf
     gcc
