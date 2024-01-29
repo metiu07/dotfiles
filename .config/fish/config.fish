@@ -715,3 +715,7 @@ function rsync_dev -d "Continuously sync directory to the server"
         find $src | entr -d time rsync -rzvhP -f '- env/' -f '- env-tests/' -f '- __pycache__' -f '- target' -f '- *.o' $src $dst
     end
 end
+
+function cheat.sh -d "Search for cheatsheets"
+    curl "cheat.sh/$argv?style=stata-light"
+end
