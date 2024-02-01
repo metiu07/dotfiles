@@ -252,7 +252,9 @@ exec_always "pkill nm-applet; nm-applet --indicator"
 exec_always "pkill blueman-applet; blueman-applet"
 
 # Startup automatic screen locaking when idle
-exec_always pkill swayidle; swayidle -w \
+exec_always pkill swayidle;
+# NOTE: For some reason this does not work without the sleep
+exec_always sleep 5 && swayidle -w \
     timeout 285 'notify-send "Locking the screen in 15s"' \
     timeout 290 'swaymsg "output * dpms off"' \
          resume 'swaymsg "output * dpms on"' \
