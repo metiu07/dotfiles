@@ -1,14 +1,15 @@
 # My personal dotfiles
 Current default configuration consists of:
 
-- arch/manjaro
-- [gruvbox](https://github.com/morhetz/gruvbox)
+- [NixOS](https://nixos.org/) (previously arch/manjaro)
+- [gruvbox light](https://github.com/morhetz/gruvbox)
 - sway {waybar, rofi, lightdm}
 - fish {alacritty, tmux}
 - Neovim for coding, emacs [Doom!](https://github.com/hlissner/doom-emacs) for [org-mode](https://orgmode.org/)
 - [rg](https://github.com/BurntSushi/ripgrep), [fzf](https://github.com/junegunn/fzf), [ranger](https://github.com/ranger/ranger)
+- ...
 
-You can see preview in
+You can see preview in (very likely out of date)
 ![Current state of dotfiles](./screenshots/23.6.2019.png)
 
 More screenshots can be found in this [folder](screenshots).
