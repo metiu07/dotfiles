@@ -271,6 +271,10 @@ require('lazy').setup({
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
             }
+            require('lspconfig')['rust_analyzer'].setup {
+                on_attach = ON_ATTACH,
+                capabilities = capabilities,
+            }
             require('lspconfig')['yamlls'].setup {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
