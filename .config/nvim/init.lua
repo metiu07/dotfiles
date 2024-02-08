@@ -564,8 +564,24 @@ require('lazy').setup({
         end
     },
     {
-        'sainnhe/gruvbox-material',
+        'ishan9299/modus-theme-vim',
         enabled = true,
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.o.background = "light"
+            vim.cmd('colorscheme modus-operandi')
+
+            -- Fix highlighting in gitcommit diff
+            -- vim.cmd([[
+            --     highlight! link @diff.plus.diff diffAdded
+            --     highlight! link @diff.minus.diff diffRemoved
+            -- ]])
+        end
+    },
+    {
+        'sainnhe/gruvbox-material',
+        enabled = false,
         lazy = false,
         priority = 1000,
         config = function()
