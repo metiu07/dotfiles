@@ -412,6 +412,35 @@ schemes:
       cyan:    '0x35a77c'
       white:   '0xe0dcc7'
 
+  # Colors (modus-operandi) https://protesilaos.com/emacs/modus-themes-colors
+  modus-operandi: &modus-operandi
+    # Default colors
+    primary:
+      background: '#ffffff'
+      foreground: '#000000'
+
+    # Normal colors
+    normal:
+      black:   '#000000'
+      red:     '#a60000'
+      green:   '#006800'
+      yellow:  '#6f5500'
+      blue:    '#0031a9'
+      magenta: '#721045'
+      cyan:    '#005e8b'
+      white:   '#ffffff'
+
+    # Bright Colors
+    bright:
+      black:   '#595959'
+      red:     '#ff6b55'
+      green:   '#00c06f'
+      yellow:  '#fec43f'
+      blue:    '#79a8ff'
+      magenta: '#531ab6'
+      cyan:    '#005f5f'
+      white:   '#a6a6a6'
+
   default: &default
     primary:
       background: "#000000"
@@ -489,7 +518,7 @@ schemes:
     #indexed_colors: []
 
 colors:
-  *gruvbox-material-light-medium
+  *modus-operandi
   # Default colors
   # primary:
   # background: '#000f14'
