@@ -366,6 +366,12 @@ require('lazy').setup({
     {
         'nvimdev/lspsaga.nvim',
         opts = {
+            finder = {
+                keys = {
+                    quit = "<esc>",
+                    toggle_or_open = "<cr>",
+                }
+            },
             lightbulb = {
                 enable = false,
                 enable_in_insert = false,
