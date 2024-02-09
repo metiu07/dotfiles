@@ -66,6 +66,7 @@
 	amend = commit --amend --verbose
 	authors = "!git log --pretty=format:%aN | sort | uniq -c | sort -rn"
 	c = commit --verbose
+	checkuot = checkout
 	conflicts = diff --name-only --diff-filter=U --relative
 	d = diff
 	da = diff HEAD
