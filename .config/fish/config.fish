@@ -24,7 +24,9 @@ set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
 set -gx fish_greeting ""
 
 # Enable starship
-source (starship init fish --print-full-init | sed 's/fish_vi_key_bindings/fish_vi_colemak_key_bindings/' | psub)
+if command -v starship >/dev/null 2>&1
+    source (starship init fish --print-full-init | sed 's/fish_vi_key_bindings/fish_vi_colemak_key_bindings/' | psub)
+end
 
 # Enable zoxide
 zoxide init fish | source
