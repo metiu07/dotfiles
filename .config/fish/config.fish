@@ -11,7 +11,11 @@ source ~/.config/fish/aliases
 # Vim
 # `fish_key_reader` - check the SEQUENCE
 # `bind -f`         - show possible commands
-fzf_key_bindings
+
+# Use fzf_key_bindings if installed
+if functions -q fzf_key_bindings
+    fzf_key_bindings
+end
 
 # Let theme prompt handle the virtualenv indicator
 set -gx VIRTUAL_ENV_DISABLE_PROMPT YES
