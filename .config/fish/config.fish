@@ -71,7 +71,13 @@ set -x FZF_DEFAULT_OPTS "\
 set -gx PYTHON_KEYRING_BACKEND keyring.backends.null.Keyring
 
 # Setup the ls aliases preffer exa
-if command -v exa >/dev/null 2>&1
+if command -v eza >/dev/null 2>&1
+    # eza must be first since, it also setups exa alias
+	functions -e ls; alias ls='eza --group-directories-first'
+	functions -e ll; alias ll='eza --icons -lag --group-directories-first'
+	functions -e lll; alias lll='eza -la --icons --tree --level=2 --group-directories-first'
+	functions -e llll; alias llll='eza -la --icons --tree --group-directories-first'
+else if command -v exa >/dev/null 2>&1
 	functions -e ls; alias ls='exa --icons --group-directories-first'
 	functions -e ll; alias ll='exa --icons -laFg --group-directories-first'
 	functions -e lll; alias lll='exa -laF --icons --tree --level=2 --group-directories-first'
