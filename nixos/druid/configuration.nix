@@ -9,12 +9,34 @@
   nix.gc.automatic = true;
   # nix.gc.options = "--delete-older-than 10d"
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Set the kernel
   boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+
+  # Polkit
+  security.polkit.enable = true;
+
+  # Sudo
+  security.sudo = {
+  enable = true;
+  # extraRules = [{
+  #   commands = [
+  #     {
+  #       command = "${pkgs.ddcutil}/bin/ddcutil setvcp 60 0x11";
+  #       options = [ "NOPASSWD" ];
+  #     }
+  #   ];
+  #   groups = [ "wheel" ];
+  # }];
+};
+
 
   # Driver for the USB WiFi dongle
   boot.extraModulePackages = with config.boot.kernelPackages; [
@@ -22,6 +44,7 @@
   ];
   boot.initrd.kernelModules = [
     "8821au"
+    "i2c-dev"
   ];
 
   # Setup keyfile
@@ -30,6 +53,7 @@
   };
 
   networking.hostName = "druid";
+  networking.hostId = "98921cba";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -111,6 +135,11 @@
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true; # virt-manager requires dconf to remember settings
 
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "qt";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     anon = {
@@ -118,8 +147,8 @@
       description = "Anon";
       extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
       packages = with pkgs; [
-        alacritty
         # anki-bin
+        alacritty
         bat
         brave
         calibre
@@ -143,6 +172,8 @@
         wireshark
         wl-clipboard
         wofi
+        xarchiver
+        xfce.mousepad
         xfce.thunar
         xfce.thunar-archive-plugin
         xfce.thunar-volman
@@ -266,12 +297,15 @@
     alacritty
     android-file-transfer
     btop
+    btrfs-progs
     cmake
     curl
+    ddcutil
     delta
     docker-compose
     entr
     evince
+    exfatprogs
     eza
     fd
     ffmpeg
@@ -281,9 +315,11 @@
     gcc
     gdb
     git
+    glances
     glib
     gnome3.adwaita-icon-theme
     gnumake
+    gpa
     gparted
     grim
     htop
@@ -291,20 +327,30 @@
     imhex
     imv
     jq
+    kanshi
+    libnotify
     libqalculate
     linuxHeaders
     lshw
     lsof
     ltrace
+    lxqt.lxqt-policykit
     mako
     meld
+    mosh
     ncdu
     neovim
     netcat-gnu
     nil
     nixd
     nixpkgs-fmt
+    nmap
+    nodePackages.prettier
+    nodejs_21
     openssh
+    parted
+    pciutils
+    pinentry
     poetry
     powertop
     psmisc
@@ -340,9 +386,9 @@
     wayland
     wget
     xdg-utils
-    xfce.mousepad
     yq-go
     zathura
+    zfs
     zip
     zoxide
     zstd
