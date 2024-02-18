@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -11,8 +11,11 @@
 
   # Set the kernel
   boot.kernelPackages = pkgs.linuxPackages_hardened;
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
 
   networking.hostName = "mage";
+  networking.hostId = "df1a2179";
   networking.networkmanager.enable = true;
 
   system.autoUpgrade = {
@@ -91,6 +94,9 @@
   # Workaround for nixos-rebuild switch failure
   # https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501
   services.logrotate.checkConfig = false;
+
+  # Syncthing
+  services.syncthing.enable = true;
 
   # Tailscale
   services.tailscale.enable = true;
