@@ -271,6 +271,21 @@ require('lazy').setup({
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
             }
+            -- require('lspconfig')['nixd'].setup {
+            --     on_attach = ON_ATTACH,
+            --     capabilities = capabilities,
+            -- }
+            require('lspconfig')['nil_ls'].setup {
+                on_attach = ON_ATTACH,
+                capabilities = capabilities,
+                settings = {
+                    ['nil'] = {
+                        formatting = {
+                            command = { "nixpkgs-fmt" },
+                        },
+                    },
+                }
+            }
             require('lspconfig')['rust_analyzer'].setup {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
