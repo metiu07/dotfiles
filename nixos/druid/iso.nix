@@ -33,14 +33,44 @@
 
   environment.systemPackages = with pkgs; [
     alacritty
-    linuxHeaders
-    htop
-    neovim
-    git
+    btop
+    btrfs-progs
+    curl
+    exfatprogs
+    fd
+    file
     fish
+    fwupd
+    fzf
     gcc
+    gdb
+    git
     gnumake
-    vscodium
+    gparted
+    htop
+    linuxHeaders
+    lshw
+    lsof
+    meld
+    ncdu
+    neovim
+    nmap
+    openssh
+    parted
+    pciutils
+    powertop
+    psmisc
+    ripgrep
+    tcpdump
+    tmux
+    traceroute
+    unixtools.fdisk
+    unixtools.xxd
+    unzip
     util-linux
+    vscodium
+    wget
+    zip
+    zstd
   ];
 }
