@@ -272,9 +272,9 @@ end
 
 function _alacritty_set_font  -d 'Set the font in alacritty terminal'
     # Check if alacritty.yml exists
-    if [ -f ~/.config/alacritty/alacritty.yml ]; then
+    if [ -f ~/.config/alacritty/alacritty.yml ]
         _alacritty_set_font_yaml "$argv[1]"
-    elif [ -f ~/.config/alacritty/alacritty.toml ]; then
+    else if [ -f ~/.config/alacritty/alacritty.toml ]
         _alacritty_set_font_toml "$argv[1]"
     else
         echo "Cannot find alacritty config file"
