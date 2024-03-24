@@ -1,6 +1,4 @@
 set selection-clipboard clipboard
-set recolor true
-set recolor-keephue true
 
 map m scroll left
 map n scroll down
