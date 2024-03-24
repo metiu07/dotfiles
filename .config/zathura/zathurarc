@@ -2,10 +2,6 @@ set selection-clipboard clipboard
 set recolor true
 set recolor-keephue true
 
-# == gruvbox ==
-set recolor-lightcolor "#282828"
-set recolor-darkcolor "#ebdbb2"
-
 map m scroll left
 map n scroll down
 map e scroll up
