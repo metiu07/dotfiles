@@ -206,6 +206,12 @@ require('lazy').setup({
         'lewis6991/gitsigns.nvim',
         config = true,
     },
+    {
+        'folke/todo-comments.nvim',
+        event = 'VimEnter',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        opts = { signs = false }
+    },
     'sindrets/diffview.nvim',
 
     {
