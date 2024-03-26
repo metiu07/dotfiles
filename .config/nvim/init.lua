@@ -290,6 +290,13 @@ require('lazy').setup({
                     config.settings.python.pythonPath = get_python_path(config.root_dir)
                 end
             }
+            require('lspconfig')['ruff_lsp'].setup {
+                on_attach = ON_ATTACH,
+                capabilities = capabilities,
+                before_init = function(_, config)
+                    config.interpreter = get_python_path(config.root_dir)
+                end
+            }
             require('lspconfig')['tsserver'].setup {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
