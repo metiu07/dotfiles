@@ -16,26 +16,26 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Set the kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.forceImportRoot = false;
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_1;
 
   # Polkit
   security.polkit.enable = true;
 
   # Sudo
   security.sudo = {
-  enable = true;
-  # extraRules = [{
-  #   commands = [
-  #     {
-  #       command = "${pkgs.ddcutil}/bin/ddcutil setvcp 60 0x11";
-  #       options = [ "NOPASSWD" ];
-  #     }
-  #   ];
-  #   groups = [ "wheel" ];
-  # }];
-};
+    enable = true;
+    # extraRules = [{
+    #   commands = [
+    #     {
+    #       command = "${pkgs.ddcutil}/bin/ddcutil setvcp 60 0x11";
+    #       options = [ "NOPASSWD" ];
+    #     }
+    #   ];
+    #   groups = [ "wheel" ];
+    # }];
+  };
 
 
   # Driver for the USB WiFi dongle
@@ -147,15 +147,22 @@
       description = "Anon";
       extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
       packages = with pkgs; [
-        # anki-bin
         alacritty
+        anki-bin
         bat
         brave
         calibre
+        chromium
+        evince
+        exiftool
         firefox
         gimp
+        gnome.file-roller
+        gpxsee
         hyperfine
+        inkscape-with-extensions
         keepassxc
+        libreoffice-fresh
         lua-language-server
         mpv
         networkmanagerapplet
@@ -208,6 +215,7 @@
   # Fonts
   fonts.packages = with pkgs; [
     liberation_ttf
+    nerdfonts
     # (nerdfonts.override { fonts = [
     #     "Anonymice"
     #     "DroidSansMono"
@@ -264,6 +272,11 @@
     '';
   };
 
+  # Default applications
+  xdg.mime.defaultApplications = {
+    "application/pdf" = "evince.desktop";
+  };
+
   # enable DE
   # services.xserver.desktopManager.gnome.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
@@ -294,6 +307,8 @@
 
   # Packages
   environment.systemPackages = with pkgs; [
+    # Causes rebuild to fail because it depends on vulnerable version of nix?
+    # nixd
     alacritty
     android-file-transfer
     btop
@@ -303,10 +318,13 @@
     ddcutil
     delta
     docker-compose
+    dosfstools
     entr
     evince
     exfatprogs
     eza
+    fastfetch
+    fatresize
     fd
     ffmpeg
     file
@@ -323,6 +341,7 @@
     gparted
     grim
     htop
+    hwinfo
     imagemagick
     imhex
     imv
@@ -342,7 +361,6 @@
     neovim
     netcat-gnu
     nil
-    nixd
     nixpkgs-fmt
     nmap
     nodePackages.prettier
@@ -362,7 +380,6 @@
     rofi
     rustup
     slurp
-    speechd
     starship
     strace
     swappy
@@ -371,7 +388,6 @@
     swaylock
     tcpdump
     tmux
-    torsocks
     torsocks
     traceroute
     tree
@@ -382,13 +398,13 @@
     usbutils
     util-linux
     virt-manager
+    vscode
     waybar
     wayland
     wget
     xdg-utils
     yq-go
     zathura
-    zfs
     zip
     zoxide
     zstd
