@@ -259,10 +259,10 @@ exec_always "pkill blueman-applet; blueman-applet"
 exec_always pkill swayidle;
 # NOTE: For some reason this does not work without the sleep
 exec_always sleep 5 && swayidle -w \
-    timeout 285 'notify-send "Locking the screen in 15s"' \
-    timeout 290 'swaymsg "output * dpms off"' \
+    timeout 570 'notify-send "Locking the screen in 30s"' \
+    timeout 580 'swaymsg "output * dpms off"' \
          resume 'swaymsg "output * dpms on"' \
-    timeout 300 '$LOCK' \
+    timeout 600 '$LOCK' \
     before-sleep '$LOCK'
 
 # Autostart ~/.config/sway/local.sh if it exists
