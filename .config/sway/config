@@ -245,16 +245,16 @@ exec fish -c wallpaper
 exec_always "lxqt-policykit-agent || /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 # Startup notification daemon
-exec_always "pkill mako; mako"
+exec_always "pkill mako; sleep 1s; mako"
 
 # Launch the status bar
-exec_always "pkill waybar; waybar"
+exec_always "pkill waybar; sleep 1s; waybar"
 
 # Startup the network manager
-exec_always "pkill nm-applet; nm-applet --indicator"
+exec_always "pkill nm-applet; sleep 1s; nm-applet --indicator"
 
 # Startup the bluetooth manager
-exec_always "pkill blueman-applet; blueman-applet"
+exec_always "pkill blueman-applet; sleep 1s; blueman-applet"
 
 # Startup automatic screen locaking when idle
 exec_always pkill swayidle;
