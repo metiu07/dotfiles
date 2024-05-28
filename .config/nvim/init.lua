@@ -420,6 +420,7 @@ require('lazy').setup({
         'nvimdev/lspsaga.nvim',
         opts = {
             finder = {
+                default = "ref+imp+def",
                 keys = {
                     quit = "<esc>",
                     toggle_or_open = "<cr>",
