@@ -80,7 +80,6 @@ set mouse=nvch
 " Numbers
 set ruler
 set number
-set relativenumber
 set scrolloff=10
 
 " Backups & Undo
