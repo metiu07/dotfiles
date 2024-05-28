@@ -215,10 +215,6 @@ require('lazy').setup({
     'sindrets/diffview.nvim',
 
     {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-    },
-    {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         dependencies = {
@@ -622,7 +618,7 @@ require('lazy').setup({
     },
     {
         'ishan9299/modus-theme-vim',
-        enabled = true,
+        enabled = false,
         lazy = false,
         priority = 1000,
         config = function()
@@ -677,6 +673,22 @@ require('lazy').setup({
             vim.o.background = "light"
             require("everforest").load()
         end,
+    },
+    {
+        'projekt0n/github-nvim-theme',
+        enabled = true,
+        lazy = false,
+        priority = 1000,
+        config = function()
+            -- require('github-theme').setup()
+            vim.cmd('colorscheme github_light')
+            require('lualine').setup()
+        end,
+    },
+
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
     },
 })
 
