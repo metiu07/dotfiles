@@ -32,7 +32,8 @@ bindcode $mod+24 kill
 
 # Dump the window tree into a temporary file, this is useful for setting the
 # floating/focus rules on windows that disappear fast
-bindcode $mod+75 exec swaymsg -t get_tree > /tmp/sway_tree$(date +%s).json
+# mod + F9
+bindcode $mod+75 exec swaymsg -t get_tree > /tmp/sway_tree$(date +%s).json && notify-send "Window tree dumped"
 
 # Start rofi(program launcher)
 # Putting commas in sway config can cause issues! Either create script to run
