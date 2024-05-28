@@ -70,6 +70,7 @@ set autoread
 set ttyfast
 set hidden
 set secure
+set spell
 set updatetime=100
 " If in insert mode, don't enable the mouse
 " This causes the paste to paste directly at the text cursor
