@@ -233,8 +233,8 @@ exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
 exec kanshi
 
 # Manage what to do when the laptop lid closes
-bindswitch --reload lid:on output eDP-1 disable
-bindswitch --reload lid:off output eDP-1 enable
+bindswitch --reload lid:on systemctl suspend
+# bindswitch --reload lid:off output eDP-1 enable
 
 # Setup wallpaper
 # Pick a random wallpaper from ~/Pictures/Wallpapers
