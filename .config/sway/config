@@ -65,9 +65,7 @@ bindcode $mod+Shift+33 exec fish -c "trans_en"
 # Screenshots
 bindsym Print exec grimshot --notify copy window -
 bindsym $mod+Print exec wl-paste | swappy -f -
-
-# Color picker
-bindsym $mod+Alt+Print exec fish -c color_picker
+bindsym Shift+Print exec grimshot --notify copy active -
 
 # Focus urgent window
 bindcode $mod+53 [urgent=latest] focus
