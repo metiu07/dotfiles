@@ -548,10 +548,10 @@ require('lazy').setup({
         init = function()
             vim.cmd([[
                 let g:copilot_filetypes = {
-                      \ 'yara': v:false,
-                      \ 'def': v:false,
                       \ 'gitcommit': v:true,
                       \ 'yaml': v:true,
+                      \ 'toml': v:true,
+                      \ 'json': v:true,
                       \ }
                 let g:copilot_no_tab_map = v:true
                 imap <silent><script><expr> <C-F> copilot#Accept("")
