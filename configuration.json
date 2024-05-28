@@ -1,7 +1,7 @@
 {
   "alacritty": {
-    "source": "./.config/alacritty/alacritty.yml",
-    "destination": "~/.config/alacritty/alacritty.yml",
+    "source": "./.config/alacritty",
+    "destination": "~/.config/alacritty",
     "name": "Alacritty terminal emulator configuration"
   },
   "bash": {

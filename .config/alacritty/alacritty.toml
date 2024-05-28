@@ -1,0 +1,64 @@
+live_config_reload = true
+
+import = [
+    "~/.config/alacritty/themes/themes/github_light.toml"
+]
+
+[cursor]
+style = "Underline"
+unfocused_hollow = true
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12.0
+
+[font.bold]
+family = "ComicMono Nerd Font"
+style = "Normal"
+
+[font.normal]
+family = "ComicMono Nerd Font"
+style = "Normal"
+
+# [schemes.modus-operandi.bright]
+# black = "#595959"
+# blue = "#79a8ff"
+# cyan = "#005f5f"
+# green = "#00c06f"
+# magenta = "#531ab6"
+# red = "#ff6b55"
+# white = "#a6a6a6"
+# yellow = "#fec43f"
+
+# [schemes.modus-operandi.normal]
+# black = "#000000"
+# blue = "#0031a9"
+# cyan = "#005e8b"
+# green = "#006800"
+# magenta = "#721045"
+# red = "#a60000"
+# white = "#ffffff"
+# yellow = "#6f5500"
+
+# [schemes.modus-operandi.primary]
+# background = "#ffffff"
+# foreground = "#000000"
+
+[selection]
+save_to_clipboard = true
+
+[window]
+decorations = "full"
+decorations_theme_variant = "Dark"
+dynamic_padding = false
+startup_mode = "Maximized"
+
+[window.dimensions]
+columns = 0
+lines = 0
+
+[window.padding]
+x = 0
+y = 0

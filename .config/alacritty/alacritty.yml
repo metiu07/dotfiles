@@ -71,7 +71,7 @@ window:
   #instance: Alacritty
   # General application class
   #general: Alacritty
-  
+
   # Decorations theme variant (Linux/BSD only)
   #
   # Override the variant of the GTK theme/Wayland client side decorations.
@@ -154,13 +154,13 @@ font:
   #style: Bold Italic
 
   # Point size
-  size: 14.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  #offset:
-  #  x: 0
-  #  y: 0
+  # offset:
+  #   x: 0
+  #   y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -173,88 +173,86 @@ font:
 # draw_bold_text_with_bright_colors: true
 
 schemes:
-  gruvbox: &gruvbox
-    # Default colors
+  gruvbox: &gruvbox # Default colors
     primary:
       # hard contrast: background = '0x1d2021'
-      background: '0x282828'
+      background: "0x282828"
       # soft contrast: background = '0x32302f'
-      foreground: '0xebdbb2'
+      foreground: "0xebdbb2"
 
     # Normal colors
     normal:
-      black:   '0x282828'
-      red:     '0xcc241d'
-      green:   '0x98971a'
-      yellow:  '0xd79921'
-      blue:    '0x458588'
-      magenta: '0xb16286'
-      cyan:    '0x689d6a'
-      white:   '0xa89984'
+      black: "0x282828"
+      red: "0xcc241d"
+      green: "0x98971a"
+      yellow: "0xd79921"
+      blue: "0x458588"
+      magenta: "0xb16286"
+      cyan: "0x689d6a"
+      white: "0xa89984"
 
     # Bright colors
     bright:
-      black:   '0x928374'
-      red:     '0xfb4934'
-      green:   '0xb8bb26'
-      yellow:  '0xfabd2f'
-      blue:    '0x83a598'
-      magenta: '0xd3869b'
-      cyan:    '0x8ec07c'
-      white:   '0xebdbb2'
+      black: "0x928374"
+      red: "0xfb4934"
+      green: "0xb8bb26"
+      yellow: "0xfabd2f"
+      blue: "0x83a598"
+      magenta: "0xd3869b"
+      cyan: "0x8ec07c"
+      white: "0xebdbb2"
 
   gruvbox-light: &gruvbox-light
     primary:
-      background: '#fbf1c7'
-      foreground: '#3c3836'
+      background: "#fbf1c7"
+      foreground: "#3c3836"
 
     normal:
-      black:   '#fbf1c7'
-      red:     '#cc241d'
-      green:   '#98971a'
-      yellow:  '#d79921'
-      blue:    '#458588'
-      magenta: '#b16286'
-      cyan:    '#689d6a'
-      white:   '#7c6f64'
+      black: "#fbf1c7"
+      red: "#cc241d"
+      green: "#98971a"
+      yellow: "#d79921"
+      blue: "#458588"
+      magenta: "#b16286"
+      cyan: "#689d6a"
+      white: "#7c6f64"
 
     bright:
-      black:   '#928374'
-      red:     '#9d0006'
-      green:   '#79740e'
-      yellow:  '#b57614'
-      blue:    '#076678'
-      magenta: '#8f3f71'
-      cyan:    '#427b58'
-      white:   '#3c3836'
+      black: "#928374"
+      red: "#9d0006"
+      green: "#79740e"
+      yellow: "#b57614"
+      blue: "#076678"
+      magenta: "#8f3f71"
+      cyan: "#427b58"
+      white: "#3c3836"
 
-  nord: &nord
-    # Default colors
+  nord: &nord # Default colors
     primary:
-      background: '#2E3440'
-      foreground: '#D8DEE9'
+      background: "#2E3440"
+      foreground: "#D8DEE9"
 
     # Normal colors
     normal:
-      black:   '#3B4252'
-      red:     '#BF616A'
-      green:   '#A3BE8C'
-      yellow:  '#EBCB8B'
-      blue:    '#81A1C1'
-      magenta: '#B48EAD'
-      cyan:    '#88C0D0'
-      white:   '#E5E9F0'
+      black: "#3B4252"
+      red: "#BF616A"
+      green: "#A3BE8C"
+      yellow: "#EBCB8B"
+      blue: "#81A1C1"
+      magenta: "#B48EAD"
+      cyan: "#88C0D0"
+      white: "#E5E9F0"
 
     # Bright colors
     bright:
-      black:   '#4C566A'
-      red:     '#BF616A'
-      green:   '#A3BE8C'
-      yellow:  '#EBCB8B'
-      blue:    '#81A1C1'
-      magenta: '#B48EAD'
-      cyan:    '#8FBCBB'
-      white:   '#ECEFF4'
+      black: "#4C566A"
+      red: "#BF616A"
+      green: "#A3BE8C"
+      yellow: "#EBCB8B"
+      blue: "#81A1C1"
+      magenta: "#B48EAD"
+      cyan: "#8FBCBB"
+      white: "#ECEFF4"
 
   # Author: https://github.com/mohabaks
   htb: &htb
@@ -355,91 +353,88 @@ schemes:
       white: "0xacb0d0"
 
   # Colors (Gruvbox Material Medium Light) https://github.com/alacritty/alacritty-theme/blob/808b81b2e88884e8eca5d951b89f54983fa6c237/themes/gruvbox_material_medium_light.yaml
-  gruvbox-material-light-medium: &gruvbox-material-light-medium
-    # Default colors
+  gruvbox-material-light-medium: &gruvbox-material-light-medium # Default colors
     primary:
-      background: '#fbf1c7'
-      foreground: '#654735'
+      background: "#fbf1c7"
+      foreground: "#654735"
 
     # Normal colors
     normal:
-      black:   '#654735'
-      red:     '#c14a4a'
-      green:   '#6c782e'
-      yellow:  '#b47109'
-      blue:    '#45707a'
-      magenta: '#945e80'
-      cyan:    '#4c7a5d'
-      white:   '#eee0b7'
+      black: "#654735"
+      red: "#c14a4a"
+      green: "#6c782e"
+      yellow: "#b47109"
+      blue: "#45707a"
+      magenta: "#945e80"
+      cyan: "#4c7a5d"
+      white: "#eee0b7"
 
     # Bright colors (same as normal colors)
     bright:
-      black:   '#654735'
-      red:     '#c14a4a'
-      green:   '#6c782e'
-      yellow:  '#b47109'
-      blue:    '#45707a'
-      magenta: '#945e80'
-      cyan:    '#4c7a5d'
-      white:   '#eee0b7'
+      black: "#654735"
+      red: "#c14a4a"
+      green: "#6c782e"
+      yellow: "#b47109"
+      blue: "#45707a"
+      magenta: "#945e80"
+      cyan: "#4c7a5d"
+      white: "#eee0b7"
 
   # Colors (Everforest Light) https://github.com/alacritty/alacritty-theme/blob/master/themes/everforest_light.yaml
-  everforest-light: &everforest-light
-    # Default colors
+  everforest-light: &everforest-light # Default colors
     primary:
-      background: '0xfdf6e3'
-      foreground: '0x5c6a72'
+      background: "0xfdf6e3"
+      foreground: "0x5c6a72"
 
     # Normal colors
     normal:
-      black:   '0x5c6a72'
-      red:     '0xf85552'
-      green:   '0x8da101'
-      yellow:  '0xdfa000'
-      blue:    '0x3a94c5'
-      magenta: '0xdf69ba'
-      cyan:    '0x35a77c'
-      white:   '0xe0dcc7'
+      black: "0x5c6a72"
+      red: "0xf85552"
+      green: "0x8da101"
+      yellow: "0xdfa000"
+      blue: "0x3a94c5"
+      magenta: "0xdf69ba"
+      cyan: "0x35a77c"
+      white: "0xe0dcc7"
 
     # Bright Colors
     bright:
-      black:   '0x5c6a72'
-      red:     '0xf85552'
-      green:   '0x8da101'
-      yellow:  '0xdfa000'
-      blue:    '0x3a94c5'
-      magenta: '0xdf69ba'
-      cyan:    '0x35a77c'
-      white:   '0xe0dcc7'
+      black: "0x5c6a72"
+      red: "0xf85552"
+      green: "0x8da101"
+      yellow: "0xdfa000"
+      blue: "0x3a94c5"
+      magenta: "0xdf69ba"
+      cyan: "0x35a77c"
+      white: "0xe0dcc7"
 
   # Colors (modus-operandi) https://protesilaos.com/emacs/modus-themes-colors
-  modus-operandi: &modus-operandi
-    # Default colors
+  modus-operandi: &modus-operandi # Default colors
     primary:
-      background: '#ffffff'
-      foreground: '#000000'
+      background: "#ffffff"
+      foreground: "#000000"
 
     # Normal colors
     normal:
-      black:   '#000000'
-      red:     '#a60000'
-      green:   '#006800'
-      yellow:  '#6f5500'
-      blue:    '#0031a9'
-      magenta: '#721045'
-      cyan:    '#005e8b'
-      white:   '#ffffff'
+      black: "#000000"
+      red: "#a60000"
+      green: "#006800"
+      yellow: "#6f5500"
+      blue: "#0031a9"
+      magenta: "#721045"
+      cyan: "#005e8b"
+      white: "#ffffff"
 
     # Bright Colors
     bright:
-      black:   '#595959'
-      red:     '#ff6b55'
-      green:   '#00c06f'
-      yellow:  '#fec43f'
-      blue:    '#79a8ff'
-      magenta: '#531ab6'
-      cyan:    '#005f5f'
-      white:   '#a6a6a6'
+      black: "#595959"
+      red: "#ff6b55"
+      green: "#00c06f"
+      yellow: "#fec43f"
+      blue: "#79a8ff"
+      magenta: "#531ab6"
+      cyan: "#005f5f"
+      white: "#a6a6a6"
 
   default: &default
     primary:

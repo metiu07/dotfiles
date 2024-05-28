@@ -270,12 +270,11 @@ function _urxvt_set_font -d 'Set the urxvt font'
 	_tmux_send_command $command
 end
 
-function _alacritty_set_font  -d 'Set the font in alacritty terminal'
-    # Check if alacritty.yml exists
-    if [ -f ~/.config/alacritty/alacritty.yml ]
-        _alacritty_set_font_yaml "$argv[1]"
-    else if [ -f ~/.config/alacritty/alacritty.toml ]
+function _alacritty_set_font -d 'Set the font in alacritty terminal'
+    if [ -f ~/.config/alacritty/alacritty.toml ]
         _alacritty_set_font_toml "$argv[1]"
+    else if [ -f ~/.config/alacritty/alacritty.yml ]
+        _alacritty_set_font_yaml "$argv[1]"
     else
         echo "Cannot find alacritty config file"
     end
@@ -286,7 +285,9 @@ function _alacritty_set_font_yaml  -d 'Set the font in alacritty terminal YAML c
 end
 
 function _alacritty_set_font_toml  -d 'Set the font in alacritty terminal TOML config'
-    sed -i --follow-symlinks "s/^\(\s*family:\)\(.*\)/\1 $argv[1]/g" ~/.config/alacritty/alacritty.toml
+    # alacritty msg config --window-id -1 "font.normal.family = \"$argv[1]\""
+    # alacritty msg config --window-id -1 "font.bold.family = \"$argv[1]\""
+    sed -i --follow-symlinks "s/^\(\s*family\s*=\s*\)\"\(.*\)\"/\1\"$argv[1]\"/g" ~/.config/alacritty/alacritty.toml
 end
 
 function color-switcher -d 'Change terminal color.'
@@ -314,15 +315,14 @@ function _font_list -d 'List available font families'
 	fc-list -f '%{family}\n' | awk '!x[$0]++' | sed 's/.*,\(.*\)/\1/' | grep -vi 'nerd font mono' | grep -vi 'stix' | sort -ru
 end
 
-# TODO: Create fzf alternative
 # TODO: Create dmenu alternative
-# TODO: User can change default selecter via the variable
+# TODO: User can change default selecter via env variable
 function _rofi_select_font -d 'Select the font using rofi'
 	string trim (_font_list | rofi -dmenu -i)
 end
 
 function _fzf_select_font -d 'Select the font using fzf'
-	string trim (_font_list | fzf -i)
+	string trim (_font_list | fzf -i --bind 'tab:execute(fish -c "_alacritty_set_font {}")')
 end
 
 # TODO: Create new function with default fallbacks e.g
@@ -331,13 +331,13 @@ end
 function font-switcher -d 'Change terminal font.'
 	# TODO: multi-select
 
-	# Privide default value, if called without paramters
+	# Provide default value, if called without parameters
 	if [ (count $argv) -eq 0 ]
 		set argv $argv 710
 	end
 
 	# Let user select the font
-	set -l selected_font (_rofi_select_font)
+	set -l selected_font (_fzf_select_font)
 	[ -z "$selected_font" ]; and return
 
 	# Format the font string
@@ -585,7 +585,7 @@ function docker-restart -d "Restart docker container"
 	docker restart "$selected_container" $argv
 end
 
-function docker-log -d "Display container logs"
+function docker-logs -d "Display container logs"
 	set -l selected_container (_select-docker-container)
 
 	[ -z "$selected_container" ]; and return
