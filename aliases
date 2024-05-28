@@ -16,6 +16,7 @@ alias alert="echo -ne \"\\a\""              # alert:        Print bell character
 alias dd='dd bs=128M status=progress'       # dd:           Set blocksize and show progress in dd
 alias free='free -htw'                      # free:         Always human readable, total, wide
 alias pstree='pstree -ahlp'                 # pstree:       Arguments, highlight, long, pids
+alias pgrep='pgrep -af'                     # pgrep:        Print command and full search
 alias df='df -h'                            # df:           Always human readable, total and show type
 alias du='du -ch'                           # du:           Always human readable and total
 alias dus='du -chs'                         # du:           Summary
