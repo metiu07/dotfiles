@@ -209,6 +209,8 @@ for_window [app_id="blueman-manager"] floating enable
 for_window [title="Firefox - Sharing Indicator"] floating enable
 for_window [instance="sun-awt-X11-XWindowPeer" title="win.*"] floating enable, focus
 for_window [title="Trans - .*"] focus, floating enable, resize set 700 900
+# Firefox Teams notifications, turns out they have empty title
+for_window [title="^$" app_id="firefox"] floating enable
 
 # Assign the programs to workspaces
 assign [class="Brave-browser"] 2
