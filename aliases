@@ -31,6 +31,7 @@ alias timestamp='date --utc +%+4Y%m%dT%H%MZ' # timestamp: Current timestamp in U
 alias e='vim'                               # e:            Launch editor
 alias ip='ip --color=auto'                  # ip:           Add color to ip commands
 alias watch='watch -d'                      # watch:        Automatically highlight differences
+alias ncdu='ncdu --color off'               # ncdu:         Better for light colorthemes
 
 # big thanks to bangerino for sharing
 # alias docker-kill="sudo docker ps --format '{{.Image}} {{.Names}}' | fzf -m --preview 'sudo docker ps | grep {2}' | cut -d ' ' -f 2 | xargs -I '{}' -r sudo docker kill '{}'"
