@@ -6,10 +6,15 @@
     ];
 
   # Nix configuration
-  nix.gc.automatic = true;
-  # nix.gc.options = "--delete-older-than 10d"
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    # package = pkgs.nixFlakes;
+    # extraOptions = ''
+    #   experimental-features = nix-command flakes
+    # '';
+    gc.automatic = true;
+    # nix.gc.options = "--delete-older-than 10d"
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -18,7 +23,8 @@
   # Set the kernel
   # boot.kernelPackages = pkgs.linuxPackages_zen;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_6_1;
+  # boot.kernelPackages = pkgs.linuxPackages_6_1;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   # Polkit
   security.polkit.enable = true;
@@ -76,16 +82,37 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  environment.variables = {
-    XDG_SESSION_TYPE = "wayland";
-    XDG_CURRENT_DESKTOP = "sway";
+  # environment.variables = {
+  #   XDG_SESSION_TYPE = "wayland";
+  #   XDG_CURRENT_DESKTOP = "sway";
+  # };
+
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
+    # desktopManager.plasma5.enable = true;
+    desktopManager.xfce.enable = true;
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # Enable sway window manager
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      # I had this originally
+      # export QT_QPA_PLATFORM=wayland
+      export QT_QPA_PLATFORM=wayland-egl
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export SUDO_ASKPASS="${pkgs.ksshaskpass}/bin/ksshaskpass"
+      export SSH_ASKPASS="${pkgs.ksshaskpass}/bin/ksshaskpass"
+      export XDG_SESSION_TYPE=wayland
+      export XDG_CURRENT_DESKTOP=sway
+    '';
+  };
 
-  # Display Manager
-  services.xserver.displayManager.gdm.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -135,10 +162,9 @@
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true; # virt-manager requires dconf to remember settings
 
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "qt";
-  };
+  # programs.gnupg.agent = {
+  #   enable = true;
+  # };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
@@ -243,8 +269,12 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = with pkgs; [
+      # xdg-desktop-portal-wlr
+      xdg-desktop-portal-kde
+      # gtk portal needed to make gtk apps happy
+      # xdg-desktop-portal-gtk (disabled as it causes errors)
+    ];
   };
 
   # Tor
@@ -253,34 +283,10 @@
     client.enable = true;
   };
 
-  # enable sway window manager
-  programs.sway = {
-    enable = true;
-    wrapperFeatures = {
-      base = true;
-      gtk = true;
-    };
-    extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export SUDO_ASKPASS="${pkgs.ksshaskpass}/bin/ksshaskpass"
-      export SSH_ASKPASS="${pkgs.ksshaskpass}/bin/ksshaskpass"
-      export XDG_SESSION_TYPE=wayland
-      export XDG_CURRENT_DESKTOP=sway
-    '';
-  };
-
   # Default applications
   xdg.mime.defaultApplications = {
     "application/pdf" = "evince.desktop";
   };
-
-  # enable DE
-  # services.xserver.desktopManager.gnome.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
 
   # Brightness control
   programs.light.enable = true;
@@ -309,6 +315,7 @@
   environment.systemPackages = with pkgs; [
     # Causes rebuild to fail because it depends on vulnerable version of nix?
     # nixd
+    # pinentry
     alacritty
     android-file-transfer
     btop
@@ -340,6 +347,8 @@
     gpa
     gparted
     grim
+    gtk3
+    gtk4
     htop
     hwinfo
     imagemagick
@@ -361,14 +370,14 @@
     neovim
     netcat-gnu
     nil
+    nix-tree
     nixpkgs-fmt
     nmap
     nodePackages.prettier
-    nodejs_21
+    nodejs_22
     openssh
     parted
     pciutils
-    pinentry
     poetry
     powertop
     psmisc
