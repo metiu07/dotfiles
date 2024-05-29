@@ -682,6 +682,7 @@ require('lazy').setup({
         priority = 1000,
         config = function()
             -- require('github-theme').setup()
+            vim.o.background = "light"
             vim.cmd('colorscheme github_light')
             require('lualine').setup()
         end,
