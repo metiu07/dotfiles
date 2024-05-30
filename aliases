@@ -1,4 +1,5 @@
-alias cal='cal -3m'                         # Preferred 'cal' implementation
+alias cal='cal -3'                          # Preferred 'cal' implementation
+alias ncal='ncal -3Mb'                      # ncal:         Print context and start with Monday
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -v'                      # Preferred 'mkdir' implementation
