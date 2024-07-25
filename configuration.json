@@ -151,6 +151,7 @@
       "ranger",
       "starship",
       "sway",
+      "swaylock",
       "tmux",
       "urxvt",
       "neovim",
@@ -230,6 +231,11 @@
     "destination": "~/.config/sway",
     "name": "Sway window manager configuration",
     "$deps": ["kanshi", "keyboard_colemak", "mako", "waybar"]
+  },
+  "swaylock": {
+    "source": "./.config/swaylock/config",
+    "destination": "~/.config/swaylock/config",
+    "name": "Swaylock configuration"
   },
   "tmux": {
     "source": "./.tmux.conf",

@@ -4,9 +4,6 @@
 # Bindings are setup with kyecodes, you can get the codes by running `xev -event keyboard`
 set $mod Mod4
 
-# Set the lock command
-set $LOCK swaylock -f -c 000000 -e
-
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 2
 
@@ -165,7 +162,7 @@ bindcode $mod+27 mode "resize"
 # Set shut down, restart and locking features
 set $mode_system (l)ock, (e)xit/logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec $LOCK, mode "default"
+    bindsym l exec swaylock, mode "default"
     bindsym s exec systemctl suspend, mode "default"
     bindsym e exec killall sway, mode "default"
     bindsym h exec systemctl hibernate, mode "default"
