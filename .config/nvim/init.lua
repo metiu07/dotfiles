@@ -419,6 +419,9 @@ require('lazy').setup({
     {
         'nvimdev/lspsaga.nvim',
         opts = {
+            symbol_in_winbar = {
+                enable = false,
+            },
             finder = {
                 default = "ref+imp+def",
                 keys = {
