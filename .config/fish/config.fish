@@ -67,6 +67,9 @@ set -x FZF_DEFAULT_OPTS "\
 #    --color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C \
 #    --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B"
 
+# Set the colorscheme for gh cli
+set -x GLAMOUR_STYLE light
+
 # Forbid poetry from always asking for the password
 set -gx PYTHON_KEYRING_BACKEND keyring.backends.null.Keyring
 
