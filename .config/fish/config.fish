@@ -73,6 +73,9 @@ set -x GLAMOUR_STYLE light
 # Forbid poetry from always asking for the password
 set -gx PYTHON_KEYRING_BACKEND keyring.backends.null.Keyring
 
+# Forbid pip from installing packages globally
+set -gx PIP_REQUIRE_VIRTUALENV 1
+
 # Setup the ls aliases preffer exa
 if command -v eza >/dev/null 2>&1
     # eza must be first since, it also setups exa alias
