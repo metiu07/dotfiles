@@ -251,15 +251,8 @@ exec_always "pkill nm-applet; sleep 1s; nm-applet --indicator"
 # Startup the bluetooth manager
 exec_always "pkill blueman-applet; sleep 1s; blueman-applet"
 
-# Startup automatic screen locaking when idle
-exec_always pkill swayidle;
-# NOTE: For some reason this does not work without the sleep
-exec_always sleep 5 && swayidle -w \
-    timeout 570 'notify-send "Locking the screen in 30s"' \
-    timeout 580 'swaymsg "output * dpms off"' \
-         resume 'swaymsg "output * dpms on"' \
-    timeout 600 '$LOCK' \
-    before-sleep '$LOCK'
+# Startup automatic screen locking when idle
+exec_always "pkill swayidle; sleep 5; swayidle"
 
 # Autostart ~/.config/sway/local.sh if it exists
 exec [ -x $HOME/.config/sway/local.sh ] && $HOME/.config/sway/local.sh

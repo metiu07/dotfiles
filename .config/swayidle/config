@@ -1,0 +1,4 @@
+timeout 570 'notify-send "Locking the screen in 30s"'
+timeout 580 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+timeout 600 swaylock
+before-sleep 'sh -c "pactl set-sink-mute @DEFAULT_SINK@ 1; swaylock"'
