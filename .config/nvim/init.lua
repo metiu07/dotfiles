@@ -708,3 +708,12 @@ augroup END
 ]])
 
 vim.o.cursorline = true
+
+-- Jump to a first task in the file
+-- TODO: It would be nice if this was restricted to markdown files
+vim.keymap.set('n', '<leader>j',
+    function()
+        vim.fn.cursor(1, 1)
+        vim.fn.search('- \\[ \\]')
+    end,
+    { noremap = true, silent = true })
