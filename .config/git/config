@@ -36,6 +36,9 @@
 [tag]
     sort = -creatordate
 
+[branch]
+    sort = committerdate
+
 [submodule]
 	recurse = true
 
