@@ -157,6 +157,11 @@ abbr -a -g SI "pacman -Si"
 abbr -a -g QI "pacman -Qi"
 abbr -a -g QL "pacman -Ql | grep "
 
+# Powerprofilesctl helpers
+abbr -a -g P "powerprofilesctl"
+abbr -a -g PP "powerprofilesctl launch --profile performance"
+abbr -a -g PS "powerprofilesctl set"
+
 # Add ssh-key
 abbr -a -g SA "_ssh-add"
 abbr -a -g SL "ssh-add -l"
