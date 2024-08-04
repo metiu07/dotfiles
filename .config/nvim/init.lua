@@ -13,6 +13,11 @@ vim.opt.rtp:prepend(lazypath)
 
 local OPTS = { noremap = true, silent = true }
 
+-- Printing values
+-- print(vim.inspect(client))
+-- print(client.get_language_id())
+-- See the values in :messages
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local ON_ATTACH = function(client, bufnr)
