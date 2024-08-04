@@ -618,7 +618,7 @@ require('lazy').setup({
         priority = 1000,
         config = function()
             vim.o.background = "light"
-            vim.cmd('colorscheme gruvbox')
+            vim.cmd.colorscheme('gruvbox')
         end
     },
     {
@@ -628,7 +628,7 @@ require('lazy').setup({
         priority = 1000,
         config = function()
             vim.o.background = "light"
-            vim.cmd('colorscheme modus-operandi')
+            vim.cmd.colorscheme('modus-operandi')
 
             -- Fix highlighting in gitcommit diff
             -- vim.cmd([[
@@ -644,7 +644,7 @@ require('lazy').setup({
         priority = 1000,
         config = function()
             vim.o.background = "light"
-            vim.cmd('colorscheme gruvbox-material')
+            vim.cmd.colorscheme('gruvbox-material')
 
             -- Fix highlighting in gitcommit diff
             vim.cmd([[
@@ -660,7 +660,7 @@ require('lazy').setup({
         priority = 1000,
         config = function()
             vim.g.gruvbox_baby_use_original_palette = 1
-            vim.cmd('colorscheme gruvbox-baby')
+            vim.cmd.colorscheme('gruvbox-baby')
 
             -- Fix highlighting in gitcommit diff
             vim.cmd([[
@@ -681,17 +681,40 @@ require('lazy').setup({
     },
     {
         'projekt0n/github-nvim-theme',
-        enabled = true,
+        enabled = false,
         lazy = false,
         priority = 1000,
         config = function()
             -- require('github-theme').setup()
             vim.o.background = "light"
-            vim.cmd('colorscheme github_light')
+            vim.cmd.colorscheme('github_light')
             require('lualine').setup()
         end,
     },
-
+    {
+        "folke/tokyonight.nvim",
+        enabled = false,
+        lazy = false,
+        priority = 1000,
+        opts = {},
+        config = function()
+            vim.o.background = "light"
+            vim.cmd.colorscheme('tokyonight-day')
+            require('lualine').setup()
+        end,
+    },
+    {
+        -- Maybe checkout also https://github.com/shaunsingh/solarized.nvim
+        'maxmx03/solarized.nvim',
+        enabled = true,
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.o.background = 'light'
+            vim.cmd.colorscheme('solarized')
+            require('lualine').setup()
+        end,
+    },
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
