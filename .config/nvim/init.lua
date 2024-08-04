@@ -577,15 +577,16 @@ require('lazy').setup({
         config = function()
             require('nvim-treesitter.configs').setup({
                 ensure_installed = {
-                    "c",
                     "bash",
+                    "c",
                     "diff",
-                    "lua",
-                    "rust",
+                    "dockerfile",
                     "fish",
+                    "javascript",
+                    "lua",
                     "markdown",
                     "markdown_inline",
-                    "javascript",
+                    "rust",
                     "typescript",
                 },
                 sync_install = false,
