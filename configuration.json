@@ -164,6 +164,11 @@
     "destination": "~/.config/mako/config",
     "name": "Notification daemon configuration."
   },
+  "mpv": {
+    "source": "./.config/mpv/mpv.conf",
+    "destination": "~/.config/mpv/mpv.conf",
+    "name": "Mpv configuration."
+  },
   "neovim": {
     "source": "./.config/nvim/init.lua",
     "destination": "~/.config/nvim/init.lua",
