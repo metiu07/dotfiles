@@ -23,12 +23,6 @@ if has('termguicolors')
   set termguicolors
 endif
 
-" Fix the annoying syntax bug when scrolling. This can be slow for large
-" files, but is always accurate. In case of performance problems consider
-" restricting this only to particular file types.
-" Ref: https://vim.fandom.com/wiki/Fix_syntax_highlighting
-autocmd BufEnter * :syntax sync fromstart
-
 " Make
 nnoremap <F1> :make<CR>
 nnoremap <leader>r :make<CR>
