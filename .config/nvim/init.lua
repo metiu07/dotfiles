@@ -58,11 +58,11 @@ local ON_ATTACH = function(client, bufnr)
 
     map('n', '<leader>f', function()
         print("Formatting")
-        vim.lsp.buf.format({ async = true })
+        require("conform").format({ async = true })
     end, bufopts)
 
     -- Automatic formatting on save
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
+    vim.cmd("autocmd BufWritePre <buffer> lua require('conform').format()")
     vim.g.anon_format_on_save = true
     map('n', '<leader>F', function()
         if vim.g.anon_format_on_save then
@@ -70,7 +70,7 @@ local ON_ATTACH = function(client, bufnr)
             vim.cmd("autocmd! BufWritePre <buffer>")
             print("Auto formatting on save disabled")
         else
-            vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
+            vim.cmd("autocmd BufWritePre <buffer> lua require('conform').format()")
             vim.g.anon_format_on_save = true
             print("Auto formatting on save enabled")
         end
@@ -291,7 +291,7 @@ require('lazy').setup({
                     config.settings.python.pythonPath = get_python_path(config.root_dir)
                 end
             }
-            require('lspconfig')['ruff_lsp'].setup {
+            require('lspconfig')['ruff'].setup {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
                 before_init = function(_, config)
@@ -392,33 +392,19 @@ require('lazy').setup({
         end,
     },
     {
-        'nvimtools/none-ls.nvim',
-        config = function()
-            local null_ls = require("null-ls")
-
-            -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-            null_ls.setup({
-                -- on_attach = function(client, bufnr)
-                --     if client.supports_method("textDocument/formatting") then
-                --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-                --         vim.api.nvim_create_autocmd("BufWritePre", {
-                --             group = augroup,
-                --             buffer = bufnr,
-                --             callback = function()
-                --                 vim.lsp.buf.format({ bufnr = bufnr })
-                --             end,
-                --         })
-                --     end
-                -- end,
-                sources = {
-                    null_ls.builtins.formatting.isort,
-                    null_ls.builtins.formatting.black,
-                    null_ls.builtins.formatting.prettier.with({
-                        filetypes = { "html", "json", "yaml", "markdown" },
-                    }),
-                },
-            })
+        'stevearc/conform.nvim',
+        opts = {
+            formatters_by_ft = {
+                python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
+                html = { "prettier" },
+                json = { "prettier" },
+            },
+            default_format_opts = {
+                lsp_format = "fallback",
+            },
+        },
+        init = function()
+            vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
         end,
     },
     {
