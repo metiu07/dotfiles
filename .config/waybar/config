@@ -103,10 +103,10 @@
     "on-click-middle": "pomoctl stop"
   },
   "custom/task": {
-    "format": "{}",
+    "format": "Current task: {}",
     "interval": 5,
     "exec-on-event": true,
-    "exec": "fd -e md . $HOME/Documents/notes/ --changed-within 1day -x grep -m 1 '\\[~\\]' | head -1 | sed 's/^\\s*- \\[.\\] \/\/'",
+    "exec": "script_get_current_task.sh",
   },
   "custom/eyes20": {
     "format": "{}🧐",

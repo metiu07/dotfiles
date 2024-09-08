@@ -149,6 +149,7 @@
       "i3",
       "less",
       "ranger",
+      "script_get_current_task",
       "starship",
       "sway",
       "swayidle",
@@ -220,6 +221,12 @@
     "source": "./.local/bin/screenshot",
     "destination": "~/.local/bin/screenshot",
     "name": "Screenshot program",
+    "exec": true
+  },
+  "script_get_current_task": {
+    "source": "./.local/bin/script_get_current_task.sh",
+    "destination": "~/.local/bin/script_get_current_task.sh",
+    "name": "Get current task script",
     "exec": true
   },
   "starship": {
