@@ -28,7 +28,6 @@ class Installer:
     """Class managing the instalation process"""
 
     def __init__(self, args):
-
         self.verbose = args.verbose
         self.vprint('Parsed args "{}"'.format(args))
 
@@ -90,7 +89,6 @@ class Installer:
         """Process each module and {un, re}install configuration files."""
 
         for m in modules:
-
             self.vprint("Processing module: {}".format(m))
 
             if m not in self.confs:
@@ -176,7 +174,7 @@ class Installer:
     def exec_command(
         self, c: List[str], check=True, **kwargs
     ) -> subprocess.CompletedProcess:
-        """Execute the commnad, in case of dry run just print it to user."""
+        """Execute the command, in case of dry run just print it to user."""
 
         if self.dry_run:
             print(" ".join(c))
@@ -258,9 +256,7 @@ def parse_arguments():
         default="./configuration.json",
         help="set the input file (default: ./configuration.json)",
     )
-    parser.add_argument(
-        "-v", "--verbose", action="store_true", help="verbose output"
-    )
+    parser.add_argument("-v", "--verbose", action="store_true", help="verbose output")
     return parser.parse_args()
 
 
