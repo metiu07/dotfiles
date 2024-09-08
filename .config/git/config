@@ -92,6 +92,7 @@
 	lg = log --graph --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
 	lga = log --graph --branches --remotes --tags --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
 	remote = remote -v
+	review = "!git f && nvim '+DiffviewOpen origin/HEAD...HEAD --imply-local'"
 	s = "!git status --branch && echo '' && git log --oneline -5"
 	smu = submodule update --init --recursive
 	pullm = "fetch origin master:master"
