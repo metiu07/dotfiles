@@ -261,7 +261,7 @@ exec [ -x $HOME/.config/sway/local.sh ] && $HOME/.config/sway/local.sh
 input type:keyboard {
         xkb_layout "us,sk"
         xkb_variant "colemak_dh,qwerty"
-        xkb_options "caps:escape,altwin:swap_lalt_lwin"
+        xkb_options "caps:escape,altwin:swap_lalt_lwin,grp:ctrls_toggle"
         repeat_rate 50
 }
 
