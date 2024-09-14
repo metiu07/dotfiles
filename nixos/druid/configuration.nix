@@ -12,19 +12,26 @@
     #   experimental-features = nix-command flakes
     # '';
     gc.automatic = true;
+
     # nix.gc.options = "--delete-older-than 10d"
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      max-jobs = 4;
+    };
   };
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Set the kernel
   # boot.kernelPackages = pkgs.linuxPackages_zen;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelPackages = pkgs.linuxPackages_6_1;
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  # boot.kernelPackages = pkgs.linuxPackages;
+
+  # Enable aarch64 cross compilation
+  # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Polkit
   security.polkit.enable = true;
@@ -116,16 +123,16 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us,sk";
-    xkbVariant = "colemak_dh,qwerty";
-    xkbOptions = "caps:escape,altwin:swap_lalt_lwin";
+    xkb = {
+      layout = "us,sk";
+      variant = "colemak_dh,qwerty";
+      options = "caps:escape,altwin:swap_lalt_lwin";
+    };
   };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -166,15 +173,30 @@
   #   enable = true;
   # };
 
+  # Wireshark
+  programs.wireshark.enable = true;
+
+  # OpenSSH
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     anon = {
       isNormalUser = true;
       description = "Anon";
-      extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
+      extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "wireshark" ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHK2Aomah/vuuA7Xkb3WYQIoMcwEk2hbu2VEh30DmIdH paladin"
+      ];
       packages = with pkgs; [
+        # anki-bin
         alacritty
-        anki-bin
         bat
         brave
         calibre
@@ -183,7 +205,6 @@
         exiftool
         firefox
         gimp
-        gnome.file-roller
         gpxsee
         hyperfine
         inkscape-with-extensions
@@ -218,13 +239,13 @@
       description = "Gamey";
       extraGroups = [ "networkmanager" "video" ];
       packages = with pkgs; [
+        # obs-studio
+        # steam
         alacritty
         brave
         firefox
         mpv
         networkmanagerapplet
-        obs-studio
-        steam
         tor-browser-bundle-bin
         vscodium
         wl-clipboard
@@ -241,21 +262,15 @@
   # Fonts
   fonts.packages = with pkgs; [
     liberation_ttf
-    nerdfonts
-    # (nerdfonts.override { fonts = [
-    #     "Anonymice"
-    #     "DroidSansMono"
-    #     "FiraCode"
-    #     "InconsolataLGC"
-    #     "Iosevka"
-    #     "IosevkaTerm"
-    #     "JetBrainsMono"
-    #     "TerminessTTF"
-    #     "UbuntuMono"
-    #     "VictorMono"
-    #     "VictorMono"
-    #     "agave"
-    # ]; })
+    # nerdfonts
+    (nerdfonts.override {
+      fonts = [
+        "InconsolataLGC"
+        "Iosevka"
+        "UbuntuMono"
+        "VictorMono"
+      ];
+    })
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -300,7 +315,7 @@
   # Swap
   swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 4 * 1024;
+    size = 8 * 1024;
   }];
 
   # This value determines the NixOS release from which the default
@@ -318,6 +333,7 @@
     # pinentry
     alacritty
     android-file-transfer
+    aria2
     btop
     btrfs-progs
     cmake
@@ -347,6 +363,7 @@
     gpa
     gparted
     grim
+    gsettings-desktop-schemas
     gtk3
     gtk4
     htop
@@ -369,12 +386,14 @@
     ncdu
     neovim
     netcat-gnu
+    nethogs
     nil
     nix-tree
     nixpkgs-fmt
     nmap
     nodePackages.prettier
     nodejs_22
+    nomacs
     openssh
     parted
     pciutils
