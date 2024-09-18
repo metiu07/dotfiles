@@ -16,11 +16,11 @@ size = 12.0
 offset = { x = -1 }
 
 [font.bold]
-family = "ComicMono Nerd Font"
+family = "Noto Mono"
 style = "Normal"
 
 [font.normal]
-family = "ComicMono Nerd Font"
+family = "Noto Mono"
 style = "Normal"
 
 # [schemes.modus-operandi.bright]
