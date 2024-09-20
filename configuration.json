@@ -146,7 +146,6 @@
       "fish",
       "git",
       "htop",
-      "i3",
       "less",
       "ranger",
       "script_get_current_task",
@@ -155,7 +154,6 @@
       "swayidle",
       "swaylock",
       "tmux",
-      "urxvt",
       "neovim",
       "zathura"
     ]
