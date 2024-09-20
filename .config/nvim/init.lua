@@ -299,7 +299,7 @@ require('lazy').setup({
                     config.interpreter = get_python_path(config.root_dir)
                 end
             }
-            require('lspconfig')['tsserver'].setup {
+            require('lspconfig')['ts_ls'].setup {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
             }
