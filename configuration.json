@@ -100,6 +100,11 @@
     "destination": "~/.config/gdb/gdbinit",
     "name": "GDB configuration"
   },
+  "gh": {
+    "source": "./.config/gh/config.yml",
+    "destination": "~/.config/gh/config.yml",
+    "name": "GitHub CLI configuration"
+  },
   "git": {
     "source": "./.config/git/config",
     "destination": "~/.config/git/config",
@@ -144,6 +149,7 @@
       "emacs",
       "environment",
       "fish",
+      "gh",
       "git",
       "htop",
       "less",
