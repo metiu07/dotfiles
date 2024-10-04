@@ -243,7 +243,6 @@ augroup end
 augroup markdown
 au!
 au FileType markdown setl spell         " Enable spellchecking.
-au BufRead,BufNewFile *.md setl textwidth=80
 augroup end
 
 autocmd BufNewFile,BufRead *.yar,*.yara set filetype=yara
