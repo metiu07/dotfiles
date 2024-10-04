@@ -226,7 +226,7 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
 
 # Startup display configuration manager
-exec kanshi
+exec_always "pkill kanshi; sleep 1s; kanshi"
 
 # Manage what to do when the laptop lid closes
 bindswitch --reload lid:on systemctl suspend
@@ -239,8 +239,12 @@ exec fish -c wallpaper
 # Startup the polkit authenticator agent
 exec_always "lxqt-policykit-agent || /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
+# Startup clipboard manager
+exec_always "pkill copyq; sleep 1s; copyq"
+
 # Startup notification daemon
-exec_always "pkill mako; sleep 1s; mako"
+# exec_always "pkill mako; sleep 1s; mako"
+exec_always "pkill dunst; sleep 1s; dunst"
 
 # Launch the status bar
 exec_always "pkill waybar; sleep 1s; waybar"
