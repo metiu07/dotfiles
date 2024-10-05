@@ -604,6 +604,13 @@ require('lazy').setup({
     'nvim-treesitter/playground',
     { 's3rvac/vim-syntax-yara', ft = "yara" },
 
+    {
+        'norcalli/nvim-colorizer.lua',
+        config = function()
+            require('colorizer').setup()
+        end,
+    },
+
     -- Color themes
     {
         'morhetz/gruvbox',
