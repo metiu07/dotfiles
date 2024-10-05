@@ -12,26 +12,19 @@
     #   experimental-features = nix-command flakes
     # '';
     gc.automatic = true;
-
     # nix.gc.options = "--delete-older-than 10d"
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      max-jobs = 4;
-    };
+    settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
-  # Bootloader
+  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Set the kernel
   # boot.kernelPackages = pkgs.linuxPackages_zen;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
-  # boot.kernelPackages = pkgs.linuxPackages;
-
-  # Enable aarch64 cross compilation
-  # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  # boot.kernelPackages = pkgs.linuxPackages_6_1;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   # Polkit
   security.polkit.enable = true;
@@ -50,7 +43,6 @@
     # }];
   };
 
-
   # Driver for the USB WiFi dongle
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8821au
@@ -61,12 +53,12 @@
   ];
 
   # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+  # boot.initrd.secrets = {
+  #   "/crypto_keyfile.bin" = null;
+  # };
 
-  networking.hostName = "druid";
-  networking.hostId = "98921cba";
+  networking.hostName = "hunter";
+  # networking.hostId = "98921cba";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -93,6 +85,9 @@
   #   XDG_SESSION_TYPE = "wayland";
   #   XDG_CURRENT_DESKTOP = "sway";
   # };
+
+  # Needed for the foot terminal color themes
+  environment.pathsToLink = [ "/share/foot" ];
 
   services.xserver = {
     enable = true;
@@ -123,18 +118,13 @@
 
   # Configure keymap in X11
   services.xserver = {
-    xkb = {
-      layout = "us,sk";
-      variant = "colemak_dh,qwerty";
-      options = "caps:escape,altwin:swap_lalt_lwin";
-    };
+    layout = "us,sk";
+    xkbVariant = "colemak_dh,qwerty";
+    xkbOptions = "caps:escape,altwin:swap_lalt_lwin";
   };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
 
   # Syncthing
   services = {
@@ -149,18 +139,28 @@
     tailscale = {
       enable = true;
     };
+
+    # Power Profiles Daemon -- power management
+    power-profiles-daemon = {
+      enable = true;
+    };
   };
 
   # Pipewire
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
     wireplumber.enable = true;
   };
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+  # hardware.pulseaudio.enable = true;
 
   # Docker
   virtualisation.docker.enable = true;
@@ -173,39 +173,25 @@
   #   enable = true;
   # };
 
-  # Wireshark
-  programs.wireshark.enable = true;
-
-  # OpenSSH
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-    };
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     anon = {
       isNormalUser = true;
       description = "Anon";
-      extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "wireshark" ];
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHK2Aomah/vuuA7Xkb3WYQIoMcwEk2hbu2VEh30DmIdH paladin"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvltRXYpfWZnU1GdBM4hAQOoKuUWgo5yhdM/6MVUYzP hunter"
-      ];
+      extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
       packages = with pkgs; [
-        # anki-bin
         alacritty
+        anki-bin
         bat
         brave
         calibre
         chromium
+        copyq
         evince
         exiftool
         firefox
         gimp
+        gnome.file-roller
         gpxsee
         hyperfine
         inkscape-with-extensions
@@ -229,6 +215,7 @@
         wofi
         xarchiver
         xfce.mousepad
+        xfce.ristretto
         xfce.thunar
         xfce.thunar-archive-plugin
         xfce.thunar-volman
@@ -240,13 +227,13 @@
       description = "Gamey";
       extraGroups = [ "networkmanager" "video" ];
       packages = with pkgs; [
-        # obs-studio
-        # steam
         alacritty
         brave
         firefox
         mpv
         networkmanagerapplet
+        obs-studio
+        steam
         tor-browser-bundle-bin
         vscodium
         wl-clipboard
@@ -263,15 +250,21 @@
   # Fonts
   fonts.packages = with pkgs; [
     liberation_ttf
-    # nerdfonts
-    (nerdfonts.override {
-      fonts = [
-        "InconsolataLGC"
-        "Iosevka"
-        "UbuntuMono"
-        "VictorMono"
-      ];
-    })
+    nerdfonts
+    # (nerdfonts.override { fonts = [
+    #     "Anonymice"
+    #     "DroidSansMono"
+    #     "FiraCode"
+    #     "InconsolataLGC"
+    #     "Iosevka"
+    #     "IosevkaTerm"
+    #     "JetBrainsMono"
+    #     "TerminessTTF"
+    #     "UbuntuMono"
+    #     "VictorMono"
+    #     "VictorMono"
+    #     "agave"
+    # ]; })
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -316,7 +309,7 @@
   # Swap
   swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 8 * 1024;
+    size = 4 * 1024;
   }];
 
   # This value determines the NixOS release from which the default
@@ -334,7 +327,7 @@
     # pinentry
     alacritty
     android-file-transfer
-    aria2
+    blueman
     btop
     btrfs-progs
     cmake
@@ -345,13 +338,14 @@
     dosfstools
     entr
     evince
-    exfatprogs
+    exfat
     eza
     fastfetch
     fatresize
     fd
     ffmpeg
     file
+    foot
     fwupd
     fzf
     gcc
@@ -364,7 +358,6 @@
     gpa
     gparted
     grim
-    gsettings-desktop-schemas
     gtk3
     gtk4
     htop
@@ -374,6 +367,7 @@
     imv
     jq
     kanshi
+    libheif
     libnotify
     libqalculate
     linuxHeaders
@@ -387,14 +381,13 @@
     ncdu
     neovim
     netcat-gnu
-    nethogs
     nil
     nix-tree
     nixpkgs-fmt
     nmap
     nodePackages.prettier
     nodejs_22
-    nomacs
+    ntfs3g
     openssh
     parted
     pciutils
@@ -430,8 +423,10 @@
     vscode
     waybar
     wayland
+    wezterm
     wget
     xdg-utils
+    yazi
     yq-go
     zathura
     zip
