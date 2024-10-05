@@ -81,6 +81,11 @@
     "destination": "~/.config/environment.d/envvars.conf",
     "name": "Common environment variables"
   },
+  "foot": {
+    "source": "./.config/foot/foot.ini",
+    "destination": "~/.config/foot/foot.ini",
+    "name": "Foot terminal configuration"
+  },
   "fish": {
     "name": "Default fish configuration",
     "$deps": ["fish_config", "fish_aliases"]
@@ -149,10 +154,12 @@
       "emacs",
       "environment",
       "fish",
+      "foot",
       "gh",
       "git",
       "htop",
       "less",
+      "neovim",
       "ranger",
       "script_get_current_task",
       "starship",
@@ -160,7 +167,6 @@
       "swayidle",
       "swaylock",
       "tmux",
-      "neovim",
       "zathura"
     ]
   },
