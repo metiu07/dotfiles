@@ -1,12 +1,6 @@
-profile work {
-	output "Unknown 0x633D 0x00000000" mode 1920x1080 position 3840,1400
-	output "Dell Inc. DELL U2419HC HMXYLS2" mode 1920x1080 position 1920,960
-	output "Dell Inc. DELL U2419HC 6QXYLS2" mode 1920x1080 position 0,1400
-}
-
-profile home2 {
-	output "Unknown 0x633D 0x00000000" mode 1920x1080 position 3840,1400
-	output "Dell Inc. DELL U2412M 30WJ16530E5S" mode 1920x1200 position 1920,960
+profile work1 {
+	output "Unknown 0x06CF 0x00000000" mode 1920x1080 position 3840,800
+	output "Dell Inc. DELL P2219H 36FX7W2" mode 1920x1080 position 1920,0
 }
 
 profile home1 {
