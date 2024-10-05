@@ -697,15 +697,25 @@ require('lazy').setup({
         end,
     },
     {
-        -- Maybe checkout also https://github.com/shaunsingh/solarized.nvim
         'maxmx03/solarized.nvim',
         enabled = true,
         lazy = false,
         priority = 1000,
         config = function()
+            vim.o.termguicolors = true
             vim.o.background = 'light'
+            -- Fix the strikethrough in SpellBad
+            require('solarized').setup({
+                on_highlights = function(colors, color)
+                    ---@type solarized.highlights
+                    local groups = {
+                        SpellBad = { strikethrough = false },
+                    }
+
+                    return groups
+                end
+            })
             vim.cmd.colorscheme('solarized')
-            require('lualine').setup()
         end,
     },
     {
