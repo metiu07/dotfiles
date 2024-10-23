@@ -117,14 +117,11 @@
 
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us,sk";
-    xkbVariant = "colemak_dh,qwerty";
-    xkbOptions = "caps:escape,altwin:swap_lalt_lwin";
+    variant = "colemak_dh,qwerty";
+    options = "caps:escape,altwin:swap_lalt_lwin";
   };
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Syncthing
   services = {
@@ -191,6 +188,7 @@
         exiftool
         firefox
         gimp
+        gnome.eog
         gnome.file-roller
         gpxsee
         hyperfine
@@ -208,6 +206,7 @@
         python311Packages.yt-dlp
         qalculate-gtk
         tor-browser-bundle-bin
+        vlc
         vscodium
         wdisplays
         wireshark
@@ -327,9 +326,11 @@
     # pinentry
     alacritty
     android-file-transfer
+    bandwhich
     blueman
     btop
     btrfs-progs
+    ccrypt
     cmake
     curl
     ddcutil
@@ -353,7 +354,7 @@
     git
     glances
     glib
-    gnome3.adwaita-icon-theme
+    gnome.adwaita-icon-theme
     gnumake
     gpa
     gparted
@@ -362,15 +363,18 @@
     gtk4
     htop
     hwinfo
+    iftop
     imagemagick
     imhex
     imv
+    ioping
     jq
     kanshi
     libheif
     libnotify
     libqalculate
     linuxHeaders
+    lm_sensors
     lshw
     lsof
     ltrace
@@ -394,6 +398,7 @@
     poetry
     powertop
     psmisc
+    pulseaudio
     pyright
     python311Full
     qrencode
@@ -402,12 +407,14 @@
     rofi
     rustup
     slurp
+    smartmontools
     starship
     strace
     swappy
     sway-contrib.grimshot
     swayidle
     swaylock
+    sysstat
     tcpdump
     tmux
     torsocks
@@ -425,6 +432,7 @@
     wayland
     wezterm
     wget
+    xdg-user-dirs
     xdg-utils
     yazi
     yq-go

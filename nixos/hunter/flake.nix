@@ -5,8 +5,8 @@
 
   inputs = {
     nixpkgs = {
-      # url = "github:NixOS/nixpkgs/nixos-23.11";
-      url = "github:NixOS/nixpkgs/nixos-unstable";
+      url = "github:NixOS/nixpkgs/nixos-24.05";
+      # url = "github:NixOS/nixpkgs/nixos-unstable";
       # url = "github:NixOS/nixpkgs/dd37924974b9202f8226ed5d74a252a9785aedf8";
     };
   };
