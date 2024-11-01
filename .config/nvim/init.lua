@@ -409,7 +409,9 @@ require('lazy').setup({
                 enable = false,
             },
             finder = {
-                default = "ref+imp+def",
+                default = "ref+imp",
+                max_height = 1,
+                left_width = 0.2,
                 keys = {
                     quit = "<esc>",
                     toggle_or_open = "<cr>",
