@@ -242,6 +242,9 @@ exec_always "lxqt-policykit-agent || /usr/lib/polkit-gnome/polkit-gnome-authenti
 # Startup clipboard manager
 exec_always "pkill copyq; sleep 1s; copyq"
 
+# Startup automatic blue light filter
+exec_always "pkill gammastep; sleep 1s; gammastep -l 48.1:17.1 -t 6500:4100 -m wayland"
+
 # Startup notification daemon
 # exec_always "pkill mako; sleep 1s; mako"
 exec_always "pkill dunst; sleep 1s; dunst"
