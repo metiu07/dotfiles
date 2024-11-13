@@ -167,6 +167,7 @@
       "swayidle",
       "swaylock",
       "tmux",
+      "wezterm",
       "zathura"
     ]
   },
@@ -305,6 +306,11 @@
     "source": "./.config/waybar",
     "destination": "~/.config/waybar",
     "name": "Waybar configuration for Wayland"
+  },
+  "wezterm": {
+    "source": "./.config/wezterm/wezterm.lua",
+    "destination": "~/.config/wezterm/wezterm.lua",
+    "name": "Wezterm terminal emulator configuration"
   },
   "xinit": {
     "source": "./.xinitrc",
