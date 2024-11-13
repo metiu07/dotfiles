@@ -85,13 +85,9 @@
 		| cut -c 1-12,41- \
 		| numfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
 	l = log --decorate --graph --oneline -20
-	ll = log --decorate --graph
-	lla = log --all --decorate --graph
-	lll = log --all --decorate --graph --oneline
-	lf = log --name-status --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
-	lp = log --patch --format=fuller
-	lg = log --graph --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
-	lga = log --graph --branches --remotes --tags --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
+	ll = log --all --decorate --graph --oneline
+	lll = log --all --decorate --graph --stat --pretty=fuller
+	llll = log --all --decorate --graph --stat --pretty=fuller --patch
 	remote = remote -v
 	review = "!git f && nvim '+DiffviewOpen origin/HEAD...HEAD --imply-local'"
 	s = "!git status --branch && echo '' && git log --oneline -5"
