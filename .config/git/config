@@ -69,7 +69,6 @@
 	amend = commit --amend --verbose
 	authors = "!git log --pretty=format:%aN | sort | uniq -c | sort -rn"
 	b = branch -vv
-	branches = "!qgit master --all"
 	c = commit --verbose
 	checkuot = checkout
 	conflicts = diff --name-only --diff-filter=U --relative
