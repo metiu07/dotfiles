@@ -5,6 +5,24 @@
 # |_|    |_||___/|_| |_|  \___|\___/ |_| |_||_|  |_| \__, |
 #                                                    |___/
 
+if test (uname) = "Darwin"
+
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    alias split="gsplit"
+    alias mktemp="gmktemp"
+    alias nproc="sysctl -n hw.ncpu"
+
+    # gke-gcloud-auth-plugin
+    source (brew --prefix)/share/google-cloud-sdk/path.fish.inc
+
+    # setup fzf
+    fzf --fish | source
+
+    # Setup test containers with rancher
+    set -x TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show rd0 | awk '/inet / {sub("/.*",""); print $2}')
+end
+
 # Initialize aliases
 source ~/.config/fish/aliases
 
@@ -728,3 +746,7 @@ end
 function cheat.sh -d "Search for cheatsheets"
     curl "cheat.sh/$argv?style=stata-light"
 end
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+set --export --prepend PATH "/Users/matej.kastak/.rd/bin"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
