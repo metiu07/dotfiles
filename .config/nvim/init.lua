@@ -84,19 +84,15 @@ local ON_ATTACH = function(client, bufnr)
         require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
     end)
 
-    -- FIXME: Add a way to distinguish between read/write
-    -- NOTE: Currently disabled because of pyright
-    -- if client.name ~= "yamlls" and client.name ~= "pyright" then
-    --     vim.cmd([[
-    --     " hi default link LspReferenceText IncSearch
-    --     hi default link LspReferenceText CursorLine
-    --     hi default link LspReferenceRead LspReferenceText
-    --     hi default link LspReferenceWrite LspReferenceText
-    --     autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-    --     autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-    --     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    --     ]])
-    -- end
+    -- TODO: Add a way to distinguish between read/write
+    vim.cmd([[
+    hi default link LspReferenceText CursorLine
+    hi default link LspReferenceRead LspReferenceText
+    hi default link LspReferenceWrite LspReferenceText
+    autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+    autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    ]])
 end
 
 
