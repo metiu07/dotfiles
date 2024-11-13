@@ -620,7 +620,7 @@ end
 
 function temp_env -d "Create new temporary virtualenv"
 	set dir (mktemp -d venv.XXX --tmpdir)
-	python -m venv "$dir"
+	python3 -m venv "$dir"
 	. "$dir/bin/activate.fish"
 end
 
