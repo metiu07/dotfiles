@@ -28,7 +28,6 @@ local ON_ATTACH = function(client, bufnr)
     map("n", "gD", "<cmd>Lspsaga goto_type_definition<CR>")
     map('n', 'gi', vim.lsp.buf.implementation, bufopts)
 
-    map("n", "gh", "<cmd>Lspsaga finder<CR>")
     map("n", "gr", "<cmd>Lspsaga finder<CR>")
 
     local builtin = require('telescope.builtin')
