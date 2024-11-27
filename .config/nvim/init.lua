@@ -85,14 +85,18 @@ local ON_ATTACH = function(client, bufnr)
     end)
 
     -- TODO: Add a way to distinguish between read/write
-    vim.cmd([[
-    hi default link LspReferenceText CursorLine
-    hi default link LspReferenceRead LspReferenceText
-    hi default link LspReferenceWrite LspReferenceText
-    autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-    autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    ]])
+    -- NOTE: Currently disabled because spamming errors in YAML files
+    if client.name ~= "yamlls" then
+        vim.cmd([[
+        " hi default link LspReferenceText IncSearch
+        hi default link LspReferenceText CursorLine
+        hi default link LspReferenceRead LspReferenceText
+        hi default link LspReferenceWrite LspReferenceText
+        autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        ]])
+    end
 end
 
 
