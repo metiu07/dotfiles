@@ -25,6 +25,9 @@ if test (uname) = "Darwin"
 
     # Setup test containers with rancher
     set -x TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show rd0 | awk '/inet / {sub("/.*",""); print $2}')
+
+    # Fix the keybindings in the `man` pager
+    set -gx MANPAGER "less"
 end
 
 # Initialize aliases
