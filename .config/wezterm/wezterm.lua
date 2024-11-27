@@ -1,12 +1,14 @@
 local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
-local act = wezterm.action
 
 config.keys = {
-    { key = 'UpArrow',   mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
-    { key = 'DownArrow', mods = 'SHIFT', action = act.ActivateCommandPalette },
+    -- Disable CMD+W to close the window, I always hit it by mistake
+    { key = 'w', mods = 'CMD', action = wezterm.action.Nop },
+    -- Disable CMD+T to make a new tab, I don't use it
+    { key = 't', mods = 'CMD', action = wezterm.action.Nop },
 }
+
 config.color_scheme = 'Solarized (light) (terminal.sexy)'
 -- config.color_scheme = 'Solarized Light (Gogh)'
 
