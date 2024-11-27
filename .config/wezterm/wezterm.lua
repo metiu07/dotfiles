@@ -14,6 +14,9 @@ config.font = wezterm.font("JetBrains Mono", { weight = "Medium", bold = false }
 config.font_size = 16.0
 config.cell_width = 0.9
 
+-- Add `│` to the boundary, which is a character used by tmux to split panes
+config.selection_word_boundary = " \t\n{}[]()\"'`│"
+
 config.enable_tab_bar = false
 
 config.freetype_load_target = "HorizontalLcd"
