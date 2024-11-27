@@ -9,9 +9,13 @@ if test (uname) = "Darwin"
 
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
-    alias split="gsplit"
+    alias base64="gbase64"
+    alias grep="ggrep"
     alias mktemp="gmktemp"
     alias nproc="sysctl -n hw.ncpu"
+    alias split="gsplit"
+    alias wl-copy="pbcopy"
+    alias wl-paste="pbpaste"
 
     # gke-gcloud-auth-plugin
     source (brew --prefix)/share/google-cloud-sdk/path.fish.inc
