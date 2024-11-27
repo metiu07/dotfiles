@@ -38,6 +38,7 @@ source ~/.config/fish/aliases
 # `bind -f`         - show possible commands
 
 # Use fzf_key_bindings if installed
+# TODO: Maybe I can replace this with `fzf --fish | source` also on Linux
 if functions -q fzf_key_bindings
     fzf_key_bindings
 end
