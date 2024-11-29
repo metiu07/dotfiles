@@ -724,7 +724,7 @@ end
 alias s='duck'
 
 function qr -d "Generate QR code from stdin (split into multiple QR codes if necessary)"
-    # Read the whole stdin into a vairable
+    # Read the whole stdin into a variable
     read -l --null STDIN
 
     # Generate the QR codes

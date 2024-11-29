@@ -162,6 +162,7 @@
       "neovim",
       "ranger",
       "script_get_current_task",
+      "script_qr",
       "starship",
       "sway",
       "swayidle",
@@ -238,6 +239,12 @@
     "source": "./.local/bin/script_get_current_task.sh",
     "destination": "~/.local/bin/script_get_current_task.sh",
     "name": "Get current task script",
+    "exec": true
+  },
+  "script_qr": {
+    "source": "./.local/bin/qr.py",
+    "destination": "~/.local/bin/qr.py",
+    "name": "Split input and generate QR codes",
     "exec": true
   },
   "starship": {
