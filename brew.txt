@@ -15,6 +15,7 @@ fisher
 flameshot
 fzf
 gh
+git
 git-absorb
 git-delta
 gitkraken
@@ -22,6 +23,7 @@ glances
 google-cloud-sdk
 htop
 httpie
+hyperfine
 iina
 intellij-idea-ce
 jq
