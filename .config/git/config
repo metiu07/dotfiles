@@ -42,9 +42,6 @@
 [submodule]
 	recurse = true
 
-[status]
-	submoduleSummary = true
-
 [merge]
 	tool = meld
 	stat = true
@@ -90,7 +87,7 @@
 	llll = log --all --decorate --graph --stat --pretty=fuller --patch
 	remote = remote -v
 	review = "!git f && nvim '+DiffviewOpen origin/HEAD...HEAD --imply-local'"
-	s = "!git status --branch && echo '' && git log --oneline -5"
+	s = "!f() { git status --branch && echo '' && git log --oneline -5; }; f"
 	smu = submodule update --init --recursive
 	pullm = "fetch origin master:master"
 	unstage = restore --staged
