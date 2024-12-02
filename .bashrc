@@ -120,7 +120,7 @@ add_alias () { echo "alias $1=$2"; }
 # save_command () { echo "# $*"; } -- This approach does not work for $() commands
 save_last_command () { printf "# %s\n" "$(fc -ln -1)" >> $LOCAL_BASHRC; }
 
-# If the alias file existss, source it
+# If the alias file exists, source it
 if [ -f $ALIAS_FILE ]; then
     source $ALIAS_FILE
 fi

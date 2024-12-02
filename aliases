@@ -20,7 +20,6 @@ alias pstree='pstree -ahlp'                 # pstree:       Arguments, highlight
 alias pgrep='pgrep -af'                     # pgrep:        Print command and full search
 alias df='df -h'                            # df:           Always human readable, total and show type
 alias du='du -ch'                           # du:           Always human readable and total
-alias dus='du -chs'                         # du:           Summary
 alias rg='rg -S --hidden -g "!.git"'        # rg:           By default use smart case and ignore git folder
 alias tmux='tmux -u -f $HOME/.config/tmux/tmux.conf' # tmux:   Set the default config dir for tmux
 alias trans='trans -sl "sk+en"'             # trans:        Restrict the source languages to main ones
@@ -35,12 +34,3 @@ alias e='vim'                               # e:            Launch editor
 alias ip='ip --color=auto'                  # ip:           Add color to ip commands
 alias watch='watch -d'                      # watch:        Automatically highlight differences
 alias ncdu='ncdu --color off'               # ncdu:         Better for light colorthemes
-
-# big thanks to bangerino for sharing
-# alias docker-kill="sudo docker ps --format '{{.Image}} {{.Names}}' | fzf -m --preview 'sudo docker ps | grep {2}' | cut -d ' ' -f 2 | xargs -I '{}' -r sudo docker kill '{}'"
-# alias docker-bash='sudo docker exec -it (sudo docker ps --format "{{.Image}} {{.Names}}" | fzf --preview="sudo docker ps | grep {2}"   | cut -d " " -f 2) bash'
-# alias docker-rmi='sudo docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" | fzf -m --preview "sudo docker images --format \"{{.ID}} {{.CreatedAt}}\" | grep {3}" | cut -d " " -f 3 | xargs -I "{}" -r sudo docker rmi "{}"'
-# alias docker-rmif='sudo docker images --format "{{.Repository}} {{.Tag}} {{.ID}}" | fzf -m --preview "sudo docker images --format \"{{.ID}} {{.CreatedAt}}\" | grep {3}" | cut -d " " -f 3 | xargs -I "{}" -r sudo docker rmi "{}" --force'
-
-# pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S
-# yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -r sudo pacman -S
