@@ -81,6 +81,7 @@
 		| sort --numeric-sort --key=2 \
 		| cut -c 1-12,41- \
 		| numfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
+	lines = "!git ls-files | xargs wc -l"
 	l = log --decorate --graph --oneline -20
 	ll = log --all --decorate --graph --oneline
 	lll = log --all --decorate --graph --stat --pretty=fuller
