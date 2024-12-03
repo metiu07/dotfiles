@@ -62,6 +62,7 @@ sevenzip
 shellcheck
 sysbench
 tree
+typescript-language-server
 watch
 wget
 yaml-language-server
