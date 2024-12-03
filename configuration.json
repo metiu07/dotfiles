@@ -8,10 +8,6 @@
     "name": "Default bash configuration",
     "$deps": ["bashrc_linux", "bash_profile", "bash_aliases", "inputrc"]
   },
-  "bash_posix": {
-    "name": "Posix bash configuration",
-    "$deps": ["bashrc_posix", "bash_profile", "bash_aliases_posix"]
-  },
   "bashrc_linux": {
     "source": "./.bashrc",
     "destination": "~/.bashrc",
@@ -31,16 +27,6 @@
     "source": "./aliases",
     "destination": "~/.config/bash/aliases",
     "name": "Linux bash alias configuration"
-  },
-  "bash_aliases_posix": {
-    "source": "./aliases.posix",
-    "destination": "~/.config/bash/aliases",
-    "name": "Posix bash alias configuration"
-  },
-  "bash_aliases_mac": {
-    "source": "./aliases.mac",
-    "destination": "~/.config/bash/aliases",
-    "name": "Mac bash alias configuration"
   },
   "bat": {
     "source": "./.config/bat",
