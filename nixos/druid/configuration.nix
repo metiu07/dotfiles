@@ -196,8 +196,8 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvltRXYpfWZnU1GdBM4hAQOoKuUWgo5yhdM/6MVUYzP hunter"
       ];
       packages = with pkgs; [
-        # anki-bin
         alacritty
+        anki # prefer this over anki-bin which seems to be more demanding for the build (time + resources)
         bat
         brave
         calibre
@@ -215,12 +215,14 @@
         mpv
         networkmanagerapplet
         pandoc
+        poetry
         python311Packages.black
         python311Packages.ipdb
         python311Packages.ipython
         python311Packages.isort
         python311Packages.yt-dlp
         qalculate-gtk
+        ruff-lsp
         tor-browser-bundle-bin
         vscodium
         wdisplays
@@ -337,10 +339,12 @@
     aria2
     btop
     btrfs-progs
+    ccrypt
     cmake
     curl
     ddcutil
     delta
+    dmidecode
     docker-compose
     dosfstools
     entr
@@ -398,7 +402,6 @@
     openssh
     parted
     pciutils
-    poetry
     powertop
     psmisc
     pyright
