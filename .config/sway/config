@@ -275,7 +275,7 @@ input type:keyboard {
         xkb_variant "colemak_dh,qwerty"
         # Switch keyboard layouts by pressing both Ctrls keys
         xkb_options "caps:escape,altwin:swap_lalt_lwin,grp:ctrls_toggle"
-        repeat_rate 50
+        repeat_rate 80
 }
 
 input type:touchpad {
