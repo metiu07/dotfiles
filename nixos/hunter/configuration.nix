@@ -21,10 +21,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Set the kernel
-  # boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelPackages = pkgs.linuxPackages_6_1;
-  boot.kernelPackages = pkgs.linuxPackages;
+  # boot.kernelPackages = pkgs.linuxPackages;
 
   # Polkit
   security.polkit.enable = true;
@@ -42,15 +42,6 @@
     #   groups = [ "wheel" ];
     # }];
   };
-
-  # Driver for the USB WiFi dongle
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    rtl8821au
-  ];
-  boot.initrd.kernelModules = [
-    "8821au"
-    "i2c-dev"
-  ];
 
   # Setup keyfile
   # boot.initrd.secrets = {
@@ -81,10 +72,10 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # environment.variables = {
-  #   XDG_SESSION_TYPE = "wayland";
-  #   XDG_CURRENT_DESKTOP = "sway";
-  # };
+  environment.variables = {
+    XDG_SESSION_TYPE = "wayland";
+    XDG_CURRENT_DESKTOP = "sway";
+  };
 
   # Needed for the foot terminal color themes
   environment.pathsToLink = [ "/share/foot" ];
@@ -92,9 +83,9 @@
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
-    # desktopManager.gnome.enable = true;
-    # desktopManager.plasma5.enable = true;
+    desktopManager.gnome.enable = true;
     desktopManager.xfce.enable = true;
+    # desktopManager.plasma5.enable = true;
   };
 
   # Enable sway window manager
@@ -188,24 +179,27 @@
         exiftool
         firefox
         gimp
-        gnome.eog
-        gnome.file-roller
+        eog
+        file-roller
         gpxsee
         hyperfine
         inkscape-with-extensions
         keepassxc
-        libreoffice-fresh
+        libreoffice-still
         lua-language-server
         mpv
         networkmanagerapplet
         pandoc
-        python311Packages.black
-        python311Packages.ipdb
-        python311Packages.ipython
-        python311Packages.isort
-        python311Packages.yt-dlp
+        python312Packages.black
+        python312Packages.ipdb
+        python312Packages.ipython
+        python312Packages.isort
+        python312Packages.yt-dlp
         qalculate-gtk
+        ruff
+        ruff-lsp
         tor-browser-bundle-bin
+        translate-shell
         vlc
         vscodium
         wdisplays
@@ -265,7 +259,7 @@
     #     "agave"
     # ]; })
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
   ];
 
@@ -299,6 +293,9 @@
   # Brightness control
   programs.light.enable = true;
 
+  # Documentation
+  documentation.dev.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -321,10 +318,9 @@
 
   # Packages
   environment.systemPackages = with pkgs; [
-    # Causes rebuild to fail because it depends on vulnerable version of nix?
-    # nixd
-    # pinentry
+    adwaita-icon-theme
     alacritty
+    albert
     android-file-transfer
     bandwhich
     blueman
@@ -349,12 +345,12 @@
     foot
     fwupd
     fzf
+    gammastep
     gcc
     gdb
     git
     glances
     glib
-    gnome.adwaita-icon-theme
     gnumake
     gpa
     gparted
@@ -367,7 +363,7 @@
     imagemagick
     imhex
     imv
-    ioping
+    jless
     jq
     kanshi
     libheif
@@ -380,6 +376,8 @@
     ltrace
     lxqt.lxqt-policykit
     mako
+    man-pages
+    man-pages-posix
     meld
     mosh
     ncdu
@@ -390,8 +388,10 @@
     nixpkgs-fmt
     nmap
     nodePackages.prettier
+    nodePackages.typescript-language-server
     nodejs_22
     ntfs3g
+    nvtopPackages.intel
     openssh
     parted
     pciutils
@@ -400,7 +400,7 @@
     psmisc
     pulseaudio
     pyright
-    python311Full
+    python312Full
     qrencode
     ranger
     ripgrep
@@ -414,6 +414,7 @@
     sway-contrib.grimshot
     swayidle
     swaylock
+    sysbench
     sysstat
     tcpdump
     tmux
@@ -434,7 +435,6 @@
     wget
     xdg-user-dirs
     xdg-utils
-    yazi
     yq-go
     zathura
     zip
