@@ -3,3 +3,5 @@
 .mypy_cache
 .config/sway/local.sh
 .config/alacritty/themes
+
+nixos/mage/result
