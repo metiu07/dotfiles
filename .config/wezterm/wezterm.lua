@@ -16,6 +16,8 @@ config.font = wezterm.font("JetBrains Mono", { weight = "Medium", bold = false }
 config.font_size = 16.0
 config.cell_width = 0.9
 
+config.front_end = "WebGpu"
+
 -- Add `│` to the boundary, which is a character used by tmux to split panes
 config.selection_word_boundary = " \t\n{}[]()\"'`│"
 
