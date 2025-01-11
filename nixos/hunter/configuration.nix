@@ -26,6 +26,9 @@
   # boot.kernelPackages = pkgs.linuxPackages_6_1;
   # boot.kernelPackages = pkgs.linuxPackages;
 
+  # Enable aarch64 cross compilation (useful when building RPI SD image)
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Polkit
   security.polkit.enable = true;
 
@@ -48,11 +51,21 @@
   #   "/crypto_keyfile.bin" = null;
   # };
 
-  networking.hostName = "hunter";
-  # networking.hostId = "98921cba";
+  networking = {
+    hostName = "hunter";
+    # hostId = "98921cba";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+    # Enable networking
+    networkmanager.enable = true;
+
+    # Firewall configuration
+    firewall = {
+      enable = true;
+      trustedInterfaces = [ "tailscale0" ];
+      checkReversePath = "loose";
+    };
+  };
+
 
   # Set your time zone.
   time.timeZone = "Europe/Bratislava";
@@ -132,6 +145,14 @@
     power-profiles-daemon = {
       enable = true;
     };
+
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
+    };
   };
 
   # Pipewire
@@ -167,6 +188,9 @@
       isNormalUser = true;
       description = "Anon";
       extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJYzvgOCLQsGGaw0J38r1Vdw/8nARKaWtVjU3lZ4DGXP mage"
+      ];
       packages = with pkgs; [
         alacritty
         anki-bin
@@ -175,12 +199,12 @@
         calibre
         chromium
         copyq
+        eog
         evince
         exiftool
+        file-roller
         firefox
         gimp
-        eog
-        file-roller
         gpxsee
         hyperfine
         inkscape-with-extensions
@@ -212,6 +236,7 @@
         xfce.thunar
         xfce.thunar-archive-plugin
         xfce.thunar-volman
+        yarn
       ];
       shell = pkgs.fish;
     };
@@ -296,12 +321,6 @@
   # Documentation
   documentation.dev.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   # Swap
   swapDevices = [{
     device = "/var/lib/swapfile";
@@ -322,6 +341,7 @@
     alacritty
     albert
     android-file-transfer
+    aria2
     bandwhich
     blueman
     btop
@@ -331,6 +351,7 @@
     curl
     ddcutil
     delta
+    dnsutils
     docker-compose
     dosfstools
     entr
@@ -358,6 +379,7 @@
     gtk3
     gtk4
     htop
+    httpie
     hwinfo
     iftop
     imagemagick
@@ -399,6 +421,7 @@
     powertop
     psmisc
     pulseaudio
+    pv
     pyright
     python312Full
     qrencode
