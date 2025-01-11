@@ -23,7 +23,6 @@ alias rg='rg -S --hidden -g "!.git"'        # rg:           By default use smart
 alias tmux='tmux -u -f $HOME/.config/tmux/tmux.conf' # tmux:   Set the default config dir for tmux
 alias trans='trans -sl "sk+en"'             # trans:        Restrict the source languages to main ones
 alias htop='htop -t'                        # htop:         Always prefer the tree view
-alias glances='glances --theme-white'       # glances:      Enable light color theme
 alias r2='r2 -c "e scr.prompt.vi=true"'     # r2:           Vim bindings for radare2
 alias ipython='ipython --TerminalInteractiveShell.editing_mode=vi' # ipython: Vim bindings for ipython
 alias clear='clear -x'                      # clear: Don't delete scrollback
