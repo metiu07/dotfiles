@@ -6,13 +6,10 @@
       ./hardware-configuration.nix
     ];
 
+  boot.kernelPackages = pkgs.linuxPackages_hardened;
+
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
-
-  # Set the kernel
-  boot.kernelPackages = pkgs.linuxPackages_hardened;
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.forceImportRoot = false;
 
   networking.hostName = "mage";
   networking.hostId = "df1a2179";
@@ -24,14 +21,20 @@
     randomizedDelaySec = "45min";
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
+  nix = {
+    settings.experimental-features = [ "nix-command" "flakes" ];
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
   };
 
   # Firewall
-  networking.firewall.enable = true;
+  networking.firewall = {
+    enable = true;
+    # allowedTCPPorts = [ 2283 ];
+  };
 
   # Docker
   virtualisation.docker.enable = true;
@@ -53,29 +56,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   programs.fish.enable = true;
 
   users.users = {
@@ -85,37 +65,51 @@
       packages = [ ];
       shell = pkgs.fish;
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfwRxqULadhhk84HROmF6DSbS75qDzguXWUGV4FQ5Wv druid"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAJ6kfCSNsaOeZqwQs1qfmbBo9GurvIwqSN02a0qnXr phone"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvltRXYpfWZnU1GdBM4hAQOoKuUWgo5yhdM/6MVUYzP hunter"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHK2Aomah/vuuA7Xkb3WYQIoMcwEk2hbu2VEh30DmIdH paladin"
       ];
     };
+
+    immich.extraGroups = [ "video" "render" ];
   };
 
-  # Workaround for nixos-rebuild switch failure
-  # https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501
-  services.logrotate.checkConfig = false;
+  services = {
+    # Syncthing
+    syncthing.enable = true;
 
-  # Syncthing
-  services.syncthing.enable = true;
+    # Tailscale
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "server";
+    };
 
-  # Tailscale
-  services.tailscale.enable = true;
+    # Tor
+    tor = {
+      enable = true;
+      client.enable = true;
+    };
+
+    # Immich
+    immich = {
+      enable = true;
+      openFirewall = true;
+      host = "0.0.0.0";
+      machine-learning.enable = false;
+    };
+
+    # Workaround for nixos-rebuild switch failure
+    # https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501
+    logrotate.checkConfig = false;
+  };
+
+  # Documentation
+  documentation.dev.enable = true;
 
   # Swap
   swapDevices = [{
     device = "/var/lib/swapfile";
     size = 4 * 1024;
   }];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -152,12 +146,18 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    bandwhich
+    bat
     btop
+    btrfs-progs
+    ccrypt
+    cmake
     curl
     delta
     docker-compose
     entr
     eza
+    fastfetch
     fd
     ffmpeg
     file
@@ -166,33 +166,46 @@
     gcc
     gdb
     git
+    glances
     glib
     gnumake
     htop
+    hwinfo
+    iftop
     imagemagick
     imhex
     jq
     libqalculate
+    libraspberrypi
     linuxHeaders
     lshw
     lsof
     ltrace
+    man-pages
+    man-pages-posix
     mosh
     ncdu
     neovim
     netcat-gnu
+    nil
+    nmap
+    nodejs_22
     openssh
+    parted
+    pciutils
     poetry
     powertop
     psmisc
     pyright
-    python311Full
+    python312Full
+    python312Packages.yt-dlp
     qrencode
     ranger
     ripgrep
     rustup
     starship
     strace
+    sysbench
     tcpdump
     tmux
     torsocks
@@ -204,6 +217,7 @@
     upower
     util-linux
     wget
+    xdg-user-dirs
     xdg-utils
     yq-go
     zip
@@ -211,4 +225,3 @@
     zstd
   ];
 }
-
