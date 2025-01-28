@@ -251,8 +251,8 @@ exec_always "pkill copyq; sleep 1s; copyq"
 exec_always "pkill gammastep; sleep 1s; gammastep -l 48.1:17.1 -t 6500:4100 -m wayland"
 
 # Startup notification daemon
-# exec_always "pkill mako; sleep 1s; mako"
-exec_always "pkill dunst; sleep 1s; dunst"
+exec_always "pkill xfce4-notifyd; pkill mako; sleep 1s; mako"
+# exec_always "pkill dunst; sleep 1s; dunst"
 
 # Launch the status bar
 exec_always "pkill waybar; sleep 1s; waybar"
