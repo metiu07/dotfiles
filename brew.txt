@@ -21,6 +21,7 @@ git-delta
 gitkraken
 glances
 google-cloud-sdk
+grpcurl
 htop
 httpie
 hyperfine
@@ -34,6 +35,7 @@ libtool
 lsyncd
 lua-language-server
 make
+maven
 meld
 middleclick
 miro
@@ -55,6 +57,7 @@ rancher
 ranger
 raycast
 ripgrep
+rsync
 ruff
 ruff-lsp
 rustup
