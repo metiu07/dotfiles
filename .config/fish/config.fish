@@ -7,6 +7,10 @@
 
 if test (uname) = "Darwin"
 
+    function mac-notify-send -d "Send a notification on MacOS"
+        osascript -e "display notification \"$argv\" with title \"Notification\""
+    end
+
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     alias base64="gbase64"
@@ -16,6 +20,8 @@ if test (uname) = "Darwin"
     alias split="gsplit"
     alias wl-copy="pbcopy"
     alias wl-paste="pbpaste"
+    alias notify-send="mac-notify-send"
+    alias alert="osascript -e 'display notification DONE with title "Notification"'; bell"
 
     # gke-gcloud-auth-plugin
     source (brew --prefix)/share/google-cloud-sdk/path.fish.inc
@@ -28,6 +34,8 @@ if test (uname) = "Darwin"
 
     # Fix the keybindings in the `man` pager
     set -gx MANPAGER "less"
+else if test (uname) = "Linux"
+    alias alert="notify-send -u critical -t 360000 DONE; bell"
 end
 
 # Initialize aliases

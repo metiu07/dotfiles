@@ -12,7 +12,7 @@ alias ...='cd ../../'                       # Go back 2 directory levels
 alias c='clear'                             # c:            Clear terminal display
 alias gdb='gdb -q'                          # gdb:          Make gdb start in quiet mode
 alias rust-gdb='rust-gdb -q'                # rust-gdb:     Make rust-gdb start in quiet mode
-alias alert="notify-send -u critical -t 360000 DONE; echo -ne \"\\a\"" # alert:   Send notification and print bell character
+alias bell="echo -ne \"\\a\""               # bell:         Print bell character
 alias dd='dd bs=128M status=progress'       # dd:           Set blocksize and show progress in dd
 alias free='free -htw'                      # free:         Always human readable, total, wide
 alias pstree='pstree -ahlp'                 # pstree:       Arguments, highlight, long, pids
