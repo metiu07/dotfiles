@@ -248,6 +248,14 @@ require('lazy').setup({
             vim.cmd([[nnoremap \ :Neotree toggle reveal<cr>]])
         end,
     },
+    {
+        'stevearc/oil.nvim',
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {},
+        keys = {
+            { "-", "<cmd>Oil<CR>", desc = "Open Oil FS editor.", },
+        }
+    },
 
     -- LSP
     {
