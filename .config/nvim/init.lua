@@ -208,11 +208,10 @@ require('lazy').setup({
     'airblade/vim-rooter',
     {
         'tpope/vim-fugitive',
-        config = function()
-            vim.keymap.set('n', '<leader>gg', "<cmd>Git<CR>", {})
-            vim.keymap.set('n', '<leader>gb', "<cmd>Git blame<CR>", {})
-            vim.keymap.set('n', '<leader>gl', "<cmd>Git log --oneline <CR>", {})
-        end,
+        keys = {
+            { "<leader>gg", "<cmd>Git<CR>",       desc = "Git status", },
+            { "<leader>gb", "<cmd>Git blame<CR>", desc = "Git blame", },
+        }
     },
     {
         'lewis6991/gitsigns.nvim',
