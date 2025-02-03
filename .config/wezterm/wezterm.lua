@@ -19,7 +19,8 @@ config.cell_width = 0.9
 config.front_end = "WebGpu"
 
 -- Add `│` to the boundary, which is a character used by tmux to split panes
-config.selection_word_boundary = " \t\n{}[]()\"'`│"
+-- Add `,` to the boundary, which is usually not part of a word
+config.selection_word_boundary = " \t\n{}[]()\"'`│,"
 
 config.enable_tab_bar = false
 
