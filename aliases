@@ -32,3 +32,4 @@ alias e='vim'                               # e:            Launch editor
 alias ip='ip --color=auto'                  # ip:           Add color to ip commands
 alias watch='watch -d'                      # watch:        Automatically highlight differences
 alias ncdu='ncdu --color off'               # ncdu:         Better for light colorthemes
+alias sshuf='shuf --random-source=/dev/random' # sshuf:     More random shuf?
