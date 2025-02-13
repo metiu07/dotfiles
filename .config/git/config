@@ -21,7 +21,7 @@
 
 [fetch]
 	prune = true
-    writeCommitGraph = true
+	writeCommitGraph = true
 
 [push]
 	recurseSubmodules = check
