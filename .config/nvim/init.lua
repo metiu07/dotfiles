@@ -648,7 +648,11 @@ require('lazy').setup({
             ]])
         end,
     },
-    'nvim-treesitter/playground',
+    {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    },
+    { 'nvim-treesitter/playground' },
     { 's3rvac/vim-syntax-yara', ft = "yara" },
 
     {
