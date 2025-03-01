@@ -550,7 +550,13 @@ require('lazy').setup({
             { "github/copilot.vim" },
             { "nvim-lua/plenary.nvim", branch = "master" },
         },
-        opts = {},
+        opts = {
+            sticky = {
+                '$o3-mini',
+                '#buffers',
+                '/COPILOT_GENERATE',
+            }
+        },
         build = "make tiktoken",
         keys = {
             { "<leader>;", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat", },
