@@ -117,22 +117,6 @@ require('lazy').setup({
         end,
     },
 
-    -- Tools
-    -- FIXME: We can maybe replace with https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-    {
-        'AndrewRadev/sideways.vim',
-        config = function()
-            -- Sideways
-            -- FIXME: Convert to lua
-            vim.cmd([[
-            omap aa <Plug>SidewaysArgumentTextobjA
-            xmap aa <Plug>SidewaysArgumentTextobjA
-            omap ia <Plug>SidewaysArgumentTextobjI
-            xmap ia <Plug>SidewaysArgumentTextobjI
-            ]])
-        end,
-    },
-
     'tpope/vim-abolish',
     'tpope/vim-commentary',
     'godlygeek/tabular',
@@ -614,6 +598,36 @@ require('lazy').setup({
                 },
                 indent = {
                     enable = false,
+                },
+                textobjects = {
+                    select = {
+                        enable = true,
+
+                        -- Automatically jump forward to textobj, similar to targets.vim
+                        lookahead = true,
+
+                        keymaps = {
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["ac"] = "@class.outer",
+                            ["ic"] = "@class.inner",
+                            ["aa"] = "@parameter.outer",
+                            ["ia"] = "@parameter.inner",
+                        },
+
+                        include_surrounding_whitespace = true,
+                    },
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ["<C-i>"] = "@parameter.inner",
+                            ["<C-n>"] = "@function.outer",
+                        },
+                        swap_previous = {
+                            ["<C-m>"] = "@parameter.inner",
+                            ["<C-e>"] = "@function.outer",
+                        },
+                    },
                 }
             })
 
