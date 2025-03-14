@@ -18,14 +18,12 @@ gh
 git
 git-absorb
 git-delta
-gitkraken
 glances
 google-cloud-sdk
 grpcurl
 htop
 httpie
 hyperfine
-iina
 intellij-idea-ce
 jq
 kubectx
