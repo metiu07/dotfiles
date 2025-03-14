@@ -579,74 +579,62 @@ require('lazy').setup({
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        config = function()
-            require('nvim-treesitter.configs').setup({
-                ensure_installed = {
-                    "bash",
-                    "c",
-                    "diff",
-                    "dockerfile",
-                    "fish",
-                    "javascript",
-                    "lua",
-                    "markdown",
-                    "markdown_inline",
-                    "rust",
-                    "typescript",
-                },
-                sync_install = false,
-                auto_install = true,
-                highlight = {
+        opts = {
+            ensure_installed = {
+                "bash",
+                "c",
+                "diff",
+                "dockerfile",
+                "fish",
+                "javascript",
+                "lua",
+                "markdown",
+                "markdown_inline",
+                "rust",
+                "typescript",
+            },
+            sync_install = false,
+            auto_install = true,
+            highlight = {
+                enable = true,
+            },
+            playground = {
+                enable = true,
+            },
+            indent = {
+                enable = false,
+            },
+            textobjects = {
+                select = {
                     enable = true,
+
+                    -- Automatically jump forward to textobj, similar to targets.vim
+                    lookahead = true,
+
+                    keymaps = {
+                        ["af"] = "@function.outer",
+                        ["if"] = "@function.inner",
+                        ["ac"] = "@class.outer",
+                        ["ic"] = "@class.inner",
+                        ["aa"] = "@parameter.outer",
+                        ["ia"] = "@parameter.inner",
+                    },
+
+                    include_surrounding_whitespace = true,
                 },
-                playground = {
+                swap = {
                     enable = true,
-                },
-                indent = {
-                    enable = false,
-                },
-                textobjects = {
-                    select = {
-                        enable = true,
-
-                        -- Automatically jump forward to textobj, similar to targets.vim
-                        lookahead = true,
-
-                        keymaps = {
-                            ["af"] = "@function.outer",
-                            ["if"] = "@function.inner",
-                            ["ac"] = "@class.outer",
-                            ["ic"] = "@class.inner",
-                            ["aa"] = "@parameter.outer",
-                            ["ia"] = "@parameter.inner",
-                        },
-
-                        include_surrounding_whitespace = true,
+                    swap_next = {
+                        ["<C-i>"] = "@parameter.inner",
+                        ["<C-n>"] = "@function.outer",
                     },
-                    swap = {
-                        enable = true,
-                        swap_next = {
-                            ["<C-i>"] = "@parameter.inner",
-                            ["<C-n>"] = "@function.outer",
-                        },
-                        swap_previous = {
-                            ["<C-m>"] = "@parameter.inner",
-                            ["<C-e>"] = "@function.outer",
-                        },
+                    swap_previous = {
+                        ["<C-m>"] = "@parameter.inner",
+                        ["<C-e>"] = "@function.outer",
                     },
-                }
-            })
-
-            -- Folding based on treesitter
-            vim.cmd([[
-            set foldmethod=expr
-            set foldlevel=9
-            set foldexpr=nvim_treesitter#foldexpr()
-
-            " Disable folding at startup.
-            set nofoldenable
-            ]])
-        end,
+                },
+            }
+        }
     },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
