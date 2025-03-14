@@ -636,7 +636,7 @@ require('lazy').setup({
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
     },
     { 'nvim-treesitter/playground' },
-    { 's3rvac/vim-syntax-yara', ft = "yara" },
+    { 's3rvac/vim-syntax-yara' },
 
     {
         'norcalli/nvim-colorizer.lua',
