@@ -673,6 +673,8 @@ require('lazy').setup({
                 org_default_notes_file = '~/orgfiles/refile.org',
             })
         end,
+        -- Disabled because it is crashing my neovim on MacOS
+        enabled = false,
     },
 
     -- Color themes
