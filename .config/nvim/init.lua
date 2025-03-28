@@ -217,20 +217,21 @@ require('lazy').setup({
             "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
         },
-        config = function()
-            require('neo-tree').setup({
-                close_if_last_window = true,
-                filesystem = {
-                    filtered_items = {
-                        hide_dotfiles = false,
-                    },
-                    window = {
-                        width = 60,
-                    }
+        opts = {
+            close_if_last_window = true,
+            filesystem = {
+                filtered_items = {
+                    hide_dotfiles = false,
                 },
-            });
-            vim.cmd([[nnoremap \ :Neotree toggle reveal<cr>]])
-        end,
+                window = {
+                    width = 50,
+                },
+                follow_current_file = { enabled = true },
+            },
+        },
+        keys = {
+            { "\\", "<cmd>Neotree source=filesystem action=show toggle=true reveal=true<CR>", desc = "Toggle NeoTree", },
+        }
     },
     {
         'stevearc/oil.nvim',
