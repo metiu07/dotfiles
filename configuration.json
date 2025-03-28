@@ -172,7 +172,12 @@
     "source": "./.config/nvim/init.lua",
     "destination": "~/.config/nvim/init.lua",
     "name": "Neovim configuration with buitin LSP",
-    "$deps": ["neovim_vimscript"]
+    "$deps": ["neovim_vimscript", "neovim_lazy_lock"]
+  },
+  "neovim_lazy_lock": {
+    "source": "./.config/nvim/lazy-lock.json",
+    "destination": "~/.config/nvim/lazy-lock.json",
+    "name": "Neovim lazy lock configuration"
   },
   "neovim_vimscript": {
     "source": "./.vimrc",
