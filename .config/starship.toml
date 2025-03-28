@@ -44,6 +44,8 @@ style = "bright-black"
 [cmd_duration]
 format = "[$duration]($style) "
 style = "yellow"
+min_time = 0
+show_milliseconds = true
 # show_notifications = true
 # TODO: This triggers on vim exists, which is not ideal
 # min_time_to_notify = 1_000
