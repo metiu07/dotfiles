@@ -6,6 +6,7 @@ $git_branch\
 $git_state\
 $git_status\
 $kubernetes\
+$nix_shell\
 $jobs\
 $cmd_duration\
 $battery\
@@ -64,3 +65,10 @@ disabled = false
 [[battery.display]]
 threshold = 15
 style = "bold red"
+
+[nix_shell]
+disabled = false
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = 'via [☃️ $state( \($name\))](bold blue) '
