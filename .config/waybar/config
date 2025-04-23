@@ -4,9 +4,9 @@
   "height": 24, // Waybar height
   // Choose the order of the modules
   "modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-center": ["custom/task"],
+  // "modules-center": ["custom/task"],
   "modules-right": [
-    "custom/eyes20",
+    // "custom/eyes20",
     "pulseaudio",
     // "network",
     "cpu",
@@ -102,17 +102,17 @@
     "on-click": "pomoctl stop; pomoctl start",
     "on-click-middle": "pomoctl stop"
   },
-  "custom/task": {
-    "format": "Current task: {}",
-    "interval": 5,
-    "exec-on-event": true,
-    "exec": "script_get_current_task.sh",
-  },
-  "custom/eyes20": {
-    "format": "{}🧐",
-    "interval": 60,
-    "exec": "echo \"20 - ($(date +%s) - $(cat /tmp/eyes20)) / 60\" | bc",
-    "on-click": "echo $(date +%s) > /tmp/eyes20"
-  }
+  // "custom/task": {
+  //   "format": "Current task: {}",
+  //   "interval": 5,
+  //   "exec-on-event": true,
+  //   "exec": "script_get_current_task.sh",
+  // },
+  // "custom/eyes20": {
+  //   "format": "{}🧐",
+  //   "interval": 60,
+  //   "exec": "echo \"20 - ($(date +%s) - $(cat /tmp/eyes20)) / 60\" | bc",
+  //   "on-click": "echo $(date +%s) > /tmp/eyes20"
+  // }
   }
 }
