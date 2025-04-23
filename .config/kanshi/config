@@ -8,6 +8,11 @@ profile home1 {
 	output "Dell Inc. DELL P2219H 36FX7W2" mode 1920x1080 position 1920,0
 }
 
+profile home2 {
+	output "AU Optronics 0x633D Unknown" mode 1920x1080 position 2169,1544
+	output "Dell Inc. DELL P2723QE 5002N54" mode 3840x2160 position 0,0 scale 1.4
+}
+
 profile default {
-	output "Unknown 0x633D 0x00000000" mode 1920x1080 position 0,0
+	output "AU Optronics 0x633D Unknown" mode 1920x1080 position 0,0
 }
