@@ -32,13 +32,13 @@ bindcode $mod+24 kill
 # mod + F9
 bindcode $mod+75 exec swaymsg -t get_tree > /tmp/sway_tree$(date +%s).json && notify-send "Window tree dumped"
 
-# Start rofi(program launcher)
+# Start program launcher
 # Putting commas in sway config can cause issues! Either create script to run
 # program or replace commas with '#'
 # bindsym $mod+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
 # bindcode $mod+40 exec rofi -combi-modi drun#ssh#run -show combi
-# bindcode $mod+40 exec wofi --show drun -I -a
-bindcode $mod+65 exec albert show
+bindcode $mod+65 exec wofi --show drun -I -a
+# bindcode $mod+65 exec albert show
 
 # Calculator
 bindcode $mod+54 exec qalculate-gtk
@@ -226,9 +226,6 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 
 # Terminal
 exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
-
-# Startup program launcher
-exec_always "pkill albert; sleep 1s; albert"
 
 # Startup display configuration manager
 exec_always "pkill kanshi; sleep 1s; kanshi"
