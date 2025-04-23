@@ -26,6 +26,9 @@
   # boot.kernelPackages = pkgs.linuxPackages_6_1;
   # boot.kernelPackages = pkgs.linuxPackages;
 
+  # Brightness control for external monitors
+  boot.kernelModules = [ "i2c_dev" ];
+
   # Enable aarch64 cross compilation (useful when building RPI SD image)
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -35,15 +38,6 @@
   # Sudo
   security.sudo = {
     enable = true;
-    # extraRules = [{
-    #   commands = [
-    #     {
-    #       command = "${pkgs.ddcutil}/bin/ddcutil setvcp 60 0x11";
-    #       options = [ "NOPASSWD" ];
-    #     }
-    #   ];
-    #   groups = [ "wheel" ];
-    # }];
   };
 
   # Setup keyfile
@@ -66,6 +60,17 @@
     };
   };
 
+  # Configure DNS
+  # networking.nameservers = [ "194.242.2.4#base.dns.mullvad.net" ];
+  # networking.nameservers = [ "194.242.2.9#all.dns.mullvad.net" ];
+  networking.nameservers = [ "194.242.2.6#family.dns.mullvad.net" ];
+  services.resolved = {
+    enable = true;
+    # dnssec = "true";
+    domains = [ "~." ];
+    fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+    dnsovertls = "true";
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Bratislava";
@@ -82,7 +87,7 @@
     LC_NUMERIC = "en_US.UTF-8";
     LC_PAPER = "en_US.UTF-8";
     LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    LC_TIME = "en_GB.UTF-8";
   };
 
   environment.variables = {
@@ -90,8 +95,9 @@
     XDG_CURRENT_DESKTOP = "sway";
   };
 
-  # Needed for the foot terminal color themes
-  environment.pathsToLink = [ "/share/foot" ];
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
 
   services.xserver = {
     enable = true;
@@ -147,7 +153,7 @@
     };
 
     openssh = {
-      enable = true;
+      enable = false;
       settings = {
         PermitRootLogin = "no";
         PasswordAuthentication = false;
@@ -171,23 +177,47 @@
   services.blueman.enable = true;
   # hardware.pulseaudio.enable = true;
 
-  # Docker
-  virtualisation.docker.enable = true;
+  # I2C (for setting brightness of external monitors)
+  hardware.i2c.enable = true;
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      # ... your Open GL, Vulkan and VAAPI drivers
+      # vpl-gpu-rt # or intel-media-sdk for QSV
+      intel-media-driver
+      intel-media-sdk
+    ];
+  };
+
+  # Virtualisation
+  virtualisation = {
+    # Docker
+    docker.enable = true;
+
+    # Podman
+    podman.enable = true;
+  };
 
   # Libvirt
-  virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true; # virt-manager requires dconf to remember settings
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [ "anon" ];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  # virtualisation.tpm.enable = true;
+  virtualisation.libvirtd.qemu.swtpm.enable = true;
 
-  # programs.gnupg.agent = {
-  #   enable = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     anon = {
       isNormalUser = true;
       description = "Anon";
-      extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" ];
+      extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "wireshark" "kvm" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJYzvgOCLQsGGaw0J38r1Vdw/8nARKaWtVjU3lZ4DGXP mage"
       ];
@@ -195,6 +225,8 @@
         alacritty
         anki-bin
         bat
+        blueman
+        borgbackup
         brave
         calibre
         chromium
@@ -206,22 +238,45 @@
         firefox
         gimp
         gpxsee
+        grim
+        hexyl
         hyperfine
+        imhex
         inkscape-with-extensions
         keepassxc
         libreoffice-still
+        librewolf-bin
         lua-language-server
         mpv
         networkmanagerapplet
+        nil
+        nodePackages.prettier
+        nodePackages.typescript-language-server
+        nodejs_22
         pandoc
+        pkg-config
+        poetry
+        pyright
         python312Packages.black
         python312Packages.ipdb
         python312Packages.ipython
         python312Packages.isort
-        python312Packages.yt-dlp
+        python312Packages.pipx
         qalculate-gtk
+        qrencode
+        quickemu
+        ranger
+        restic
+        ripgrep
+        rofi
         ruff
         ruff-lsp
+        rustup
+        slurp
+        sushi
+        swappy
+        sway-contrib.grimshot
+        swayidle
         tor-browser-bundle-bin
         translate-shell
         vlc
@@ -236,34 +291,34 @@
         xfce.thunar
         xfce.thunar-archive-plugin
         xfce.thunar-volman
+        xournalpp
         yarn
+        zathura
+        zoxide
       ];
       shell = pkgs.fish;
     };
-    gamey = {
-      isNormalUser = true;
-      description = "Gamey";
-      extraGroups = [ "networkmanager" "video" ];
-      packages = with pkgs; [
-        alacritty
-        brave
-        firefox
-        mpv
-        networkmanagerapplet
-        obs-studio
-        steam
-        tor-browser-bundle-bin
-        vscodium
-        wl-clipboard
-        wofi
-        xfce.thunar
-      ];
-      shell = pkgs.fish;
-    };
+    # gamey = {
+    #   isNormalUser = true;
+    #   description = "Gamey";
+    #   extraGroups = [ "networkmanager" "video" ];
+    #   packages = with pkgs; [
+    #     alacritty
+    #     brave
+    #     firefox
+    #     mpv
+    #     networkmanagerapplet
+    #     obs-studio
+    #     steam
+    #     tor-browser-bundle-bin
+    #     vscodium
+    #     wl-clipboard
+    #     wofi
+    #     xfce.thunar
+    #   ];
+    #   shell = pkgs.fish;
+    # };
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Fonts
   fonts.packages = with pkgs; [
@@ -315,9 +370,6 @@
     "application/pdf" = "evince.desktop";
   };
 
-  # Brightness control
-  programs.light.enable = true;
-
   # Documentation
   documentation.dev.enable = true;
 
@@ -338,12 +390,11 @@
   # Packages
   environment.systemPackages = with pkgs; [
     adwaita-icon-theme
-    alacritty
-    albert
     android-file-transfer
     aria2
     bandwhich
-    blueman
+    bc
+    brightnessctl
     btop
     btrfs-progs
     ccrypt
@@ -373,11 +424,12 @@
     glances
     glib
     gnumake
+    gnupg
     gpa
     gparted
-    grim
     gtk3
     gtk4
+    hdparm
     htop
     httpie
     hwinfo
@@ -385,6 +437,7 @@
     imagemagick
     imhex
     imv
+    iw
     jless
     jq
     kanshi
@@ -405,53 +458,34 @@
     ncdu
     neovim
     netcat-gnu
-    nil
-    nix-tree
     nixpkgs-fmt
     nmap
-    nodePackages.prettier
-    nodePackages.typescript-language-server
-    nodejs_22
     ntfs3g
     nvtopPackages.intel
     openssh
+    parallel
     parted
     pciutils
-    poetry
     powertop
     psmisc
     pulseaudio
     pv
-    pyright
     python312Full
-    qrencode
-    ranger
-    ripgrep
-    rofi
-    rustup
-    slurp
     smartmontools
     starship
     strace
-    swappy
-    sway-contrib.grimshot
-    swayidle
     swaylock
-    sysbench
-    sysstat
+    swtpm
     tcpdump
     tmux
     torsocks
     traceroute
-    tree
     unixtools.fdisk
     unixtools.xxd
     unzip
     upower
     usbutils
     util-linux
-    virt-manager
-    vscode
     waybar
     wayland
     wezterm
@@ -459,9 +493,7 @@
     xdg-user-dirs
     xdg-utils
     yq-go
-    zathura
     zip
-    zoxide
     zstd
   ];
 }
