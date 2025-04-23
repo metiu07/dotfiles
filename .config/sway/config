@@ -185,8 +185,10 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Screen brightness controls
 # NOTE: User must be in video group (sudo usermod -a -G video <USER>)
-bindsym XF86MonBrightnessUp exec "light -A 5; notify-send 'brightness up' -h int:value:$(light -G)"
-bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down' -h int:value:$(light -G)"
+# bindsym XF86MonBrightnessUp exec "light -A 5; notify-send 'brightness up' -h int:value:$(light -G)"
+# bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down' -h int:value:$(light -G)"
+bindsym XF86MonBrightnessUp exec "brightnessctl set +2%; notify-send 'brightness up' -h int:value:$(( ($(brightnessctl get) * 100) / $(brightnessctl max) ))"
+bindsym XF86MonBrightnessDown exec "brightnessctl set 2%-; notify-send 'brightness down' -h int:value:$(( ($(brightnessctl get) * 100) / $(brightnessctl max) ))"
 
 # Toggle split direction for each window
 default_orientation vertical
