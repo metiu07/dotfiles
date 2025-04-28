@@ -5,7 +5,7 @@ alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -v'                      # Preferred 'mkdir' implementation
 alias ls='ls -G --group-directories-first --color=auto' # Preferred directory listing
 alias ll='ls -FGlAhp --group-directories-first --color=auto' # Preferred 'ls' implementation
-alias less='less -SRXcin'                   # Preferred 'less' implementation
+alias less='less -SRcin'                    # Preferred 'less' implementation
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
