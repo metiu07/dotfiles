@@ -33,7 +33,7 @@
   # Firewall
   networking.firewall = {
     enable = true;
-    # allowedTCPPorts = [ 2283 ];
+    trustedInterfaces = [ "tailscale0" ];
   };
 
   # Docker
@@ -66,16 +66,33 @@
       shell = pkgs.fish;
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJvltRXYpfWZnU1GdBM4hAQOoKuUWgo5yhdM/6MVUYzP hunter"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHK2Aomah/vuuA7Xkb3WYQIoMcwEk2hbu2VEh30DmIdH paladin"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJARtGsacsO9AuHMPgNW+MshS9jJfRelXZwuSIn0LoVh paladin"
       ];
     };
 
-    immich.extraGroups = [ "video" "render" ];
+    # immich.extraGroups = [ "video" "render" ];
   };
 
   services = {
+    # SSH
+    openssh = {
+      enable = true;
+      ports = [ 60416 ];
+      openFirewall = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+        LogLevel = "VERBOSE";
+      };
+    };
+
+    # Fail2ban
+    fail2ban = {
+      enable = true;
+    };
+
     # Syncthing
-    syncthing.enable = true;
+    # syncthing.enable = true;
 
     # Tailscale
     tailscale = {
@@ -90,11 +107,68 @@
     };
 
     # Immich
-    immich = {
+    # immich = {
+    #   enable = true;
+    #   host = "0.0.0.0";
+    #   machine-learning.enable = false;
+    # };
+
+    # Grafana
+    grafana = {
+      enable = true;
+      settings = {
+        server = {
+          http_addr = "0.0.0.0";
+          http_port = 3000;
+          # Grafana needs to know on which domain and URL it's running
+          # domain = "your.domain";
+          # root_url = "https://your.domain/grafana/"; # Not needed if it is `https://your.domain/`
+          # serve_from_sub_path = true;
+        };
+      };
+    };
+
+    # InfluxDB
+    influxdb.enable = true;
+
+    # OpenWebUI
+    # open-webui = {
+    #   enable = true;
+    #   host = "0.0.0.0";
+    # };
+
+    # Jellyfin
+    jellyfin = {
       enable = true;
       openFirewall = true;
-      host = "0.0.0.0";
-      machine-learning.enable = false;
+    };
+
+    # Adguard
+    adguardhome = {
+      enable = true;
+      port = 3100;
+      openFirewall = true;
+      settings = {
+        http = {
+          address = "127.0.0.1:3003";
+        };
+        dns = {
+          upstream_dns = [
+            # Example config with quad9
+            "9.9.9.9#dns.quad9.net"
+            "149.112.112.112#dns.quad9.net"
+          ];
+        };
+        filtering = {
+          protection_enabled = true;
+          filtering_enabled = true;
+
+          parental_enabled = false; # Parental control-based DNS requests filtering.
+          safe_search = {
+            enabled = false; # Enforcing "Safe search" option for search engines, when possible.
+          };
+        };
+      };
     };
 
     # Workaround for nixos-rebuild switch failure
@@ -110,15 +184,6 @@
     device = "/var/lib/swapfile";
     size = 4 * 1024;
   }];
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-    };
-  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
