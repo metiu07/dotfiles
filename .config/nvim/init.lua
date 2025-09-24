@@ -241,7 +241,7 @@ require('lazy').setup({
             vim.keymap.set('n', ']g', vim.diagnostic.goto_next, OPTS)
             vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, OPTS)
 
-            local util = require('lspconfig/util')
+            local util = require('lspconfig.util')
 
             local path = util.path
 
@@ -270,7 +270,7 @@ require('lazy').setup({
                 return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
             end
 
-            require('lspconfig')['pyright'].setup {
+            vim.lsp.config.pyright = {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
                 before_init = function(_, config)
@@ -280,7 +280,7 @@ require('lazy').setup({
                     config.settings.python.pythonPath = get_python_path(config.root_dir)
                 end
             }
-            require('lspconfig')['ruff'].setup {
+            vim.lsp.config.ruff = {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
                 before_init = function(_, config)
@@ -290,15 +290,15 @@ require('lazy').setup({
                     config.interpreter = get_python_path(config.root_dir)
                 end
             }
-            require('lspconfig')['ts_ls'].setup {
+            vim.lsp.config.ts_ls = {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
             }
-            require('lspconfig')['gopls'].setup {
+            vim.lsp.config.gopls = {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
             }
-            require('lspconfig')['bashls'].setup {
+            vim.lsp.config.bashls = {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
             }
@@ -306,7 +306,7 @@ require('lazy').setup({
             --     on_attach = ON_ATTACH,
             --     capabilities = capabilities,
             -- }
-            require('lspconfig')['nil_ls'].setup {
+            vim.lsp.config.nil_ls = {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
                 settings = {
@@ -317,11 +317,11 @@ require('lazy').setup({
                     },
                 }
             }
-            require('lspconfig')['rust_analyzer'].setup {
+            vim.lsp.config.rust_analyzer = {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
             }
-            require('lspconfig')['yamlls'].setup {
+            vim.lsp.config.yamlls = {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
                 settings = {
@@ -336,11 +336,11 @@ require('lazy').setup({
             -- For some reason we need to set offsetEncoding to utf-8 for clangd to work
             local clangd_capabilities = require('cmp_nvim_lsp').default_capabilities()
             clangd_capabilities.offsetEncoding = "utf-8"
-            require('lspconfig')['clangd'].setup {
+            vim.lsp.config.clangd = {
                 on_attach = ON_ATTACH,
                 capabilities = clangd_capabilities,
             }
-            require('lspconfig')['lua_ls'].setup {
+            vim.lsp.config.lua_ls = {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
                 settings = {
@@ -365,7 +365,7 @@ require('lazy').setup({
                     },
                 },
             }
-            require('lspconfig')['yls'].setup {
+            vim.lsp.config.yls = {
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
             }
