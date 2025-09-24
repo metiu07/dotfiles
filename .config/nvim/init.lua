@@ -651,10 +651,15 @@ require('lazy').setup({
             require('orgmode').setup({
                 org_agenda_files = '~/orgfiles/**/*',
                 org_default_notes_file = '~/orgfiles/refile.org',
+                mappings = {
+                    org = {
+                        org_todo = '<CR>',
+                    },
+                },
             })
         end,
-        -- Disabled because it is crashing my neovim on MacOS
-        enabled = false,
+        -- In the past I had to disable this plugin because it was crashing my neovim on MacOS
+        enabled = true,
     },
 
     -- Color themes
