@@ -778,7 +778,3 @@ end
 function cheat.sh -d "Search for cheatsheets"
     curl "cheat.sh/$argv?style=stata-light"
 end
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-set --export --prepend PATH "/Users/matej.kastak/.rd/bin"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
