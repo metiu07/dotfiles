@@ -30,8 +30,23 @@ if test (uname) = "Darwin"
     # setup fzf
     fzf --fish | source
 
-    # Setup test containers with rancher
-    set -x TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show rd0 | awk '/inet / {sub("/.*",""); print $2}')
+    # Test containers -- https://java.testcontainers.org/supported_docker_environment/
+    #
+    # Rancher
+    # set -x TESTCONTAINERS_HOST_OVERRIDE (rdctl shell ip a show rd0 | awk '/inet / {sub("/.*",""); print $2}')
+
+    # Colima
+    # set -x DOCKER_HOST "unix://$HOME/.colima/docker.sock"
+    # set -x TESTCONTAINERS_HOST_OVERRIDE 127.0.0.1
+    # You need to start colima with `colima start --network-address`
+    # set -x TESTCONTAINERS_HOST_OVERRIDE $(colima ls -j | jq -r '.address')
+    # set -x TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE /var/run/docker.sock
+    # set -x TESTCONTAINERS_RYUK_DISABLED true
+
+    # Podman
+    set -x DOCKER_HOST unix://(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')
+    set -x TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE /var/run/docker.sock
+    set -x TESTCONTAINERS_RYUK_DISABLED true
 
     # Fix the keybindings in the `man` pager
     set -gx MANPAGER "less"
