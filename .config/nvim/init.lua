@@ -28,11 +28,11 @@ local ON_ATTACH = function(client, bufnr)
     map("n", "gD", "<cmd>Lspsaga goto_type_definition<CR>")
     map('n', 'gi', vim.lsp.buf.implementation, bufopts)
 
-    map("n", "gr", "<cmd>Lspsaga finder<CR>")
-
     local builtin = require('telescope.builtin')
     map('n', 'gj', builtin.lsp_dynamic_workspace_symbols, bufopts)
     map('n', 'gJ', builtin.lsp_workspace_symbols, bufopts)
+
+    map('n', 'gr', builtin.lsp_references, bufopts)
 
     map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
     map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
