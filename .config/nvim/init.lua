@@ -108,12 +108,24 @@ require('lazy').setup({
 
     {
         "lukas-reineke/indent-blankline.nvim",
-        config = function()
-            -- Indent blankline
-            vim.api.nvim_set_var("indent_blankline_char", "¦")
-            vim.api.nvim_set_var("indent_blankline_filetype_exclude", { 'markdown', 'jsonc', 'json' })
-            vim.api.nvim_set_var("indent_blankline_char_blankline", '')
-        end,
+        main = "ibl",
+        opts = {
+            indent = { char = "|" },
+            exclude = {
+                filetypes = {
+                    'markdown',
+                    'lspinfo',
+                    'packer',
+                    'checkhealth',
+                    'help',
+                    'man',
+                    'gitcommit',
+                    'TelescopePrompt',
+                    'TelescopeResults',
+                },
+
+            }
+        }
     },
 
     'tpope/vim-abolish',
