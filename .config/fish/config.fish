@@ -15,6 +15,7 @@ if test (uname) = "Darwin"
 
     alias base64="gbase64"
     alias grep="ggrep"
+    alias date="gdate"
     alias mktemp="gmktemp"
     alias nproc="sysctl -n hw.ncpu"
     alias split="gsplit"
