@@ -287,6 +287,9 @@ require('lazy').setup({
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
                 before_init = function(_, config)
+                    if config.root_dir == nil then
+                        return
+                    end
                     config.settings.python.pythonPath = get_python_path(config.root_dir)
                 end
             }
@@ -294,6 +297,9 @@ require('lazy').setup({
                 on_attach = ON_ATTACH,
                 capabilities = capabilities,
                 before_init = function(_, config)
+                    if config.root_dir == nil then
+                        return
+                    end
                     config.interpreter = get_python_path(config.root_dir)
                 end
             }
