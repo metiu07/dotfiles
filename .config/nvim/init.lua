@@ -545,31 +545,6 @@ require('lazy').setup({
             ]])
         end,
     },
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        dependencies = {
-            { "github/copilot.vim" },
-            { "nvim-lua/plenary.nvim", branch = "master" },
-        },
-        opts = {
-            sticky = {
-                '#buffers',
-                '$claude-3.7-sonnet-thought',
-                '/COPILOT_GENERATE',
-            },
-            mappings = {
-                -- Disable reset since I accidentally hit it too many times
-                reset = {
-                    insert = "",
-                    normal = "",
-                }
-            }
-        },
-        build = "make tiktoken",
-        keys = {
-            { "<leader>;", "<cmd>CopilotChatOpen<CR>", desc = "Open Copilot Chat", },
-        },
-    },
 
     -- Syntax
     {
