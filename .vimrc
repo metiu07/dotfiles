@@ -119,7 +119,6 @@ cabb W w
 
 " Nvim specific
 if has('nvim')
-    set guicursor=n-v-c-sm:hor20,i-ci-ve:ver25,r-cr-o:block
     set inccommand=nosplit
 end
 
