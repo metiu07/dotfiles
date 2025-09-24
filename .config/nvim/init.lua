@@ -61,8 +61,7 @@ local ON_ATTACH = function(client, bufnr)
     end, bufopts)
 
     -- Automatic formatting on save
-    vim.cmd("autocmd BufWritePre <buffer> lua require('conform').format()")
-    vim.g.anon_format_on_save = true
+    vim.g.anon_format_on_save = false
     map('n', '<leader>F', function()
         if vim.g.anon_format_on_save then
             vim.g.anon_format_on_save = false
