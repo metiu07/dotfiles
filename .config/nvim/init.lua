@@ -790,10 +790,13 @@ augroup END
 vim.o.cursorline = true
 
 -- Jump to a first task in the file
--- TODO: It would be nice if this was restricted to markdown files
 vim.keymap.set('n', '<leader>j',
     function()
         vim.fn.cursor(1, 1)
-        vim.fn.search('- \\[ \\]')
+        if vim.bo.filetype == 'markdown' then
+            vim.fn.search('- \\[ \\]')
+        elseif vim.bo.filetype == 'org' then
+            vim.fn.search('^\\*\\+ TODO')
+        end
     end,
     { noremap = true, silent = true })
