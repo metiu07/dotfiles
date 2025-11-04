@@ -295,11 +295,6 @@
     "destination": "~/.config/vim/.vimrc",
     "name": "Vanila vim configuration without addons"
   },
-  "vim_plug": {
-    "source": "./.config/vim/autoload/plug.vim",
-    "destination": "~/.config/vim/autoload/plug.vim",
-    "name": "Vim-plug plugin manager"
-  },
   "waybar": {
     "source": "./.config/waybar",
     "destination": "~/.config/waybar",
