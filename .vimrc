@@ -79,14 +79,10 @@ set scrolloff=10
 
 " Backups & Undo
 set backup
-set backupdir=~/.config/vim/tmp/backup/
-set backupskip=/tmp/*,/private/tmp/*
-set noswapfile
+set writebackup
 set history=1000
-set undodir=~/.config/vim/tmp/undo/
 set undofile
 set undolevels=1000
-set writebackup
 
 " Wildmenu
 set wildmenu
