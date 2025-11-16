@@ -79,6 +79,7 @@ set scrolloff=10
 
 " Backups & Undo
 set backup
+set backupdir=$XDG_STATE_HOME/nvim/backup//
 set writebackup
 set history=1000
 set undofile
