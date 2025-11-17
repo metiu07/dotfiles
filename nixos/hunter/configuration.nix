@@ -47,7 +47,7 @@
 
   networking = {
     hostName = "hunter";
-    # hostId = "98921cba";
+    hostId = "98921cba";
 
     # Enable networking
     networkmanager.enable = true;
@@ -63,10 +63,12 @@
   # Configure DNS
   # networking.nameservers = [ "194.242.2.4#base.dns.mullvad.net" ];
   # networking.nameservers = [ "194.242.2.9#all.dns.mullvad.net" ];
-  networking.nameservers = [ "194.242.2.6#family.dns.mullvad.net" ];
+  # networking.nameservers = [ "194.242.2.6#family.dns.mullvad.net" ];
+
+  networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
   services.resolved = {
     enable = true;
-    # dnssec = "true";
+    dnssec = "true";
     domains = [ "~." ];
     fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
     dnsovertls = "true";
@@ -97,13 +99,17 @@
 
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_STATE_HOME = "$HOME/.local/state";
   };
 
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    desktopManager.xfce.enable = true;
+    # desktopManager.xfce.enable = true;
     # desktopManager.plasma5.enable = true;
   };
 
@@ -118,8 +124,8 @@
       export QT_QPA_PLATFORM=wayland-egl
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_WM_NONREPARENTING=1
-      export SUDO_ASKPASS="${pkgs.ksshaskpass}/bin/ksshaskpass"
-      export SSH_ASKPASS="${pkgs.ksshaskpass}/bin/ksshaskpass"
+      export SUDO_ASKPASS="${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass"
+      export SSH_ASKPASS="${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass"
       export XDG_SESSION_TYPE=wayland
       export XDG_CURRENT_DESKTOP=sway
     '';
@@ -152,6 +158,7 @@
       enable = true;
     };
 
+    # OpenSSH server
     openssh = {
       enable = false;
       settings = {
@@ -159,6 +166,15 @@
         PasswordAuthentication = false;
       };
     };
+
+    # Tor
+    tor = {
+      enable = true;
+      client.enable = true;
+    };
+
+    # FWUPD for firmware updates
+    fwupd.enable = true;
   };
 
   # Pipewire
@@ -202,7 +218,6 @@
   # Libvirt
   programs.dconf.enable = true; # virt-manager requires dconf to remember settings
   programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = [ "anon" ];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
   # virtualisation.tpm.enable = true;
@@ -218,9 +233,6 @@
       isNormalUser = true;
       description = "Anon";
       extraGroups = [ "networkmanager" "wheel" "video" "libvirtd" "wireshark" "kvm" ];
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJYzvgOCLQsGGaw0J38r1Vdw/8nARKaWtVjU3lZ4DGXP mage"
-      ];
       packages = with pkgs; [
         alacritty
         anki-bin
@@ -248,7 +260,6 @@
         librewolf-bin
         lua-language-server
         mpv
-        networkmanagerapplet
         nil
         nodePackages.prettier
         nodePackages.typescript-language-server
@@ -270,7 +281,6 @@
         ripgrep
         rofi
         ruff
-        ruff-lsp
         rustup
         slurp
         sushi
@@ -298,46 +308,36 @@
       ];
       shell = pkgs.fish;
     };
-    # gamey = {
-    #   isNormalUser = true;
-    #   description = "Gamey";
-    #   extraGroups = [ "networkmanager" "video" ];
-    #   packages = with pkgs; [
-    #     alacritty
-    #     brave
-    #     firefox
-    #     mpv
-    #     networkmanagerapplet
-    #     obs-studio
-    #     steam
-    #     tor-browser-bundle-bin
-    #     vscodium
-    #     wl-clipboard
-    #     wofi
-    #     xfce.thunar
-    #   ];
-    #   shell = pkgs.fish;
-    # };
+    gamey = {
+      isNormalUser = true;
+      description = "Gamey";
+      extraGroups = [ "networkmanager" "video" ];
+      packages = with pkgs; [
+        alacritty
+        firefox
+        tor-browser-bundle-bin
+        vlc
+        vscodium
+        xfce.thunar
+      ];
+      shell = pkgs.fish;
+    };
   };
 
   # Fonts
   fonts.packages = with pkgs; [
     liberation_ttf
-    nerdfonts
-    # (nerdfonts.override { fonts = [
-    #     "Anonymice"
-    #     "DroidSansMono"
-    #     "FiraCode"
-    #     "InconsolataLGC"
-    #     "Iosevka"
-    #     "IosevkaTerm"
-    #     "JetBrainsMono"
-    #     "TerminessTTF"
-    #     "UbuntuMono"
-    #     "VictorMono"
-    #     "VictorMono"
-    #     "agave"
-    # ]; })
+    nerd-fonts.agave
+    nerd-fonts.anonymice
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.fira-code
+    nerd-fonts.inconsolata-lgc
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.terminess-ttf
+    nerd-fonts.ubuntu-mono
+    nerd-fonts.victor-mono
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
@@ -353,16 +353,10 @@
     wlr.enable = true;
     extraPortals = with pkgs; [
       # xdg-desktop-portal-wlr
-      xdg-desktop-portal-kde
+      kdePackages.xdg-desktop-portal-kde
       # gtk portal needed to make gtk apps happy
       # xdg-desktop-portal-gtk (disabled as it causes errors)
     ];
-  };
-
-  # Tor
-  services.tor = {
-    enable = true;
-    client.enable = true;
   };
 
   # Default applications
@@ -415,7 +409,6 @@
     ffmpeg
     file
     foot
-    fwupd
     fzf
     gammastep
     gcc
@@ -458,6 +451,7 @@
     ncdu
     neovim
     netcat-gnu
+    networkmanagerapplet
     nixpkgs-fmt
     nmap
     ntfs3g
@@ -490,6 +484,7 @@
     wayland
     wezterm
     wget
+    wireguard-tools
     xdg-user-dirs
     xdg-utils
     yq-go
