@@ -619,11 +619,20 @@ require('lazy').setup({
             require('orgmode').setup({
                 org_agenda_files = '~/orgfiles/**/*',
                 org_default_notes_file = '~/orgfiles/refile.org',
+                org_adapt_indentation = false,
                 mappings = {
                     org = {
                         org_todo = '<CR>',
                     },
                 },
+            })
+
+            -- Disable indentexpr for org files
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = 'org',
+                callback = function()
+                    vim.opt_local.indentexpr = ''
+                end,
             })
         end,
         -- In the past I had to disable this plugin because it was crashing my neovim on MacOS
