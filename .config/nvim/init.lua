@@ -543,9 +543,11 @@ require('lazy').setup({
     -- Syntax
     {
         "nvim-treesitter/nvim-treesitter",
+        lazy = false,
+        branch = "main",
         build = ":TSUpdate",
-        opts = {
-            ensure_installed = {
+        config = function()
+            require('nvim-treesitter').install({
                 "bash",
                 "c",
                 "diff",
@@ -555,52 +557,76 @@ require('lazy').setup({
                 "lua",
                 "markdown",
                 "markdown_inline",
+                "python",
                 "rust",
                 "typescript",
-            },
-            sync_install = false,
-            auto_install = true,
-            highlight = {
-                enable = true,
-            },
-            indent = {
-                enable = false,
-            },
-            textobjects = {
-                select = {
-                    enable = true,
+            })
 
-                    -- Automatically jump forward to textobj, similar to targets.vim
-                    lookahead = true,
+            -- Automatically start treesitter for supported filetypes
+            vim.api.nvim_create_autocmd('FileType', {
+                callback = function(args)
+                    local lang = vim.treesitter.language.get_lang(args.match) or args.match
+                    local installed = require('nvim-treesitter').get_installed('parsers')
 
-                    keymaps = {
-                        ["af"] = "@function.outer",
-                        ["if"] = "@function.inner",
-                        ["ac"] = "@class.outer",
-                        ["ic"] = "@class.inner",
-                        ["aa"] = "@parameter.outer",
-                        ["ia"] = "@parameter.inner",
-                    },
-
-                    include_surrounding_whitespace = true,
-                },
-                swap = {
-                    enable = true,
-                    swap_next = {
-                        ["<C-i>"] = "@parameter.inner",
-                        ["<C-n>"] = "@function.outer",
-                    },
-                    swap_previous = {
-                        ["<C-m>"] = "@parameter.inner",
-                        ["<C-e>"] = "@function.outer",
-                    },
-                },
-            }
-        }
+                    if vim.tbl_contains(installed, lang) then
+                        vim.treesitter.start(args.buf)
+                    end
+                end,
+            })
+        end
     },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
+        branch = 'main',
+        lazy = false,
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        config = function()
+            require('nvim-treesitter-textobjects').setup({
+                select = {
+                    lookahead = true,
+                    include_surrounding_whitespace = true,
+                },
+            })
+
+            -- Text object keymaps
+            -- FUNCTION = af + if
+            local select = require('nvim-treesitter-textobjects.select')
+            vim.keymap.set({ "x", "o" }, "af", function()
+                select.select_textobject("@function.outer", "textobjects")
+            end, { desc = "Select function outer" })
+            vim.keymap.set({ "x", "o" }, "if", function()
+                select.select_textobject("@function.inner", "textobjects")
+            end, { desc = "Select function inner" })
+            -- CLASS = ac + ic
+            vim.keymap.set({ "x", "o" }, "ac", function()
+                select.select_textobject("@class.outer", "textobjects")
+            end, { desc = "Select class outer" })
+            vim.keymap.set({ "x", "o" }, "ic", function()
+                select.select_textobject("@class.inner", "textobjects")
+            end, { desc = "Select class inner" })
+            -- PARAMETER = aa + ia
+            vim.keymap.set({ "x", "o" }, "aa", function()
+                select.select_textobject("@parameter.outer", "textobjects")
+            end, { desc = "Select parameter outer" })
+            vim.keymap.set({ "x", "o" }, "ia", function()
+                select.select_textobject("@parameter.inner", "textobjects")
+            end, { desc = "Select parameter inner" })
+
+            -- Swap keymaps
+            local swap = require('nvim-treesitter-textobjects.swap')
+            vim.keymap.set("n", "<C-i>", function()
+                swap.swap_next("@parameter.inner")
+            end, { desc = "Swap parameter with next" })
+            vim.keymap.set("n", "<C-n>", function()
+                swap.swap_next("@function.outer")
+            end, { desc = "Swap function with next" })
+            vim.keymap.set("n", "<C-m>", function()
+                swap.swap_previous("@parameter.inner")
+            end, { desc = "Swap parameter with previous" })
+            vim.keymap.set("n", "<C-e>", function()
+                swap.swap_previous("@function.outer")
+            end, { desc = "Swap function with previous" })
+        end
     },
     { 's3rvac/vim-syntax-yara' },
 
