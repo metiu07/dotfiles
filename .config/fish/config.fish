@@ -565,6 +565,7 @@ end
 
 alias vimc="pushd $HOME/dev/dotfiles; vim (ff); popd"
 alias vimt="vim (mktemp -t note_XXXXXX.md)"
+alias vimto="vim (mktemp -t note_XXXXXX.org)"
 alias vimtt="vim (mktemp)"
 alias vimf="vim (ff)"
 alias ep="vimp"
