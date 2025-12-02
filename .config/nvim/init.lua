@@ -114,6 +114,7 @@ require('lazy').setup({
             exclude = {
                 filetypes = {
                     'markdown',
+                    'org',
                     'lspinfo',
                     'packer',
                     'checkhealth',
