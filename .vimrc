@@ -100,7 +100,8 @@ set smartcase
 set gdefault
 
 " List
-set listchars=nbsp:+,tab:>\ ,trail:·,extends:>,lead:·
+set list
+set listchars=nbsp:+,tab:>\ ,trail:·,extends:>
 
 " Make double-<Esc> clear search highlights
 " nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
