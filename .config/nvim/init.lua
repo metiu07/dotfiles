@@ -56,6 +56,31 @@ require('lazy').setup({
         }
     },
 
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        ---@type snacks.Config
+        opts = {
+            bigfile = { enabled = true },
+            dashboard = { enabled = true },
+            indent = {
+                enabled = true,
+                filter = function(buf)
+                    return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and
+                        vim.bo[buf].buftype == "" and vim.bo[buf].filetype ~= "markdown" and
+                        vim.bo[buf].filetype ~= "org"
+                end,
+            },
+            input = { enabled = true },
+
+            -- To see history of notifications, use `:lua Snacks.notifier.show_history()`
+            notifier = { enabled = true },
+
+            quickfile = { enabled = true },
+        },
+    },
+
     'tpope/vim-abolish',
     'tpope/vim-commentary',
     'godlygeek/tabular',
