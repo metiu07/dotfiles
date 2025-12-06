@@ -12,8 +12,8 @@ config.keys = {
 config.color_scheme = 'Solarized (light) (terminal.sexy)'
 -- config.color_scheme = 'Solarized Light (Gogh)'
 
-config.font = wezterm.font("JetBrains Mono", { weight = "Medium", bold = false })
-config.font_size = 16.0
+config.font = wezterm.font("Comic Code", { weight = "Light" })
+config.font_size = 13.0
 config.cell_width = 0.9
 
 config.front_end = "WebGpu"
