@@ -16,7 +16,17 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.cmd('source ' .. vim.fn.expand('$HOME/.config/nvim/config.vim'))
+-- Source local configuration if it exists
+local local_config = vim.fn.stdpath('config') .. '/init.local.lua'
+if vim.fn.filereadable(local_config) == 1 then
+    vim.cmd.source(local_config)
+end
+
+-- Source vimscript configuration if it exists
+local vimscript_config = vim.fn.stdpath('config') .. '/config.vim'
+if vim.fn.filereadable(vimscript_config) == 1 then
+    vim.cmd.source(vimscript_config)
+end
 
 require('lazy').setup({
     -- TODO: Consider https://github.com/ziontee113/syntax-tree-surfer
@@ -347,18 +357,25 @@ require('lazy').setup({
     {
         "github/copilot.vim",
         init = function()
-            vim.cmd([[
-                let g:copilot_filetypes = {
-                      \ 'gitcommit': v:true,
-                      \ 'yaml': v:true,
-                      \ 'toml': v:true,
-                      \ 'json': v:true,
-                      \ 'markdown': v:false,
-                      \ 'org': v:false,
-                      \ }
-                let g:copilot_no_tab_map = v:true
-                imap <silent><script><expr> <C-F> copilot#Accept("")
-            ]])
+            -- Allow override via g:copilot_enable_markdown and g:copilot_enable_org
+            -- Default to false if not set
+            local enable_markdown = vim.g.copilot_enable_markdown or false
+            local enable_org = vim.g.copilot_enable_org or false
+
+            vim.g.copilot_filetypes = {
+                gitcommit = true,
+                yaml = true,
+                toml = true,
+                json = true,
+                markdown = enable_markdown,
+                org = enable_org,
+            }
+            vim.g.copilot_no_tab_map = true
+            vim.keymap.set('i', '<C-F>', 'copilot#Accept("")', {
+                silent = true,
+                script = true,
+                expr = true
+            })
         end,
     },
 
