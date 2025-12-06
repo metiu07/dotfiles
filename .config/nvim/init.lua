@@ -684,14 +684,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
--- Highlight yanked things
--- FIXME: Convert to lua
-vim.cmd([[
-augroup highlight_yank
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=50}
-augroup END
-]])
+-- Highlight yanked text
+local highlight_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+    pattern = "*",
+    group = highlight_group,
+    callback = function()
+        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 50 })
+    end,
+})
 
 -- Jump to a first task in the file
 vim.keymap.set('n', '<leader>j',
