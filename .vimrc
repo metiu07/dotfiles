@@ -61,6 +61,7 @@ set shiftwidth=4
 set expandtab
 set nofoldenable
 au CursorHold * checktime
+set cursorline
 set autoread
 set ttyfast
 set hidden

@@ -693,8 +693,6 @@ augroup highlight_yank
 augroup END
 ]])
 
-vim.o.cursorline = true
-
 -- Jump to a first task in the file
 vim.keymap.set('n', '<leader>j',
     function()
