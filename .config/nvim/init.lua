@@ -215,7 +215,6 @@ require('lazy').setup({
             })
             vim.lsp.enable('yamlls')
 
-            -- For some reason we need to set offsetEncoding to utf-8 for clangd to work
             vim.lsp.config('lua_ls', {
                 settings = {
                     Lua = {
