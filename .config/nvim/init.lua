@@ -1,3 +1,8 @@
+-- Printing values
+-- print(vim.inspect(client))
+-- print(client.get_language_id())
+-- See the values in :messages
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
@@ -10,94 +15,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-
-local OPTS = { noremap = true, silent = true }
-
--- Printing values
--- print(vim.inspect(client))
--- print(client.get_language_id())
--- See the values in :messages
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local ON_ATTACH = function(client, bufnr)
-    local map = vim.keymap.set
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-    map("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
-    map("n", "gD", "<cmd>Lspsaga goto_type_definition<CR>")
-    map('n', 'gi', vim.lsp.buf.implementation, bufopts)
-
-    local builtin = require('telescope.builtin')
-    map('n', 'gj', builtin.lsp_dynamic_workspace_symbols, bufopts)
-    map('n', 'gJ', builtin.lsp_workspace_symbols, bufopts)
-
-    map('n', 'gr', builtin.lsp_references, bufopts)
-
-    map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
-    map('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-
-    map({ "n", "v" }, "<leader>a", "<cmd>Lspsaga code_action<CR>")
-    map("n", "<leader>r", "<cmd>Lspsaga rename<CR>")
-
-    map("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
-    map("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
-    map("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
-
-    map("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
-    map("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-    map("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
-    map({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
-
-    map('n', '<leader>Wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    map('n', '<leader>Wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    map('n', '<leader>Wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, bufopts)
-
-    map('n', '<leader>f', function()
-        print("Formatting")
-        require("conform").format({ async = true })
-    end, bufopts)
-
-    -- Automatic formatting on save
-    vim.g.anon_format_on_save = false
-    map('n', '<leader>F', function()
-        if vim.g.anon_format_on_save then
-            vim.g.anon_format_on_save = false
-            vim.cmd("autocmd! BufWritePre <buffer>")
-            print("Auto formatting on save disabled")
-        else
-            vim.cmd("autocmd BufWritePre <buffer> lua require('conform').format()")
-            vim.g.anon_format_on_save = true
-            print("Auto formatting on save enabled")
-        end
-    end, bufopts)
-
-    map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-    map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-    map("n", "[E", function()
-        require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-    end)
-    map("n", "]E", function()
-        require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-    end)
-
-    -- TODO: Add a way to distinguish between read/write
-    -- NOTE: Currently disabled because spamming errors in YAML files
-    if client.name ~= "yamlls" then
-        vim.cmd([[
-        " hi default link LspReferenceText IncSearch
-        hi default link LspReferenceText CursorLine
-        hi default link LspReferenceRead LspReferenceText
-        hi default link LspReferenceWrite LspReferenceText
-        autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        ]])
-    end
-end
-
 
 vim.cmd('source ' .. vim.fn.expand('$HOME/.config/nvim/config.vim'))
 
@@ -234,82 +151,12 @@ require('lazy').setup({
     {
         'neovim/nvim-lspconfig',
         config = function()
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            vim.lsp.enable('pyright')
+            vim.lsp.enable('ts_ls')
+            vim.lsp.enable('rust_analyzer')
+            vim.lsp.enable('yls')
 
-            -- LSP
-            vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, OPTS)
-            vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, OPTS)
-            vim.keymap.set('n', ']g', vim.diagnostic.goto_next, OPTS)
-            vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, OPTS)
-
-            local util = require('lspconfig.util')
-
-            local path = util.path
-
-            local function get_python_path(workspace)
-                -- Use activated virtualenv.
-                if vim.env.VIRTUAL_ENV then
-                    return path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
-                end
-
-                -- Find and use virtualenv via poetry in workspace directory.
-                local match = vim.fn.glob(path.join(workspace, 'poetry.lock'))
-                if match ~= '' then
-                    local venv = vim.fn.trim(vim.fn.system('poetry env info -p 2>/dev/null'))
-                    return path.join(venv, 'bin', 'python')
-                end
-
-                -- Find and use virtualenv in workspace directory.
-                for _, pattern in ipairs({ '*', '.*' }) do
-                    local match = vim.fn.glob(path.join(workspace, pattern, 'pyvenv.cfg'))
-                    if match ~= '' then
-                        return path.join(path.dirname(match), 'bin', 'python')
-                    end
-                end
-
-                -- Fallback to system Python.
-                return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
-            end
-
-            vim.lsp.config.pyright = {
-                on_attach = ON_ATTACH,
-                capabilities = capabilities,
-                before_init = function(_, config)
-                    if config.root_dir == nil then
-                        return
-                    end
-                    config.settings.python.pythonPath = get_python_path(config.root_dir)
-                end
-            }
-            vim.lsp.config.ruff = {
-                on_attach = ON_ATTACH,
-                capabilities = capabilities,
-                before_init = function(_, config)
-                    if config.root_dir == nil then
-                        return
-                    end
-                    config.interpreter = get_python_path(config.root_dir)
-                end
-            }
-            vim.lsp.config.ts_ls = {
-                on_attach = ON_ATTACH,
-                capabilities = capabilities,
-            }
-            vim.lsp.config.gopls = {
-                on_attach = ON_ATTACH,
-                capabilities = capabilities,
-            }
-            vim.lsp.config.bashls = {
-                on_attach = ON_ATTACH,
-                capabilities = capabilities,
-            }
-            -- require('lspconfig')['nixd'].setup {
-            --     on_attach = ON_ATTACH,
-            --     capabilities = capabilities,
-            -- }
-            vim.lsp.config.nil_ls = {
-                on_attach = ON_ATTACH,
-                capabilities = capabilities,
+            vim.lsp.config('nil_ls', {
                 settings = {
                     ['nil'] = {
                         formatting = {
@@ -317,14 +164,11 @@ require('lazy').setup({
                         },
                     },
                 }
-            }
-            vim.lsp.config.rust_analyzer = {
-                on_attach = ON_ATTACH,
-                capabilities = capabilities,
-            }
-            vim.lsp.config.yamlls = {
-                on_attach = ON_ATTACH,
-                capabilities = capabilities,
+            })
+            vim.lsp.enable('nil_ls')
+
+
+            vim.lsp.config('yamlls', {
                 settings = {
                     yaml = {
                         schemas = {
@@ -333,17 +177,11 @@ require('lazy').setup({
                         }
                     }
                 }
-            }
+            })
+            vim.lsp.enable('yamlls')
+
             -- For some reason we need to set offsetEncoding to utf-8 for clangd to work
-            local clangd_capabilities = require('cmp_nvim_lsp').default_capabilities()
-            clangd_capabilities.offsetEncoding = "utf-8"
-            vim.lsp.config.clangd = {
-                on_attach = ON_ATTACH,
-                capabilities = clangd_capabilities,
-            }
-            vim.lsp.config.lua_ls = {
-                on_attach = ON_ATTACH,
-                capabilities = capabilities,
+            vim.lsp.config('lua_ls', {
                 settings = {
                     Lua = {
                         runtime = {
@@ -365,11 +203,8 @@ require('lazy').setup({
                         },
                     },
                 },
-            }
-            vim.lsp.config.yls = {
-                on_attach = ON_ATTACH,
-                capabilities = capabilities,
-            }
+            })
+            vim.lsp.enable('lua_ls')
         end,
     },
     {
@@ -390,6 +225,7 @@ require('lazy').setup({
     },
     {
         'nvimdev/lspsaga.nvim',
+        event = "LspAttach",
         opts = {
             symbol_in_winbar = {
                 enable = false,
@@ -787,6 +623,79 @@ require('lazy').setup({
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
     },
+})
+
+-- LSP keymap.
+-- Ref: https://neovim.io/doc/user/lsp.html#lsp-attach
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('my.lsp', {}),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+        local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+        vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, bufopts)
+        vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, bufopts)
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+
+        local telescope = require('telescope.builtin')
+        vim.keymap.set('n', 'gj', telescope.lsp_dynamic_workspace_symbols, bufopts)
+        vim.keymap.set('n', 'gJ', telescope.lsp_workspace_symbols, bufopts)
+        vim.keymap.set('n', 'gr', telescope.lsp_references, bufopts)
+
+        vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+
+        vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+        vim.keymap.set("n", "<leader>cr", "<cmd>Lspsaga rename<CR>")
+        vim.keymap.set("n", "<leader>co", "<cmd>Lspsaga outline<CR>")
+
+        vim.keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+        vim.keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+
+        vim.keymap.set('n', '<leader>f', function()
+            print("Formatting")
+            require("conform").format({ async = true })
+        end, bufopts)
+
+        -- Automatic formatting on save
+        vim.g.anon_format_on_save = false
+        vim.keymap.set('n', '<leader>F', function()
+            if vim.g.anon_format_on_save then
+                vim.g.anon_format_on_save = false
+                vim.cmd("autocmd! BufWritePre <buffer>")
+                print("Auto formatting on save disabled")
+            else
+                vim.cmd("autocmd BufWritePre <buffer> lua require('conform').format()")
+                vim.g.anon_format_on_save = true
+                print("Auto formatting on save enabled")
+            end
+        end, bufopts)
+
+        -- TODO: Add a way to show diagnostics message, currently I don't see it
+
+        -- TODO: Add a way to distinguish between read/write
+        -- NOTE: Currently disabled because spamming errors in YAML files
+        if client:supports_method('textDocument/implementation') and client.name ~= "yamlls" then
+            vim.api.nvim_set_hl(0, 'LspReferenceText', { link = 'CursorLine', default = true })
+            vim.api.nvim_set_hl(0, 'LspReferenceRead', { link = 'LspReferenceText', default = true })
+            vim.api.nvim_set_hl(0, 'LspReferenceWrite', { link = 'LspReferenceText', default = true })
+
+            -- Automatically highlight references to symbol under cursor
+            local group = vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = false })
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                group = group,
+                buffer = 0,
+                callback = vim.lsp.buf.document_highlight,
+            })
+            vim.api.nvim_create_autocmd('CursorMoved', {
+                group = group,
+                buffer = 0,
+                callback = vim.lsp.buf.clear_references,
+            })
+        end
+    end,
 })
 
 -- Highlight yanked things
