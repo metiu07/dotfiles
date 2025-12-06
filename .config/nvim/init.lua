@@ -554,6 +554,7 @@ require('lazy').setup({
                 "dockerfile",
                 "fish",
                 "javascript",
+                "json",
                 "lua",
                 "markdown",
                 "markdown_inline",
