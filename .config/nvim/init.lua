@@ -394,12 +394,11 @@ require('lazy').setup({
                 markdown = enable_markdown,
                 org = enable_org,
             }
-            vim.g.copilot_no_tab_map = true
             vim.keymap.set('i', '<C-F>', 'copilot#Accept("")', {
-                silent = true,
-                script = true,
-                expr = true
+                replace_keycodes = false,
+                expr = true,
             })
+            vim.g.copilot_no_tab_map = true
         end,
     },
 
