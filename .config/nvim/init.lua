@@ -514,6 +514,8 @@ require('lazy').setup({
                 mappings = {
                     org = {
                         org_todo = '<CR>',
+                        org_move_subtree_up = '<M-k>',
+                        org_move_subtree_down = '<M-j>',
                     },
                 },
             })
