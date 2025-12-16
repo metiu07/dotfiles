@@ -638,6 +638,14 @@ require('lazy').setup({
                     ---@type solarized.highlights
                     local groups = {
                         SpellBad = { strikethrough = false },
+
+                        -- Make org headlines bold with different colors
+                        ["@org.headline.level1.org"] = { bold = true, fg = colors.blue },
+                        ["@org.headline.level2.org"] = { bold = true, fg = colors.violet },
+                        ["@org.headline.level3.org"] = { bold = true, fg = colors.yellow },
+                        ["@org.headline.level4.org"] = { bold = true, fg = colors.orange },
+                        ["@org.headline.level5.org"] = { bold = true, fg = colors.red },
+                        ["@org.headline.level6.org"] = { bold = true, fg = colors.magenta },
                     }
 
                     return groups
