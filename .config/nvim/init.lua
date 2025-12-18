@@ -82,7 +82,6 @@ require('lazy').setup({
     },
 
     'tpope/vim-abolish',
-    'tpope/vim-commentary',
     'godlygeek/tabular',
 
     -- Telescope
