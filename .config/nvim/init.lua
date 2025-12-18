@@ -409,18 +409,14 @@ require('lazy').setup({
         config = function()
             require('nvim-treesitter').install({
                 "bash",
-                "c",
-                "diff",
                 "dockerfile",
                 "fish",
-                "javascript",
                 "json",
                 "lua",
                 "markdown",
                 "markdown_inline",
                 "python",
-                "rust",
-                "typescript",
+                "yaml",
             })
 
             -- Automatically start treesitter for supported filetypes
