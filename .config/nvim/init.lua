@@ -184,6 +184,9 @@ require('lazy').setup({
     {
         'neovim/nvim-lspconfig',
         config = function()
+            vim.diagnostic.config({
+                virtual_text = true,
+            })
             vim.lsp.enable('ts_ls')
             vim.lsp.enable('rust_analyzer')
             vim.lsp.enable('yls')
