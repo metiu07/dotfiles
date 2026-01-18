@@ -750,11 +750,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Jump to a first task in the file
 vim.keymap.set('n', '<leader>j',
     function()
-        vim.fn.cursor(1, 1)
+        -- Jump to end of file first, we are jumping to the end because if TODO
+        -- task is on the first line, and we would jump to it first, then the
+        -- search would ignore it.
+        vim.api.nvim_win_set_cursor(0, { vim.api.nvim_buf_line_count(0), 1 })
+
         if vim.bo.filetype == 'markdown' then
-            vim.fn.search('- \\[ \\]')
+            vim.fn.search('- \\[ \\]', 'w')
         elseif vim.bo.filetype == 'org' then
-            vim.fn.search('^\\*\\+ TODO')
+            vim.fn.search('^\\*\\+ TODO', 'w')
         end
     end,
     { noremap = true, silent = true })
