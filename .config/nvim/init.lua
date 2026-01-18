@@ -184,10 +184,18 @@ require('lazy').setup({
     {
         'neovim/nvim-lspconfig',
         config = function()
-            vim.lsp.enable('pyright')
             vim.lsp.enable('ts_ls')
             vim.lsp.enable('rust_analyzer')
             vim.lsp.enable('yls')
+
+            vim.lsp.enable('pyright')
+            vim.lsp.config('pyright', {
+                settings = {
+                    python = {
+                        pythonPath = vim.fn.trim(vim.fn.system("poetry env info -e"))
+                    }
+                }
+            })
 
             vim.lsp.config('nil_ls', {
                 settings = {
