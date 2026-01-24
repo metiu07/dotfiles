@@ -27,9 +27,6 @@ if test (uname) = "Darwin"
     # gke-gcloud-auth-plugin
     source (brew --prefix)/share/google-cloud-sdk/path.fish.inc
 
-    # setup fzf
-    fzf --fish | source
-
     # Test containers -- https://java.testcontainers.org/supported_docker_environment/
     #
     # Rancher
@@ -62,7 +59,7 @@ source ~/.config/fish/aliases
 # `bind -f`         - show possible commands
 
 # Use fzf_key_bindings if installed
-# TODO: Maybe I can replace this with `fzf --fish | source` also on Linux
+fzf --fish | source
 if functions -q fzf_key_bindings
     fzf_key_bindings
 end
