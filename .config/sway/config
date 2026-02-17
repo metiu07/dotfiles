@@ -233,7 +233,7 @@ exec alacritty -e fish -c tmux -f $HOME/.config/tmux/tmux.conf new
 exec_always "pkill kanshi; sleep 1s; kanshi"
 
 # Manage what to do when the laptop lid closes
-bindswitch --reload lid:on systemctl suspend
+bindswitch --reload lid:on systemctl hibernate
 # bindswitch --reload lid:off output eDP-1 enable
 
 # Setup wallpaper
