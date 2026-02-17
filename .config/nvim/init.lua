@@ -80,6 +80,13 @@ require('lazy').setup({
             quickfile = { enabled = true },
         },
     },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            delay = 1000,
+        },
+    },
 
     'godlygeek/tabular',
 
