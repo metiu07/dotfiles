@@ -136,6 +136,17 @@ require('lazy').setup({
                     builtin.grep_string({ shorten_path = true, word_match = "-w", only_sort_text = true, search = '' })
                 end,
                 {})
+            vim.keymap.set('n', '<leader>k', function()
+                builtin.grep_string({
+                    search = "^\\*+ ",
+                    use_regex = true,
+                    additional_args = function()
+                        return { "-g", "*.org" }
+                    end,
+                    prompt_title = "Org Headings",
+                    only_sort_text = true,
+                })
+            end, { desc = "Search Org Headings" })
             vim.keymap.set('n', '<leader>,', builtin.buffers, {})
             vim.keymap.set('n', '<leader>hh', builtin.help_tags, {})
             vim.keymap.set('n', '<leader>hk', builtin.keymaps, {})
