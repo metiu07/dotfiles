@@ -736,7 +736,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- TODO: Add a way to distinguish between read/write
         -- NOTE: Currently disabled because spamming errors in YAML files
-        if client:supports_method('textDocument/implementation') and client.name ~= "yamlls" then
+        if client:supports_method('textDocument/documentHighlight') and client.name ~= "yamlls" then
             vim.api.nvim_set_hl(0, 'LspReferenceText', { link = 'CursorLine', default = true })
             vim.api.nvim_set_hl(0, 'LspReferenceRead', { link = 'LspReferenceText', default = true })
             vim.api.nvim_set_hl(0, 'LspReferenceWrite', { link = 'LspReferenceText', default = true })
