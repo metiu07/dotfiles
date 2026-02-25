@@ -7,7 +7,7 @@
 [core]
 	whitespace = trailing-space,space-before-tab
 	# pager = less
-	pager = delta --light
+	pager = delta
 	editor = nvim
 
 [commit]
@@ -53,6 +53,7 @@
     features = decorations
     side-by-side = true
     whitespace-error-style = 22 reverse
+    light = true
 
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
