@@ -28,6 +28,13 @@ if vim.fn.filereadable(vimscript_config) == 1 then
     vim.cmd.source(vimscript_config)
 end
 
+local function strip_accents(str)
+    if not str then return str end
+    local from = "ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñčďěňřšťžČĎĚŇŘŠŤŽĺľŕĹĽŔ"
+    local to   = "AAAAAAaaaaaaOOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNncdenrstzCDENRSTZllrLLR"
+    return vim.fn.tr(str, from, to)
+end
+
 require('lazy').setup({
     -- TODO: Consider https://github.com/ziontee113/syntax-tree-surfer
     -- TODO: Consider https://github.com/windwp/nvim-autopairs
@@ -137,7 +144,9 @@ require('lazy').setup({
                 end,
                 {})
             vim.keymap.set('n', '<leader>k', function()
-                builtin.grep_string({
+                -- Here I want to give a heading name and see matching headings in the current project
+                -- Additionally, I want to search in headings that are stripped of accents
+                local opts = {
                     search = "^\\*+ ",
                     use_regex = true,
                     additional_args = function()
@@ -145,7 +154,20 @@ require('lazy').setup({
                     end,
                     prompt_title = "Org Headings",
                     only_sort_text = true,
-                })
+                }
+
+                local make_entry = require("telescope.make_entry")
+                local default_maker = make_entry.gen_from_vimgrep(opts)
+
+                opts.entry_maker = function(line)
+                    local entry = default_maker(line)
+                    if entry and entry.ordinal then
+                        entry.ordinal = strip_accents(entry.ordinal)
+                    end
+                    return entry
+                end
+
+                require('telescope.builtin').grep_string(opts)
             end, { desc = "Search Org Headings" })
             vim.keymap.set('n', '<leader>,', builtin.buffers, {})
             vim.keymap.set('n', '<leader>hh', builtin.help_tags, {})
