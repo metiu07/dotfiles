@@ -43,6 +43,9 @@
 [submodule]
 	recurse = true
 
+[worktree]
+	useRelativePaths = true
+
 [merge]
 	tool = meld
 	stat = true
